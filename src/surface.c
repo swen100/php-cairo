@@ -23,6 +23,7 @@
 
 #include "php_cairo.h"
 #include "php_cairo_internal.h"
+#include "cairo_jpg.h"
 
 zend_class_entry *ce_cairo_surface;
 zend_class_entry *ce_cairo_content;
@@ -484,11 +485,13 @@ PHP_METHOD(CairoSurface, hasShowTextGlyphs)
 }
 /* }}} */
 
+
+#ifdef CAIRO_HAS_PNG_FUNCTIONS
+
 ZEND_BEGIN_ARG_INFO(CairoSurface_writeToPng_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, file)
 ZEND_END_ARG_INFO()
 
-#ifdef CAIRO_HAS_PNG_FUNCTIONS
 /* {{{ proto int CairoSurface->writeToPng(file|resource file)
        Writes the contents of surface to a new file filename or PHP stream as a PNG image.
        Unlike some other stream supporting functions, you may NOT pass a null filename */
@@ -535,6 +538,60 @@ PHP_METHOD(CairoSurface, writeToPng)
 }
 /* }}} */
 #endif
+
+
+ZEND_BEGIN_ARG_INFO(CairoSurface_writeToJpeg_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, file)
+        ZEND_ARG_INFO(0, quality)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto int CairoSurface->writeToJpeg(file|resource file)
+       Writes the contents of surface to a new file filename or PHP stream as a JPEG image.
+       Unlike some other stream supporting functions, you may NOT pass a null filename */
+PHP_METHOD(CairoSurface, writeToJpeg)
+{
+	cairo_surface_object *surface_object;
+	zval *stream_zval = NULL;
+	stream_closure *closure;
+	php_stream *stream = NULL;
+	zend_bool owned_stream = 0;
+	cairo_status_t status;
+        double quality = 90;
+
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z|d", &stream_zval, &quality) == FAILURE) {
+            return;
+	}
+
+	surface_object = cairo_surface_object_get(getThis());
+	if(!surface_object) {
+            return;
+        }
+
+	if(Z_TYPE_P(stream_zval) == IS_STRING) {
+            stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "w+b", REPORT_ERRORS, NULL);
+            owned_stream = 1;
+	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
+            php_stream_from_zval(stream, stream_zval);	
+	} else {
+            zend_throw_exception(ce_cairo_exception, "Cairo\\Surface::writeToJpeg() expects parameter 1 to be a string or a stream resource", 0);
+            return;
+	}
+
+	/* Pack stream into struct */
+	closure = ecalloc(1, sizeof(stream_closure));
+	closure->stream = stream;
+	closure->owned_stream = owned_stream;
+
+	status = cairo_image_surface_write_to_jpeg_stream(surface_object->surface, php_cairo_write_func, (void *)closure, quality);
+	if (owned_stream) {
+            php_stream_close(stream);
+	}
+	efree(closure);
+        
+        php_cairo_throw_exception(status);
+}
+/* }}} */
+
 
 /* ----------------------------------------------------------------
     Cairo\Surface Object management
@@ -733,6 +790,7 @@ const zend_function_entry cairo_surface_methods[] = {
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
         PHP_ME(CairoSurface, writeToPng, CairoSurface_writeToPng_args, ZEND_ACC_PUBLIC)
 #endif
+        PHP_ME(CairoSurface, writeToJpeg, CairoSurface_writeToJpeg_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */

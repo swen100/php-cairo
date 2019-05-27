@@ -24,6 +24,7 @@ if test "$PHP_CAIRO" != "no"; then
     src/ft_font.c \
     src/quartz_font.c \
     src/win32_font.c \
+    src/cairo_jpg.c \
     src/surface.c \
     src/image_surface.c \
     src/sub_surface.c \

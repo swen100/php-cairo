@@ -23,6 +23,7 @@
 
 #include "php_cairo.h"
 #include "php_cairo_internal.h"
+#include "cairo_jpg.h"
 
 zend_class_entry *ce_cairo_imagesurface;
 zend_class_entry *ce_cairo_format;
@@ -309,6 +310,55 @@ PHP_METHOD(CairoImageSurface, createFromPng)
 /* }}} */
 #endif
 
+
+ZEND_BEGIN_ARG_INFO(CairoImageSurface_createFromJpeg_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, file)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto CairoImageSurface object CairoImageSurface::createFromJpeg(file|resource file)
+       Creates a new image surface and initializes the contents to the given JPEG file. */
+PHP_METHOD(CairoImageSurface, createFromJpeg)
+{
+	cairo_surface_object *surface_object;
+	zval *stream_zval = NULL;
+	stream_closure *closure;
+	zend_bool owned_stream = 0;
+	php_stream *stream = NULL;
+
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z", &stream_zval) == FAILURE) {
+		return;
+	}
+
+	object_init_ex(return_value, ce_cairo_imagesurface);
+	surface_object = Z_CAIRO_SURFACE_P(return_value);
+
+	if(Z_TYPE_P(stream_zval) == IS_STRING) {
+                // "rb" or "rw+b" ?
+		stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "rb", REPORT_ERRORS, NULL);
+		owned_stream = 1;
+	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
+		php_stream_from_zval(stream, stream_zval);	
+	} else {
+		zend_throw_exception(ce_cairo_exception, "CairoImageSurface::createFromJpeg() expects parameter 1 to be a string or a stream resource", 0);
+		return;
+	}
+
+	if(!stream) {
+		return;
+	}
+
+	// Pack stream into struct
+	closure = ecalloc(1, sizeof(stream_closure));
+	closure->stream = stream;
+	closure->owned_stream = owned_stream;
+
+	surface_object->closure = closure;
+	surface_object->surface = cairo_image_surface_create_from_jpeg_stream((cairo_read_func_t) php_cairo_read_func, (void *)closure);
+	php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+}
+/* }}} */
+
+
 /* ----------------------------------------------------------------
     Cairo\FontOptions Definition and registration
 ------------------------------------------------------------------*/
@@ -323,8 +373,9 @@ const zend_function_entry cairo_imagesurface_methods[] = {
 	PHP_ME(CairoImageSurface, getHeight, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoImageSurface, getStride, NULL, ZEND_ACC_PUBLIC)
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
-	PHP_ME(CairoImageSurface, createFromPng, CairoImageSurface_createFromPng_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)  
+	PHP_ME(CairoImageSurface, createFromPng, CairoImageSurface_createFromPng_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 #endif
+        PHP_ME(CairoImageSurface, createFromJpeg, CairoImageSurface_createFromJpeg_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	ZEND_FE_END
 };
 /* }}} */
