@@ -284,27 +284,26 @@ PHP_METHOD(CairoImageSurface, createFromPng)
 	surface_object = Z_CAIRO_SURFACE_P(return_value);
 
 	if(Z_TYPE_P(stream_zval) == IS_STRING) {
-                // "rb" or "rw+b" ?
-		stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "rb", REPORT_ERRORS, NULL);
-		owned_stream = 1;
+            surface_object->surface = cairo_image_surface_create_from_png( Z_STRVAL_P(stream_zval) );
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
-		php_stream_from_zval(stream, stream_zval);	
-	} else {
-		zend_throw_exception(ce_cairo_exception, "CairoImageSurface::createFromPng() expects parameter 1 to be a string or a stream resource", 0);
+            php_stream_from_zval(stream, stream_zval);
+
+            if(!stream) {
 		return;
+            }
+
+            // Pack stream into struct
+            closure = ecalloc(1, sizeof(stream_closure));
+            closure->stream = stream;
+            closure->owned_stream = owned_stream;
+
+            surface_object->closure = closure;
+            surface_object->surface = cairo_image_surface_create_from_png_stream((cairo_read_func_t) php_cairo_read_func, (void *)closure);
+        } else {
+            zend_throw_exception(ce_cairo_exception, "CairoImageSurface::createFromPng() expects parameter 1 to be a string or a stream resource", 0);
+            return;
 	}
 
-	if(!stream) {
-		return;
-	}
-
-	// Pack stream into struct
-	closure = ecalloc(1, sizeof(stream_closure));
-	closure->stream = stream;
-	closure->owned_stream = owned_stream;
-
-	surface_object->closure = closure;
-	surface_object->surface = cairo_image_surface_create_from_png_stream((cairo_read_func_t) php_cairo_read_func, (void *)closure);
 	php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
 }
 /* }}} */
