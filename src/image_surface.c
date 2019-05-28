@@ -410,6 +410,11 @@ PHP_MINIT_FUNCTION(cairo_image_surface)
         CAIRO_FORMAT_DECLARE_ENUM(RGB16_565);
         CAIRO_FORMAT_DECLARE_ENUM(RGB30);
         
+        #if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 17, 0)
+            CAIRO_FORMAT_DECLARE_ENUM(RGBA128F);
+            CAIRO_FORMAT_DECLARE_ENUM(RGB96F);
+        #endif
+        
 	return SUCCESS;
 }
 /* }}} */
