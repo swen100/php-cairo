@@ -1,0 +1,42 @@
+sudo: false
+
+language: php
+
+dist: trusty
+
+addons:
+  apt:
+    packages:
+      - libcairo2-dev
+      - libfreetype6-dev
+      - fontconfig
+
+php:
+  - 7.0
+  - 7.1
+  - nightly
+ 
+env: 
+  - REPORT_EXIT_STATUS=1 NO_INTERACTION=1 TEST_PHP_ARGS="--show-diff -q -d extension=eos_datastructures.so" 
+
+before_install:
+  - git clone https://github.com/eosforphp/datastructures.git
+  - pushd datastructures
+  - phpize
+  - ./configure
+  - make
+  - make install
+  - echo "extension=eos_datastructures.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - popd
+  
+install:
+  - phpize
+  - ./configure
+  - make
+
+script: 
+  make test
+
+notifications:
+  email:
+    auroraeosrose@gmail.com
