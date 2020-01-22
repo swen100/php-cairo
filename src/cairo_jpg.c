@@ -399,6 +399,7 @@ cairo_surface_t *cairo_image_surface_create_from_jpeg_stream(cairo_read_func_len
 cairo_surface_t *cairo_image_surface_create_from_jpeg_stream(cairo_read_func_t read_func, void *closure)
 #endif
 {
+   cairo_surface_t *sfc;
    void *data, *tmp;
    ssize_t len, rlen;
    int eof = 0;
@@ -436,7 +437,12 @@ cairo_surface_t *cairo_image_surface_create_from_jpeg_stream(cairo_read_func_t r
    }
 
    // call jpeg decompression and return surface
-   return cairo_image_surface_create_from_jpeg_mem(data, len);
+   sfc = cairo_image_surface_create_from_jpeg_mem(data, len);
+   if (cairo_surface_status(sfc) != CAIRO_STATUS_SUCCESS) {
+      free(data);
+   }
+
+   return sfc;
 }
 
 
