@@ -40,8 +40,6 @@ cairo_font_face_object *cairo_font_face_fetch_object(zend_object *object)
     return (cairo_font_face_object *) ((char*)(object) - XtOffsetOf(cairo_font_face_object, std));
 }
 
-//#define Z_CAIRO_FONT_FACE_P(zv) cairo_font_face_fetch_object(Z_OBJ_P(zv))
-
 cairo_font_face_object *cairo_font_face_object_get(zval *zv)
 {
 	cairo_font_face_object *object = Z_CAIRO_FONT_FACE_P(zv);
@@ -183,12 +181,12 @@ zend_object* cairo_font_face_create_object(zend_class_entry *ce)
 /* }}} */
 
 /* {{{ */
-static zend_object* cairo_font_face_clone_obj(zval *old_zval) 
+static zend_object* cairo_font_face_clone_obj(zend_object *old_object) 
 {
 	cairo_font_face_object *new_font, *old_font;
-	old_font = Z_CAIRO_FONT_FACE_P(old_zval);
+	old_font = cairo_font_face_fetch_object(old_object);
         
-        zend_object *return_value = cairo_font_face_obj_ctor(Z_OBJCE_P(old_zval), &new_font);
+        zend_object *return_value = cairo_font_face_obj_ctor(old_object->ce, &new_font);
         zend_objects_clone_members(&new_font->std, &old_font->std);
         
 	/* Fonts are created and then never changed, with the exception of
@@ -207,11 +205,14 @@ static zend_object* cairo_font_face_clone_obj(zval *old_zval)
     Cairo\FontOptions Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoFontFace_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_font_face_methods[] */
-const zend_function_entry cairo_font_face_methods[] = {
-	PHP_ME(CairoFontFace, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(CairoFontFace, getStatus, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoFontFace, getType, NULL, ZEND_ACC_PUBLIC)
+static const zend_function_entry cairo_font_face_methods[] = {
+	PHP_ME(CairoFontFace, __construct, CairoFontFace_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(CairoFontFace, getStatus, CairoFontFace_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontFace, getType, CairoFontFace_method_no_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */

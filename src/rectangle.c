@@ -51,26 +51,26 @@ static inline long cairo_rectangle_get_property_default(zend_class_entry *ce, ch
 	return value;
 }
 
-static inline long cairo_rectangle_get_property_value(zval *object, char *name) {
+static inline long cairo_rectangle_get_property_value(zend_object *object, char *name) {
 	zval *prop, rv;
 
-	prop = zend_read_property(Z_OBJCE_P(object), object, name, strlen(name), 1, &rv);
+	prop = zend_read_property(object->ce, object, name, strlen(name), 1, &rv);
 	return zval_get_long(prop);
 }
 
-#define Z_CAIRO_RECTANGLE_P(zv) cairo_rectangle_fetch_object(Z_OBJ_P(zv))
+#define Z_CAIRO_RECTANGLE_P(zv) cairo_rectangle_fetch_object(zv)
 
 #define CAIRO_ALLOC_RECT(rect_value) if (!rect_value) \
 	{ rect_value = ecalloc(sizeof(cairo_rectangle_int_t), 1); }
 
-#define CAIRO_VALUE_FROM_STRUCT(n,m)         \
-	if(strcmp(Z_STRVAL_P(member), m) == 0) { \
+#define CAIRO_VALUE_FROM_STRUCT(n, m)         \
+	if(strcmp(member->val, m) == 0) { \
 		value = rectangle_object->rect->n;           \
 		break;                               \
 	}
 
 #define CAIRO_VALUE_TO_STRUCT(n,m)                  \
-	if(strcmp(Z_STRVAL_P(member), m) == 0) {        \
+	if(strcmp(member->val, m) == 0) {        \
 		rectangle_object->rect->n = zval_get_long(value); \
 		break;                                      \
 	}
@@ -84,9 +84,10 @@ static inline long cairo_rectangle_get_property_value(zval *object, char *name) 
 ------------------------------------------------------------------*/
 
 /* {{{ */
+// function is never be used!?! Compare it with "cairo_matrix_object_get_matrix".
 cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv)
 {
-	cairo_rectangle_object *rect_object = Z_CAIRO_RECTANGLE_P(zv);
+	cairo_rectangle_object *rect_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(zv));
 
 	return rect_object->rect;
 }
@@ -110,17 +111,17 @@ PHP_METHOD(CairoRectangle, __construct)
 	cairo_rectangle_object *rectangle_object;
 
 	/* read defaults from object */
-	long x = cairo_rectangle_get_property_value(getThis(), "x");
-	long y = cairo_rectangle_get_property_value(getThis(), "y");
-	long width = cairo_rectangle_get_property_value(getThis(), "width");
-	long height = cairo_rectangle_get_property_value(getThis(), "height");
+	long x = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "x");
+	long y = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "y");
+	long width = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "width");
+	long height = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "height");
 
 	/* Now allow constructor to overwrite them if desired */
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|llll", &x, &y, &width, &height) == FAILURE) {
 		return;
 	}
 
-	rectangle_object = Z_CAIRO_RECTANGLE_P(getThis());
+	rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(getThis()));
 
 	rectangle_object->rect->x = x;
 	rectangle_object->rect->y = y;
@@ -186,11 +187,11 @@ static zend_object* cairo_rectangle_create_object(zend_class_entry *ce)
 /* }}} */
 
 /* {{{ */
-static zend_object* cairo_rectangle_clone_obj(zval *this_zval) 
+static zend_object* cairo_rectangle_clone_obj(zend_object *zobj) 
 {
 	cairo_rectangle_object *new_rectangle;
-	cairo_rectangle_object *old_rectangle = Z_CAIRO_RECTANGLE_P(this_zval);
-	zend_object *return_value = cairo_rectangle_obj_ctor(Z_OBJCE_P(this_zval), &new_rectangle);
+	cairo_rectangle_object *old_rectangle = Z_CAIRO_RECTANGLE_P(zobj);
+	zend_object *return_value = cairo_rectangle_obj_ctor(zobj->ce, &new_rectangle);
 	CAIRO_ALLOC_RECT(new_rectangle->rect);
 
 	new_rectangle->rect->x = old_rectangle->rect->x;
@@ -205,10 +206,10 @@ static zend_object* cairo_rectangle_clone_obj(zval *this_zval)
 /* }}} */
 
 /* {{{ */
-static zval *cairo_rectangle_object_read_property(zval *object, zval *member, int type, void **cache_slot, zval *rv)
+static zval *cairo_rectangle_object_read_property(zend_object *object, zend_string *member, int type, void **cache_slot, zval *rv)
 {
 	zval *retval;
-	zval tmp_member;
+	//zval tmp_member;
 	double value;
 	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
 
@@ -216,13 +217,13 @@ static zval *cairo_rectangle_object_read_property(zval *object, zval *member, in
 		return rv;
 	}
 
-	if(Z_TYPE_P(member) != IS_STRING) {
+	/*if(Z_TYPE_P(member) != IS_STRING) {
 		tmp_member = *member;
 		zval_copy_ctor(&tmp_member);
 		convert_to_string(&tmp_member);
 		member = &tmp_member;
 		cache_slot = NULL;
-	}
+	}*/
 
 	do {
 		CAIRO_VALUE_FROM_STRUCT(x,"x");
@@ -233,9 +234,9 @@ static zval *cairo_rectangle_object_read_property(zval *object, zval *member, in
 		/* not a struct member */
 		retval = (zend_get_std_object_handlers())->read_property(object, member, type, cache_slot, rv);
 
-		if(member == &tmp_member) {
+		/*if(member == &tmp_member) {
 			zval_dtor(member);
-		}
+		}*/
 
 		return retval;
 	} while(0);
@@ -243,32 +244,33 @@ static zval *cairo_rectangle_object_read_property(zval *object, zval *member, in
 	retval = rv;
 	ZVAL_LONG(retval, value);
 
-	if(member == &tmp_member) {
+	/*if(member == &tmp_member) {
 		zval_dtor(member);
-	}
+	}*/
 
 	return retval;
 }
 /* }}} */
 
 /* {{{ */
-static void cairo_rectangle_object_write_property(zval *object, zval *member, zval *value, void **cache_slot)
+static zval *cairo_rectangle_object_write_property(zend_object *object, zend_string *member, zval *value, void **cache_slot)
 {
-	zval tmp_member;
+	//zval tmp_member;
 	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
-
+        zval *retval = NULL;
+        
 	if(!rectangle_object) {
-		return;
+		return retval;
 	}
 
 
-	if(Z_TYPE_P(member) != IS_STRING) {
+	/*if(Z_TYPE_P(member) != IS_STRING) {
 		tmp_member = *member;
 		zval_copy_ctor(&tmp_member);
 		convert_to_string(&tmp_member);
 		member = &tmp_member;
 		cache_slot = NULL;
-	}
+	}*/
 
 	do {
 		CAIRO_VALUE_TO_STRUCT(x,"x");
@@ -279,16 +281,17 @@ static void cairo_rectangle_object_write_property(zval *object, zval *member, zv
 	} while(0);
 
 	/* not a struct member */
-	(zend_get_std_object_handlers())->write_property(object, member, value, cache_slot);
+	retval = (zend_get_std_object_handlers())->write_property(object, member, value, cache_slot);
 
-	if(member == &tmp_member) {
+	/*if(member == &tmp_member) {
 		zval_dtor(member);
-	}
+	}*/
+        return retval;
 }
 /* }}} */
 
 /* {{{ */
-static HashTable *cairo_rectangle_object_get_properties(zval *object) 
+static HashTable *cairo_rectangle_object_get_properties(zend_object *object) 
 {
 	HashTable *props;
 	zval tmp;
