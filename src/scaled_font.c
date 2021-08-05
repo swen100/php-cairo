@@ -505,19 +505,22 @@ PHP_METHOD(CairoScaledFont, getType)
     Cairo\FontOptions Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoScaledFont_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_scaled_font_methods[] */
-const zend_function_entry cairo_scaled_font_methods[] = {
+static const zend_function_entry cairo_scaled_font_methods[] = {
 	PHP_ME(CairoScaledFont, __construct, CairoScaledFont___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(CairoScaledFont, getStatus, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getExtents, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getStatus, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getExtents, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoScaledFont, getTextExtents, CairoScaledFont_getTextExtents_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoScaledFont, getGlyphExtents, CairoScaledFont_getGlyphExtents_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getFontFace, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getFontOptions, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getFontMatrix , NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getCtm, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getScaleMatrix, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoScaledFont, getType, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getFontFace, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getFontOptions, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getFontMatrix , CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getCtm, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getScaleMatrix, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoScaledFont, getType, CairoScaledFont_method_no_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */

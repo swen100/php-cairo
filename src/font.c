@@ -126,12 +126,15 @@ PHP_METHOD(CairoToyFontFace, getWeight)
     Cairo\CairoToyFontFace Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoToyFontFace_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_toy_font_face_methods */
-const zend_function_entry cairo_toy_font_face_methods[] = {
+static const zend_function_entry cairo_toy_font_face_methods[] = {
 	PHP_ME(CairoToyFontFace, __construct, CairoToyFontFace___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(CairoToyFontFace, getFamily, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoToyFontFace, getSlant, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoToyFontFace, getWeight, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoToyFontFace, getFamily, CairoToyFontFace_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoToyFontFace, getSlant, CairoToyFontFace_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoToyFontFace, getWeight, CairoToyFontFace_method_no_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */

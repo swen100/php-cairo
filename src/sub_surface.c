@@ -25,6 +25,9 @@
 
 zend_class_entry *ce_cairo_subsurface;
 
+ZEND_BEGIN_ARG_INFO(CairoSubSurface___construct_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ proto CairoSubSurface __construct(int content, array extents)
        Returns new CairoSubSurface */
 PHP_METHOD(CairoSubSurface, __construct)
@@ -33,8 +36,13 @@ PHP_METHOD(CairoSubSurface, __construct)
 }
 /* }}} */
 
-const zend_function_entry cairo_sub_surface_methods[] = {
-    PHP_ME(CairoSubSurface, __construct, NULL, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
+
+/* ----------------------------------------------------------------
+    Cairo\Surface\Sub Definition and registration
+------------------------------------------------------------------*/
+
+static const zend_function_entry cairo_sub_surface_methods[] = {
+    PHP_ME(CairoSubSurface, __construct, CairoSubSurface___construct_args, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
     ZEND_FE_END
 };
 

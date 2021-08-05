@@ -296,17 +296,20 @@ PHP_METHOD(CairoPsSurface, levelToString)
     Cairo\Surface\ps Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoPsSurface_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_ps_surface_methods[] */
-const zend_function_entry cairo_ps_surface_methods[] = {
+static const zend_function_entry cairo_ps_surface_methods[] = {
 	PHP_ME(CairoPsSurface, __construct, CairoPsSurface___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(CairoPsSurface, setSize, CairoPsSurface_setSize_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoPsSurface, restrictToLevel, CairoPsSurface_long_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoPsSurface, getLevels, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(CairoPsSurface, getLevels, CairoPsSurface_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(CairoPsSurface, levelToString, CairoPsSurface_long_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(CairoPsSurface, setEps, CairoPsSurface_setEps_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoPsSurface, getEps, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoPsSurface, dscBeginSetup, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoPsSurface, dscBeginPageSetup, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoPsSurface, getEps, CairoPsSurface_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoPsSurface, dscBeginSetup, CairoPsSurface_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoPsSurface, dscBeginPageSetup, CairoPsSurface_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoPsSurface, dscComment, CairoPsSurface_dscComment_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };

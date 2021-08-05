@@ -131,6 +131,10 @@ PHP_METHOD(CairoSvgSurface, versionToString)
 }
 /* }}} */
 
+
+ZEND_BEGIN_ARG_INFO(CairoSvgSurface_getVersions_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ proto array CairoSvgSurface::getVersions()
        Used to retrieve the list of supported versions */
 PHP_METHOD(CairoSvgSurface, getVersions)
@@ -156,11 +160,11 @@ PHP_METHOD(CairoSvgSurface, getVersions)
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_svg_surface_methods[] */
-const zend_function_entry cairo_svg_surface_methods[] = {
+static const zend_function_entry cairo_svg_surface_methods[] = {
 	PHP_ME(CairoSvgSurface, __construct, CairoSvgSurface___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(CairoSvgSurface, restrictToVersion, CairoSvgSurface_restrictToVersion_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoSvgSurface, versionToString, CairoSvgSurface_versionToString_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME(CairoSvgSurface, getVersions, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(CairoSvgSurface, getVersions, CairoSvgSurface_getVersions_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	ZEND_FE_END
 };
 /* }}} */

@@ -767,26 +767,29 @@ zend_class_entry* php_cairo_get_surface_ce(cairo_surface_t *surface)
     Cairo\Surface Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoSurface_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_pattern_methods[] */
-const zend_function_entry cairo_surface_methods[] = {
+static const zend_function_entry cairo_surface_methods[] = {
 	PHP_ME(CairoSurface, __construct, CairoSurface___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
         PHP_ME(CairoSurface, createSimilar, CairoSurface_createSimilar_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, createForRectangle, CairoSurface_createForRectangle_args, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, getStatus, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, finish, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, flush, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, getFontOptions, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, getContent, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, markDirty, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getStatus, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, finish, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, flush, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getFontOptions, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getContent, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, markDirty, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, markDirtyRectangle, CairoSurface_markDirtyRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, setDeviceOffset, CairoSurface_setDeviceOffset_args, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, getDeviceOffset, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getDeviceOffset, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, setFallbackResolution, CairoSurface_setFallbackResolution_args, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, getFallbackResolution, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, getType, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, showPage, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, copyPage, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(CairoSurface, hasShowTextGlyphs, NULL, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getFallbackResolution, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getType, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, showPage, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, copyPage, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, hasShowTextGlyphs, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
         PHP_ME(CairoSurface, writeToPng, CairoSurface_writeToPng_args, ZEND_ACC_PUBLIC)
 #endif

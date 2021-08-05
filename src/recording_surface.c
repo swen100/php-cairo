@@ -96,6 +96,10 @@ PHP_METHOD(CairoRecordingSurface, __construct)
 }
 /* }}} */
 
+
+ZEND_BEGIN_ARG_INFO(CairoRecordingSurface_inkExtents_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ proto CairoRecordingSurface create(int content, array extents)
        Returns new CairoRecordingSurface object */
 PHP_METHOD(CairoRecordingSurface, inkExtents)
@@ -127,7 +131,7 @@ PHP_METHOD(CairoRecordingSurface, inkExtents)
 
 const zend_function_entry cairo_recording_surface_methods[] = {
     PHP_ME(CairoRecordingSurface, __construct, CairoRecordingSurface___construct_args, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
-    PHP_ME(CairoRecordingSurface, inkExtents, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoRecordingSurface, inkExtents, CairoRecordingSurface_inkExtents_args, ZEND_ACC_PUBLIC)
     ZEND_FE_END
 };
 

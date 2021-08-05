@@ -361,15 +361,18 @@ PHP_METHOD(CairoImageSurface, createFromJpeg)
     Cairo\FontOptions Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoImageSurface_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_imagesurface_methods[] */
-const zend_function_entry cairo_imagesurface_methods[] = {
+static const zend_function_entry cairo_imagesurface_methods[] = {
         PHP_ME(CairoImageSurface, __construct, CairoImageSurface___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(CairoImageSurface, createForData, CairoImageSurface_createForData_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME(CairoImageSurface, getData, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoImageSurface, getFormat, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoImageSurface, getWidth, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoImageSurface, getHeight, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoImageSurface, getStride, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoImageSurface, getData, CairoImageSurface_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoImageSurface, getFormat, CairoImageSurface_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoImageSurface, getWidth, CairoImageSurface_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoImageSurface, getHeight, CairoImageSurface_method_no_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoImageSurface, getStride, CairoImageSurface_method_no_args, ZEND_ACC_PUBLIC)
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 	PHP_ME(CairoImageSurface, createFromPng, CairoImageSurface_createFromPng_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 #endif

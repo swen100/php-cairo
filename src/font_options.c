@@ -37,8 +37,6 @@ static zend_object_handlers cairo_font_options_object_handlers;
 //        zend_object std;
 //} cairo_font_options_object;
 
-//#define Z_CAIRO_FONT_OPTIONS_P(zv) cairo_font_options_fetch_object(Z_OBJ_P(zv))
-
 cairo_font_options_object *cairo_font_options_fetch_object(zend_object *object)
 {
     return (cairo_font_options_object *) ((char*)(object) - XtOffsetOf(cairo_font_options_object, std));
@@ -469,21 +467,24 @@ PHP_METHOD(CairoFontOptions, getHintMetrics)
     Cairo\FontOptions Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoFontOptions_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
 /* {{{ cairo_pattern_methods[] */
-const zend_function_entry cairo_font_options_methods[] = {
-        PHP_ME(CairoFontOptions, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(CairoFontOptions, getStatus, NULL, ZEND_ACC_PUBLIC)
+static const zend_function_entry cairo_font_options_methods[] = {
+        PHP_ME(CairoFontOptions, __construct, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(CairoFontOptions, getStatus, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, merge, CairoFontOptions_fontoptions_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoFontOptions, hash, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontOptions, hash, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, equal, CairoFontOptions_fontoptions_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, setAntialias, CairoFontOptions_setAntialias_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoFontOptions, getAntialias, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontOptions, getAntialias, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, setSubpixelOrder, CairoFontOptions_setSubpixelOrder_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoFontOptions, getSubpixelOrder, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontOptions, getSubpixelOrder, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, setHintStyle, CairoFontOptions_setHintStyle_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoFontOptions, getHintStyle, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontOptions, getHintStyle, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, setHintMetrics, CairoFontOptions_setHintMetrics_args, ZEND_ACC_PUBLIC)
-	PHP_ME(CairoFontOptions, getHintMetrics, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontOptions, getHintMetrics, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */
