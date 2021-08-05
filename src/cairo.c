@@ -16,6 +16,7 @@
 #endif
 
 #include <php.h>
+#include <ext/standard/info.h>
 #include <cairo.h>
 
 #include "php_cairo.h"
@@ -31,7 +32,7 @@ ZEND_END_ARG_INFO()
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 
 const char* php_cairo_get_ft_error(int error) {
-	int i;
+	
 	php_cairo_ft_error *current_error = php_cairo_ft_errors;
 
 	while (current_error->err_msg != NULL) {
@@ -86,9 +87,9 @@ PHP_MINIT_FUNCTION(cairo)
 {
 	/* Namespaced version constants */
 	REGISTER_NS_LONG_CONSTANT("Cairo", "VERSION",
-		CAIRO_VERSION, CONST_PERSISTENT | CONST_CS | CONST_CT_SUBST);
+		CAIRO_VERSION, CONST_PERSISTENT);
 	REGISTER_NS_STRING_CONSTANT("Cairo", "VERSION_STRING",
-		CAIRO_VERSION_STRING, CONST_PERSISTENT | CONST_CS | CONST_CT_SUBST);
+		CAIRO_VERSION_STRING, CONST_PERSISTENT);
 
 	PHP_MINIT(cairo_pattern)(INIT_FUNC_ARGS_PASSTHRU);
 	PHP_MINIT(cairo_rectangle)(INIT_FUNC_ARGS_PASSTHRU);
