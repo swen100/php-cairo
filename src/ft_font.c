@@ -26,7 +26,7 @@
 
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 
-const php_cairo_ft_error php_cairo_ft_errors[] =
+php_cairo_ft_error php_cairo_ft_errors[] =
 #include FT_ERRORS_H
 
 #include <fontconfig/fontconfig.h>
@@ -203,8 +203,8 @@ PHP_METHOD(CairoFtFontFace, __construct)
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_ft_font_methods */
-const zend_function_entry cairo_ft_font_methods[] = {
-	PHP_ME(CairoFtFontFace, __construct, CairoFtFontFace_construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+static const zend_function_entry cairo_ft_font_methods[] = {
+	PHP_ME(CairoFtFontFace, __construct, CairoFtFontFace_construct_args, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
 	ZEND_FE_END
 };
 /* }}} */
