@@ -6,17 +6,17 @@ if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$version = Cairo::versionString();
+$version = \Cairo\version_string();
 var_dump($version);
 
 /* Wrong number args */
 try {
-    Cairo::versionString('foo');
-    trigger_error('Cairo::versionString should take no arguments');
-} catch (TypeError $e) {
+    \Cairo\version_string('foo');
+    //trigger_error('Cairo::versionString should take no arguments');
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
 string(%d) %s
-Cairo::versionString() expects exactly 0 parameters, 1 given
+Cairo\version_string() expects exactly 0 arguments, 1 given

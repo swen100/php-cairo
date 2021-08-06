@@ -31,14 +31,14 @@ $constants = array(
 	'INVALID_INDEX',
 	'CLIP_NOT_REPRESENTABLE',
 );
-if (Cairo::version() >= 10600) {
+if (\Cairo\VERSION >= 10600) {
 	$constants_16 = array(
 		'TEMP_FILE_ERROR',
 		'INVALID_STRIDE'
 	);
 	$constants = array_merge($constants, $constants_16);
 }
-if (Cairo::version() >= 10800)
+if (\Cairo\VERSION >= 10800)
 {
 	$constants_18 = array(
 		'FONT_TYPE_MISMATCH',
@@ -54,7 +54,7 @@ if (Cairo::version() >= 10800)
 
 $error = false;
 foreach($constants as $name) {
-	$constant = 'CairoStatus::' . $name;
+	$constant = '\\CAIRO\\STATUS::' . $name;
 	if (!defined($constant)) {
 		$error = true;
 		echo 'Missing Constant: ' . $constant . "\n";
