@@ -98,6 +98,9 @@ PHP_METHOD(CairoFontFace, getStatus)
 	if(!font_face_object) {
             return;
         }
+        if(cairo_font_face_object_get(getThis()) == NULL) {
+            return;
+        }
         
         object_init_ex(return_value, ce_cairo_status);
         php_eos_datastructures_set_enum_value(return_value, cairo_font_face_status(font_face_object->font_face));
@@ -116,6 +119,9 @@ PHP_METHOD(CairoFontFace, getType)
 
         font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!font_face_object) {
+            return;
+        }
+        if(cairo_font_face_object_get(getThis()) == NULL) {
             return;
         }
         
