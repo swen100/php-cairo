@@ -18,7 +18,7 @@ var_dump($context->getCurrentPoint());
 try {
     $context->getCurrentPoint('foo');
     trigger_error('hasCurrentPoint requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -33,4 +33,4 @@ array(2) {
   [1]=>
   float(0)
 }
-Cairo\Context::getCurrentPoint() expects exactly 0 parameters, 1 given
+Cairo\Context::getCurrentPoint() expects exactly 0 arguments, 1 given

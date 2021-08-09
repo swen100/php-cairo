@@ -43,6 +43,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::showText() expects exactly 1 parameter, 0 given
-Cairo\Context::showText() expects exactly 1 parameter, 2 given
-Cairo\Context::showText() expects parameter 1 to be string, array given
+Cairo\Context::showText() expects exactly 1 argument, 0 given
+Cairo\Context::showText() expects exactly 1 argument, 2 given
+Cairo\Context::showText(): Argument #1 ($text) must be of type string, array given

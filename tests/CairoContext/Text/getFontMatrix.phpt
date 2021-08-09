@@ -37,13 +37,49 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(10)
+  ["xy"]=>
+  float(0)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(0)
+  ["yy"]=>
+  float(10)
+  ["y0"]=>
+  float(0)
 }
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(5)
+  ["xy"]=>
+  float(0)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(5)
+  ["yy"]=>
+  float(0)
+  ["y0"]=>
+  float(0)
 }
 bool(false)
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(5)
+  ["xy"]=>
+  float(0)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(5)
+  ["yy"]=>
+  float(0)
+  ["y0"]=>
+  float(0)
 }
 bool(true)
 bool(false)
-Cairo\Context::getFontMatrix() expects exactly 0 parameters, 1 given
+Cairo\Context::getFontMatrix() expects exactly 0 arguments, 1 given

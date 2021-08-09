@@ -14,7 +14,7 @@ var_dump($context);
 
 var_dump($orig_matrix = $context->getMatrix());
 
-$matrix = new Cairo\Matrix(5, 5);
+$matrix = new Cairo\Matrix(5, 5, 1);
 var_dump($matrix);
 var_dump($orig_matrix === $matrix);
 
@@ -26,7 +26,7 @@ var_dump($orig_matrix === $matrix);
 try {
     $context->getMatrix('foo');
     trigger_error('get matrix requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -37,13 +37,49 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(1)
+  ["xy"]=>
+  float(0)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(0)
+  ["yy"]=>
+  float(1)
+  ["y0"]=>
+  float(0)
 }
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(5)
+  ["xy"]=>
+  float(1)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(5)
+  ["yy"]=>
+  float(0)
+  ["y0"]=>
+  float(0)
 }
 bool(false)
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(5)
+  ["xy"]=>
+  float(1)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(5)
+  ["yy"]=>
+  float(0)
+  ["y0"]=>
+  float(0)
 }
 bool(true)
 bool(false)
-Cairo\Context::getMatrix() expects exactly 0 parameters, 1 given
+Cairo\Context::getMatrix() expects exactly 0 arguments, 1 given

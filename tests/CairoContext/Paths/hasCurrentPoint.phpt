@@ -19,7 +19,7 @@ var_dump($context->hasCurrentPoint());
 try {
     $context->hasCurrentPoint('foo');
     trigger_error('hasCurrentPoint requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -29,4 +29,4 @@ object(Cairo\Surface\Image)#%d (0) {
 object(Cairo\Context)#%d (0) {
 }
 bool(false)
-Cairo\Context::hasCurrentPoint() expects exactly 0 parameters, 1 given
+Cairo\Context::hasCurrentPoint() expects exactly 0 arguments, 1 given

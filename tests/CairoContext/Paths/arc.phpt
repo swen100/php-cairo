@@ -24,7 +24,7 @@ try {
     $context->arc();
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -32,7 +32,7 @@ try {
     $context->arc(1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -40,7 +40,7 @@ try {
     $context->arc(1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -48,7 +48,7 @@ try {
     $context->arc(1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -56,7 +56,7 @@ try {
     $context->arc(1,1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -64,7 +64,7 @@ try {
     $context->arc(1,1,1,1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -115,14 +115,14 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::arc() expects exactly 5 parameters, 0 given
-Cairo\Context::arc() expects exactly 5 parameters, 1 given
-Cairo\Context::arc() expects exactly 5 parameters, 2 given
-Cairo\Context::arc() expects exactly 5 parameters, 3 given
-Cairo\Context::arc() expects exactly 5 parameters, 4 given
-Cairo\Context::arc() expects exactly 5 parameters, 6 given
-Cairo\Context::arc() expects parameter 1 to be float, array given
-Cairo\Context::arc() expects parameter 2 to be float, array given
-Cairo\Context::arc() expects parameter 3 to be float, array given
-Cairo\Context::arc() expects parameter 4 to be float, array given
-Cairo\Context::arc() expects parameter 5 to be float, array given
+Cairo\Context::arc() expects exactly 5 %s, 0 given
+Cairo\Context::arc() expects exactly 5 %s, 1 given
+Cairo\Context::arc() expects exactly 5 %s, 2 given
+Cairo\Context::arc() expects exactly 5 %s, 3 given
+Cairo\Context::arc() expects exactly 5 %s, 4 given
+Cairo\Context::arc() expects exactly 5 %s, 6 given
+Cairo\Context::arc(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::arc(): Argument #2 ($y) must be of type float, array given
+Cairo\Context::arc(): Argument #3 ($radius) must be of type float, array given
+Cairo\Context::arc(): Argument #4 ($angle1) must be of type float, array given
+Cairo\Context::arc(): Argument #5 ($angle2) must be of type float, array given

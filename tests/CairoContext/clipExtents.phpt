@@ -1,5 +1,5 @@
 --TEST--
-Cairo\Context->clipExtents() method
+Cairo\Context->getClipExtents() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -12,10 +12,10 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-var_dump($context->clipExtents());
+var_dump($context->getClipExtents());
 try {
-    $context->clipExtents('foo');
-} catch (TypeError $e) {
+    $context->getClipExtents('foo');
+} catch (ArgumentCountError $e) {
     echo $e->getMessage();
 }
 ?>
@@ -34,4 +34,4 @@ array(4) {
   [3]=>
   float(50)
 }
-Cairo\Context::clipExtents() expects exactly 0 parameters, 1 given
+Cairo\Context::getClipExtents() expects exactly 0 arguments, 1 given

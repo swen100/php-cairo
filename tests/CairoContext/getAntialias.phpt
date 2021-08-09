@@ -18,7 +18,7 @@ var_dump($context->getAntialias());
 try {
     $context->getAntialias('foobar');
     trigger_error('getAntialias requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -48,4 +48,4 @@ object(Cairo\Antialias)#3 (2) {
   ["__value"]=>
   int(0)
 }
-Cairo\Context::getAntialias() expects exactly 0 parameters, 1 given
+Cairo\Context::getAntialias() expects exactly 0 arguments, 1 given

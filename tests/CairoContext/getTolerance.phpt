@@ -19,8 +19,8 @@ try {
     $context->getTolerance(1);
     trigger_error('Cairo\Context->getTolerance expects 0 parameters.');
 } 
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -30,4 +30,4 @@ object(Cairo\Surface\Image)#1 (0) {
 object(Cairo\Context)#2 (0) {
 }
 float(1)
-Cairo\Context::getTolerance() expects exactly 0 parameters, 1 given
+Cairo\Context::getTolerance() expects exactly 0 arguments, 1 given

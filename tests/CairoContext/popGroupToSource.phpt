@@ -15,15 +15,15 @@ var_dump($context);
 $context->pushGroup();
 $context->popGroupToSource();
 
-var_dump($context->getSource());
+var_dump($context->getPattern());
 
 /* wrong params */
 try {
-	$context->popGroupToSource(1);
-	trigger_error('popGroupToSource() expects 0 params');	
+    $context->popGroupToSource(1);
+    trigger_error('popGroupToSource() expects 0 params');	
 }
 catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -32,6 +32,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-object(Cairo\SurfacePattern)#%d (0) {
+object(Cairo\Pattern\Surface)#%d (0) {
 }
-Cairo\Context::popGroupToSource() expects exactly 0 parameters, 1 given
+Cairo\Context::popGroupToSource() expects exactly 0 arguments, 1 given

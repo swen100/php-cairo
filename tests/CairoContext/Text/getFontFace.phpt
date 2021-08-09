@@ -25,7 +25,7 @@ var_dump($orig_face === $face1);
 try {
     $context->getFontFace('foo');
     trigger_error('getFontFace requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -44,4 +44,4 @@ object(Cairo\FontFace\Toy)#%d (0) {
 }
 bool(true)
 bool(false)
-Cairo\Context::getFontFace() expects exactly 0 parameters, 1 given
+Cairo\Context::getFontFace() expects exactly 0 arguments, 1 given

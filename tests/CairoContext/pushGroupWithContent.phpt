@@ -18,7 +18,7 @@ $context->pushGroupWithContent(Cairo\Surface\Content::COLOR);
 try {
     $context->pushGroupWithContent();
     trigger_error('pushGroupWithContent requires one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 try {
     $context->pushGroupWithContent(1, 1);
     trigger_error('pushGroupWithContent requires only one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -43,6 +43,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::pushGroupWithContent() expects exactly 1 parameter, 0 given
-Cairo\Context::pushGroupWithContent() expects exactly 1 parameter, 2 given
-Cairo\Context::pushGroupWithContent() expects parameter 1 to be int, array given
+Cairo\Context::pushGroupWithContent() expects exactly 1 argument, 0 given
+Cairo\Context::pushGroupWithContent() expects exactly 1 argument, 2 given
+Cairo\Context::pushGroupWithContent(): Argument #1 ($content) must be of type int, array given

@@ -23,8 +23,8 @@ $context->setFontFace($orig_fontface);
 
 /* create scaled font with new font face, font options, matrix */
 include(dirname(__FILE__) . '/create_toyfont.inc');
-$matrix1 = new Cairo\Matrix(1);
-$matrix2 = new Cairo\Matrix(1,1);
+$matrix1 = new Cairo\Matrix(1,1,1);
+$matrix2 = new Cairo\Matrix(2,2,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
@@ -45,8 +45,8 @@ var_dump($scaled === $context->getScaledFont());
 
 /* create scaled font with new font face, font options, matrix */
 include(dirname(__FILE__) . '/create_toyfont.inc');
-$matrix1 = new Cairo\Matrix(1);
-$matrix2 = new Cairo\Matrix(1,1);
+$matrix1 = new Cairo\Matrix(1,1,1);
+$matrix2 = new Cairo\Matrix(2,2,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
@@ -56,21 +56,21 @@ $context->setScaledFont($scaled);
 try {
     $context->setScaledFont();
     trigger_error('setScaledFont requires one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setScaledFont(1, 1);
     trigger_error('setScaledFont requires only one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setScaledFont(1);
     trigger_error('setScaledFont requires instanceof Cairo\ScaledFont');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -90,6 +90,6 @@ bool(true)
 bool(true)
 bool(true)
 bool(true)
-Cairo\Context::setScaledFont() expects exactly 1 parameter, 0 given
-Cairo\Context::setScaledFont() expects exactly 1 parameter, 2 given
-Cairo\Context::setScaledFont() expects parameter 1 to be Cairo\ScaledFont, int given
+Cairo\Context::setScaledFont() expects exactly 1 argument, 0 given
+Cairo\Context::setScaledFont() expects exactly 1 argument, 2 given
+Cairo\Context::setScaledFont(): Argument #1 ($scaledfont) must be of type object, int given

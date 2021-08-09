@@ -19,7 +19,7 @@ var_dump($context->getDash());
 try {
     $context->setDash();
     trigger_error('setDash requires 1-2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -27,7 +27,7 @@ try {
 try {
     $context->setDash(array(), 1, 1);
     trigger_error('setDash requires 1-2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -43,7 +43,7 @@ try {
 try {
     $context->setDash(array('foo'));
     trigger_error('setDash requires 1-2 args');
-} catch (TypeError $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -72,8 +72,8 @@ array(2) {
   ["offset"]=>
   float(0)
 }
-Cairo\Context::setDash() expects at least 1 parameter, 0 given
-Cairo\Context::setDash() expects at most 2 parameters, 3 given
-Cairo\Context::setDash() expects parameter 1 to be array, int given
+Cairo\Context::setDash() expects at least 1 argument, 0 given
+Cairo\Context::setDash() expects at most 2 arguments, 3 given
+Cairo\Context::setDash(): Argument #1 ($dashes) must be of type array, int given
 invalid value for a dash setting
-Cairo\Context::setDash() expects parameter 2 to be float, string given
+Cairo\Context::setDash(): Argument #2 ($offset) must be of type float, string given

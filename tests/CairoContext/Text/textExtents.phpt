@@ -12,29 +12,29 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-var_dump($context->textExtents('foobar'));
+var_dump($context->getTextExtents('foobar'));
 
 /* Wrong number args 1 */
 try {
-    $context->textExtents();
+    $context->getTextExtents();
     trigger_error('textExtents requires one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 /* Wrong number args 1 */
 try {
-    $context->textExtents('foo', 1);
+    $context->getTextExtents('foo', 1);
     trigger_error('textExtents requires only one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 /* Wrong arg type */
 try {
-    $context->textExtents(array());
+    $context->getTextExtents([]);
     trigger_error('textExtents requires one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -57,6 +57,6 @@ array(6) {
   ["y_advance"]=>
   float(%f)
 }
-Cairo\Context::textExtents() expects exactly 1 parameter, 0 given
-Cairo\Context::textExtents() expects exactly 1 parameter, 2 given
-Cairo\Context::textExtents() expects parameter 1 to be string, array given
+Cairo\Context::getTextExtents() expects exactly 1 argument, 0 given
+Cairo\Context::getTextExtents() expects exactly 1 argument, 2 given
+Cairo\Context::getTextExtents(): Argument #1 ($text) must be of type string, array given

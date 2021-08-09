@@ -12,13 +12,13 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-var_dump($context->fontExtents());
+var_dump($context->getFontExtents());
 
 /* Wrong number args */
 try {
-    $context->fontExtents('foo');
+    $context->getFontExtents('foo');
     trigger_error('fontExtents requires only one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -39,4 +39,4 @@ array(5) {
   ["max_y_advance"]=>
   float(%f)
 }
-Cairo\Context::fontExtents() expects exactly 0 parameters, 1 given
+Cairo\Context::getFontExtents() expects exactly 0 arguments, 1 given

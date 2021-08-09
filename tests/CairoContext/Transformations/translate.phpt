@@ -18,7 +18,7 @@ $context->translate(5, 5);
 try {
     $context->translate();
     trigger_error('translate requires 2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 try {
     $context->translate(1);
     trigger_error('translate requires 2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -34,7 +34,7 @@ try {
 try {
     $context->translate(1,1,1);
     trigger_error('translate requires 2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -59,8 +59,8 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::translate() expects exactly 2 parameters, 0 given
-Cairo\Context::translate() expects exactly 2 parameters, 1 given
-Cairo\Context::translate() expects exactly 2 parameters, 3 given
-Cairo\Context::translate() expects parameter 1 to be float, array given
-Cairo\Context::translate() expects parameter 2 to be float, array given
+Cairo\Context::translate() expects exactly 2 arguments, 0 given
+Cairo\Context::translate() expects exactly 2 arguments, 1 given
+Cairo\Context::translate() expects exactly 2 arguments, 3 given
+Cairo\Context::translate(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::translate(): Argument #2 ($y) must be of type float, array given

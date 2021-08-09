@@ -18,7 +18,7 @@ var_dump($context->getDash());
 try {
     $context->getDash('foo');
     trigger_error('getDash requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -34,4 +34,4 @@ array(2) {
   ["offset"]=>
   float(0)
 }
-Cairo\Context::getDash() expects exactly 0 parameters, 1 given
+Cairo\Context::getDash() expects exactly 0 arguments, 1 given

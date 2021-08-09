@@ -3,7 +3,7 @@ Cairo\Context->pathExtents() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
-if(!method_exists('Cairo\Context', 'pathExtents')) die('skip - Cairo\Context->pathExtents extension not available');
+if(!method_exists('Cairo\Context', 'getPathExtents')) die('skip - Cairo\Context->getPathExtents extension not available');
 ?>
 --FILE--
 <?php
@@ -13,11 +13,11 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-var_dump($context->pathExtents());
+var_dump($context->getPathExtents());
 
 /* Wrong number args 10*/
 try {
-    $context->pathExtents('foobar');
+    $context->getPathExtents('foobar');
     trigger_error('textExtents requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -38,4 +38,4 @@ array(4) {
   [3]=>
   float(0)
 }
-Cairo\Context::pathExtents() expects exactly 0 parameters, 1 given
+Cairo\Context::getPathExtents() expects exactly 0 arguments, 1 given

@@ -22,42 +22,42 @@ try {
     $context->maskSurface();
     trigger_error('maskSurface expects at least 1 param');
 } 
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 try {
     $context->maskSurface($surface2, 1, 1, 1);
     trigger_error('maskSurface expects at most 3 params');
 } 
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 /* wrong type */
 try {
-	$context->maskSurface(array());
-	trigger_error('maskSurface arg 1 expects Cairo\Surface');
+    $context->maskSurface(array());
+    trigger_error('maskSurface arg 1 expects Cairo\Surface');
 }
 catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 /* wrong type */
 try {
-	$context->maskSurface($surface2, array());
-	trigger_error('maskSurface arg 2 expects double');
+    $context->maskSurface($surface2, array());
+    trigger_error('maskSurface arg 2 expects double');
 }
 catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 /* wrong type */
 try {
-	$context->maskSurface($surface2, 1, array());
-	trigger_error('maskSurface arg 1 expects double');
+    $context->maskSurface($surface2, 1, array());
+    trigger_error('maskSurface arg 1 expects double');
 }
 catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+    echo $ex->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
@@ -67,8 +67,8 @@ object(Cairo\Context)#%d (0) {
 }
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Context::maskSurface() expects at least 1 parameter, 0 given
-Cairo\Context::maskSurface() expects at most 3 parameters, 4 given
-Cairo\Context::maskSurface() expects parameter 1 to be Cairo\Surface, array given
-Cairo\Context::maskSurface() expects parameter 2 to be float, array given
-Cairo\Context::maskSurface() expects parameter 3 to be float, array given
+Cairo\Context::maskSurface() expects at least 1 argument, 0 given
+Cairo\Context::maskSurface() expects at most 3 arguments, 4 given
+Cairo\Context::maskSurface(): Argument #1 ($surface) must be of type object, array given
+Cairo\Context::maskSurface(): Argument #2 ($x) must be of type float, array given
+Cairo\Context::maskSurface(): Argument #3 ($y) must be of type float, array given

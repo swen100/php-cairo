@@ -12,14 +12,14 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-$pattern = $context->getSource();
+$pattern = $context->getPattern();
 var_dump($pattern);
 
 /* Wrong number args */
 try {
-    $context->getSource('foobar');
-    trigger_error('getSource requires no arg');
-} catch (TypeError $e) {
+    $context->getPattern('foobar');
+    trigger_error('getPattern requires no arg');
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -30,4 +30,4 @@ object(Cairo\Context)#%d (0) {
 }
 object(Cairo\Pattern\Solid)#%d (0) {
 }
-Cairo\Context::getSource() expects exactly 0 parameters, 1 given
+Cairo\Context::getPattern() expects exactly 0 arguments, 1 given

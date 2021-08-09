@@ -20,24 +20,24 @@ try {
     $context->mask();
     trigger_error('Wrong params');
 } 
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 try {
     $context->mask($pattern, 1);
     trigger_error('Wrong params');
 } 
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 /* wrong type */
 try {
-	$context->mask(array());
-	trigger_error('Wrong type');
+    $context->mask(array());
+    trigger_error('Wrong type');
 }
 catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+    echo $ex->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
@@ -45,6 +45,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::mask() expects exactly 1 parameter, 0 given
-Cairo\Context::mask() expects exactly 1 parameter, 2 given
-Cairo\Context::mask() expects parameter 1 to be CairoPattern, array given
+Cairo\Context::mask() expects exactly 1 argument, 0 given
+Cairo\Context::mask() expects exactly 1 argument, 2 given
+Cairo\Context::mask(): Argument #1 ($pattern) must be of type object, array given

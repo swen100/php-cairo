@@ -98,12 +98,12 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::rectangle() expects exactly 4 parameters, 0 given
-Cairo\Context::rectangle() expects exactly 4 parameters, 1 given
-Cairo\Context::rectangle() expects exactly 4 parameters, 2 given
-Cairo\Context::rectangle() expects exactly 4 parameters, 3 given
-Cairo\Context::rectangle() expects exactly 4 parameters, 5 given
-Cairo\Context::rectangle() expects parameter 1 to be float, array given
-Cairo\Context::rectangle() expects parameter 2 to be float, array given
-Cairo\Context::rectangle() expects parameter 3 to be float, array given
-Cairo\Context::rectangle() expects parameter 4 to be float, array given
+Cairo\Context::rectangle() expects exactly 4 arguments, 0 given
+Cairo\Context::rectangle() expects exactly 4 arguments, 1 given
+Cairo\Context::rectangle() expects exactly 4 arguments, 2 given
+Cairo\Context::rectangle() expects exactly 4 arguments, 3 given
+Cairo\Context::rectangle() expects exactly 4 arguments, 5 given
+Cairo\Context::rectangle(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::rectangle(): Argument #2 ($y) must be of type float, array given
+Cairo\Context::rectangle(): Argument #3 ($width) must be of type float, array given
+Cairo\Context::rectangle(): Argument #4 ($height) must be of type float, array given

@@ -18,11 +18,11 @@ var_dump($context->getLineWidth());
 
 /* wrong params */
 try {
-	$context->getLineWidth(1);
-	trigger_error('Cairo\Context->getLineWidth() expects 1 param');
+    $context->getLineWidth(1);
+    trigger_error('Cairo\Context->getLineWidth() expects 1 param');
 } 
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -32,4 +32,4 @@ object(Cairo\Surface\Image)#%d (0) {
 object(Cairo\Context)#%d (0) {
 }
 float(1)
-Cairo\Context::getLineWidth() expects exactly 0 parameters, 1 given
+Cairo\Context::getLineWidth() expects exactly 0 arguments, 1 given

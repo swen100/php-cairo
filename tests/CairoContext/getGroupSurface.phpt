@@ -12,18 +12,17 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-$surface2 = $context->getGroupTarget();
+$surface2 = $context->getGroupSurface();
 var_dump($surface2);
 var_dump($surface2 == $surface);
 
 /* wrong params */
-/* wrong params */
 try {
-	$context->getGroupTarget(1);
-	trigger_error('getGroupTarget() expects 0 params');	
+    $context->getGroupSurface(1);
+    trigger_error('getGroupTarget() expects 0 params');	
 }
-catch (TypeError $ex) {
-	echo $ex->getMessage(), PHP_EOL;
+catch (ArgumentCountError $ex) {
+    echo $ex->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
@@ -34,4 +33,4 @@ object(Cairo\Context)#%d (0) {
 object(Cairo\Surface\Image)#%d (0) {
 }
 bool(true)
-Cairo\Context::getGroupTarget() expects exactly 0 parameters, 1 given
+Cairo\Context::getGroupSurface() expects exactly 0 arguments, 1 given

@@ -18,8 +18,8 @@ $context->restore();
 /* restore without save */
 try {
     $context->restore();
-    trigger_error('save requires only one arg');
-} catch (TypeError $e) {
+    trigger_error('cairo_save not called previously');
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -27,7 +27,7 @@ try {
 try {
     $context->restore('foo');
     trigger_error('save requires only one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -37,4 +37,4 @@ object(Cairo\Surface\Image)#%d (0) {
 object(Cairo\Context)#%d (0) {
 }
 cairo_restore() without matching cairo_save()
-Cairo\Context::restore() expects exactly 0 parameters, 1 given
+Cairo\Context::restore() expects exactly 0 arguments, 1 given

@@ -49,6 +49,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::setFontSize() expects exactly 1 parameter, 0 given
-Cairo\Context::setFontSize() expects exactly 1 parameter, 2 given
-Cairo\Context::setFontSize() expects parameter 1 to be float, array given
+Cairo\Context::setFontSize() expects exactly 1 argument, 0 given
+Cairo\Context::setFontSize() expects exactly 1 argument, 2 given
+Cairo\Context::setFontSize(): Argument #1 ($size) must be of type float, array given

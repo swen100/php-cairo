@@ -38,4 +38,4 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::setSourceRGBA() expects parameter 1 to be float, string given
+Cairo\Context::setSourceRGBA(): Argument #1 ($red) must be of type float, string given

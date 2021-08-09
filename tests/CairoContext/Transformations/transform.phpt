@@ -21,7 +21,7 @@ $context->transform($matrix);
 try {
     $context->transform();
     trigger_error('transform requires 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -29,7 +29,7 @@ try {
 try {
     $context->transform($matrix, 1);
     trigger_error('transform requires 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -46,8 +46,20 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(1)
+  ["xy"]=>
+  float(0)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(0)
+  ["yy"]=>
+  float(1)
+  ["y0"]=>
+  float(0)
 }
-Cairo\Context::transform() expects exactly 1 parameter, 0 given
-Cairo\Context::transform() expects exactly 1 parameter, 2 given
-Cairo\Context::transform() expects parameter 1 to be Cairo\Matrix, int given
+Cairo\Context::transform() expects exactly 1 argument, 0 given
+Cairo\Context::transform() expects exactly 1 argument, 2 given
+Cairo\Context::transform(): Argument #1 ($matrix) must be of type object, int given

@@ -27,7 +27,7 @@ try {
 try {
     $context->setLineCap(1, 1);
     trigger_error('setLineCap requires only 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -44,7 +44,19 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-long(2)
-Cairo\Context::setLineCap() expects exactly 1 parameter, 0 given
-Cairo\Context::setLineCap() expects exactly 1 parameter, 2 given
-Cairo\Context::setLineCap() expects parameter 1 to be int, array given
+object(Cairo\LineCap)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["BUTT"]=>
+    int(0)
+    ["ROUND"]=>
+    int(1)
+    ["SQUARE"]=>
+    int(2)
+  }
+  ["__value"]=>
+  int(2)
+}
+Cairo\Context::setLineCap() expects exactly 1 argument, 0 given
+Cairo\Context::setLineCap() expects exactly 1 argument, 2 given
+Cairo\Context::setLineCap(): Argument #1 ($linecap) must be of type int, array given

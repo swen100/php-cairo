@@ -13,10 +13,10 @@ $context = new Cairo\Context($surface);
 var_dump($context);
 
 try {
-	$context->getTarget('foobar');
-	echo 'Exception not thrown properly';
+    $context->getSurface('foobar');
+    echo 'Exception not thrown properly';
 } catch (TypeError $e) {
-	echo $e->getMessage();
+    echo $e->getMessage();
 }
 ?>
 --EXPECTF--
@@ -24,4 +24,4 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::getTarget() expects exactly 0 parameters, 1 given
+Cairo\Context::getSurface() expects exactly 0 arguments, 1 given

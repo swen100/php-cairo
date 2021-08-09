@@ -20,7 +20,7 @@ var_dump($pattern);
 try {
     $context->popGroup('foo');
     trigger_error('popGroup requires only one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -29,6 +29,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-object(Cairo\SurfacePattern)#%d (0) {
+object(Cairo\Pattern\Surface)#%d (0) {
 }
-Cairo\Context::popGroup() expects exactly 0 parameters, 1 given
+Cairo\Context::popGroup() expects exactly 0 arguments, 1 given

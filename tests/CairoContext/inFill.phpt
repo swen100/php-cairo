@@ -18,7 +18,7 @@ var_dump($context->inFill(1, 1));
 try {
     $context->inFill();
     trigger_error('inFill requires 2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 try {
     $context->inFill(1);
     trigger_error('inFill requires 2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -34,7 +34,7 @@ try {
 try {
     $context->inFill(1, 1, 1);
     trigger_error('inFill requires only 2 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -60,8 +60,8 @@ object(Cairo\Surface\Image)#%d (0) {
 object(Cairo\Context)#%d (0) {
 }
 bool(false)
-Cairo\Context::inFill() expects exactly 2 parameters, 0 given
-Cairo\Context::inFill() expects exactly 2 parameters, 1 given
-Cairo\Context::inFill() expects exactly 2 parameters, 3 given
-Cairo\Context::inFill() expects parameter 1 to be float, array given
-Cairo\Context::inFill() expects parameter 2 to be float, array given
+Cairo\Context::inFill() expects exactly 2 arguments, 0 given
+Cairo\Context::inFill() expects exactly 2 arguments, 1 given
+Cairo\Context::inFill() expects exactly 2 arguments, 3 given
+Cairo\Context::inFill(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::inFill(): Argument #2 ($y) must be of type float, array given

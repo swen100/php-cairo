@@ -18,7 +18,7 @@ $context->paintWithAlpha(0);
 try {
     $context->paintWithAlpha();
     trigger_error('paintWithAlpha requires 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 try {
     $context->paintWithAlpha(1, 1);
     trigger_error('paintWithAlpha requires only 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -43,6 +43,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::paintWithAlpha() expects exactly 1 parameter, 0 given
-Cairo\Context::paintWithAlpha() expects exactly 1 parameter, 2 given
-Cairo\Context::paintWithAlpha() expects parameter 1 to be float, array given
+Cairo\Context::paintWithAlpha() expects exactly 1 argument, 0 given
+Cairo\Context::paintWithAlpha() expects exactly 1 argument, 2 given
+Cairo\Context::paintWithAlpha(): Argument #1 ($alpha) must be of type float, array given

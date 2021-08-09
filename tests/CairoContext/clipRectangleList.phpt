@@ -16,7 +16,7 @@ var_dump($context->clipRectangleList());
 
 try {
     $context->clipRectangleList('foo');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage();
 }
 ?>
@@ -38,4 +38,4 @@ array(1) {
     float(50)
   }
 }
-Cairo\Context::clipRectangleList() expects exactly 0 parameters, 1 given
+Cairo\Context::clipRectangleList() expects exactly 0 arguments, 1 given

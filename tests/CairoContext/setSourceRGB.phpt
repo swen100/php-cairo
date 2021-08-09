@@ -74,10 +74,10 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::setSourceRGB() expects exactly 3 parameters, 0 given
-Cairo\Context::setSourceRGB() expects exactly 3 parameters, 1 given
-Cairo\Context::setSourceRGB() expects exactly 3 parameters, 2 given
-Cairo\Context::setSourceRGB() expects exactly 3 parameters, 4 given
-Cairo\Context::setSourceRGB() expects parameter 1 to be float, array given
-Cairo\Context::setSourceRGB() expects parameter 2 to be float, array given
-Cairo\Context::setSourceRGB() expects parameter 3 to be float, array given
+Cairo\Context::setSourceRGB() expects exactly 3 arguments, 0 given
+Cairo\Context::setSourceRGB() expects exactly 3 arguments, 1 given
+Cairo\Context::setSourceRGB() expects exactly 3 arguments, 2 given
+Cairo\Context::setSourceRGB() expects exactly 3 arguments, 4 given
+Cairo\Context::setSourceRGB(): Argument #1 ($red) must be of type float, array given
+Cairo\Context::setSourceRGB(): Argument #2 ($green) must be of type float, array given
+Cairo\Context::setSourceRGB(): Argument #3 ($blue) must be of type float, array given

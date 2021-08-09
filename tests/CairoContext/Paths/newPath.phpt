@@ -43,4 +43,4 @@ array(2) {
   [1]=>
   float(0)
 }
-Cairo\Context::newPath() expects exactly 0 parameters, 1 given
+Cairo\Context::newPath() expects exactly 0 arguments, 1 given

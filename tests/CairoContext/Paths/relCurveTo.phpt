@@ -25,7 +25,7 @@ try {
     $context->relCurveTo();
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -33,7 +33,7 @@ try {
     $context->relCurveTo(1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -41,7 +41,7 @@ try {
     $context->relCurveTo(1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -49,7 +49,7 @@ try {
     $context->relCurveTo(1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -57,7 +57,7 @@ try {
     $context->relCurveTo(1,1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -65,7 +65,7 @@ try {
     $context->relCurveTo(1,1,1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -73,7 +73,7 @@ try {
     $context->relCurveTo(1,1,1,1,1,1,1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -131,16 +131,16 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 0 given
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 1 given
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 2 given
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 3 given
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 4 given
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 5 given
-Cairo\Context::relCurveTo() expects exactly 6 parameters, 7 given
-Cairo\Context::relCurveTo() expects parameter 1 to be float, array given
-Cairo\Context::relCurveTo() expects parameter 2 to be float, array given
-Cairo\Context::relCurveTo() expects parameter 3 to be float, array given
-Cairo\Context::relCurveTo() expects parameter 4 to be float, array given
-Cairo\Context::relCurveTo() expects parameter 5 to be float, array given
-Cairo\Context::relCurveTo() expects parameter 6 to be float, array given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 0 given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 1 given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 2 given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 3 given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 4 given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 5 given
+Cairo\Context::relCurveTo() expects exactly 6 arguments, 7 given
+Cairo\Context::relCurveTo(): Argument #1 ($x1) must be of type float, array given
+Cairo\Context::relCurveTo(): Argument #2 ($y1) must be of type float, array given
+Cairo\Context::relCurveTo(): Argument #3 ($x2) must be of type float, array given
+Cairo\Context::relCurveTo(): Argument #4 ($y2) must be of type float, array given
+Cairo\Context::relCurveTo(): Argument #5 ($x3) must be of type float, array given
+Cairo\Context::relCurveTo(): Argument #6 ($y3) must be of type float, array given

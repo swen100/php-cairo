@@ -18,7 +18,7 @@ var_dump($context->getLineJoin());
 try {
     $context->getLineJoin('foobar');
     trigger_error('getLineJoin requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -27,5 +27,17 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-long(0)
-Cairo\Context::getLineJoin() expects exactly 0 parameters, 1 given
+object(Cairo\LineJoin)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["MITER"]=>
+    int(0)
+    ["ROUND"]=>
+    int(1)
+    ["BEVEL"]=>
+    int(2)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\Context::getLineJoin() expects exactly 0 arguments, 1 given

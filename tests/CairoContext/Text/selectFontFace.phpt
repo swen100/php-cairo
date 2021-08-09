@@ -63,8 +63,8 @@ object(Cairo\Context)#%d (0) {
 }
 object(Cairo\FontFace\Toy)#%d (0) {
 }
-Cairo\Context::selectFontFace() expects at least 1 parameter, 0 given
-Cairo\Context::selectFontFace() expects at most 3 parameters, 4 given
-Cairo\Context::selectFontFace() expects parameter 1 to be string, array given
-Cairo\Context::selectFontFace() expects parameter 2 to be int, array given
-Cairo\Context::selectFontFace() expects parameter 3 to be int, array given
+Cairo\Context::selectFontFace() expects at least 1 argument, 0 given
+Cairo\Context::selectFontFace() expects at most 3 arguments, 4 given
+Cairo\Context::selectFontFace(): Argument #1 ($family) must be of type string, array given
+Cairo\Context::selectFontFace(): Argument #2 ($slant) must be of type int, array given
+Cairo\Context::selectFontFace(): Argument #3 ($weight) must be of type int, array given

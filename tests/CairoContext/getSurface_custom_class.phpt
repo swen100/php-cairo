@@ -14,11 +14,10 @@ class TestSurface extends Cairo\Surface\Image {
 
 $t = new TestSurface(Cairo\Surface\ImageFormat::ARGB32, 500, 500);
 $c = new Cairo\Context($t);
-var_dump($c->getTarget() instanceof TestSurface);
-var_dump($c->getTarget() instanceof TestSurface);
+var_dump($c->getSurface() instanceof TestSurface);
+var_dump($c->getSurface() instanceof TestSurface);
 unset($t);
-var_dump($c->getTarget() instanceof TestSurface);
-die; // PHP bug? get a memleak without this
+var_dump($c->getSurface() instanceof TestSurface);
 ?>
 --EXPECTF--
 bool(true)

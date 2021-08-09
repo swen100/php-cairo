@@ -21,7 +21,7 @@ $context->appendPath($path);
 try {
     $context->appendPath();
     trigger_error('appendPath requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -29,7 +29,7 @@ try {
 try {
     $context->appendPath($path, 1);
     trigger_error('appendPath requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -48,6 +48,6 @@ object(Cairo\Context)#%d (0) {
 }
 object(Cairo\Path)#%d (0) {
 }
-Cairo\Context::appendPath() expects exactly 1 parameter, 0 given
-Cairo\Context::appendPath() expects exactly 1 parameter, 2 given
-Cairo\Context::appendPath() expects parameter 1 to be Cairo\Path, int given
+Cairo\Context::appendPath() expects exactly 1 %s, 0 given
+Cairo\Context::appendPath() expects exactly 1 %s, 2 given
+Cairo\Context::appendPath(): Argument #1 ($path) must be of type object, int given

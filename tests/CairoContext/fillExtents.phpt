@@ -12,13 +12,13 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-var_dump($context->fillExtents());
+var_dump($context->getFillExtents());
 
 /* Wrong number args */
 try {
-    $context->fillExtents('foobar');
+    $context->getFillExtents('foobar');
     trigger_error('fillExtents requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -37,4 +37,4 @@ array(4) {
   [3]=>
   float(0)
 }
-Cairo\Context::fillExtents() expects exactly 0 parameters, 1 given
+Cairo\Context::getFillExtents() expects exactly 0 %s, 1 given

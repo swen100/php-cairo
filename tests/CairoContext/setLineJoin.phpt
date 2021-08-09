@@ -44,7 +44,19 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-long(2)
-Cairo\Context::setLineJoin() expects exactly 1 parameter, 0 given
-Cairo\Context::setLineJoin() expects exactly 1 parameter, 2 given
-Cairo\Context::setLineJoin() expects parameter 1 to be int, array given
+object(Cairo\LineJoin)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["MITER"]=>
+    int(0)
+    ["ROUND"]=>
+    int(1)
+    ["BEVEL"]=>
+    int(2)
+  }
+  ["__value"]=>
+  int(2)
+}
+Cairo\Context::setLineJoin() expects exactly 1 argument, 0 given
+Cairo\Context::setLineJoin() expects exactly 1 argument, 2 given
+Cairo\Context::setLineJoin(): Argument #1 ($linejoin) must be of type int, array given

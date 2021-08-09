@@ -18,7 +18,7 @@ $context->textPath('foobar');
 try {
     $context->textPath();
     trigger_error('textPath requires one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 try {
     $context->textPath('foo', 1);
     trigger_error('textPath requires only one arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -43,6 +43,6 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::textPath() expects exactly 1 parameter, 0 given
-Cairo\Context::textPath() expects exactly 1 parameter, 2 given
-Cairo\Context::textPath() expects parameter 1 to be string, array given
+Cairo\Context::textPath() expects exactly 1 argument, 0 given
+Cairo\Context::textPath() expects exactly 1 argument, 2 given
+Cairo\Context::textPath(): Argument #1 ($string) must be of type string, array given

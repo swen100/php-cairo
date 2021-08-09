@@ -12,9 +12,9 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-$surface2 = $context->getTarget();
+$surface2 = $context->getSurface();
 var_dump($surface2);
-var_dump($surface2 == $surface);
+var_dump($surface2 === $surface);
 ?>
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {

@@ -18,7 +18,7 @@ $context->paint();
 try {
     $context->paint('foobar');
     trigger_error('paint requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -27,4 +27,4 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::paint() expects exactly 0 parameters, 1 given
+Cairo\Context::paint() expects exactly 0 arguments, 1 given

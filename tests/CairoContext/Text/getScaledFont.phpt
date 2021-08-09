@@ -16,19 +16,21 @@ var_dump($context->getScaledFont());
 
 /* create scaled font with new font face, font options, matrix */
 include(dirname(__FILE__) . '/create_toyfont.inc');
-$matrix1 = new Cairo\Matrix(1);
-$matrix2 = new Cairo\Matrix(1,1);
+$matrix1 = new Cairo\Matrix(1,1,1);
+$matrix2 = new Cairo\Matrix(2,2,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
 
 $context->setScaledFont($scaled);
-var_dump($context->getScaledFont());
+var_dump($scaled1 = $context->getScaledFont());
+
+var_dump($scaled === $scaled1);
 
 try {
     $context->getScaledFont('foo');
     trigger_error('getScaledFont requires one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -43,4 +45,5 @@ object(Cairo\ScaledFont)#%d (0) {
 }
 object(Cairo\ScaledFont)#%d (0) {
 }
-Cairo\Context::getScaledFont() expects exactly 0 parameters, 1 given
+bool(true)
+Cairo\Context::getScaledFont() expects exactly 0 arguments, 1 given

@@ -18,7 +18,7 @@ var_dump($context->userToDeviceDistance(5, 5));
 try {
     $context->userToDeviceDistance();
     trigger_error('We should bomb here');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 try {
     $context->userToDeviceDistance(10);
     trigger_error('We should bomb here');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -34,7 +34,7 @@ try {
 try {
     $context->userToDeviceDistance(10, 10, 10);
     trigger_error('We should bomb here');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -65,8 +65,8 @@ array(2) {
   [1]=>
   float(5)
 }
-Cairo\Context::userToDeviceDistance() expects exactly 2 parameters, 0 given
-Cairo\Context::userToDeviceDistance() expects exactly 2 parameters, 1 given
-Cairo\Context::userToDeviceDistance() expects exactly 2 parameters, 3 given
-Cairo\Context::userToDeviceDistance() expects parameter 1 to be float, array given
-Cairo\Context::userToDeviceDistance() expects parameter 2 to be float, array given
+Cairo\Context::userToDeviceDistance() expects exactly 2 arguments, 0 given
+Cairo\Context::userToDeviceDistance() expects exactly 2 arguments, 1 given
+Cairo\Context::userToDeviceDistance() expects exactly 2 arguments, 3 given
+Cairo\Context::userToDeviceDistance(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::userToDeviceDistance(): Argument #2 ($y) must be of type float, array given

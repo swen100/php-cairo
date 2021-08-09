@@ -18,7 +18,7 @@ $context->identityMatrix();
 try {
     $context->identityMatrix('foo');
     trigger_error('identityMatrix requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -27,4 +27,4 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::identityMatrix() expects exactly 0 parameters, 1 given
+Cairo\Context::identityMatrix() expects exactly 0 arguments, 1 given

@@ -29,21 +29,21 @@ var_dump($matrix2 === $matrix1);
 try {
     $context->setFontMatrix();
     trigger_error('Set matrix requires one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontMatrix(1, 1);
     trigger_error('Set matrix requires only one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontMatrix(1);
     trigger_error('Set matrix requires instanceof Cairomatrix');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -54,10 +54,22 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-object(Cairo\Matrix)#%d (0) {
+object(Cairo\Matrix)#%d (6) {
+  ["xx"]=>
+  float(0)
+  ["xy"]=>
+  float(0)
+  ["x0"]=>
+  float(0)
+  ["yx"]=>
+  float(0)
+  ["yy"]=>
+  float(0)
+  ["y0"]=>
+  float(0)
 }
 bool(true)
 bool(true)
-Cairo\Context::setFontMatrix() expects exactly 1 parameter, 0 given
-Cairo\Context::setFontMatrix() expects exactly 1 parameter, 2 given
-Cairo\Context::setFontMatrix() expects parameter 1 to be Cairo\Matrix, int given
+Cairo\Context::setFontMatrix() expects exactly 1 argument, 0 given
+Cairo\Context::setFontMatrix() expects exactly 1 argument, 2 given
+Cairo\Context::setFontMatrix(): Argument #1 ($matrix) must be of type object, int given

@@ -24,7 +24,7 @@ try {
     $context->moveTo();
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -32,7 +32,7 @@ try {
     $context->moveTo(1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -40,7 +40,7 @@ try {
     $context->moveTo(1,1, 1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -66,8 +66,8 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::moveTo() expects exactly 2 parameters, 0 given
-Cairo\Context::moveTo() expects exactly 2 parameters, 1 given
-Cairo\Context::moveTo() expects exactly 2 parameters, 3 given
-Cairo\Context::moveTo() expects parameter 1 to be float, array given
-Cairo\Context::moveTo() expects parameter 2 to be float, array given
+Cairo\Context::moveTo() expects exactly 2 arguments, 0 given
+Cairo\Context::moveTo() expects exactly 2 arguments, 1 given
+Cairo\Context::moveTo() expects exactly 2 arguments, 3 given
+Cairo\Context::moveTo(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::moveTo(): Argument #2 ($y) must be of type float, array given

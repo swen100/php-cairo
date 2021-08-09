@@ -18,7 +18,7 @@ var_dump($context->getFillRule());
 try {
     $context->getFillRule('foobar');
     trigger_error('getAntialias requires no args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -27,5 +27,15 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-long(0)
-Cairo\Context::getFillRule() expects exactly 0 parameters, 1 given
+object(Cairo\FillRule)#%d (2) {
+  ["__elements"]=>
+  array(2) {
+    ["WINDING"]=>
+    int(0)
+    ["EVEN_ODD"]=>
+    int(1)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\Context::getFillRule() expects exactly 0 %s, 1 given

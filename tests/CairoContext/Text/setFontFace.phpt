@@ -31,21 +31,21 @@ var_dump($fontface1 === $fontface);
 try {
     $context->setFontFace();
     trigger_error('setFontFace requires one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontFace(1, 1);
     trigger_error('setFontFace requires only one arg');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontFace(1);
     trigger_error('setFontFace requires instanceof Cairo\FontFace');
-} catch (TypeError $e) {
+} catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -62,6 +62,6 @@ bool(true)
 object(Cairo\FontFace\Toy)#%d (0) {
 }
 bool(true)
-Cairo\Context::setFontFace() expects exactly 1 parameter, 0 given
-Cairo\Context::setFontFace() expects exactly 1 parameter, 2 given
-Cairo\Context::setFontFace() expects parameter 1 to be Cairo\FontFace, int given
+Cairo\Context::setFontFace() expects exactly 1 argument, 0 given
+Cairo\Context::setFontFace() expects exactly 1 argument, 2 given
+Cairo\Context::setFontFace(): Argument #1 ($fontface) must be of type object, int given

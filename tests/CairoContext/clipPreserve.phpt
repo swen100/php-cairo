@@ -16,7 +16,7 @@ $context->clipPreserve();
 
 try {
     $context->clipPreserve('foo');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage();
 }
 ?>
@@ -25,4 +25,4 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::clipPreserve() expects exactly 0 parameters, 1 given
+Cairo\Context::clipPreserve() expects exactly 0 arguments, 1 given

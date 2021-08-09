@@ -27,4 +27,4 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::showPage() expects exactly 0 parameters, 1 given
+Cairo\Context::showPage() expects exactly 0 %s, 1 given

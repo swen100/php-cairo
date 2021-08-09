@@ -47,6 +47,6 @@ object(Cairo\Surface\Image)#%d (0) {
 object(Cairo\Context)#%d (0) {
 }
 float(1)
-Cairo\Context::setLineWidth() expects exactly 1 parameter, 0 given
-Cairo\Context::setLineWidth() expects exactly 1 parameter, 2 given
-Cairo\Context::setLineWidth() expects parameter 1 to be float, array given
+Cairo\Context::setLineWidth() expects exactly 1 argument, 0 given
+Cairo\Context::setLineWidth() expects exactly 1 argument, 2 given
+Cairo\Context::setLineWidth(): Argument #1 ($width) must be of type float, array given

@@ -25,7 +25,7 @@ try {
     $context->relLineTo();
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -33,7 +33,7 @@ try {
     $context->relLineTo(1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -41,7 +41,7 @@ try {
     $context->relLineTo(1,1, 1);
     trig_err();
 } 
-catch (TypeError $ex) {
+catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 
@@ -67,8 +67,8 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-Cairo\Context::relLineTo() expects exactly 2 parameters, 0 given
-Cairo\Context::relLineTo() expects exactly 2 parameters, 1 given
-Cairo\Context::relLineTo() expects exactly 2 parameters, 3 given
-Cairo\Context::relLineTo() expects parameter 1 to be float, array given
-Cairo\Context::relLineTo() expects parameter 2 to be float, array given
+Cairo\Context::relLineTo() expects exactly 2 arguments, 0 given
+Cairo\Context::relLineTo() expects exactly 2 arguments, 1 given
+Cairo\Context::relLineTo() expects exactly 2 arguments, 3 given
+Cairo\Context::relLineTo(): Argument #1 ($x) must be of type float, array given
+Cairo\Context::relLineTo(): Argument #2 ($y) must be of type float, array given

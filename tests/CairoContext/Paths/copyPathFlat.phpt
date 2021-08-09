@@ -18,7 +18,7 @@ var_dump($context->copyPathFlat());
 try {
     $context->copyPathFlat('foo');
     trigger_error('identityMatrix requires 0 args');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -29,4 +29,4 @@ object(Cairo\Context)#%d (0) {
 }
 object(Cairo\Path)#%d (0) {
 }
-Cairo\Context::copyPathFlat() expects exactly 0 parameters, 1 given
+Cairo\Context::copyPathFlat() expects exactly 0 arguments, 1 given

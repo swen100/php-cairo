@@ -19,7 +19,7 @@ var_dump($context->getFillRule());
 try {
     $context->setFillRule();
     trigger_error('setFillRule requires 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -27,7 +27,7 @@ try {
 try {
     $context->setFillRule(1, 1);
     trigger_error('setFillRule requires only 1 arg');
-} catch (TypeError $e) {
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -44,7 +44,17 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Context)#%d (0) {
 }
-long(1)
-Cairo\Context::setFillRule() expects exactly 1 parameter, 0 given
-Cairo\Context::setFillRule() expects exactly 1 parameter, 2 given
-Cairo\Context::setFillRule() expects parameter 1 to be int, array given
+object(Cairo\FillRule)#%d (2) {
+  ["__elements"]=>
+  array(2) {
+    ["WINDING"]=>
+    int(0)
+    ["EVEN_ODD"]=>
+    int(1)
+  }
+  ["__value"]=>
+  int(1)
+}
+Cairo\Context::setFillRule() expects exactly 1 argument, 0 given
+Cairo\Context::setFillRule() expects exactly 1 argument, 2 given
+Cairo\Context::setFillRule(): Argument #1 ($fillrule) must be of type int, array given
