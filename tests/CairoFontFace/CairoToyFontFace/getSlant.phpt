@@ -15,5 +15,29 @@ $c = new Cairo\FontFace\Toy("sans-serif", Cairo\FontSlant::ITALIC, Cairo\FontWei
 var_dump($c->getSlant());
 ?>
 --EXPECTF--
-long(0)
-long(1)
+object(Cairo\FontSlant)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["NORMAL"]=>
+    int(0)
+    ["ITALIC"]=>
+    int(1)
+    ["OBLIQUE"]=>
+    int(2)
+  }
+  ["__value"]=>
+  int(0)
+}
+object(Cairo\FontSlant)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["NORMAL"]=>
+    int(0)
+    ["ITALIC"]=>
+    int(1)
+    ["OBLIQUE"]=>
+    int(2)
+  }
+  ["__value"]=>
+  int(1)
+}

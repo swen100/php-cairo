@@ -7,12 +7,12 @@ if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 --FILE--
 <?php
 $constants = array(
-	'TOY',
-	'FT',
-	'WIN32',
-	);
+    'TOY',
+    'FT',
+    'WIN32',
+);
 
-$version = Cairo::version();
+$version = \Cairo\version();
 if($version > 10600) {
     $constants[] = 'QUARTZ';
 }
@@ -21,10 +21,10 @@ if($version > 10800) {
 }
 $error = false;
 foreach($constants as $name) {
-	if (!defined('CairoFontType::' . $name)) {
-		$error = true;
-		echo 'Missing Constant: CairoFontType::' . $name . "\n";
-	}
+    if (!defined('CAIRO\\FontType::' . $name)) {
+        $error = true;
+        echo 'Missing Constant: CAIRO\\FontType::' . $name . "\n";
+    }
 }
 if (!$error) {
 	echo "No missing constants, checked " . sizeof($constants) . "!\n";

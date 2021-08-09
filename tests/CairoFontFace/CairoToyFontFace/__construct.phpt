@@ -52,11 +52,11 @@ object(Cairo\FontFace\Toy)#%d (0) {
 }
 object(Cairo\FontFace\Toy)#%d (0) {
 }
-string(69) "Cairo\FontFace\Toy::__construct() expects at least 1 parameter, 0 given"
+string(70) "Cairo\FontFace\Toy::__construct() expects at least 1 argument, 0 given"
 object(Cairo\FontFace\Toy)#2 (0) {
 }
 object(Cairo\FontFace\Toy)#1 (0) {
 }
-string(77) "Cairo\FontFace\Toy::__construct() expects parameter 1 to be string, array given"
+string(92) "Cairo\FontFace\Toy::__construct(): Argument #1 ($family) must be of type string, array given"
 object(Cairo\FontFace\Toy)#1 (0) {
 }

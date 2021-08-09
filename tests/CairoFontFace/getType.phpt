@@ -21,5 +21,21 @@ try {
 --EXPECTF--
 object(Cairo\FontFace\Toy)#%d (0) {
 }
-long(0)
-Cairo\FontFace::getType() expects exactly 0 parameters, 1 given
+object(Cairo\FontType)#%d (2) {
+  ["__elements"]=>
+  array(5) {
+    ["TOY"]=>
+    int(0)
+    ["FT"]=>
+    int(1)
+    ["WIN32"]=>
+    int(2)
+    ["QUARTZ"]=>
+    int(3)
+    ["USER"]=>
+    int(4)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\FontFace::getType() expects exactly 0 arguments, 1 given

@@ -9,19 +9,22 @@ if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 class test extends Cairo\FontFace {}
 
 class test2 extends Cairo\FontFace {
-	public function __construct() {}
+    public function __construct() {}
 }
 try {
-	$pattern = new test();
-	echo 'Attempting to use constructor should throw an exception';
-} catch (TypeError $e) {
-	echo $e->getMessage();
+    $fontFace = new test();
+    echo 'Attempting to use constructor should throw an exception';
+} catch (Cairo\Exception $e) {
+    echo $e->getMessage();
 }
-
-$pattern = new test2();
-$pattern->getType();
-echo 'First call to any method should throw a fatal error';
+echo "\n";
+try {
+    $fontFace = new test2();
+    $fontFace->getType();
+} catch (Cairo\Exception $e) {
+    echo $e->getMessage();
+}
 ?>
 --EXPECTF--
 Cairo\FontFace cannot be constructed
-Fatal error: Internal font face object missing in test2 wrapper, you must call parent::__construct in extended classes in %s on line %d
+Internal font face object missing in test2, you must call parent::__construct in extended classes

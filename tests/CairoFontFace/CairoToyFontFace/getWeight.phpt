@@ -15,5 +15,25 @@ $c = new Cairo\FontFace\Toy("sans-serif", Cairo\FontWeight::NORMAL, Cairo\FontWe
 var_dump($c->getWeight());
 ?>
 --EXPECTF--
-long(0)
-long(1)
+object(Cairo\FontWeight)#%d (2) {
+  ["__elements"]=>
+  array(2) {
+    ["NORMAL"]=>
+    int(0)
+    ["BOLD"]=>
+    int(1)
+  }
+  ["__value"]=>
+  int(0)
+}
+object(Cairo\FontWeight)#%d (2) {
+  ["__elements"]=>
+  array(2) {
+    ["NORMAL"]=>
+    int(0)
+    ["BOLD"]=>
+    int(1)
+  }
+  ["__value"]=>
+  int(1)
+}
