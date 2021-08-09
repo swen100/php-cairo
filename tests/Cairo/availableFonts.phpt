@@ -13,7 +13,7 @@ var_dump($fonts[0]);
 /* Wrong number args */
 try {
     Cairo::availableFonts('foo');
-    //trigger_error('Cairo::availableFonts should take no arguments');
+    trigger_error('Cairo::availableFonts should take no arguments');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

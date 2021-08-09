@@ -13,7 +13,7 @@ var_dump($surfaces[0]);
 /* Wrong number args */
 try {
     \Cairo::availableSurfaces('foo');
-    //trigger_error('Cairo::availableSurfaces should take no arguments');
+    trigger_error('Cairo::availableSurfaces should take no arguments');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
