@@ -206,6 +206,17 @@ PHP_METHOD(CairoContext, __construct)
             return;
         }
         
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(surface_zval);
+        if (instanceof_function(ce, ce_cairo_surface) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::__construct() expects parameter 1 to be a subtype of \\Cairo\\Surface. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
+        
         surface_object = cairo_surface_object_get( surface_zval );
         if(!surface_object) {
             return;
@@ -477,6 +488,17 @@ PHP_METHOD(CairoContext, setSurface)
 		return;
 	}
 
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(surface_zval);
+        if (instanceof_function(ce, ce_cairo_surface) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setSurface() expects parameter 1 to be a subtype of \\Cairo\\Surface. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
+        
 	context_object = Z_CAIRO_CONTEXT_P(getThis());
 	if (!context_object) {
             return;
@@ -570,6 +592,17 @@ PHP_METHOD(CairoContext, setPattern)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &pattern_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(pattern_zval);
+        if (instanceof_function(ce, ce_cairo_pattern) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setPattern() expects parameter 1 to be a subtype of \\Cairo\\Pattern. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1395,7 +1428,7 @@ PHP_METHOD(CairoContext, inFill)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_mask_args, ZEND_SEND_BY_VAL)
-	ZEND_ARG_OBJ_INFO(1, pattern, Cairo\\Pattern, 0)
+	ZEND_ARG_OBJ_INFO(0, pattern, Cairo\\Pattern, 0)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void CairoContext->mask(CairoPattern object)
@@ -1409,6 +1442,17 @@ PHP_METHOD(CairoContext, mask)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &pattern_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(pattern_zval);
+        if (instanceof_function(ce, ce_cairo_pattern) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::mask() expects parameter 1 to be a subtype of \\Cairo\\Pattern. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1422,7 +1466,7 @@ PHP_METHOD(CairoContext, mask)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_maskSurface_args, ZEND_SEND_BY_VAL)
-	ZEND_ARG_OBJ_INFO(1, surface, Cairo\\Surface, 0)
+	ZEND_ARG_OBJ_INFO(0, surface, Cairo\\Surface, 0)
         ZEND_ARG_INFO(0, x)
 	ZEND_ARG_INFO(0, y)
 ZEND_END_ARG_INFO()
@@ -1440,6 +1484,17 @@ PHP_METHOD(CairoContext, maskSurface)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o|dd", &surface_zval, &x, &y) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(surface_zval);
+        if (instanceof_function(ce, ce_cairo_surface) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Given object was of type '%s'. Expected was a sub-type of \\Cairo\\Surface.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1702,7 +1757,7 @@ PHP_METHOD(CairoContext, rotate)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_transform_args, ZEND_SEND_BY_VAL)
-        ZEND_ARG_OBJ_INFO(1, matrix, Cairo\\Matrix, 0)
+        ZEND_ARG_OBJ_INFO(0, matrix, Cairo\\Matrix, 0)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void CairoContext->transform(CairoMatrix matrix)
@@ -1716,6 +1771,17 @@ PHP_METHOD(CairoContext, transform)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &matrix_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(matrix_zval);
+        if (instanceof_function(ce, ce_cairo_matrix) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::transform() expects parameter 1 to be a subtype of \\Cairo\\Matrix. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1743,6 +1809,17 @@ PHP_METHOD(CairoContext, setMatrix)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &matrix_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(matrix_zval);
+        if (instanceof_function(ce, ce_cairo_matrix) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setMatrix() expects parameter 1 to be a subtype of \\Cairo\\Matrix. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1968,7 +2045,7 @@ PHP_METHOD(CairoContext, copyPathFlat)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_appendPath_args, ZEND_SEND_BY_VAL)
-        ZEND_ARG_OBJ_INFO(1, path, Cairo\\Path, 0)
+        ZEND_ARG_OBJ_INFO(0, path, Cairo\\Path, 0)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void CairoContext->appendPath(CairoPath object)
@@ -1983,6 +2060,17 @@ PHP_METHOD(CairoContext, appendPath)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &path_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(path_zval);
+        if (instanceof_function(ce, ce_cairo_path) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::appendPath() expects parameter 1 to be a subtype of \\Cairo\\Path. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2499,6 +2587,17 @@ PHP_METHOD(CairoContext, setFontMatrix)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &matrix_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(matrix_zval);
+        if (instanceof_function(ce, ce_cairo_matrix) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setFontMatrix() expects parameter 1 to be a subtype of \\Cairo\\Matrix. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2553,7 +2652,7 @@ PHP_METHOD(CairoContext, getFontMatrix)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_setFontOptions_args, ZEND_SEND_BY_VAL)
-        ZEND_ARG_OBJ_INFO(1, fontoptions, Cairo\\FontOptions, 0)
+        ZEND_ARG_OBJ_INFO(0, fontoptions, Cairo\\FontOptions, 0)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void CairoContext->setFontOptions(CairoFontOptions object)
@@ -2567,6 +2666,17 @@ PHP_METHOD(CairoContext, setFontOptions)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o",  &font_options_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(font_options_zval);
+        if (instanceof_function(ce, ce_cairo_fontoptions) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setFontOptions() expects parameter 1 to be a subtype of \\Cairo\\FontOptions. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 	
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2627,7 +2737,7 @@ PHP_METHOD(CairoContext, getFontOptions)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_setFontFace_args, ZEND_SEND_BY_VAL)
-        ZEND_ARG_OBJ_INFO(1, fontface, Cairo\\FontFace, 0)
+        ZEND_ARG_OBJ_INFO(0, fontface, Cairo\\FontFace, 0)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void CairoContext->setFontFace(CairoFontFace object)
@@ -2641,6 +2751,17 @@ PHP_METHOD(CairoContext, setFontFace)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o",  &font_face_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(font_face_zval);
+        if (instanceof_function(ce, ce_cairo_fontface) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setFontFace() expects parameter 1 to be a subtype of \\Cairo\\FontFace. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2697,7 +2818,7 @@ PHP_METHOD(CairoContext, getFontFace)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoContext_setScaledFont_args, ZEND_SEND_BY_VAL)
-        ZEND_ARG_OBJ_INFO(1, scaledfont, Cairo\\ScaledFont, 0)
+        ZEND_ARG_OBJ_INFO(0, scaledfont, Cairo\\ScaledFont, 0)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void CairoContext->setScaledFont(CairoScaledFont object)
@@ -2711,6 +2832,17 @@ PHP_METHOD(CairoContext, setScaledFont)
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o",  &scaled_font_zval) == FAILURE) {
 		return;
 	}
+        
+        /* check class-entry of given zval */
+        zend_class_entry *ce = Z_OBJCE_P(scaled_font_zval);
+        if (instanceof_function(ce, ce_cairo_scaled_font) == 0) {
+                
+                zend_throw_exception_ex(ce_cairo_exception, 0,
+                    "Cairo\\Context::setScaledFont() expects parameter 1 to be a subtype of \\Cairo\\ScaledFont. But '%s' was given.",
+                    ZSTR_VAL(ce->name));
+                
+                return;
+        }
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {

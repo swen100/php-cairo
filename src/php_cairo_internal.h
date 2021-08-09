@@ -63,6 +63,8 @@ extern zend_class_entry *ce_cairo_ftfont;
 
 extern zend_class_entry *ce_cairo_path;
 
+extern zend_class_entry *ce_cairo_pattern;
+
 extern zend_class_entry* php_cairo_get_pattern_ce(cairo_pattern_t *pattern);
 extern zend_class_entry* php_cairo_get_surface_ce(cairo_surface_t *surface);
 extern zend_class_entry* php_cairo_get_fontoptions_ce();
