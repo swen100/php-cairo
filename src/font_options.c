@@ -165,7 +165,7 @@ PHP_METHOD(CairoFontOptions, getStatus)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoFontOptions_fontoptions_args, ZEND_SEND_BY_VAL)
-	ZEND_ARG_OBJ_INFO(1, other, Cairo\\FontOptions, 0)
+	ZEND_ARG_OBJ_INFO(0, other, Cairo\\FontOptions, 0)
 	//ZEND_ARG_INFO(0, other)
 ZEND_END_ARG_INFO()
 
@@ -176,7 +176,7 @@ PHP_METHOD(CairoFontOptions, merge)
 	zval *other_zval = NULL;
 	cairo_font_options_object *options_object, *other_object;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z/", &other_zval) == FAILURE) {
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &other_zval) == FAILURE) {
 		return;
 	}
 	
@@ -223,7 +223,7 @@ PHP_METHOD(CairoFontOptions, equal)
 	zval *other_zval = NULL;
 	cairo_font_options_object *options_object, *other_object;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z/", &other_zval, ce_cairo_fontoptions) == FAILURE) {
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &other_zval, ce_cairo_fontoptions) == FAILURE) {
 		return;
 	}
 	
@@ -236,7 +236,7 @@ PHP_METHOD(CairoFontOptions, equal)
 	if(!other_object) {
             return;
         }
-	
+        
 	RETURN_BOOL(cairo_font_options_equal(options_object->font_options, other_object->font_options));
 }
 /* }}} */
@@ -268,7 +268,7 @@ PHP_METHOD(CairoFontOptions, setAntialias)
 	
         font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
-            return;
+                return;
         }
 	
 	cairo_font_options_set_antialias(font_options_object->font_options, antialias);
