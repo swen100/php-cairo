@@ -130,9 +130,7 @@ PHP_METHOD(CairoFontOptions, __construct)
 {
         cairo_font_options_object *font_options_object;
 
-        if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+        ZEND_PARSE_PARAMETERS_NONE();
 
         font_options_object = Z_CAIRO_FONT_OPTIONS_P(getThis());
 	if(!font_options_object) {
@@ -144,15 +142,13 @@ PHP_METHOD(CairoFontOptions, __construct)
 }
 /* }}} */
 
-/* {{{ proto void CairoFontOptions->getStatus(void)
+/* {{{ proto void \Cairo\FontOptions->getStatus(void)
         Checks whether an error has previously occurred for this font options object.*/
 PHP_METHOD(CairoFontOptions, getStatus) 
 {
 	cairo_font_options_object *font_options_object;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
@@ -169,17 +165,17 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_fontoptions_args, ZEND_SEND_BY_VAL)
 	//ZEND_ARG_INFO(0, other)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoFontOptions->merge(CairoFontOptions other)
+/* {{{ proto void \Cairo\FontOptions->merge(\Cairo\FontOptions other)
         Merges non-default options from other into options, replacing existing values.*/
 PHP_METHOD(CairoFontOptions, merge)
 {
 	zval *other_zval = NULL;
 	cairo_font_options_object *options_object, *other_object;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &other_zval) == FAILURE) {
-		return;
-	}
-	
+        ZEND_PARSE_PARAMETERS_START(1,1)
+            Z_PARAM_OBJECT_OF_CLASS(other_zval, ce_cairo_fontoptions)
+        ZEND_PARSE_PARAMETERS_END();
+        
         options_object = cairo_font_options_object_get(getThis());
 	if(!options_object) {
             return;
@@ -196,15 +192,13 @@ PHP_METHOD(CairoFontOptions, merge)
 /* }}} */
 
 
-/* {{{ proto long CairoFontOptions->hash(void)
+/* {{{ proto long \Cairo\FontOptions->hash(void)
         Compute a hash for the font options object.*/
 PHP_METHOD(CairoFontOptions, hash) 
 {
 	cairo_font_options_object *font_options_object;
 
-        if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_NONE();
         
 	font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
@@ -216,28 +210,28 @@ PHP_METHOD(CairoFontOptions, hash)
 /* }}} */
 
 
-/* {{{ proto boolean CairoFontOptions->equal(CairoFontOptions other)
+/* {{{ proto boolean \Cairo\FontOptions->equal(\Cairo\FontOptions other)
         Compares two font options objects for equality.*/
 PHP_METHOD(CairoFontOptions, equal)
 {
 	zval *other_zval = NULL;
-	cairo_font_options_object *options_object, *other_object;
+	cairo_font_options_object *options_object_a, *options_object_b;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "o", &other_zval, ce_cairo_fontoptions) == FAILURE) {
-		return;
-	}
-	
-        options_object = cairo_font_options_object_get(getThis());
-	if(!options_object) {
+        ZEND_PARSE_PARAMETERS_START(1,1)
+            Z_PARAM_OBJECT_OF_CLASS(other_zval, ce_cairo_fontoptions)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        options_object_a = cairo_font_options_object_get(getThis());
+	if(!options_object_a) {
             return;
         }
         
-	other_object = cairo_font_options_object_get(other_zval);
-	if(!other_object) {
+	options_object_b = cairo_font_options_object_get(other_zval);
+	if(!options_object_b) {
             return;
         }
         
-	RETURN_BOOL(cairo_font_options_equal(options_object->font_options, other_object->font_options));
+	RETURN_BOOL(cairo_font_options_equal(options_object_a->font_options, options_object_b->font_options));
 }
 /* }}} */
 
@@ -245,7 +239,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setAntialias_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, antialias)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoFontOptions->setAntialias(void)
+/* {{{ proto void \Cairo\FontOptions->setAntialias(void)
         Sets the antialiasing mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, setAntialias) 
 {
@@ -255,7 +249,7 @@ PHP_METHOD(CairoFontOptions, setAntialias)
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &antialias_enum, ce_cairo_antialias) == FAILURE) {
-		if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|l", &antialias) == FAILURE) {
+		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &antialias) == FAILURE) {
 			return;
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_antialias, antialias)) {
@@ -276,15 +270,13 @@ PHP_METHOD(CairoFontOptions, setAntialias)
 }
 /* }}} */
 
-/* {{{ proto int CairoFontOptions->getAntialias(void)
+/* {{{ proto int \Cairo\FontOptions->getAntialias(void)
         Gets the antialiasing mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, getAntialias) 
 {
 	cairo_font_options_object *font_options_object;
 	
-        if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_NONE();
         
 	font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
@@ -302,7 +294,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setSubpixelOrder_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, subpixel_order)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoFontOptions->setSubpixelOrder(void)
+/* {{{ proto void \Cairo\FontOptions->setSubpixelOrder(void)
         Sets the subpixel order for the font options object.*/
 PHP_METHOD(CairoFontOptions, setSubpixelOrder) 
 {
@@ -312,7 +304,7 @@ PHP_METHOD(CairoFontOptions, setSubpixelOrder)
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &subpixel_order_enum, ce_cairo_subpixelorder) == FAILURE) {
-		if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|l", &subpixel_order) == FAILURE) {
+		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &subpixel_order) == FAILURE) {
 			return;
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_subpixelorder, subpixel_order)) {
@@ -333,15 +325,13 @@ PHP_METHOD(CairoFontOptions, setSubpixelOrder)
 }
 /* }}} */
 
-/* {{{ proto int CairoFontOptions->getSubpixelOrder(void)
+/* {{{ proto int \Cairo\FontOptions->getSubpixelOrder(void)
         Gets the subpixel order for the font options object.*/
 PHP_METHOD(CairoFontOptions, getSubpixelOrder) 
 {
 	cairo_font_options_object *font_options_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 	
         font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
@@ -357,7 +347,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setHintStyle_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, hint_style)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoFontOptions->setHintStyle(void)
+/* {{{ proto void \Cairo\FontOptions->setHintStyle(void)
         Sets the hint style for font outlines for the font options object.*/
 PHP_METHOD(CairoFontOptions, setHintStyle) 
 {
@@ -367,7 +357,7 @@ PHP_METHOD(CairoFontOptions, setHintStyle)
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &hint_style_enum, ce_cairo_hintstyle) == FAILURE) {
-		if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|l", &hint_style) == FAILURE) {
+		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &hint_style) == FAILURE) {
 			return;
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_hintstyle, hint_style)) {
@@ -388,15 +378,13 @@ PHP_METHOD(CairoFontOptions, setHintStyle)
 }
 /* }}} */
 
-/* {{{ proto int CairoFontOptions->getHintStyle(void)
+/* {{{ proto int \Cairo\FontOptions->getHintStyle(void)
         Gets the hint style for font outlines for the font options object.*/
 PHP_METHOD(CairoFontOptions, getHintStyle) 
 {
 	cairo_font_options_object *font_options_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 	
         font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
@@ -412,7 +400,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setHintMetrics_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, hint_metrics)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoFontOptions->setHintMetrics(void)
+/* {{{ proto void \Cairo\FontOptions->setHintMetrics(void)
         Sets the metrics hinting mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, setHintMetrics) 
 {
@@ -422,7 +410,7 @@ PHP_METHOD(CairoFontOptions, setHintMetrics)
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &hint_metrics_enum, ce_cairo_hintmetrics) == FAILURE) {
-		if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|l", &hint_metrics) == FAILURE) {
+		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &hint_metrics) == FAILURE) {
 			return;
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_hintmetrics, hint_metrics)) {
@@ -443,15 +431,13 @@ PHP_METHOD(CairoFontOptions, setHintMetrics)
 }
 /* }}} */
 
-/* {{{ proto int CairoFontOptions->getHintMetrics(void)
+/* {{{ proto int \Cairo\FontOptions->getHintMetrics(void)
         Gets the metrics hinting mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, getHintMetrics) 
 {
 	cairo_font_options_object *font_options_object;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 	
         font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {

@@ -43,12 +43,14 @@ cairo_font_face_object *cairo_font_face_fetch_object(zend_object *object)
 cairo_font_face_object *cairo_font_face_object_get(zval *zv)
 {
 	cairo_font_face_object *object = Z_CAIRO_FONT_FACE_P(zv);
+        
 	if(object->font_face == NULL) {
 		zend_throw_exception_ex(ce_cairo_exception, 0,
 			"Internal font face object missing in %s, you must call parent::__construct in extended classes",
 			ZSTR_VAL(Z_OBJCE_P(zv)->name));
 		return NULL;
 	}
+        
 	return object;
 }
 
@@ -67,9 +69,7 @@ zend_class_entry * php_cairo_get_fontface_ce()
 /* {{{ */
 cairo_font_face_t *cairo_font_face_object_get_font_face(zval *zv)
 {
-	cairo_font_face_object *font_face_object = Z_CAIRO_FONT_FACE_P(zv);
-
-	return font_face_object->font_face;
+	return cairo_font_face_object_get(zv)->font_face;
 }
 /* }}} */
 
@@ -90,9 +90,7 @@ PHP_METHOD(CairoFontFace, getStatus)
 {
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!font_face_object) {
@@ -113,9 +111,7 @@ PHP_METHOD(CairoFontFace, getType)
 {
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!font_face_object) {
