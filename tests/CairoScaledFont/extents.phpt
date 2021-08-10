@@ -2,26 +2,31 @@
 Cairo\ScaledFont->extents() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
 include(dirname(__FILE__) . '/create_toyfont.inc');
 var_dump($fontface);
-$matrix1 = new Cairo\Matrix(1);
-$matrix2 = new Cairo\Matrix(1,1);
+$matrix1 = new Cairo\Matrix(1, 1, 1);
+$matrix2 = new Cairo\Matrix(2, 2, 2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
 var_dump($scaled);
 
-var_dump($scaled->extents());
-
 /* Wrong number args */
 try {
-    $scaled->extents('foo');
-    trigger_error('status requires only one arg');
-} catch (TypeError $e) {
+    $scaled->getTextExtents();
+} catch (ArgumentCountError $e) {
+    echo $e->getMessage(), PHP_EOL;
+}
+
+try {
+    var_dump($scaled->getTextExtents('foo'));
+} catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -30,16 +35,18 @@ object(Cairo\FontFace\Toy)#%d (0) {
 }
 object(Cairo\ScaledFont)#%d (0) {
 }
-array(5) {
-  ["ascent"]=>
+Cairo\ScaledFont::getTextExtents() expects exactly 1 argument, 0 given
+array(6) {
+  ["x_bearing"]=>
   float(%f)
-  ["descent"]=>
+  ["y_bearing"]=>
+  float(%f)
+  ["width"]=>
   float(%f)
   ["height"]=>
   float(%f)
-  ["max_x_advance"]=>
+  ["x_advance"]=>
   float(%f)
-  ["max_y_advance"]=>
+  ["y_advance"]=>
   float(%f)
 }
-Cairo\ScaledFont::extents() expects exactly 0 parameters, 1 given

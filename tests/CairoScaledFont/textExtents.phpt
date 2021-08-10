@@ -1,42 +1,44 @@
 --TEST--
-Cairo\ScaledFont->textExtents() method
+Cairo\ScaledFont->getTextExtents() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
 include(dirname(__FILE__) . '/create_toyfont.inc');
 var_dump($fontface);
-$matrix1 = new Cairo\Matrix(1);
-$matrix2 = new Cairo\Matrix(1,1);
+$matrix1 = new Cairo\Matrix(1,1,1);
+$matrix2 = new Cairo\Matrix(2,2,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
 var_dump($scaled);
 
-var_dump($scaled->textExtents('foobar'));
+var_dump($scaled->getTextExtents('foobar'));
 
 /* Wrong number args 1 */
 try {
-    $scaled->textExtents();
-    trigger_error('textExtents requires one arg');
+    $scaled->getTextExtents();
+    trigger_error('getTextExtents requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 /* Wrong number args 1 */
 try {
-    $scaled->textExtents('foo', 1);
-    trigger_error('textExtents requires only one arg');
+    $scaled->getTextExtents('foo', 1);
+    trigger_error('getTextExtents requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 /* Wrong arg type */
 try {
-    $scaled->textExtents(array());
-    trigger_error('textExtents requires one arg');
+    $scaled->getTextExtents([]);
+    trigger_error('getTextExtents requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -60,6 +62,6 @@ array(6) {
   ["y_advance"]=>
   float(%f)
 }
-Cairo\ScaledFont::textExtents() expects exactly 1 parameter, 0 given
-Cairo\ScaledFont::textExtents() expects exactly 1 parameter, 2 given
-Cairo\ScaledFont::textExtents() expects parameter 1 to be string, array given
+Cairo\ScaledFont::getTextExtents() expects exactly 1 argument, 0 given
+Cairo\ScaledFont::getTextExtents() expects exactly 1 argument, 2 given
+Cairo\ScaledFont::getTextExtents(): Argument #1 ($text) must be of type string, array given

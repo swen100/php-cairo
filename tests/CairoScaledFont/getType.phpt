@@ -8,8 +8,8 @@ if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 <?php
 include(dirname(__FILE__) . '/create_toyfont.inc');
 var_dump($fontface);
-$matrix1 = new Cairo\Matrix(1);
-$matrix2 = new Cairo\Matrix(1,1);
+$matrix1 = new Cairo\Matrix(1,1,1);
+$matrix2 = new Cairo\Matrix(2,2,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
@@ -29,5 +29,21 @@ object(Cairo\FontFace\Toy)#%d (0) {
 }
 object(Cairo\ScaledFont)#%d (0) {
 }
-long(%d)
-Cairo\ScaledFont::getType() expects exactly 0 parameters, 1 given
+object(Cairo\FontType)#%d (2) {
+  ["__elements"]=>
+  array(5) {
+    ["TOY"]=>
+    int(0)
+    ["FT"]=>
+    int(1)
+    ["WIN32"]=>
+    int(2)
+    ["QUARTZ"]=>
+    int(3)
+    ["USER"]=>
+    int(4)
+  }
+  ["__value"]=>
+  int(1)
+}
+Cairo\ScaledFont::getType() expects exactly 0 arguments, 1 given
