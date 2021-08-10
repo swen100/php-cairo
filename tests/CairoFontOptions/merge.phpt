@@ -2,7 +2,9 @@
 Cairo\FontOptions->merge() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
@@ -12,7 +14,7 @@ var_dump($options);
 $options2 = new Cairo\FontOptions();
 $options->merge($options2);
 
-/* Wrong number args 1*/
+/* Wrong number args 1 */
 try {
     $options->merge();
     trigger_error('merge requires 1 arg');
@@ -39,6 +41,6 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-Cairo\FontOptions::merge() expects exactly 1 parameter, 0 given
-Cairo\FontOptions::merge() expects exactly 1 parameter, 2 given
-Cairo\FontOptions::merge() expects parameter 1 to be Cairo\FontOptions, int given
+Cairo\FontOptions::merge() expects exactly 1 argument, 0 given
+Cairo\FontOptions::merge() expects exactly 1 argument, 2 given
+Cairo\FontOptions::merge(): Argument #1 ($other) must be of type object, int given

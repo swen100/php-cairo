@@ -7,13 +7,13 @@ if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 --FILE--
 <?php
 $constants = array(
-	'METRICS_DEFAULT',
-	'METRICS_ON',
-	'METRICS_OFF',
-	);
+    'DEFAULT',
+    'ON',
+    'OFF',
+);
 
 foreach($constants as $name) {
-	var_dump(defined('Cairo\HintMetrics::' . $name));
+    var_dump(defined('\\Cairo\\HintMetrics::' . $name));
 }
 ?>
 --EXPECT--

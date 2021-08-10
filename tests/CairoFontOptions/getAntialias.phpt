@@ -2,7 +2,9 @@
 Cairo\FontOptions->getAntialias() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
@@ -22,5 +24,25 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-long(0)
-Cairo\FontOptions::getAntialias() expects exactly 0 parameters, 1 given
+object(Cairo\Antialias)#%d (2) {
+  ["__elements"]=>
+  array(7) {
+    ["DEFAULT"]=>
+    int(0)
+    ["NONE"]=>
+    int(1)
+    ["GRAY"]=>
+    int(2)
+    ["SUBPIXEL"]=>
+    int(3)
+    ["FAST"]=>
+    int(4)
+    ["GOOD"]=>
+    int(5)
+    ["BEST"]=>
+    int(6)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\FontOptions::getAntialias() expects exactly 0 arguments, 1 given

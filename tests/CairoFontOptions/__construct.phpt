@@ -20,4 +20,4 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-Cairo\FontOptions::__construct() expects exactly 0 parameters, 1 given
+Cairo\FontOptions::__construct() expects exactly 0 %s, 1 given

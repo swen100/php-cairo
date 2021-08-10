@@ -22,5 +22,17 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-long(0)
-Cairo\FontOptions::getHintMetrics() expects exactly 0 parameters, 1 given
+object(Cairo\HintMetrics)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["DEFAULT"]=>
+    int(0)
+    ["OFF"]=>
+    int(1)
+    ["ON"]=>
+    int(2)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\FontOptions::getHintMetrics() expects exactly 0 arguments, 1 given

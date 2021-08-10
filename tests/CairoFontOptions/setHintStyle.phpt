@@ -2,16 +2,18 @@
 Cairo\FontOptions->setHintStyle() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
 $options = new Cairo\FontOptions();
 var_dump($options);
 
-$options->setHintStyle(Cairo\HintStyle::STYLE_FULL);
+$options->setHintStyle(Cairo\HintStyle::FULL);
 
-/* Wrong number args 1*/
+/* Wrong number args 1 */
 try {
     $options->setHintStyle();
     trigger_error('setHintStyle requires 1 arg');
@@ -21,7 +23,7 @@ try {
 
 /* Wrong number args 2 */
 try {
-    $options->setHintStyle(Cairo\HintStyle::STYLE_FULL, 1);
+    $options->setHintStyle(Cairo\HintStyle::FULL, 1);
     trigger_error('setHintStyle requires only 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -38,6 +40,7 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-Cairo\FontOptions::setHintStyle() expects exactly 1 parameter, 0 given
-Cairo\FontOptions::setHintStyle() expects exactly 1 parameter, 2 given
-Cairo\FontOptions::setHintStyle() expects parameter 1 to be int, array given
+
+Notice: setHintStyle requires 1 arg in %s
+Cairo\FontOptions::setHintStyle() expects at most 1 argument, 2 given
+Cairo\FontOptions::setHintStyle(): Argument #1 ($hint_style) must be of type int, array given

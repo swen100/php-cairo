@@ -2,7 +2,9 @@
 Cairo\FontOptions->hash() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
@@ -22,5 +24,5 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-long(0)
-Cairo\FontOptions::hash() expects exactly 0 parameters, 1 given
+int(0)
+Cairo\FontOptions::hash() expects exactly 0 arguments, 1 given

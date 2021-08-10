@@ -22,5 +22,21 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-long(0)
-Cairo\FontOptions::getHintStyle() expects exactly 0 parameters, 1 given
+object(Cairo\HintStyle)#%d (2) {
+  ["__elements"]=>
+  array(5) {
+    ["DEFAULT"]=>
+    int(0)
+    ["NONE"]=>
+    int(1)
+    ["SLIGHT"]=>
+    int(2)
+    ["MEDIUM"]=>
+    int(3)
+    ["FULL"]=>
+    int(4)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\FontOptions::getHintStyle() expects exactly 0 arguments, 1 given

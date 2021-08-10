@@ -9,7 +9,7 @@ if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 $options = new Cairo\FontOptions();
 var_dump($options);
 
-$options->setAntialias(Cairo\Antialias::MODE_SUBPIXEL);
+$options->setAntialias(\Cairo\Antialias::SUBPIXEL);
 
 /* Wrong number args 1*/
 try {
@@ -21,7 +21,7 @@ try {
 
 /* Wrong number args 2 */
 try {
-    $options->setAntialias(Cairo\Antialias::MODE_SUBPIXEL, 1);
+    $options->setAntialias(\Cairo\Antialias::SUBPIXEL, 1);
     trigger_error('setAntialias requires only 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -29,7 +29,7 @@ try {
 
 /* Wrong arg type - needs int */
 try {
-    $options->setAntialias(array());
+    $options->setAntialias([]);
     trigger_error('setAntialias requires int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -38,6 +38,7 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-Cairo\FontOptions::setAntialias() expects exactly 1 parameter, 0 given
-Cairo\FontOptions::setAntialias() expects exactly 1 parameter, 2 given
-Cairo\FontOptions::setAntialias() expects parameter 1 to be int, array given
+
+Notice: setAntialias requires 1 arg in %s
+Cairo\FontOptions::setAntialias() expects at most 1 argument, 2 given
+Cairo\FontOptions::setAntialias(): Argument #1 ($antialias) must be of type int, array given

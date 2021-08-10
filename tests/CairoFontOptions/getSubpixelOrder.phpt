@@ -2,7 +2,9 @@
 Cairo\FontOptions->getSubpixelOrder() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
@@ -22,5 +24,21 @@ try {
 --EXPECTF--
 object(Cairo\FontOptions)#%d (0) {
 }
-long(0)
-Cairo\FontOptions::getSubpixelOrder() expects exactly 0 parameters, 1 given
+object(Cairo\SubPixelOrder)#2 (2) {
+  ["__elements"]=>
+  array(5) {
+    ["DEFAULT"]=>
+    int(0)
+    ["RGB"]=>
+    int(1)
+    ["BGR"]=>
+    int(2)
+    ["VRGB"]=>
+    int(3)
+    ["VBGR"]=>
+    int(4)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\FontOptions::getSubpixelOrder() expects exactly 0 arguments, 1 given
