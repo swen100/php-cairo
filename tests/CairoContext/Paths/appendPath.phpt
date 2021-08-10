@@ -50,4 +50,4 @@ object(Cairo\Path)#%d (0) {
 }
 Cairo\Context::appendPath() expects exactly 1 %s, 0 given
 Cairo\Context::appendPath() expects exactly 1 %s, 2 given
-Cairo\Context::appendPath(): Argument #1 ($path) must be of type object, int given
+Cairo\Context::appendPath(): Argument #1 ($path) must be of type Cairo\Path, int given

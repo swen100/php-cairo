@@ -72,4 +72,4 @@ bool(true)
 bool(true)
 Cairo\Context::setMatrix() expects exactly 1 argument, 0 given
 Cairo\Context::setMatrix() expects exactly 1 argument, 3 given
-Cairo\Context::setMatrix(): Argument #1 ($matrix) must be of type object, int given
+Cairo\Context::setMatrix(): Argument #1 ($matrix) must be of type Cairo\Matrix, int given

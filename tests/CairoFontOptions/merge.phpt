@@ -30,10 +30,16 @@ try {
     echo $e->getMessage(), PHP_EOL;
 }
 
-/* Wrong arg type - needs cairofontoptions */
+/* Wrong arg type - needs \Cairo\FontOptions */
 try {
     $options->merge(1);
     trigger_error('merge requires cairofontoptions instance');
+} catch (TypeError $e) {
+    echo $e->getMessage(), PHP_EOL;
+}
+try {
+    $dummy = new stdClass();
+    $options->merge($dummy);
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -43,4 +49,5 @@ object(Cairo\FontOptions)#%d (0) {
 }
 Cairo\FontOptions::merge() expects exactly 1 argument, 0 given
 Cairo\FontOptions::merge() expects exactly 1 argument, 2 given
-Cairo\FontOptions::merge(): Argument #1 ($other) must be of type object, int given
+Cairo\FontOptions::merge(): Argument #1 ($other) must be of type Cairo\FontOptions, int given
+Cairo\FontOptions::merge(): Argument #1 ($other) must be of type Cairo\FontOptions, stdClass given

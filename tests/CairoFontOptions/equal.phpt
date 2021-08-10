@@ -30,10 +30,17 @@ try {
     echo $e->getMessage(), PHP_EOL;
 }
 
-/* Wrong arg type - needs cairofontoptions */
+/* Wrong arg type - needs \Cairo\FontOptions */
 try {
     $options->equal(1);
     trigger_error('equal requires cairofontoptions instance');
+} catch (TypeError $e) {
+    echo $e->getMessage(), PHP_EOL;
+}
+
+try {
+    $dummy = new stdClass();
+    $options->equal($dummy);
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -44,4 +51,5 @@ object(Cairo\FontOptions)#%d (0) {
 bool(true)
 Cairo\FontOptions::equal() expects exactly 1 argument, 0 given
 Cairo\FontOptions::equal() expects exactly 1 argument, 2 given
-Cairo\FontOptions::equal(): Argument #1 ($other) must be of type object, int given
+Cairo\FontOptions::equal(): Argument #1 ($other) must be of type Cairo\FontOptions, int given
+Cairo\FontOptions::equal(): Argument #1 ($other) must be of type Cairo\FontOptions, stdClass given

@@ -47,4 +47,4 @@ object(Cairo\Context)#%d (0) {
 }
 Cairo\Context::mask() expects exactly 1 argument, 0 given
 Cairo\Context::mask() expects exactly 1 argument, 2 given
-Cairo\Context::mask(): Argument #1 ($pattern) must be of type object, array given
+Cairo\Context::mask(): Argument #1 ($pattern) must be of type Cairo\Pattern, array given

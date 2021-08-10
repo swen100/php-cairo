@@ -99,7 +99,7 @@ Cairo\ScaledFont::__construct() expects exactly 4 arguments, 1 given
 Cairo\ScaledFont::__construct() expects exactly 4 arguments, 2 given
 Cairo\ScaledFont::__construct() expects exactly 4 arguments, 3 given
 Cairo\ScaledFont::__construct() expects exactly 4 arguments, 5 given
-Cairo\ScaledFont::__construct(): Argument #1 ($font_face) must be of type object, array given
-Cairo\ScaledFont::__construct(): Argument #2 ($matrix) must be of type object, array given
-Cairo\ScaledFont::__construct(): Argument #3 ($ctm) must be of type object, array given
-Cairo\ScaledFont::__construct(): Argument #4 ($options) must be of type object, array given
+Cairo\ScaledFont::__construct(): Argument #1 ($font_face) must be of type Cairo\FontFace, array given
+Cairo\ScaledFont::__construct(): Argument #2 ($matrix) must be of type Cairo\Matrix, array given
+Cairo\ScaledFont::__construct(): Argument #3 ($ctm) must be of type Cairo\Matrix, array given
+Cairo\ScaledFont::__construct(): Argument #4 ($options) must be of type Cairo\FontOptions, array given

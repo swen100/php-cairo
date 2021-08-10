@@ -42,4 +42,4 @@ object(Cairo\Surface\Image)#%d (0) {
 object(Cairo\Context)#%d (0) {
 }
 Cairo\Context::__construct() expects at most 1 argument, 2 given
-Cairo\Context::__construct(): Argument #1 ($surface) must be of type object, int given
+Cairo\Context::__construct(): Argument #1 ($surface) must be of type Cairo\Surface, int given

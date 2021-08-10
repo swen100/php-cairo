@@ -92,4 +92,4 @@ bool(true)
 bool(true)
 Cairo\Context::setScaledFont() expects exactly 1 argument, 0 given
 Cairo\Context::setScaledFont() expects exactly 1 argument, 2 given
-Cairo\Context::setScaledFont(): Argument #1 ($scaledfont) must be of type object, int given
+Cairo\Context::setScaledFont(): Argument #1 ($scaledfont) must be of type Cairo\ScaledFont, int given

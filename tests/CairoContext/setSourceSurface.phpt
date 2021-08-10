@@ -76,6 +76,6 @@ object(Cairo\Context)#%d (0) {
 }
 Cairo\Context::setSurface() expects at least 1 argument, 0 given
 Cairo\Context::setSurface() expects at most 3 arguments, 4 given
-Cairo\Context::setSurface(): Argument #1 ($surface) must be of type object, array given
+Cairo\Context::setSurface(): Argument #1 ($surface) must be of type Cairo\Surface, array given
 Cairo\Context::setSurface(): Argument #2 ($x) must be of type float, array given
 Cairo\Context::setSurface(): Argument #3 ($y) must be of type float, array given

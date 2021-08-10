@@ -1,5 +1,5 @@
 --TEST--
-Cairo\Context->setSource() method
+Cairo\Context->setPattern() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -44,8 +44,16 @@ try {
 
 /* Wrong arg type */
 try {
+    $context->setPattern(new stdClass());
+    trigger_error('setPattern expects instanceof \Cairo\Pattern');
+} catch (TypeError $e) {
+    echo $e->getMessage(), PHP_EOL;
+}
+
+/* Wrong arg type */
+try {
     $context->setPattern(array());
-    trigger_error('setPattern expects instanceof CairoPattern');
+    trigger_error('setPattern expects instanceof \Cairo\Pattern');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -84,4 +92,5 @@ array(4) {
 }
 Cairo\Context::setPattern() expects exactly 1 argument, 0 given
 Cairo\Context::setPattern() expects exactly 1 argument, 2 given
-Cairo\Context::setPattern(): Argument #1 ($pattern) must be of type object, array given
+Cairo\Context::setPattern(): Argument #1 ($pattern) must be of type Cairo\Pattern, stdClass given
+Cairo\Context::setPattern(): Argument #1 ($pattern) must be of type Cairo\Pattern, array given
