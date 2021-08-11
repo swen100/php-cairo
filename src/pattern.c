@@ -307,7 +307,7 @@ PHP_METHOD(CairoPattern, getMatrix)
 /* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoPattern_setMatrix_args, ZEND_SEND_BY_VAL)
-	ZEND_ARG_OBJ_INFO(1, matrix, Cairo\\Matrix, 0) 
+	ZEND_ARG_OBJ_INFO(0, matrix, Cairo\\Matrix, 0) 
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void \Cairo\Pattern::setMatrix(\Cairo\Matrix object)
@@ -319,7 +319,7 @@ PHP_METHOD(CairoPattern, setMatrix)
 	cairo_pattern_object *pattern_object;
 
         ZEND_PARSE_PARAMETERS_START(1,1)
-            Z_PARAM_OBJECT_OF_CLASS(matrix_zval, ce_cairo_matrix)
+                Z_PARAM_OBJECT_OF_CLASS(matrix_zval, ce_cairo_matrix)
         ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
