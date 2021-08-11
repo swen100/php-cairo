@@ -1,3 +1,7 @@
+2021-08-11  Swen Zanon  <swen.zanon@geoglis.de>
+    * Ported to PHP8
+    * added support for direct raster-output in format JPEG
+
 2015-06-25  Elizabeth M Smith  <auroraeosrose@php.net>
     * Rewrote Extension
     * Ported to PHP7 (phpng)
