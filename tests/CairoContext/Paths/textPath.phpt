@@ -2,7 +2,9 @@
 Cairo\Context->textPath() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
@@ -32,7 +34,7 @@ try {
 
 /* Wrong arg type */
 try {
-    $context->textPath(array());
+    $context->textPath([]);
     trigger_error('textPath requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;

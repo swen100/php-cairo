@@ -11,9 +11,12 @@ include __DIR__ . '/skipif.inc';
 $version = Cairo\version_string();
 var_dump($version);
 
-Cairo\version_string('foo');
+try {
+    Cairo\version_string('foo');
+} catch (ArgumentCountError $e) {
+    echo $e->getMessage();
+}
 ?>
 --EXPECTF--
 string(%d) "%d.%d.%d"
-
-Warning: Cairo\version_string() expects exactly 0 parameters, 1 given in %s on line %d
+Cairo\version_string() expects exactly 0 arguments, 1 given
