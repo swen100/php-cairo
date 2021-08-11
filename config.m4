@@ -1,5 +1,5 @@
 dnl
-dnl Cairo Graphics Library bindings for PHP7
+dnl Cairo Graphics Library bindings for PHP8
 dnl
 
 PHP_ARG_WITH(cairo, for Cairo graphics library support,
@@ -96,6 +96,17 @@ if test "$PHP_CAIRO" != "no"; then
                     PHP_EVAL_INCLINE($FONTCONFIG_INCS)
                     PHP_EVAL_LIBLINE($FONTCONFIG_LIBS, FONTCONFIG_SHARED_LIBADD)
                     AC_DEFINE(HAVE_FONTCONFIG, 1, [whether fontconfig exists in the system])
+                fi
+
+                AC_MSG_CHECKING(for libjpeg)
+                if $PKG_CONFIG --exists libjpeg; then
+                    libjpeg_version_full=`$PKG_CONFIG --modversion libjpeg`
+                    AC_MSG_RESULT([found $libjpeg_version_full])
+                    LIBJPEG_LIBS="$LDFLAGS `$PKG_CONFIG --libs libjpeg`"
+                    LIBJPEG_INCS="$CFLAGS `$PKG_CONFIG --cflags-only-I libjpeg`"
+                    PHP_EVAL_INCLINE($LIBJPEG_INCS)
+                    PHP_EVAL_LIBLINE($LIBJPEG_LIBS, LIBJPEG_SHARED_LIBADD)
+                    AC_DEFINE(HAVE_LIBJPEG, 1, [whether libjpeg exists in the system])
                 fi
                     
             else
