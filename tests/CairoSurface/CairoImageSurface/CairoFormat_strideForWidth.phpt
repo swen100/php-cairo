@@ -51,8 +51,8 @@ try {
 ?>
 --EXPECTF--
 20
-Cairo\Surface\ImageFormat::strideForWidth() expects exactly 2 parameters, 0 given
-Cairo\Surface\ImageFormat::strideForWidth() expects exactly 2 parameters, 1 given
-Cairo\Surface\ImageFormat::strideForWidth() expects exactly 2 parameters, 3 given
-Cairo\Surface\ImageFormat::strideForWidth() expects parameter 1 to be int, array given
-Cairo\Surface\ImageFormat::strideForWidth() expects parameter 2 to be int, array given
+Cairo\Surface\ImageFormat::strideForWidth() expects exactly 2 %s, 0 given
+Cairo\Surface\ImageFormat::strideForWidth() expects exactly 2 %s, 1 given
+Cairo\Surface\ImageFormat::strideForWidth() expects exactly 2 %s, 3 given
+Cairo\Surface\ImageFormat::strideForWidth(): Argument #1 ($format) must be of type int, array given
+Cairo\Surface\ImageFormat::strideForWidth(): Argument #2 ($width) must be of type int, array given

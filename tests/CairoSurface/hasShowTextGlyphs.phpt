@@ -24,4 +24,4 @@ try {
 object(Cairo\Surface\Image)#%d (0) {
 }
 bool(false)
-Cairo\Surface::hasShowTextGlyphs() expects exactly 0 parameters, 1 given
+Cairo\Surface::hasShowTextGlyphs() expects exactly 0 %s, 1 given

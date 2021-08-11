@@ -29,4 +29,4 @@ array(2) {
   [1]=>
   float(%d)
 }
-Cairo\Surface::getFallbackResolution() expects exactly 0 parameters, 1 given
+Cairo\Surface::getFallbackResolution() expects exactly 0 %s, 1 given

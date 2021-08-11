@@ -22,5 +22,17 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-long(12288)
-Cairo\Surface::getContent() expects exactly 0 parameters, 1 given
+object(Cairo\Surface\Content)#%d (2) {
+  ["__elements"]=>
+  array(3) {
+    ["COLOR"]=>
+    int(4096)
+    ["ALPHA"]=>
+    int(8192)
+    ["COLOR_ALPHA"]=>
+    int(12288)
+  }
+  ["__value"]=>
+  int(12288)
+}
+Cairo\Surface::getContent() expects exactly 0 arguments, 1 given

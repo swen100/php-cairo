@@ -84,12 +84,12 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Surface\Image::createForData() expects exactly 4 parameters, 0 given
-Cairo\Surface\Image::createForData() expects exactly 4 parameters, 1 given
-Cairo\Surface\Image::createForData() expects exactly 4 parameters, 2 given
-Cairo\Surface\Image::createForData() expects exactly 4 parameters, 3 given
-Cairo\Surface\Image::createForData() expects exactly 4 parameters, 5 given
-Cairo\Surface\Image::createForData() expects parameter 1 to be string, array given
-Cairo\Surface\Image::createForData() expects parameter 2 to be int, array given
-Cairo\Surface\Image::createForData() expects parameter 3 to be int, array given
-Cairo\Surface\Image::createForData() expects parameter 4 to be int, array given
+Cairo\Surface\Image::createForData() expects exactly 4 %s, 0 given
+Cairo\Surface\Image::createForData() expects exactly 4 %s, 1 given
+Cairo\Surface\Image::createForData() expects exactly 4 %s, 2 given
+Cairo\Surface\Image::createForData() expects exactly 4 %s, 3 given
+Cairo\Surface\Image::createForData() expects exactly 4 %s, 5 given
+Cairo\Surface\Image::createForData(): Argument #1 ($data) must be of type string, array given
+Cairo\Surface\Image::createForData(): Argument #2 ($format) must be of type int, array given
+Cairo\Surface\Image::createForData(): Argument #3 ($width) must be of type int, array given
+Cairo\Surface\Image::createForData(): Argument #4 ($height) must be of type int, array given

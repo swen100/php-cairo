@@ -22,4 +22,4 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Surface::markDirty() expects exactly 0 parameters, 1 given
+Cairo\Surface::markDirty() expects exactly 0 %s, 1 given

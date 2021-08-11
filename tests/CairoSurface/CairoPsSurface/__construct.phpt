@@ -53,7 +53,7 @@ try {
 try {
     new Cairo\Surface\Ps(array(), 1, 1);
     trigger_error('We should bomb here');
-} catch (TypeError $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -85,10 +85,10 @@ object(Cairo\Surface\Ps)#%d (0) {
 }
 object(Cairo\Surface\Ps)#%d (0) {
 }
-Cairo\Surface\Ps::__construct() expects exactly 3 parameters, 0 given
-Cairo\Surface\Ps::__construct() expects exactly 3 parameters, 1 given
-Cairo\Surface\Ps::__construct() expects exactly 3 parameters, 2 given
-Cairo\Surface\Ps::__construct() expects exactly 3 parameters, 4 given
+Cairo\Surface\Ps::__construct() expects exactly 3 %s, 0 given
+Cairo\Surface\Ps::__construct() expects exactly 3 %s, 1 given
+Cairo\Surface\Ps::__construct() expects exactly 3 %s, 2 given
+Cairo\Surface\Ps::__construct() expects exactly 3 %s, 4 given
 Cairo\Surface\Ps::__construct() expects parameter 1 to be null, a string, or a stream resource
-Cairo\Surface\Ps::__construct() expects parameter 2 to be float, array given
-Cairo\Surface\Ps::__construct() expects parameter 3 to be float, array given
+Cairo\Surface\Ps::__construct(): Argument #2 ($width) must be of type float, array given
+Cairo\Surface\Ps::__construct(): Argument #3 ($height) must be of type float, array given

@@ -55,8 +55,8 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Pdf)#%d (0) {
 }
-Cairo\Surface\Pdf::setSize() expects exactly 2 parameters, 0 given
-Cairo\Surface\Pdf::setSize() expects exactly 2 parameters, 1 given
-Cairo\Surface\Pdf::setSize() expects exactly 2 parameters, 3 given
-Cairo\Surface\Pdf::setSize() expects parameter 1 to be float, array given
-Cairo\Surface\Pdf::setSize() expects parameter 2 to be float, array given
+Cairo\Surface\Pdf::setSize() expects exactly 2 %s, 0 given
+Cairo\Surface\Pdf::setSize() expects exactly 2 %s, 1 given
+Cairo\Surface\Pdf::setSize() expects exactly 2 %s, 3 given
+Cairo\Surface\Pdf::setSize(): Argument #1 ($width) must be of type float, array given
+Cairo\Surface\Pdf::setSize(): Argument #2 ($height) must be of type float, array given

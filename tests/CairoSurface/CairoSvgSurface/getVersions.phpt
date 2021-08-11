@@ -24,4 +24,4 @@ array(2) {
   [1]=>
   int(1)
 }
-Cairo\Surface\Svg::getVersions() expects exactly 0 parameters, 1 given
+Cairo\Surface\Svg::getVersions() expects exactly 0 %s, 1 given

@@ -25,4 +25,4 @@ try {
 object(Cairo\Surface\Ps)#%d (0) {
 }
 bool(false)
-Cairo\Surface\Ps::getEps() expects exactly 0 parameters, 1 given
+Cairo\Surface\Ps::getEps() expects exactly 0 %s, 1 given

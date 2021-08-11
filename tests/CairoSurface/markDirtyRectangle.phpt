@@ -86,12 +86,12 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Surface::markDirtyRectangle() expects exactly 4 parameters, 0 given
-Cairo\Surface::markDirtyRectangle() expects exactly 4 parameters, 1 given
-Cairo\Surface::markDirtyRectangle() expects exactly 4 parameters, 2 given
-Cairo\Surface::markDirtyRectangle() expects exactly 4 parameters, 2 given
-Cairo\Surface::markDirtyRectangle() expects exactly 4 parameters, 5 given
-Cairo\Surface::markDirtyRectangle() expects parameter 1 to be float, array given
-Cairo\Surface::markDirtyRectangle() expects parameter 2 to be float, array given
-Cairo\Surface::markDirtyRectangle() expects parameter 3 to be float, array given
-Cairo\Surface::markDirtyRectangle() expects parameter 4 to be float, array given
+Cairo\Surface::markDirtyRectangle() expects exactly 4 arguments, 0 given
+Cairo\Surface::markDirtyRectangle() expects exactly 4 arguments, 1 given
+Cairo\Surface::markDirtyRectangle() expects exactly 4 arguments, 2 given
+Cairo\Surface::markDirtyRectangle() expects exactly 4 arguments, 2 given
+Cairo\Surface::markDirtyRectangle() expects exactly 4 arguments, 5 given
+Cairo\Surface::markDirtyRectangle(): Argument #1 ($x) must be of type float, array given
+Cairo\Surface::markDirtyRectangle(): Argument #2 ($y) must be of type float, array given
+Cairo\Surface::markDirtyRectangle(): Argument #3 ($width) must be of type float, array given
+Cairo\Surface::markDirtyRectangle(): Argument #4 ($height) must be of type float, array given

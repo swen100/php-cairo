@@ -40,6 +40,6 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Ps)#%d (0) {
 }
-Cairo\Surface\Ps::setEps() expects exactly 1 parameter, 0 given
-Cairo\Surface\Ps::setEps() expects exactly 1 parameter, 2 given
-Cairo\Surface\Ps::setEps() expects parameter 1 to be boolean, array given
+Cairo\Surface\Ps::setEps() expects exactly 1 argument, 0 given
+Cairo\Surface\Ps::setEps() expects exactly 1 argument, 2 given
+Cairo\Surface\Ps::setEps(): Argument #1 ($level) must be of type bool, array given

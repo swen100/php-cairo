@@ -22,5 +22,23 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-long(0)
-Cairo\Surface\Image::getFormat() expects exactly 0 parameters, 1 given
+object(Cairo\Surface\ImageFormat)#%d (2) {
+  ["__elements"]=>
+  array(6) {
+    ["ARGB32"]=>
+    int(0)
+    ["RGB24"]=>
+    int(1)
+    ["A8"]=>
+    int(2)
+    ["A1"]=>
+    int(3)
+    ["RGB16_565"]=>
+    int(4)
+    ["RGB30"]=>
+    int(5)
+  }
+  ["__value"]=>
+  int(0)
+}
+Cairo\Surface\Image::getFormat() expects exactly 0 arguments, 1 given

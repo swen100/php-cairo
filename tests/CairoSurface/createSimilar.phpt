@@ -73,10 +73,10 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Surface::createSimilar() expects exactly 3 parameters, 0 given
-Cairo\Surface::createSimilar() expects exactly 3 parameters, 1 given
-Cairo\Surface::createSimilar() expects exactly 3 parameters, 2 given
-Cairo\Surface::createSimilar() expects exactly 3 parameters, 4 given
-Cairo\Surface::createSimilar() expects parameter 1 to be int, array given
-Cairo\Surface::createSimilar() expects parameter 2 to be float, array given
-Cairo\Surface::createSimilar() expects parameter 3 to be float, array given
+Cairo\Surface::createSimilar() expects exactly 3 arguments, 0 given
+Cairo\Surface::createSimilar() expects exactly 3 arguments, 1 given
+Cairo\Surface::createSimilar() expects exactly 3 arguments, 2 given
+Cairo\Surface::createSimilar() expects exactly 3 arguments, 4 given
+Cairo\Surface::createSimilar(): Argument #1 ($content) must be of type int, array given
+Cairo\Surface::createSimilar(): Argument #2 ($width) must be of type float, array given
+Cairo\Surface::createSimilar(): Argument #3 ($height) must be of type float, array given

@@ -22,5 +22,5 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-long(50)
-Cairo\Surface\Image::getHeight() expects exactly 0 parameters, 1 given
+int(50)
+Cairo\Surface\Image::getHeight() expects exactly 0 arguments, 1 given

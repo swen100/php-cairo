@@ -85,10 +85,10 @@ object(Cairo\Surface\Pdf)#%d (0) {
 }
 object(Cairo\Surface\Pdf)#%d (0) {
 }
-Cairo\Surface\Pdf::__construct() expects exactly 3 parameters, 0 given
-Cairo\Surface\Pdf::__construct() expects exactly 3 parameters, 1 given
-Cairo\Surface\Pdf::__construct() expects exactly 3 parameters, 2 given
-Cairo\Surface\Pdf::__construct() expects exactly 3 parameters, 4 given
+Cairo\Surface\Pdf::__construct() expects exactly 3 arguments, 0 given
+Cairo\Surface\Pdf::__construct() expects exactly 3 arguments, 1 given
+Cairo\Surface\Pdf::__construct() expects exactly 3 arguments, 2 given
+Cairo\Surface\Pdf::__construct() expects exactly 3 arguments, 4 given
 Cairo\Surface\Pdf::__construct() expects parameter 1 to be null, a string, or a stream resource
-Cairo\Surface\Pdf::__construct() expects parameter 2 to be float, array given
-Cairo\Surface\Pdf::__construct() expects parameter 3 to be float, array given
+Cairo\Surface\Pdf::__construct(): Argument #2 ($width) must be of type float, array given
+Cairo\Surface\Pdf::__construct(): Argument #3 ($height) must be of type float, array given

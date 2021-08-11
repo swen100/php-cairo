@@ -68,10 +68,10 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Surface\Image::__construct() expects exactly 3 parameters, 0 given
-Cairo\Surface\Image::__construct() expects exactly 3 parameters, 1 given
-Cairo\Surface\Image::__construct() expects exactly 3 parameters, 2 given
-Cairo\Surface\Image::__construct() expects exactly 3 parameters, 4 given
-Cairo\Surface\Image::__construct() expects parameter 1 to be int, array given
-Cairo\Surface\Image::__construct() expects parameter 2 to be int, array given
-Cairo\Surface\Image::__construct() expects parameter 3 to be int, array given
+Cairo\Surface\Image::__construct() expects exactly 3 %s, 0 given
+Cairo\Surface\Image::__construct() expects exactly 3 %s, 1 given
+Cairo\Surface\Image::__construct() expects exactly 3 %s, 2 given
+Cairo\Surface\Image::__construct() expects exactly 3 %s, 4 given
+Cairo\Surface\Image::__construct(): Argument #1 ($format) must be of type int, array given
+Cairo\Surface\Image::__construct(): Argument #2 ($width) must be of type int, array given
+Cairo\Surface\Image::__construct(): Argument #3 ($height) must be of type int, array given

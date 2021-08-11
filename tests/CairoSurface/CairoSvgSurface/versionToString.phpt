@@ -35,6 +35,6 @@ try {
 ?>
 --EXPECTF--
 SVG 1.1
-Cairo\Surface\Svg::versionToString() expects exactly 1 parameter, 0 given
-Cairo\Surface\Svg::versionToString() expects exactly 1 parameter, 2 given
-Cairo\Surface\Svg::versionToString() expects parameter 1 to be int, array given
+Cairo\Surface\Svg::versionToString() expects exactly 1 argument, 0 given
+Cairo\Surface\Svg::versionToString() expects exactly 1 argument, 2 given
+Cairo\Surface\Svg::versionToString(): Argument #1 ($version) must be of type int, array given

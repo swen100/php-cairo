@@ -54,8 +54,8 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
 }
-Cairo\Surface::setFallbackResolution() expects exactly 2 parameters, 0 given
-Cairo\Surface::setFallbackResolution() expects exactly 2 parameters, 1 given
-Cairo\Surface::setFallbackResolution() expects exactly 2 parameters, 3 given
-Cairo\Surface::setFallbackResolution() expects parameter 1 to be float, array given
-Cairo\Surface::setFallbackResolution() expects parameter 2 to be float, array given
+Cairo\Surface::setFallbackResolution() expects exactly 2 arguments, 0 given
+Cairo\Surface::setFallbackResolution() expects exactly 2 arguments, 1 given
+Cairo\Surface::setFallbackResolution() expects exactly 2 arguments, 3 given
+Cairo\Surface::setFallbackResolution(): Argument #1 ($x) must be of type float, array given
+Cairo\Surface::setFallbackResolution(): Argument #2 ($y) must be of type float, array given

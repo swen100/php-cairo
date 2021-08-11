@@ -28,4 +28,4 @@ array(2) {
   [1]=>
   float(0)
 }
-Cairo\Surface::getDeviceOffset() expects exactly 0 parameters, 1 given
+Cairo\Surface::getDeviceOffset() expects exactly 0 %s, 1 given
