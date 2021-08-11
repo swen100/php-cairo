@@ -7,7 +7,8 @@
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -27,17 +28,10 @@ zend_class_entry *ce_cairo_path;
 
 static zend_object_handlers cairo_path_object_handlers; 
 
-//typedef struct _cairo_path_object {
-//	cairo_path_t *path;
-//        zend_object std;
-//} cairo_path_object;
-
 cairo_path_object *cairo_path_fetch_object(zend_object *object)
 {
     return (cairo_path_object *) ((char*)(object) - XtOffsetOf(cairo_path_object, std));
 }
-
-//#define Z_CAIRO_PATH_P(zv) cairo_path_fetch_object(Z_OBJ_P(zv))
 
 static inline cairo_path_object *cairo_path_object_get(zval *zv)
 {
@@ -52,7 +46,7 @@ static inline cairo_path_object *cairo_path_object_get(zval *zv)
 }
 
 /* ----------------------------------------------------------------
-    Cairo\Path Object management
+    \Cairo\Path Object management
 ------------------------------------------------------------------*/
 
 /* {{{ */
@@ -99,7 +93,7 @@ static zend_object* cairo_path_create_object(zend_class_entry *ce)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Path C API
+    \Cairo\Path C API
 ------------------------------------------------------------------*/
 
 zend_class_entry * php_cairo_get_path_ce()
@@ -111,7 +105,7 @@ zend_class_entry * php_cairo_get_path_ce()
 
 
 /* ----------------------------------------------------------------
-    Cairo\Path Definition and registration
+    \Cairo\Path Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ PHP_MINIT_FUNCTION */

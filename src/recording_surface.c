@@ -73,9 +73,10 @@ PHP_METHOD(CairoRecordingSurface, __construct)
         cairo_rectangle_t *rectangle = NULL;
 	zval *extents = NULL;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l|a", &content, &extents) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,2)
+                Z_PARAM_LONG(content)
+                Z_PARAM_ARRAY(extents)
+        ZEND_PARSE_PARAMETERS_END();
 
 	if (extents != NULL) {
 		rectangle = php_cairo_make_rectangle(extents);
@@ -107,9 +108,7 @@ PHP_METHOD(CairoRecordingSurface, inkExtents)
 	cairo_surface_object *surface_object;
 	double x, y, width, height;
         
-        if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+        ZEND_PARSE_PARAMETERS_NONE();
 
         surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {

@@ -51,9 +51,11 @@ PHP_METHOD(CairoSvgSurface, __construct)
 	zend_bool owned_stream = 0;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "zdd", &stream_zval, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_ZVAL(stream_zval)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -99,9 +101,9 @@ PHP_METHOD(CairoSvgSurface, restrictToVersion)
 	zend_long version;
 	cairo_surface_object *surface_object;
         
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &version) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(version)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = cairo_surface_object_get(getThis());
 	if(!surface_object) {
@@ -123,9 +125,9 @@ PHP_METHOD(CairoSvgSurface, versionToString)
 {
 	zend_long version;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &version) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(version)
+        ZEND_PARSE_PARAMETERS_END();
 
 	RETURN_STRING(cairo_svg_version_to_string(version));
 }
@@ -142,9 +144,7 @@ PHP_METHOD(CairoSvgSurface, getVersions)
 	const cairo_svg_version_t *versions = 0;
 	int version_count = 0, i = 0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	cairo_svg_get_versions(&versions, &version_count);
 	array_init(return_value);

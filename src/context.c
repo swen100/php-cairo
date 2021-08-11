@@ -192,14 +192,11 @@ PHP_METHOD(CairoContext, __construct)
 	zval *surface_zval = NULL;
 	cairo_context_object *context_object;
 	cairo_surface_object *surface_object;
-
-        if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|O", &surface_zval, ce_cairo_surface) == FAILURE) {
-		return;
-	}
         
-//        ZEND_PARSE_PARAMETERS_START(0,1)
-//            Z_PARAM_OBJECT_OF_CLASS(surface_zval, ce_cairo_surface)
-//        ZEND_PARSE_PARAMETERS_END();
+        ZEND_PARSE_PARAMETERS_START(0,1)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_OBJECT_OF_CLASS(surface_zval, ce_cairo_surface)
+        ZEND_PARSE_PARAMETERS_END();
         
         context_object = Z_CAIRO_CONTEXT_P(getThis());
 	if (!context_object) {
@@ -229,9 +226,7 @@ PHP_METHOD(CairoContext, getStatus)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -249,9 +244,7 @@ PHP_METHOD(CairoContext, save)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -269,9 +262,7 @@ PHP_METHOD(CairoContext, restore)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -289,9 +280,7 @@ PHP_METHOD(CairoContext, pushGroup)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -315,9 +304,9 @@ PHP_METHOD(CairoContext, pushGroupWithContent)
         zend_long content;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &content) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(content)
+        ZEND_PARSE_PARAMETERS_END();
 	
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -337,9 +326,7 @@ PHP_METHOD(CairoContext, popGroup)
 	cairo_context_object *context_object;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -362,9 +349,7 @@ PHP_METHOD(CairoContext, popGroupToSource)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -385,9 +370,7 @@ PHP_METHOD(CairoContext, getGroupSurface)
 	cairo_context_object *context_object;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -418,9 +401,11 @@ PHP_METHOD(CairoContext, setSourceRGB)
 	double red = 0.0, green = 0.0, blue = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ddd", &red, &green, &blue) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -446,9 +431,12 @@ PHP_METHOD(CairoContext, setSourceRGBA)
 	double red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddd", &red, &green, &blue, &alpha) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+                Z_PARAM_DOUBLE(alpha)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -477,9 +465,12 @@ PHP_METHOD(CairoContext, setSurface)
 	cairo_surface_object *surface_object;
 	double x = 0.0, y = 0.0;
 
-        if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "O|dd", &surface_zval, ce_cairo_surface, &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,3)
+                Z_PARAM_OBJECT_OF_CLASS(surface_zval, ce_cairo_surface)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
         
 	context_object = Z_CAIRO_CONTEXT_P(getThis());
 	if (!context_object) {
@@ -522,9 +513,7 @@ PHP_METHOD(CairoContext, getSurface)
 	cairo_context_object *context_object;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -604,9 +593,7 @@ PHP_METHOD(CairoContext, getPattern)
 	cairo_context_object *context_object;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -680,9 +667,7 @@ PHP_METHOD(CairoContext, getAntialias)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -711,9 +696,11 @@ PHP_METHOD(CairoContext, setDash)
 	HashTable *dashes_hash = NULL;
 	int i = 0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "a/|d", &dashes, &offset) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,2)
+                Z_PARAM_ARRAY(dashes)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_DOUBLE(offset)
+        ZEND_PARSE_PARAMETERS_END();
 
 	/* Grab the zend hash and see how big our array will be */
 	dashes_hash = Z_ARRVAL_P(dashes);
@@ -746,9 +733,7 @@ PHP_METHOD(CairoContext, getDashCount)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -769,9 +754,7 @@ PHP_METHOD(CairoContext, getDash)
 	double offset = 0;
 	int num_dashes, i;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -840,9 +823,7 @@ PHP_METHOD(CairoContext, getFillRule)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -895,9 +876,7 @@ PHP_METHOD(CairoContext, getLineCap)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -950,9 +929,7 @@ PHP_METHOD(CairoContext, getLineJoin)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -976,9 +953,9 @@ PHP_METHOD(CairoContext, setLineWidth)
 	cairo_context_object *context_object;
 	double width = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &width) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(width)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -996,9 +973,7 @@ PHP_METHOD(CairoContext, getLineWidth)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1020,9 +995,9 @@ PHP_METHOD(CairoContext, setMiterLimit)
 	cairo_context_object *context_object;
 	double limit = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &limit) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(limit)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1040,9 +1015,7 @@ PHP_METHOD(CairoContext, getMiterLimit)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1094,9 +1067,7 @@ PHP_METHOD(CairoContext, getOperator)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1119,9 +1090,9 @@ PHP_METHOD(CairoContext, setTolerance)
 	cairo_context_object *context_object;
 	double tolerance = 0.1;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &tolerance) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(tolerance)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1139,9 +1110,7 @@ PHP_METHOD(CairoContext, getTolerance)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1159,9 +1128,7 @@ PHP_METHOD(CairoContext, clip)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1182,9 +1149,10 @@ PHP_METHOD(CairoContext, inClip)
 	cairo_context_object *context_object;
 	double x = 0.0, y = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1203,9 +1171,7 @@ PHP_METHOD(CairoContext, clipPreserve)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1223,9 +1189,7 @@ PHP_METHOD(CairoContext, resetClip)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1245,9 +1209,7 @@ PHP_METHOD(CairoContext, getClipExtents)
 	cairo_context_object *context_object;
 	double x1, y1, x2, y2;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1274,9 +1236,7 @@ PHP_METHOD(CairoContext, clipRectangleList)
         zval new_array;
 	int i;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1312,9 +1272,7 @@ PHP_METHOD(CairoContext, fill)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1334,9 +1292,7 @@ PHP_METHOD(CairoContext, fillPreserve)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1357,9 +1313,7 @@ PHP_METHOD(CairoContext, getFillExtents)
 	cairo_context_object *context_object;
 	double x1, y1, x2, y2;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1385,9 +1339,10 @@ PHP_METHOD(CairoContext, inFill)
 	cairo_context_object *context_object;
 	double x = 0.0, y = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1441,9 +1396,12 @@ PHP_METHOD(CairoContext, maskSurface)
 	cairo_surface_object *surface_object;
 	double x = 0.0, y = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "O|dd", &surface_zval, ce_cairo_surface, &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,3)
+                Z_PARAM_OBJECT_OF_CLASS(surface_zval, ce_cairo_surface)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1462,9 +1420,7 @@ PHP_METHOD(CairoContext, paint)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1487,9 +1443,9 @@ PHP_METHOD(CairoContext, paintWithAlpha)
 	cairo_context_object *context_object;
 	double alpha = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &alpha) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(alpha)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1507,9 +1463,7 @@ PHP_METHOD(CairoContext, stroke)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1528,9 +1482,7 @@ PHP_METHOD(CairoContext, strokePreserve)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1550,9 +1502,7 @@ PHP_METHOD(CairoContext, strokeExtents)
 	cairo_context_object *context_object;
 	double x1, y1, x2, y2;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1578,9 +1528,10 @@ PHP_METHOD(CairoContext, inStroke)
 	cairo_context_object *context_object;
 	double x = 0.0, y = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1598,9 +1549,7 @@ PHP_METHOD(CairoContext, copyPage)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1619,9 +1568,7 @@ PHP_METHOD(CairoContext, showPage)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1646,9 +1593,10 @@ PHP_METHOD(CairoContext, translate)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1667,9 +1615,10 @@ PHP_METHOD(CairoContext, scale)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1692,9 +1641,9 @@ PHP_METHOD(CairoContext, rotate)
 	double angle = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &angle) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(angle)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1775,9 +1724,7 @@ PHP_METHOD(CairoContext, getMatrix)
 	cairo_context_object *context_object;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-                return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1806,9 +1753,7 @@ PHP_METHOD(CairoContext, identityMatrix)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1828,9 +1773,10 @@ PHP_METHOD(CairoContext, userToDevice)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1855,9 +1801,10 @@ PHP_METHOD(CairoContext, userToDeviceDistance)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1881,9 +1828,10 @@ PHP_METHOD(CairoContext, deviceToUser)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1906,9 +1854,10 @@ PHP_METHOD(CairoContext, deviceToUserDistance)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1931,9 +1880,7 @@ PHP_METHOD(CairoContext, copyPath)
 	cairo_path_object *path_object;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -1955,9 +1902,7 @@ PHP_METHOD(CairoContext, copyPathFlat)
 	cairo_path_object *path_object;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2006,9 +1951,7 @@ PHP_METHOD(CairoContext, hasCurrentPoint)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2026,9 +1969,7 @@ PHP_METHOD(CairoContext, getCurrentPoint)
 	double x, y;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2050,9 +1991,7 @@ PHP_METHOD(CairoContext, newPath)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2070,9 +2009,7 @@ PHP_METHOD(CairoContext, newSubPath)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2091,9 +2028,7 @@ PHP_METHOD(CairoContext, closePath)
 {
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2121,9 +2056,13 @@ PHP_METHOD(CairoContext, arc)
 	double x = 0.0, y = 0.0, radius = 0.0, angle1 = 0.0, angle2 = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ddddd", &x, &y, &radius, &angle1, &angle2) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(5,5)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+                Z_PARAM_DOUBLE(radius)
+                Z_PARAM_DOUBLE(angle1)
+                Z_PARAM_DOUBLE(angle2)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2143,9 +2082,13 @@ PHP_METHOD(CairoContext, arcNegative)
 	double x = 0.0, y = 0.0, radius = 0.0, angle1 = 0.0, angle2 = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ddddd", &x, &y, &radius, &angle1, &angle2) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(5,5)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+                Z_PARAM_DOUBLE(radius)
+                Z_PARAM_DOUBLE(angle1)
+                Z_PARAM_DOUBLE(angle2)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2175,9 +2118,14 @@ PHP_METHOD(CairoContext, curveTo)
 	double x1 = 0.0, y1 = 0.0, x2 = 0.0, y2 = 0.0, x3 = 0.0, y3 = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddddd", &x1, &y1, &x2, &y2, &x3, &y3) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(6,6)
+                Z_PARAM_DOUBLE(x1)
+                Z_PARAM_DOUBLE(y1)
+                Z_PARAM_DOUBLE(x2)
+                Z_PARAM_DOUBLE(y2)
+                Z_PARAM_DOUBLE(x3)
+                Z_PARAM_DOUBLE(y3)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2197,9 +2145,10 @@ PHP_METHOD(CairoContext, lineTo)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2218,9 +2167,10 @@ PHP_METHOD(CairoContext, moveTo)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2246,9 +2196,12 @@ PHP_METHOD(CairoContext, rectangle)
 	double x = 0.0, y = 0.0, width = 0.0, height = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddd", &x, &y, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2274,9 +2227,9 @@ PHP_METHOD(CairoContext, glyphPath)
 	zval *php_glyphs = NULL, *pzval;
 	HashTable *glyphs_hash = NULL;
         
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z", &php_glyphs) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_ARRAY(php_glyphs)
+        ZEND_PARSE_PARAMETERS_END();
         
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2315,20 +2268,20 @@ ZEND_END_ARG_INFO()
    NOTE: text must be UTF-8 charset or results will be unexpected */
 PHP_METHOD(CairoContext, textPath)
 {
-	const char *string;
+	/*const*/ char *string;
 	size_t str_len;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s", &string, &str_len) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(string, str_len)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
             return;
         }
         
-	cairo_text_path(context_object->context, string); 
+	cairo_text_path(context_object->context, (const char *)string); 
 	php_cairo_throw_exception(cairo_status(context_object->context));
 }
 /* }}} */
@@ -2341,9 +2294,14 @@ PHP_METHOD(CairoContext, relCurveTo)
 	double x1 = 0.0, y1 = 0.0, x2 = 0.0, y2 = 0.0, x3 = 0.0, y3 = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddddd", &x1, &y1, &x2, &y2, &x3, &y3) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(6,6)
+                Z_PARAM_DOUBLE(x1)
+                Z_PARAM_DOUBLE(y1)
+                Z_PARAM_DOUBLE(x2)
+                Z_PARAM_DOUBLE(y2)
+                Z_PARAM_DOUBLE(x3)
+                Z_PARAM_DOUBLE(y3)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2362,9 +2320,10 @@ PHP_METHOD(CairoContext, relLineTo)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2383,9 +2342,10 @@ PHP_METHOD(CairoContext, relMoveTo)
 	double x = 0.0, y = 0.0;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2405,9 +2365,7 @@ PHP_METHOD(CairoContext, getPathExtents)
 	double x1, y1, x2, y2;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2442,9 +2400,12 @@ PHP_METHOD(CairoContext, selectFontFace)
 	char *family, *cairo_family;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s|ll", &family, &family_len, &slant, &weight) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,3)
+                Z_PARAM_STRING(family, family_len)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_LONG(slant)
+                Z_PARAM_LONG(weight)
+        ZEND_PARSE_PARAMETERS_END();
         
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2469,9 +2430,9 @@ PHP_METHOD(CairoContext, setFontSize)
 	double size;
 	cairo_context_object *context_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &size ) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(size)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2531,9 +2492,7 @@ PHP_METHOD(CairoContext, getFontMatrix)
 	cairo_context_object *context_object;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2601,9 +2560,7 @@ PHP_METHOD(CairoContext, getFontOptions)
 	cairo_font_options_object *font_options_object;
 	cairo_font_options_t *font_options = NULL;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2674,9 +2631,7 @@ PHP_METHOD(CairoContext, getFontFace)
 	cairo_context_object *context_object;
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2774,9 +2729,7 @@ PHP_METHOD(CairoContext, getScaledFont)
 	cairo_context_object *context_object;
 	cairo_scaled_font_object *scaled_font_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2812,9 +2765,9 @@ PHP_METHOD(CairoContext, showText)
 	size_t text_len;
 	cairo_context_object *context_object;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s", &text, &text_len ) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(text, text_len)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2835,9 +2788,7 @@ PHP_METHOD(CairoContext, getFontExtents)
 	cairo_context_object *context_object;
 	cairo_font_extents_t extents;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
@@ -2865,9 +2816,9 @@ PHP_METHOD(CairoContext, getTextExtents)
 	cairo_context_object *context_object;
 	cairo_text_extents_t extents;
 	
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s", &text, &text_len ) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(text, text_len)
+        ZEND_PARSE_PARAMETERS_END();
 
 	context_object = cairo_context_object_get(getThis());
 	if (!context_object) {

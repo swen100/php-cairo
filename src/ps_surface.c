@@ -51,10 +51,12 @@ PHP_METHOD(CairoPsSurface, __construct)
 	zend_bool owned_stream = 0;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "zdd", &stream_zval, &width, &height) == FAILURE) {
-		return;
-	}
-
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_ZVAL(stream_zval)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
+        
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
             return;
@@ -72,7 +74,7 @@ PHP_METHOD(CairoPsSurface, __construct)
 		} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE) {
 			php_stream_from_zval(stream, stream_zval);
 		} else {
-			zend_throw_exception(ce_cairo_exception, "CairoPsSurface::__construct() expects parameter 1 to be null, a string, or a stream resource", 0);
+			zend_throw_exception(ce_cairo_exception, "Cairo\\Surface\\Ps::__construct() expects parameter 1 to be null, a string, or a stream resource", 0);
 			return;
 		}
 
@@ -102,9 +104,10 @@ PHP_METHOD(CairoPsSurface, setSize)
 	double width = 0.0, height = 0.0;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -123,9 +126,9 @@ PHP_METHOD(CairoPsSurface, restrictToLevel)
 	cairo_surface_object *surface_object;
 	zend_long level = CAIRO_PS_LEVEL_2;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &level) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(level)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -148,9 +151,9 @@ PHP_METHOD(CairoPsSurface, setEps)
 	zend_bool eps = 0;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "b", &eps) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_BOOL(eps)
+        ZEND_PARSE_PARAMETERS_END();
         
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -168,9 +171,7 @@ PHP_METHOD(CairoPsSurface, getEps)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -187,9 +188,7 @@ PHP_METHOD(CairoPsSurface, dscBeginSetup)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -210,9 +209,7 @@ PHP_METHOD(CairoPsSurface, dscBeginPageSetup)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -234,9 +231,9 @@ PHP_METHOD(CairoPsSurface, dscComment)
 	char *comment, *cairo_comment;
 	size_t comment_len;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s", &comment, &comment_len) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(comment, comment_len)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -258,9 +255,7 @@ PHP_METHOD(CairoPsSurface, getLevels)
 	const cairo_ps_level_t *levels;
 	int num_levels, i;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	cairo_ps_get_levels(&levels, &num_levels);
 	array_init(return_value);
@@ -280,9 +275,9 @@ PHP_METHOD(CairoPsSurface, levelToString)
 {
 	zend_long level;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &level) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(level)
+        ZEND_PARSE_PARAMETERS_END();
 
         if( level > CAIRO_PS_LEVEL_3 ) {
             zend_throw_exception(ce_cairo_exception, "Cairo\\Surface\\Ps::levelToString(): level-parameter is invalid. Maximum level is 1.", CAIRO_PS_LEVEL_3);

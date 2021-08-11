@@ -7,7 +7,8 @@
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -39,12 +40,6 @@ zend_class_entry *ce_cairo_filter;
 
 static zend_object_handlers cairo_pattern_object_handlers;
 
-//typedef struct _cairo_pattern_object {
-//        cairo_pattern_t *pattern;
-//	//zval *surface;
-//	zend_object std;
-//} cairo_pattern_object;
-
 static cairo_user_data_key_t matrix_key;
 
 void cairo_pattern_destroy_func (void *data)
@@ -57,8 +52,6 @@ cairo_pattern_object *cairo_pattern_fetch_object(zend_object *object)
 {
 	return (cairo_pattern_object *) ((char*)(object) - XtOffsetOf(cairo_pattern_object, std));
 }
-
-//#define Z_CAIRO_PATTERN_P(zv) cairo_pattern_fetch_object(Z_OBJ_P(zv))
 
 static inline cairo_pattern_object *cairo_pattern_object_get(zval *zv)
 {
@@ -117,7 +110,7 @@ ZEND_BEGIN_ARG_INFO(CairoPattern___construct_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void contruct() 
-   CairoPattern CANNOT be extended in userspace, this will throw an exception on use */
+   \Cairo\Pattern CANNOT be extended in userspace, this will throw an exception on use */
 PHP_METHOD(CairoPattern, __construct)
 {
 	zend_throw_exception(ce_cairo_exception, "Cairo\\Pattern cannot be constructed", 0);
@@ -127,15 +120,13 @@ PHP_METHOD(CairoPattern, __construct)
 ZEND_BEGIN_ARG_INFO(CairoPattern_getStatus_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto long CairoPattern->getStatus()
+/* {{{ proto long \Cairo\Pattern::getStatus()
    Returns the current integer status of the CairoPattern */
 PHP_METHOD(CairoPattern, getStatus)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -150,15 +141,13 @@ PHP_METHOD(CairoPattern, getStatus)
 ZEND_BEGIN_ARG_INFO(CairoPattern_getType_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoPattern->getType()
+/* {{{ proto void \Cairo\Pattern::getType()
    This function returns the Cairo\Pattern\Type of a pattern */
 PHP_METHOD(CairoPattern, getType)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -174,15 +163,13 @@ PHP_METHOD(CairoPattern, getType)
 ZEND_BEGIN_ARG_INFO(CairoPattern_getExtend_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto int CairoPattern->getExtend()
+/* {{{ proto int \Cairo\Pattern::getExtend()
        Gets the current extend mode for a pattern */
 PHP_METHOD(CairoPattern, getExtend)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -232,15 +219,13 @@ PHP_METHOD(CairoPattern, setExtend)
 ZEND_BEGIN_ARG_INFO(CairoPattern_getFilter_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto int CairoPattern->getFilter()
+/* {{{ proto int \Cairo\Pattern::getFilter()
        Gets the current filter mode for a pattern */
 PHP_METHOD(CairoPattern, getFilter)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -290,16 +275,14 @@ PHP_METHOD(CairoPattern, setFilter)
 ZEND_BEGIN_ARG_INFO(CairoPattern_getMatrix_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto object CairoPattern->getMatrix()
+/* {{{ proto object \Cairo\Pattern::getMatrix()
    Returns the pattern's transformation matrix */
 PHP_METHOD(CairoPattern, getMatrix)
 {
 	cairo_pattern_object *pattern_object;
 	zval *matrix = NULL;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -327,7 +310,7 @@ ZEND_BEGIN_ARG_INFO(CairoPattern_setMatrix_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_OBJ_INFO(1, matrix, Cairo\\Matrix, 0) 
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoPattern->setMatrix(CairoMatrix object)
+/* {{{ proto void \Cairo\Pattern::setMatrix(\Cairo\Matrix object)
    Sets the pattern's transformation matrix using the created matrix object.
    This matrix is a transformation from user space to pattern space. */
 PHP_METHOD(CairoPattern, setMatrix)
@@ -335,9 +318,9 @@ PHP_METHOD(CairoPattern, setMatrix)
 	zval *matrix_zval;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z/", &matrix_zval, ce_cairo_matrix) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+            Z_PARAM_OBJECT_OF_CLASS(matrix_zval, ce_cairo_matrix)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -368,15 +351,19 @@ ZEND_BEGIN_ARG_INFO_EX(CairoPatternSolid___construct_args, ZEND_SEND_BY_VAL, ZEN
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void contruct(float red, float green, float blue[, float alpha])
-	Returns new Cairo\Pattern\Solid using rgb and optionally alpha */
+	Returns new \Cairo\Pattern\Solid using rgb and optionally alpha */
 PHP_METHOD(CairoPatternSolid, __construct)
 {
 	double red = 0.0, green = 0.0, blue = 0.0, alpha = 0;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ddd|d", &red, &green, &blue, &alpha) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,4)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_DOUBLE(alpha)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = Z_CAIRO_PATTERN_P(getThis());
 	if(!pattern_object) {
@@ -395,7 +382,7 @@ PHP_METHOD(CairoPatternSolid, __construct)
 ZEND_BEGIN_ARG_INFO(CairoPatternSolid_getRgba_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto array Cairo\Pattern\Solid->getRgba()
+/* {{{ proto array \Cairo\Pattern\Solid::getRgba()
    This function returns an array with four elements,
    the float values of red, green, blue, and alpha from the solid pattern */
 PHP_METHOD(CairoPatternSolid, getRgba)
@@ -403,9 +390,7 @@ PHP_METHOD(CairoPatternSolid, getRgba)
 	cairo_pattern_object *pattern_object;
 	double red, green, blue, alpha;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -423,7 +408,7 @@ PHP_METHOD(CairoPatternSolid, getRgba)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\Gradient Class API
+    \Cairo\Pattern\Gradient Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO(CairoPatternGradient_addColorStopRgb_args, ZEND_SEND_BY_VAL)
@@ -433,7 +418,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternGradient_addColorStopRgb_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, blue)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoGradientPattern->addColorStopRgb(float offset, float red, float green, float blue)
+/* {{{ proto void \Cairo\Pattern\Gradient::addColorStopRgb(float offset, float red, float green, float blue)
    Adds an opaque color stop to a gradient pattern.
    The offset specifies the location along the gradient's control vector. */
 PHP_METHOD(CairoPatternGradient, addColorStopRgb)
@@ -441,9 +426,12 @@ PHP_METHOD(CairoPatternGradient, addColorStopRgb)
 	double offset = 0.0, red = 0.0, green = 0.0, blue = 0.0;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddd", &offset, &red, &green, &blue) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_DOUBLE(offset)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -461,7 +449,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternGradient_addColorStopRgba_args, ZEND_SEND_BY_VAL
 	ZEND_ARG_INFO(0, alpha)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoGradientPattern->addColorStopRgba(float offset, float red, float green, float blue, float alpha)
+/* {{{ proto void \Cairo\Pattern\Gradient::addColorStopRgba(float offset, float red, float green, float blue, float alpha)
    Adds a transparent color stop to a gradient pattern.
    The offset specifies the location along the gradient's control vector. */
 PHP_METHOD(CairoPatternGradient, addColorStopRgba)
@@ -469,9 +457,13 @@ PHP_METHOD(CairoPatternGradient, addColorStopRgba)
 	double offset = 0.0, red = 0.0, green = 0.0, blue = 0.0, alpha = 1.0;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ddddd", &offset, &red, &green, &blue, &alpha) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(5,5)
+                Z_PARAM_DOUBLE(offset)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+                Z_PARAM_DOUBLE(alpha)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -485,7 +477,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternGradient_getColorStopRgba_args, ZEND_SEND_BY_VAL
 	ZEND_ARG_INFO(0, index)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto array CairoGradientPattern->getColorStopRgba()
+/* {{{ proto array \Cairo\Pattern\Gradient::getColorStopRgba()
    Gets the color and offset information at the given index for a gradient pattern */
 PHP_METHOD(CairoPatternGradient, getColorStopRgba)
 {
@@ -493,9 +485,9 @@ PHP_METHOD(CairoPatternGradient, getColorStopRgba)
 	double offset, red, green, blue, alpha;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &index) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(index)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -514,16 +506,14 @@ PHP_METHOD(CairoPatternGradient, getColorStopRgba)
 ZEND_BEGIN_ARG_INFO(CairoPatternGradient_getColorStopCount_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto array CairoGradientPattern->getColorStopCount()
+/* {{{ proto array \Cairo\Pattern\Gradient::getColorStopCount()
    Gets the number of color stops specified in the given gradient pattern */
 PHP_METHOD(CairoPatternGradient, getColorStopCount)
 {
 	int count;
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -556,9 +546,14 @@ PHP_METHOD(CairoPatternGradientRadial, __construct)
 	cairo_pattern_object *pattern_object;
 	double x0 = 0.0, y0 = 0.0, r0 = 0.0, x1 = 0.0, y1 = 0.0, r1 = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddddd", &x0, &y0, &r0, &x1, &y1, &r1) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(6,6)
+                Z_PARAM_DOUBLE(x0)
+                Z_PARAM_DOUBLE(y0)
+                Z_PARAM_DOUBLE(r0)
+                Z_PARAM_DOUBLE(x1)
+                Z_PARAM_DOUBLE(y1)
+                Z_PARAM_DOUBLE(r1)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = Z_CAIRO_PATTERN_P(getThis());
 	if(!pattern_object) {
@@ -580,9 +575,7 @@ PHP_METHOD(CairoPatternGradientRadial, getCircles)
 	cairo_pattern_object *pattern_object;
 	double x0 = 0.0, y0 = 0.0, r0 = 0.0, x1 = 0.0, y1 = 0.0, r1 = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -619,9 +612,12 @@ PHP_METHOD(CairoPatternGradientLinear, __construct)
 	cairo_pattern_object *pattern_object;
 	double x0 = 0.0, y0 = 0.0, x1 = 0.0, y1 = 0.0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddd", &x0, &y0, &x1, &y1) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_DOUBLE(x0)
+                Z_PARAM_DOUBLE(y0)
+                Z_PARAM_DOUBLE(x1)
+                Z_PARAM_DOUBLE(y1)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = Z_CAIRO_PATTERN_P(getThis());
 	if(!pattern_object) {
@@ -643,9 +639,7 @@ PHP_METHOD(CairoPatternGradientLinear, getPoints)
 	cairo_pattern_object *pattern_object;
 	double x0, y0, x1, y1;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -662,7 +656,7 @@ PHP_METHOD(CairoPatternGradientLinear, getPoints)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\Surface Class API
+    \Cairo\Pattern\Surface Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO(CairoPatternSurface___construct_args, ZEND_SEND_BY_VAL)
@@ -677,9 +671,10 @@ PHP_METHOD(CairoPatternSurface, __construct)
         cairo_surface_object *surface_object;
 	zval * surface_zval = NULL;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|o", &surface_zval) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(0,1)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_OBJECT_OF_CLASS(surface_zval, ce_cairo_surface)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = Z_CAIRO_PATTERN_P(getThis());
 	if(!pattern_object) {
@@ -714,9 +709,7 @@ PHP_METHOD(CairoPatternSurface, getSurface)
         cairo_surface_object *surface_object;
 	cairo_surface_t *surface;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -767,9 +760,7 @@ PHP_METHOD(CairoPatternMesh, __construct)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = Z_CAIRO_PATTERN_P(getThis());
 	if(!pattern_object) {
@@ -790,9 +781,7 @@ PHP_METHOD(CairoPatternMesh, beginPatch)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -813,9 +802,7 @@ PHP_METHOD(CairoPatternMesh, endPatch)
 {
 	cairo_pattern_object *pattern_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -839,9 +826,10 @@ PHP_METHOD(CairoPatternMesh, moveTo)
 	cairo_pattern_object *pattern_object;
 	double x, y;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -865,9 +853,10 @@ PHP_METHOD(CairoPatternMesh, lineTo)
 	cairo_pattern_object *pattern_object;
 	double x, y;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -896,9 +885,14 @@ PHP_METHOD(CairoPatternMesh, curveTo)
 	cairo_pattern_object *pattern_object;
 	double x1, y1, x2, y2, x3, y3;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dddddd", &x1, &y1, &x2, &y2, &x3, &y3) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(6,6)
+                Z_PARAM_DOUBLE(x1)
+                Z_PARAM_DOUBLE(y1)
+                Z_PARAM_DOUBLE(x2)
+                Z_PARAM_DOUBLE(y2)
+                Z_PARAM_DOUBLE(x3)
+                Z_PARAM_DOUBLE(y3)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -925,9 +919,11 @@ PHP_METHOD(CairoPatternMesh, setControlPoint)
 	zend_long corner_num;
 	double x, y;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ldd", &corner_num, &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_LONG(corner_num)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -955,9 +951,12 @@ PHP_METHOD(CairoPatternMesh, setCornerColorRgb)
 	zend_long corner_num;
 	double red, green, blue;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ldddd", &corner_num, &red, &green, &blue) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_LONG(corner_num)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -986,9 +985,13 @@ PHP_METHOD(CairoPatternMesh, setCornerColorRgba)
 	zend_long corner_num;
 	double red, green, blue, alpha;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ldddd", &corner_num, &red, &green, &blue, &alpha) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(5,5)
+                Z_PARAM_LONG(corner_num)
+                Z_PARAM_DOUBLE(red)
+                Z_PARAM_DOUBLE(green)
+                Z_PARAM_DOUBLE(blue)
+                Z_PARAM_DOUBLE(alpha)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -1011,9 +1014,7 @@ PHP_METHOD(CairoPatternMesh, getPatchCount)
 	cairo_status_t status;
 	unsigned int count;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -1038,9 +1039,9 @@ PHP_METHOD(CairoPatternMesh, getPath)
         
 	zend_long patch_num;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &patch_num) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(patch_num)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -1073,9 +1074,10 @@ PHP_METHOD(CairoPatternMesh, getControlPoint)
 	zend_long patch_num, point_num;
 	double x, y;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ll", &patch_num, &point_num) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_LONG(patch_num)
+                Z_PARAM_LONG(point_num)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -1102,9 +1104,10 @@ PHP_METHOD(CairoPatternMesh, getCornerColorRgba)
 	zend_long patch_num, corner_num;
 	double red, green, blue, alpha;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ll", &patch_num, &corner_num) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_LONG(patch_num)
+                Z_PARAM_LONG(corner_num)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
@@ -1138,9 +1141,11 @@ PHP_METHOD(CairoPatternRasterSource, __construct)
 	zend_long width, height, content;
 
 	// TODO: fix parsing for enum when it exists
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "lll", &content, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_LONG(content)
+                Z_PARAM_LONG(width)
+                Z_PARAM_LONG(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	pattern_object = Z_CAIRO_PATTERN_P(getThis());
 	if(!pattern_object) {
@@ -1323,17 +1328,17 @@ const zend_function_entry cairo_pattern_raster_methods[] = {
 /* {{{ PHP_MINIT_FUNCTION */
 PHP_MINIT_FUNCTION(cairo_pattern)
 {
-	zend_class_entry 	pattern_ce,
-						gradient_ce,
-						solid_ce,
-						linear_ce,
-						radial_ce,
-						surface_ce,
-						mesh_ce,
-						raster_ce,
-						pattern_type_ce,
-						extend_ce,
-						filter_ce;
+	zend_class_entry pattern_ce,
+                         gradient_ce,
+                         solid_ce,
+                         linear_ce,
+                         radial_ce,
+                         surface_ce,
+                         mesh_ce,
+                         raster_ce,
+                         pattern_type_ce,
+                         extend_ce,
+                         filter_ce;
 
 	memcpy(&cairo_pattern_object_handlers,
 		   zend_get_std_object_handlers(),

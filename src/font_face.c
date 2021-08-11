@@ -30,11 +30,6 @@ zend_class_entry *ce_cairo_fonttype;
 
 static zend_object_handlers cairo_font_face_object_handlers; 
 
-//typedef struct _cairo_font_face_object {
-//	cairo_font_face_t *font_face;
-//        zend_object std;
-//} cairo_font_face_object;
-
 cairo_font_face_object *cairo_font_face_fetch_object(zend_object *object)
 {
     return (cairo_font_face_object *) ((char*)(object) - XtOffsetOf(cairo_font_face_object, std));
@@ -56,7 +51,7 @@ cairo_font_face_object *cairo_font_face_object_get(zval *zv)
 
 
 /* ----------------------------------------------------------------
-    Cairo\FontOptions C API
+    \Cairo\FontOptions C API
 ------------------------------------------------------------------*/
 
 /* {{{ */
@@ -74,17 +69,17 @@ cairo_font_face_t *cairo_font_face_object_get_font_face(zval *zv)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\FontOptions Class API
+    \Cairo\FontOptions Class API
 ------------------------------------------------------------------*/
-/* {{{ proto void CairoFontFace->__contruct()
-   CairoFontFace CANNOT be extended in userspace, this will throw an exception on use */
+/* {{{ proto void \Cairo\FontFace::__contruct()
+   Cairo\FontFace CANNOT be extended in userspace, this will throw an exception on use */
 PHP_METHOD(CairoFontFace, __construct)
 {
 	zend_throw_exception(ce_cairo_exception, "Cairo\\FontFace cannot be constructed", 0);
 }
 /* }}} */
 
-/* {{{ proto long CairoFontFace->getStatus()
+/* {{{ proto long \Cairo\FontFace::getStatus()
        Returns the current integer status of the CairoFontFace */
 PHP_METHOD(CairoFontFace, getStatus)
 {
@@ -105,8 +100,8 @@ PHP_METHOD(CairoFontFace, getStatus)
 }
 /* }}} */
 
-/* {{{ proto long CairoFontFace->getType()
-       Returns the current integer type of the CairoFontFace backend */
+/* {{{ proto long \Cairo\FontFace::getType()
+       Returns the current integer type of the Cairo\FontFace backend */
 PHP_METHOD(CairoFontFace, getType)
 {
 	cairo_font_face_object *font_face_object;
@@ -128,7 +123,7 @@ PHP_METHOD(CairoFontFace, getType)
 
 
 /* ----------------------------------------------------------------
-    Cairo\FontOptions Object management
+    \Cairo\FontFace Object management
 ------------------------------------------------------------------*/
 
 /* {{{ */
@@ -204,7 +199,7 @@ static zend_object* cairo_font_face_clone_obj(zend_object *old_object)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\FontOptions Definition and registration
+    Cairo\FontFace Definition and registration
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO(CairoFontFace_method_no_args, ZEND_SEND_BY_VAL)

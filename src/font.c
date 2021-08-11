@@ -30,7 +30,7 @@ zend_class_entry *ce_cairo_fontweight;
 zend_class_entry *ce_cairo_toyfontface;
 
 /* ----------------------------------------------------------------
-    Cairo\CairoToyFontFace Class API
+    \Cairo\FontFace\Toy Class API
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO_EX(CairoToyFontFace___construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
@@ -49,9 +49,12 @@ PHP_METHOD(CairoToyFontFace, __construct)
 	zend_long slant = CAIRO_FONT_SLANT_NORMAL, weight = CAIRO_FONT_WEIGHT_NORMAL;
 	cairo_font_face_object *fontface_object;
 
-	if(zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s|ll", &family, &family_len, &slant, &weight) == FAILURE) {
-            return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,3)
+                Z_PARAM_STRING(family, family_len)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_LONG(slant)
+                Z_PARAM_LONG(weight)
+        ZEND_PARSE_PARAMETERS_END();
         
         fontface_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!fontface_object) {
@@ -63,15 +66,13 @@ PHP_METHOD(CairoToyFontFace, __construct)
 }
 
 
-/* {{{ proto string CairoToyFontFace->getFamily()
+/* {{{ proto string \Cairo\FontFace\Toy::getFamily()
         Gets the family name of a toy font. */
 PHP_METHOD(CairoToyFontFace, getFamily)
 {
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!font_face_object) {
@@ -82,15 +83,13 @@ PHP_METHOD(CairoToyFontFace, getFamily)
 }
 /* }}} */
 
-/* {{{ proto long CairoToyFontFace->getSlant()
+/* {{{ proto long \Cairo\FontFace\Toy::getSlant()
         Gets the slant of a toy font. */
 PHP_METHOD(CairoToyFontFace, getSlant)
 {
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!font_face_object) {
@@ -102,15 +101,13 @@ PHP_METHOD(CairoToyFontFace, getSlant)
 }
 /* }}} */
 
-/* {{{ proto long CairoToyFontFace->getWeight()
+/* {{{ proto long \Cairo\FontFace\Toy::getWeight()
         Gets the weight of a toy font. */
 PHP_METHOD(CairoToyFontFace, getWeight)
 {
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!font_face_object) {
@@ -123,7 +120,7 @@ PHP_METHOD(CairoToyFontFace, getWeight)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\CairoToyFontFace Definition and registration
+    \Cairo\FontFace\Toy Definition and registration
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO(CairoToyFontFace_method_no_args, ZEND_SEND_BY_VAL)

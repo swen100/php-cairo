@@ -45,9 +45,11 @@ PHP_METHOD(CairoImageSurface, __construct)
 	zend_long format, width, height;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "lll", &format, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_LONG(format)
+                Z_PARAM_LONG(width)
+                Z_PARAM_LONG(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -65,7 +67,7 @@ ZEND_BEGIN_ARG_INFO_EX(CairoImageSurface_createForData_args, ZEND_SEND_BY_VAL, Z
 	ZEND_ARG_INFO(0, height)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoImageSurface Object CairoImageSurface::createForData(string data, int format, int width, int height, int stride)
+/* {{{ proto \Cairo\Surface\Image Object \Cairo\Surface\Image::createForData(string data, int format, int width, int height, int stride)
        Creates an image surface for the provided pixel data. */
 PHP_METHOD(CairoImageSurface, createForData)
 {
@@ -75,9 +77,12 @@ PHP_METHOD(CairoImageSurface, createForData)
 	zend_long format, width, height, stride = -1;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "slll", &data, &data_len, &format, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_STRING(data, data_len)
+                Z_PARAM_LONG(format)
+                Z_PARAM_LONG(width)
+                Z_PARAM_LONG(height)
+        ZEND_PARSE_PARAMETERS_END();
 	
 	if (format < 0) {
 		zend_throw_exception(ce_cairo_exception, "Cairo\\Surface\\Image::createForData(): invalid format", 0);
@@ -128,7 +133,7 @@ PHP_METHOD(CairoImageSurface, createForData)
 }
 /* }}} */
 
-/* {{{ proto string CairoImageSurface->getData()
+/* {{{ proto string \Cairo\Surface\Image->getData()
        Get the string data of the image surface, for direct inspection or modification */
 PHP_METHOD(CairoImageSurface, getData)
 {
@@ -136,9 +141,7 @@ PHP_METHOD(CairoImageSurface, getData)
 	unsigned char *data;	
 	zend_long height, stride;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         surface_object = cairo_surface_object_get(getThis());
 	if(!surface_object) {
@@ -155,15 +158,13 @@ PHP_METHOD(CairoImageSurface, getData)
 }
 /* }}} */
 
-/* {{{ proto int CairoImageSurface->getFormat()
+/* {{{ proto int \Cairo\Surface\Image->getFormat()
        Get the format of the surface */
 PHP_METHOD(CairoImageSurface, getFormat)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         surface_object = cairo_surface_object_get(getThis());
 	if(!surface_object) {
@@ -177,15 +178,13 @@ PHP_METHOD(CairoImageSurface, getFormat)
 }
 /* }}} */
 
-/* {{{ proto int CairoImageSurface->getWidth()
+/* {{{ proto int \Cairo\Surface\Image->getWidth()
        Get the width of the image surface in pixels. */
 PHP_METHOD(CairoImageSurface, getWidth)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         surface_object = cairo_surface_object_get(getThis());
 	if(!surface_object) {
@@ -198,15 +197,13 @@ PHP_METHOD(CairoImageSurface, getWidth)
 }
 /* }}} */
 
-/* {{{ proto int CairoImageSurface->getHeight()
+/* {{{ proto int \Cairo\Surface\Image->getHeight()
        Get the height of the image surface in pixels. */
 PHP_METHOD(CairoImageSurface, getHeight)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         surface_object = cairo_surface_object_get(getThis());
 	if(!surface_object) {
@@ -219,15 +216,13 @@ PHP_METHOD(CairoImageSurface, getHeight)
 }
 /* }}} */
 
-/* {{{ proto int CairoImageSurface->getStride()
+/* {{{ proto int \Cairo\Surface\Image->getStride()
        Get the stride of the image surface in bytes */
 PHP_METHOD(CairoImageSurface, getStride)
 {
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-            return;
-        }
+	ZEND_PARSE_PARAMETERS_NONE();
 
         surface_object = cairo_surface_object_get(getThis());
 	if(!surface_object) {
@@ -252,9 +247,10 @@ PHP_METHOD(CairoFormat, strideForWidth)
 {
 	zend_long format, width;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "ll", &format, &width) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_LONG(format)
+                Z_PARAM_LONG(width)
+        ZEND_PARSE_PARAMETERS_END();
         
 	RETURN_LONG(cairo_format_stride_for_width(format, width));
 }
@@ -266,7 +262,7 @@ ZEND_BEGIN_ARG_INFO(CairoImageSurface_createFromPng_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, file)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoImageSurface object CairoImageSurface::createFromPng(file|resource file)
+/* {{{ proto \Cairo\Surface\Image object \Cairo\Surface\Image::createFromPng(file|resource file)
        Creates a new image surface and initializes the contents to the given PNG file. */
 PHP_METHOD(CairoImageSurface, createFromPng)
 {
@@ -276,9 +272,9 @@ PHP_METHOD(CairoImageSurface, createFromPng)
 	zend_bool owned_stream = 0;
 	php_stream *stream = NULL;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z", &stream_zval) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_ZVAL(stream_zval)
+        ZEND_PARSE_PARAMETERS_END();
 
 	object_init_ex(return_value, ce_cairo_imagesurface);
 	surface_object = Z_CAIRO_SURFACE_P(return_value);
@@ -300,7 +296,7 @@ PHP_METHOD(CairoImageSurface, createFromPng)
             surface_object->closure = closure;
             surface_object->surface = cairo_image_surface_create_from_png_stream((cairo_read_func_t) php_cairo_read_func, (void *)closure);
         } else {
-            zend_throw_exception(ce_cairo_exception, "CairoImageSurface::createFromPng() expects parameter 1 to be a string or a stream resource", 0);
+            zend_throw_exception(ce_cairo_exception, "Cairo\\Surface\\Image::createFromPng() expects parameter 1 to be a string or a stream resource", 0);
             return;
 	}
 
@@ -314,7 +310,7 @@ ZEND_BEGIN_ARG_INFO(CairoImageSurface_createFromJpeg_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, file)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoImageSurface object CairoImageSurface::createFromJpeg(file|resource file)
+/* {{{ proto \Cairo\Surface\Image object \Cairo\Surface\Image::createFromJpeg(file|resource file)
        Creates a new image surface and initializes the contents to the given JPEG file. */
 PHP_METHOD(CairoImageSurface, createFromJpeg)
 {
@@ -324,9 +320,9 @@ PHP_METHOD(CairoImageSurface, createFromJpeg)
 	zend_bool owned_stream = 0;
 	php_stream *stream = NULL;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z", &stream_zval) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_ZVAL(stream_zval)
+        ZEND_PARSE_PARAMETERS_END();
 
 	object_init_ex(return_value, ce_cairo_imagesurface);
 	surface_object = Z_CAIRO_SURFACE_P(return_value);

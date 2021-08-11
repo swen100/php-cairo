@@ -7,7 +7,8 @@
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -24,11 +25,6 @@
 
 zend_class_entry *ce_cairo_matrix;
 static zend_object_handlers cairo_matrix_object_handlers; 
-
-//typedef struct _cairo_matrix_object {
-//	cairo_matrix_t *matrix;
-//	zend_object std;
-//} cairo_matrix_object;
 
 cairo_matrix_object *cairo_matrix_fetch_object(zend_object *object)
 {
@@ -130,10 +126,15 @@ PHP_METHOD(CairoMatrix, __construct)
 	double x0 = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "x0");
 	double y0 = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "y0");
 
-	/* overwrite with constructor if desired */
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|dddddd", &xx, &yx, &xy, &yy, &x0, &y0) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(0,6)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_DOUBLE(xx)
+                Z_PARAM_DOUBLE(yx)
+                Z_PARAM_DOUBLE(xy)
+                Z_PARAM_DOUBLE(yy)
+                Z_PARAM_DOUBLE(x0)
+                Z_PARAM_DOUBLE(x0)
+        ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = Z_CAIRO_MATRIX_P(getThis());
 
@@ -144,15 +145,13 @@ PHP_METHOD(CairoMatrix, __construct)
 ZEND_BEGIN_ARG_INFO(CairoMatrix_initIdentity_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto object CairoMatrix::initIdentity()
+/* {{{ proto object \Cairo\Matrix::initIdentity()
        Create initialized matrix to be an identity transformation. */
 PHP_METHOD(CairoMatrix, initIdentity)
 {
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	object_init_ex(return_value, ce_cairo_matrix);
 	matrix_object = cairo_matrix_object_get(return_value);
@@ -166,7 +165,7 @@ ZEND_BEGIN_ARG_INFO(CairoMatrix_initTranslate_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, ty)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto object CairoMatrix::initTranslate(float tx, float ty)
+/* {{{ proto object \Cairo\Matrix::initTranslate(float tx, float ty)
        Create initialized matrix to a transformation that translates by
        tx and ty in the X and Y dimensions, respectively. */
 PHP_METHOD(CairoMatrix, initTranslate)
@@ -174,9 +173,10 @@ PHP_METHOD(CairoMatrix, initTranslate)
 	double tx = 0.0, ty = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &tx, &ty) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(tx)
+                Z_PARAM_DOUBLE(ty)
+        ZEND_PARSE_PARAMETERS_END();
 
 	object_init_ex(return_value, ce_cairo_matrix);
 	matrix_object = cairo_matrix_object_get(return_value);
@@ -190,7 +190,7 @@ ZEND_BEGIN_ARG_INFO(CairoMatrix_initScale_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, sy)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto object CairoMatrix::initScale(float sx, float sy)
+/* {{{ proto object \Cairo\Matrix::initScale(float sx, float sy)
        Create initialized matrix to a transformation that scales
        by sx and sy in the X and Y dimensions, respectively. */
 PHP_METHOD(CairoMatrix, initScale)
@@ -198,9 +198,10 @@ PHP_METHOD(CairoMatrix, initScale)
 	double sx = 0.0, sy = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &sx, &sy) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(sx)
+                Z_PARAM_DOUBLE(sy)
+        ZEND_PARSE_PARAMETERS_END();
 
 	object_init_ex(return_value, ce_cairo_matrix);
 	matrix_object = cairo_matrix_object_get(return_value);
@@ -213,16 +214,16 @@ ZEND_BEGIN_ARG_INFO(CairoMatrix_initRotate_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, radians)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto object CairoMatrix::initRotate(float radians)
+/* {{{ proto object \Cairo\Matrix::initRotate(float radians)
        Create initialized matrix to a transformation that rotates by radians. */
 PHP_METHOD(CairoMatrix, initRotate)
 {
 	double radians = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &radians) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(radians)
+        ZEND_PARSE_PARAMETERS_END();
 
 	object_init_ex(return_value, ce_cairo_matrix);
 	matrix_object = cairo_matrix_object_get(return_value);
@@ -245,9 +246,10 @@ PHP_METHOD(CairoMatrix, translate)
 	double tx = 0.0, ty = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &tx, &ty) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(tx)
+                Z_PARAM_DOUBLE(ty)
+        ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = cairo_matrix_object_get(getThis());
 	if (!matrix_object) {
@@ -272,9 +274,10 @@ PHP_METHOD(CairoMatrix, scale)
 	double sx = 0.0, sy = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &sx, &sy) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(sx)
+                Z_PARAM_DOUBLE(sy)
+        ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = cairo_matrix_object_get(getThis());
 	if (!matrix_object) {
@@ -298,9 +301,9 @@ PHP_METHOD(CairoMatrix, rotate)
 	double radians = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "d", &radians) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_DOUBLE(radians)
+        ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = cairo_matrix_object_get(getThis());
 	if (!matrix_object) {
@@ -323,9 +326,7 @@ PHP_METHOD(CairoMatrix, invert)
 	cairo_status_t status;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	matrix_object = cairo_matrix_object_get(getThis());
 	if (!matrix_object) {
@@ -342,17 +343,17 @@ ZEND_BEGIN_ARG_INFO(CairoMatrix_multiply_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, matrix2)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoMatrix CairoMatrix::multiply(CairoMatrix matrix1, CairoMatrix matrix2)
+/* {{{ proto CairoMatrix \Cairo\Matrix::multiply(CairoMatrix matrix1, CairoMatrix matrix2)
        Multiplies the affine transformations in two matrices together and returns the result */
 PHP_METHOD(CairoMatrix, multiply)
 {
 	zval *matrix1 = NULL, *matrix2 = NULL;
 	cairo_matrix_object *matrix_object, *matrix_object1, *matrix_object2;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "OO",
-			&matrix1, ce_cairo_matrix, &matrix2, ce_cairo_matrix) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_OBJECT_OF_CLASS(matrix1, ce_cairo_matrix)
+                Z_PARAM_OBJECT_OF_CLASS(matrix2, ce_cairo_matrix)
+        ZEND_PARSE_PARAMETERS_END();
 
 	object_init_ex(return_value, ce_cairo_matrix);
 	matrix_object = Z_CAIRO_MATRIX_P(return_value);
@@ -381,9 +382,10 @@ PHP_METHOD(CairoMatrix, transformDistance)
 	double dx = 0.0, dy = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &dx, &dy) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(dx)
+                Z_PARAM_DOUBLE(dy)
+        ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = cairo_matrix_object_get(getThis());
 	if (!matrix_object) {
@@ -405,9 +407,10 @@ PHP_METHOD(CairoMatrix, transformPoint)
 	double x = 0.0, y = 0.0;
 	cairo_matrix_object *matrix_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &x, &y) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = cairo_matrix_object_get(getThis());
 	if (!matrix_object) {
