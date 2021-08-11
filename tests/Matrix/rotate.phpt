@@ -55,6 +55,6 @@ object(Cairo\Matrix)#%d (6) {
   ["y0"]=>
   float(0)
 }
-Cairo\Matrix::rotate() expects exactly 1 parameter, 0 given
-Cairo\Matrix::rotate() expects exactly 1 parameter, 2 given
-Cairo\Matrix::rotate() expects parameter 1 to be float, array given
+Cairo\Matrix::rotate() expects exactly 1 argument, 0 given
+Cairo\Matrix::rotate() expects exactly 1 argument, 2 given
+Cairo\Matrix::rotate(): Argument #1 ($radians) must be of type float, array given

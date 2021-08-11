@@ -39,4 +39,4 @@ object(Cairo\Matrix)#%d (6) {
   ["y0"]=>
   float(0)
 }
-Cairo\Matrix::invert() expects exactly 0 parameters, 1 given
+Cairo\Matrix::invert() expects exactly 0 %s, 1 given

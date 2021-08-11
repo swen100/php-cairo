@@ -77,8 +77,8 @@ array(2) {
   ["y"]=>
   float(1)
 }
-Cairo\Matrix::transformPoint() expects exactly 2 parameters, 0 given
-Cairo\Matrix::transformPoint() expects exactly 2 parameters, 1 given
-Cairo\Matrix::transformPoint() expects exactly 2 parameters, 3 given
-Cairo\Matrix::transformPoint() expects parameter 1 to be float, array given
-Cairo\Matrix::transformPoint() expects parameter 2 to be float, array given
+Cairo\Matrix::transformPoint() expects exactly 2 arguments, 0 given
+Cairo\Matrix::transformPoint() expects exactly 2 arguments, 1 given
+Cairo\Matrix::transformPoint() expects exactly 2 arguments, 3 given
+Cairo\Matrix::transformPoint(): Argument #1 ($dx) must be of type float, array given
+Cairo\Matrix::transformPoint(): Argument #2 ($dy) must be of type float, array given

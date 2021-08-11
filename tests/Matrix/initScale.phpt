@@ -69,8 +69,8 @@ object(Cairo\Matrix)#%d (6) {
   ["y0"]=>
   float(0)
 }
-Cairo\Matrix::initScale() expects exactly 2 parameters, 0 given
-Cairo\Matrix::initScale() expects exactly 2 parameters, 1 given
-Cairo\Matrix::initScale() expects exactly 2 parameters, 3 given
-Cairo\Matrix::initScale() expects parameter 1 to be float, array given
-Cairo\Matrix::initScale() expects parameter 2 to be float, array given
+Cairo\Matrix::initScale() expects exactly 2 arguments, 0 given
+Cairo\Matrix::initScale() expects exactly 2 arguments, 1 given
+Cairo\Matrix::initScale() expects exactly 2 arguments, 3 given
+Cairo\Matrix::initScale(): Argument #1 ($sx) must be of type float, array given
+Cairo\Matrix::initScale(): Argument #2 ($sy) must be of type float, array given

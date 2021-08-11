@@ -42,7 +42,7 @@ try {
 
 /* Wrong arg type 1 */
 try {
-    $matrix->scale(array(), 1);
+    $matrix->scale([], 1);
     trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -50,7 +50,7 @@ try {
 
 /* Wrong arg type 2 */
 try {
-    $matrix->scale(1, array());
+    $matrix->scale(1, []);
     trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -71,8 +71,8 @@ object(Cairo\Matrix)#%d (6) {
   ["y0"]=>
   float(1)
 }
-Cairo\Matrix::scale() expects exactly 2 parameters, 0 given
-Cairo\Matrix::scale() expects exactly 2 parameters, 1 given
-Cairo\Matrix::scale() expects exactly 2 parameters, 3 given
-Cairo\Matrix::scale() expects parameter 1 to be float, array given
-Cairo\Matrix::scale() expects parameter 2 to be float, array given
+Cairo\Matrix::scale() expects exactly 2 arguments, 0 given
+Cairo\Matrix::scale() expects exactly 2 arguments, 1 given
+Cairo\Matrix::scale() expects exactly 2 arguments, 3 given
+Cairo\Matrix::scale(): Argument #1 ($sx) must be of type float, array given
+Cairo\Matrix::scale(): Argument #2 ($sy) must be of type float, array given

@@ -77,8 +77,8 @@ array(2) {
   ["y"]=>
   float(3)
 }
-Cairo\Matrix::transformDistance() expects exactly 2 parameters, 0 given
-Cairo\Matrix::transformDistance() expects exactly 2 parameters, 1 given
-Cairo\Matrix::transformDistance() expects exactly 2 parameters, 3 given
-Cairo\Matrix::transformDistance() expects parameter 1 to be float, array given
-Cairo\Matrix::transformDistance() expects parameter 2 to be float, array given
+Cairo\Matrix::transformDistance() expects exactly 2 arguments, 0 given
+Cairo\Matrix::transformDistance() expects exactly 2 arguments, 1 given
+Cairo\Matrix::transformDistance() expects exactly 2 arguments, 3 given
+Cairo\Matrix::transformDistance(): Argument #1 ($dx) must be of type float, array given
+Cairo\Matrix::transformDistance(): Argument #2 ($dy) must be of type float, array given

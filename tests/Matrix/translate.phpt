@@ -86,8 +86,8 @@ object(Cairo\Matrix)#%d (6) {
   ["y0"]=>
   float(10)
 }
-Cairo\Matrix::translate() expects exactly 2 parameters, 0 given
-Cairo\Matrix::translate() expects exactly 2 parameters, 1 given
-Cairo\Matrix::translate() expects exactly 2 parameters, 3 given
-Cairo\Matrix::translate() expects parameter 1 to be float, array given
-Cairo\Matrix::translate() expects parameter 2 to be float, array given
+Cairo\Matrix::translate() expects exactly 2 arguments, 0 given
+Cairo\Matrix::translate() expects exactly 2 arguments, 1 given
+Cairo\Matrix::translate() expects exactly 2 arguments, 3 given
+Cairo\Matrix::translate(): Argument #1 ($tx) must be of type float, array given
+Cairo\Matrix::translate(): Argument #2 ($ty) must be of type float, array given

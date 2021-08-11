@@ -85,10 +85,10 @@ object(Cairo\Matrix)#%d (6) {
   ["y0"]=>
   float(0)
 }
-Cairo\Matrix::__construct() expects at most 6 parameters, 7 given
-Cairo\Matrix::__construct() expects parameter 1 to be float, array given
-Cairo\Matrix::__construct() expects parameter 2 to be float, array given
-Cairo\Matrix::__construct() expects parameter 3 to be float, array given
-Cairo\Matrix::__construct() expects parameter 4 to be float, array given
-Cairo\Matrix::__construct() expects parameter 5 to be float, array given
-Cairo\Matrix::__construct() expects parameter 6 to be float, array given
+Cairo\Matrix::__construct() expects at most 6 arguments, 7 given
+Cairo\Matrix::__construct(): Argument #1 ($xx) must be of type float, array given
+Cairo\Matrix::__construct(): Argument #2 ($yx) must be of type float, array given
+Cairo\Matrix::__construct(): Argument #3 ($xy) must be of type float, array given
+Cairo\Matrix::__construct(): Argument #4 ($yy) must be of type float, array given
+Cairo\Matrix::__construct(): Argument #5 ($x0) must be of type float, array given
+Cairo\Matrix::__construct(): Argument #6 ($y0) must be of type float, array given
