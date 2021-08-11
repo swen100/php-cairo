@@ -24,7 +24,6 @@
 
 #include "php_cairo.h"
 #include "php_cairo_internal.h"
-#include "cairo_jpg.h"
 
 zend_class_entry *ce_cairo_imagesurface;
 zend_class_entry *ce_cairo_format;

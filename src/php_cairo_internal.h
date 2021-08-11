@@ -23,6 +23,12 @@
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 
+#if defined(HAVE_LIBJPEG)
+#define CAIRO_HAS_JPEG_FUNCTIONS
+#include <jpeglib.h>
+#include "cairo_jpg.h"
+#endif
+
 extern zend_class_entry *ce_cairo_exception;
 extern zend_class_entry *ce_cairo_status;
 extern zend_class_entry *ce_cairo_matrix;

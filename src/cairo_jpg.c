@@ -50,9 +50,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <cairo.h>
-#include <jpeglib.h>
+#include "php_cairo_internal.h"
 
-#include "cairo_jpg.h"
+#if defined(HAVE_LIBJPEG)
 
 /*! Macro to activate main() function. This is only used for testing. Comment
  * it out (#undef) if you link this file to your own program.
@@ -624,3 +624,4 @@ int main(int argc, char **argv)
 
 #endif
 
+#endif

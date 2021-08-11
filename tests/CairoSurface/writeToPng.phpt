@@ -27,6 +27,14 @@ try {
     echo $e->getMessage(), PHP_EOL;
 }
 
+/* Empty arg */
+try {
+    $surface->writeToPng('');
+    trigger_error('We should bomb here');
+} catch (Cairo\Exception $e) {
+    echo $e->getMessage(), PHP_EOL;
+}
+
 /* Wrong number args - 2 */
 try {
     $surface->writeToPng('', 1);
@@ -37,7 +45,7 @@ try {
 
 /* Wrong arg */
 try {
-    $surface->writeToPng(array());
+    $surface->writeToPng([]);
     trigger_error('We should bomb here');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -52,5 +60,6 @@ unlink(dirname(__FILE__) . '/stream.png');
 object(Cairo\Surface\Image)#%d (0) {
 }
 Cairo\Surface::writeToPng() expects exactly 1 argument, 0 given
+Cairo\Surface::writeToPng() expects parameter 1 to be a (not empty) string or a stream resource
 Cairo\Surface::writeToPng() expects exactly 1 argument, 2 given
-Cairo\Surface::writeToPng() expects parameter 1 to be a string or a stream resource
+Cairo\Surface::writeToPng() expects parameter 1 to be a (not empty) string or a stream resource

@@ -24,7 +24,6 @@
 
 #include "php_cairo.h"
 #include "php_cairo_internal.h"
-#include "cairo_jpg.h"
 
 zend_class_entry *ce_cairo_surface;
 zend_class_entry *ce_cairo_content;
@@ -485,13 +484,13 @@ PHP_METHOD(CairoSurface, writeToPng)
             return;
         }
 
-	if(Z_TYPE_P(stream_zval) == IS_STRING) {
+	if(Z_TYPE_P(stream_zval) == IS_STRING && Z_STRLEN_P(stream_zval) > 0) {
 		stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "w+b", REPORT_ERRORS, NULL);
 		owned_stream = 1;
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 		php_stream_from_zval(stream, stream_zval);	
 	} else {
-                zend_throw_exception(ce_cairo_exception, "Cairo\\Surface::writeToPng() expects parameter 1 to be a string or a stream resource", 0);
+                zend_throw_exception(ce_cairo_exception, "Cairo\\Surface::writeToPng() expects parameter 1 to be a (not empty) string or a stream resource", 0);
 		return;
 	}
 
@@ -532,6 +531,7 @@ PHP_METHOD(CairoSurface, writeToJpeg)
 
         ZEND_PARSE_PARAMETERS_START(1,2)
                 Z_PARAM_ZVAL(stream_zval)
+                Z_PARAM_OPTIONAL
                 Z_PARAM_DOUBLE(quality)
         ZEND_PARSE_PARAMETERS_END();
 
@@ -540,14 +540,14 @@ PHP_METHOD(CairoSurface, writeToJpeg)
             return;
         }
 
-	if(Z_TYPE_P(stream_zval) == IS_STRING) {
-            stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "w+b", REPORT_ERRORS, NULL);
-            owned_stream = 1;
+	if(Z_TYPE_P(stream_zval) == IS_STRING && Z_STRLEN_P(stream_zval) > 0) {
+                stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "w+b", REPORT_ERRORS, NULL);
+                owned_stream = 1;
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
-            php_stream_from_zval(stream, stream_zval);	
+                php_stream_from_zval(stream, stream_zval);	
 	} else {
-            zend_throw_exception(ce_cairo_exception, "Cairo\\Surface::writeToJpeg() expects parameter 1 to be a string or a stream resource", 0);
-            return;
+                zend_throw_exception(ce_cairo_exception, "Cairo\\Surface::writeToJpeg() expects parameter 1 to be a (not empty) string or a stream resource", 0);
+                return;
 	}
 
 	/* Pack stream into struct */

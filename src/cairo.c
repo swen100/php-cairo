@@ -99,6 +99,9 @@ PHP_METHOD(Cairo, availableSurfaces)
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 	add_next_index_string(return_value,"PNG");
 #endif
+#ifdef CAIRO_HAS_JPEG_FUNCTIONS
+	add_next_index_string(return_value,"JPEG");
+#endif
 #ifdef CAIRO_HAS_PDF_SURFACE
 	add_next_index_string(return_value,"PDF");
 #endif
