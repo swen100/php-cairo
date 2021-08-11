@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient->getColorStopRgba() method
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -48,6 +48,6 @@ array(4) {
   ["alpha"]=>
   float(0.2)
 }
-Cairo\Pattern\Gradient::getColorStopRgba() expects exactly 1 parameter, 0 given
-Cairo\Pattern\Gradient::getColorStopRgba() expects exactly 1 parameter, 2 given
-Cairo\Pattern\Gradient::getColorStopRgba() expects parameter 1 to be int, array given
+Cairo\Pattern\Gradient::getColorStopRgba() expects exactly 1 argument, 0 given
+Cairo\Pattern\Gradient::getColorStopRgba() expects exactly 1 argument, 2 given
+Cairo\Pattern\Gradient::getColorStopRgba(): Argument #1 ($index) must be of type int, array given

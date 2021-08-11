@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient\Radial->getCircles() method
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -40,4 +40,4 @@ array(6) {
   ["r1"]=>
   float(0.5)
 }
-Cairo\Pattern\Gradient\Radial::getCircles() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Gradient\Radial::getCircles() expects exactly 0 %s, 1 given

@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient->addColorStopRgb() method
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -84,12 +84,12 @@ array(4) {
   ["alpha"]=>
   float(1)
 }
-Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 parameters, 0 given
-Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 parameters, 1 given
-Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 parameters, 2 given
-Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 parameters, 3 given
-Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 parameters, 5 given
-Cairo\Pattern\Gradient::addColorStopRgb() expects parameter 1 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgb() expects parameter 2 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgb() expects parameter 3 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgb() expects parameter 4 to be float, array given
+Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 arguments, 0 given
+Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 arguments, 1 given
+Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 arguments, 2 given
+Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 arguments, 3 given
+Cairo\Pattern\Gradient::addColorStopRgb() expects exactly 4 arguments, 5 given
+Cairo\Pattern\Gradient::addColorStopRgb(): Argument #1 ($offset) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgb(): Argument #2 ($red) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgb(): Argument #3 ($green) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgb(): Argument #4 ($blue) must be of type float, array given

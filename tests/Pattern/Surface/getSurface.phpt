@@ -2,7 +2,7 @@
 Cairo\Pattern\Surface->getSurface() method
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -32,4 +32,4 @@ object(Cairo\Pattern\Surface)#%d (0) {
 object(Cairo\Surface\Image)#%d (0) {
 }
 bool(true)
-Cairo\Pattern\Surface::getSurface() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Surface::getSurface() expects exactly 0 %s, 1 given

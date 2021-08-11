@@ -4,7 +4,7 @@ Cairo\Pattern->getStatus() method [using Solid]
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -25,4 +25,4 @@ try {
 --EXPECT--
 bool(true)
 string(21) "no error has occurred"
-Cairo\Pattern::getStatus() expects exactly 0 parameters, 1 given
+Cairo\Pattern::getStatus() expects exactly 0 arguments, 1 given

@@ -4,7 +4,7 @@ Cairo\Pattern->setFilter() method [using Solid]
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -53,7 +53,7 @@ try {
 --EXPECTF--
 bool(true)
 bool(true)
-Cairo\Pattern::setFilter() expects exactly 1 parameter, 0 given
-Cairo\Pattern::setFilter() expects exactly 1 parameter, 2 given
-Cairo\Pattern::setFilter() expects parameter 1 to be int, array given
+Cairo\Pattern::setFilter() expects exactly 1 argument, 0 given
+Cairo\Pattern::setFilter() expects exactly 1 argument, 2 given
+Cairo\Pattern::setFilter(): Argument #1 ($filter) must be of type int, array given
 Value 999 provided is not a const in enum Cairo\Filter

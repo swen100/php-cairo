@@ -4,7 +4,7 @@ Cairo\Pattern\Solid [__construct() method ] with extended class
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php

@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient\Linear->__construct()
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -88,12 +88,12 @@ try {
 --EXPECTF--
 object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
-Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 parameters, 0 given
-Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 parameters, 1 given
-Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 parameters, 2 given
-Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 parameters, 3 given
-Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 parameters, 5 given
-Cairo\Pattern\Gradient\Linear::__construct() expects parameter 1 to be float, array given
-Cairo\Pattern\Gradient\Linear::__construct() expects parameter 2 to be float, array given
-Cairo\Pattern\Gradient\Linear::__construct() expects parameter 3 to be float, array given
-Cairo\Pattern\Gradient\Linear::__construct() expects parameter 4 to be float, array given
+Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 arguments, 0 given
+Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 arguments, 1 given
+Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 arguments, 2 given
+Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 arguments, 3 given
+Cairo\Pattern\Gradient\Linear::__construct() expects exactly 4 arguments, 5 given
+Cairo\Pattern\Gradient\Linear::__construct(): Argument #1 ($x0) must be of type float, array given
+Cairo\Pattern\Gradient\Linear::__construct(): Argument #2 ($y0) must be of type float, array given
+Cairo\Pattern\Gradient\Linear::__construct(): Argument #3 ($x1) must be of type float, array given
+Cairo\Pattern\Gradient\Linear::__construct(): Argument #4 ($y1) must be of type float, array given

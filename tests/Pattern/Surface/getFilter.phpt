@@ -2,7 +2,7 @@
 Cairo\Pattern\Surface->getFilter()
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -30,24 +30,24 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Pattern\Surface)#%d (0) {
 }
-object(Cairo\Filter)#%d (2) {
+object(Cairo\Filter)#3 (2) {
   ["__elements"]=>
   array(6) {
     ["FAST"]=>
-    long(0)
+    int(0)
     ["GOOD"]=>
-    long(1)
+    int(1)
     ["BEST"]=>
-    long(2)
+    int(2)
     ["NEAREST"]=>
-    long(3)
+    int(3)
     ["BILINEAR"]=>
-    long(4)
+    int(4)
     ["GAUSSIAN"]=>
-    long(5)
+    int(5)
   }
   ["__value"]=>
-  long(1)
+  int(1)
 }
 bool(true)
-Cairo\Pattern::getFilter() expects exactly 0 parameters, 1 given
+Cairo\Pattern::getFilter() expects exactly 0 arguments, 1 given

@@ -2,7 +2,7 @@
 Cairo\Pattern->setExtend() method [using Surface]
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -37,7 +37,7 @@ try {
 
 /* arg must be int or castable to int */
 try {
-    $pattern->setExtend(array());
+    $pattern->setExtend([]);
     trigger_error('Arg 1 must be int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -52,18 +52,18 @@ object(Cairo\Extend)#3 (2) {
   ["__elements"]=>
   array(4) {
     ["NONE"]=>
-    long(0)
+    int(0)
     ["REPEAT"]=>
-    long(1)
+    int(1)
     ["REFLECT"]=>
-    long(2)
+    int(2)
     ["PAD"]=>
-    long(3)
+    int(3)
   }
   ["__value"]=>
-  long(3)
+  int(3)
 }
 bool(true)
-Cairo\Pattern::setExtend() expects exactly 1 parameter, 0 given
-Cairo\Pattern::setExtend() expects exactly 1 parameter, 2 given
-Cairo\Pattern::setExtend() expects parameter 1 to be int, array given
+Cairo\Pattern::setExtend() expects exactly 1 argument, 0 given
+Cairo\Pattern::setExtend() expects exactly 1 argument, 2 given
+Cairo\Pattern::setExtend(): Argument #1 ($extend) must be of type int, array given

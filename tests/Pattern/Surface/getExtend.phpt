@@ -2,7 +2,7 @@
 Cairo\Pattern\Surface->getExtend()
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -29,20 +29,20 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Pattern\Surface)#%d (0) {
 }
-object(Cairo\Extend)#%d (2) {
+object(Cairo\Extend)#3 (2) {
   ["__elements"]=>
   array(4) {
     ["NONE"]=>
-    long(0)
+    int(0)
     ["REPEAT"]=>
-    long(1)
+    int(1)
     ["REFLECT"]=>
-    long(2)
+    int(2)
     ["PAD"]=>
-    long(3)
+    int(3)
   }
   ["__value"]=>
-  long(0)
+  int(0)
 }
 bool(true)
-Cairo\Pattern::getExtend() expects exactly 0 parameters, 1 given
+Cairo\Pattern::getExtend() expects exactly 0 arguments, 1 given

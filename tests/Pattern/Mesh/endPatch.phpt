@@ -4,7 +4,7 @@ Cairo\Pattern\Mesh->endPatch()
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -34,5 +34,5 @@ try {
 ?>
 --EXPECT--
 invalid operation during mesh pattern construction
-long(1)
-Cairo\Pattern\Mesh::endPatch() expects exactly 0 parameters, 1 given
+int(1)
+Cairo\Pattern\Mesh::endPatch() expects exactly 0 arguments, 1 given

@@ -4,7 +4,7 @@ Cairo\Pattern\Solid->getRgba() method
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -50,4 +50,4 @@ bool(true)
 bool(true)
 bool(true)
 bool(true)
-Cairo\Pattern\Solid::getRgba() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Solid::getRgba() expects exactly 0 %s, 1 given

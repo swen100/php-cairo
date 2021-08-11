@@ -4,7 +4,7 @@ Cairo\Pattern\Mesh->__construct()
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -24,4 +24,4 @@ try {
 --EXPECTF--
 object(Cairo\Pattern\Mesh)#%d (0) {
 }
-Cairo\Pattern\Mesh::__construct() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Mesh::__construct() expects exactly 0 %s, 1 given

@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient->addColorStopRgba() method
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -96,14 +96,14 @@ array(4) {
   ["alpha"]=>
   float(0.2)
 }
-Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 parameters, 0 given
-Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 parameters, 1 given
-Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 parameters, 2 given
-Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 parameters, 3 given
-Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 parameters, 4 given
-Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 parameters, 6 given
-Cairo\Pattern\Gradient::addColorStopRgba() expects parameter 1 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgba() expects parameter 2 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgba() expects parameter 3 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgba() expects parameter 4 to be float, array given
-Cairo\Pattern\Gradient::addColorStopRgba() expects parameter 5 to be float, array given
+Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 arguments, 0 given
+Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 arguments, 1 given
+Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 arguments, 2 given
+Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 arguments, 3 given
+Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 arguments, 4 given
+Cairo\Pattern\Gradient::addColorStopRgba() expects exactly 5 arguments, 6 given
+Cairo\Pattern\Gradient::addColorStopRgba(): Argument #1 ($offset) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgba(): Argument #2 ($red) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgba(): Argument #3 ($green) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgba(): Argument #4 ($blue) must be of type float, array given
+Cairo\Pattern\Gradient::addColorStopRgba(): Argument #5 ($alpha) must be of type float, array given

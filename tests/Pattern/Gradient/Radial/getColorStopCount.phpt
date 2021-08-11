@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient->getColorStopCount() method
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -32,6 +32,6 @@ try {
 }
 ?>
 --EXPECT--
-long(0)
-long(3)
-Cairo\Pattern\Gradient::getColorStopCount() expects exactly 0 parameters, 1 given
+int(0)
+int(3)
+Cairo\Pattern\Gradient::getColorStopCount() expects exactly 0 arguments, 1 given

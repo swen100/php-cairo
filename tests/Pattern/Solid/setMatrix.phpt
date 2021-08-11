@@ -4,7 +4,7 @@ Cairo\Pattern->setMatrix() method [using Solid]
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -51,6 +51,6 @@ try {
 --EXPECT--
 bool(true)
 bool(true)
-Cairo\Pattern::setMatrix() expects exactly 1 parameter, 0 given
-Argument 1 passed to Cairo\Pattern::setMatrix() must be an instance of Cairo\Matrix, int given
-Argument 1 passed to Cairo\Pattern::setMatrix() must be an instance of Cairo\Matrix, int given
+Cairo\Pattern::setMatrix() expects exactly 1 argument, 0 given
+Cairo\Pattern::setMatrix() expects exactly 1 argument, 2 given
+Cairo\Pattern::setMatrix(): Argument #1 ($matrix) must be of type Cairo\Matrix, int given

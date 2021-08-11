@@ -4,7 +4,7 @@ Cairo\Pattern->getExtend() method [using Solid]
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -25,4 +25,4 @@ try {
 ?>
 --EXPECT--
 bool(true)
-Cairo\Pattern::getExtend() expects exactly 0 parameters, 1 given
+Cairo\Pattern::getExtend() expects exactly 0 arguments, 1 given

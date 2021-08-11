@@ -4,7 +4,7 @@ Cairo\Pattern\Gradient\Radial->__construct()
 eos_datastructures
 --SKIPIF--
 <?php
-include __DIR__ . '/../skipif.inc';
+include __DIR__ . '/../../../skipif.inc';
 ?>
 --FILE--
 <?php
@@ -120,16 +120,16 @@ try {
 --EXPECTF--
 object(Cairo\Pattern\Gradient\Radial)#%d (0) {
 }
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 0 given
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 1 given
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 2 given
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 3 given
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 4 given
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 5 given
-Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 parameters, 7 given
-Cairo\Pattern\Gradient\Radial::__construct() expects parameter 1 to be float, array given
-Cairo\Pattern\Gradient\Radial::__construct() expects parameter 2 to be float, array given
-Cairo\Pattern\Gradient\Radial::__construct() expects parameter 3 to be float, array given
-Cairo\Pattern\Gradient\Radial::__construct() expects parameter 4 to be float, array given
-Cairo\Pattern\Gradient\Radial::__construct() expects parameter 5 to be float, array given
-Cairo\Pattern\Gradient\Radial::__construct() expects parameter 6 to be float, array given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 0 given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 1 given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 2 given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 3 given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 4 given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 5 given
+Cairo\Pattern\Gradient\Radial::__construct() expects exactly 6 arguments, 7 given
+Cairo\Pattern\Gradient\Radial::__construct(): Argument #1 ($x0) must be of type float, array given
+Cairo\Pattern\Gradient\Radial::__construct(): Argument #2 ($y0) must be of type float, array given
+Cairo\Pattern\Gradient\Radial::__construct(): Argument #3 ($r0) must be of type float, array given
+Cairo\Pattern\Gradient\Radial::__construct(): Argument #4 ($x1) must be of type float, array given
+Cairo\Pattern\Gradient\Radial::__construct(): Argument #5 ($y1) must be of type float, array given
+Cairo\Pattern\Gradient\Radial::__construct(): Argument #6 ($r1) must be of type float, array given
