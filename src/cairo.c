@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -46,37 +47,51 @@ const char* php_cairo_get_ft_error(int error) {
 
 #endif
 
-/* {{{ proto int Cairo\version(void) 
+/* {{{ proto int \Cairo\version(void) 
        Returns an integer version number of the cairo library being used */
 PHP_FUNCTION(version)
 {
-	if (zend_parse_parameters_none() == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	RETURN_LONG(cairo_version());
 }
 /* }}} */
 
-/* {{{ proto string Cairo\version_string(void)
+/* {{{ proto string \Cairo\version_string(void)
        Returns a string version of the cairo library being used */
 PHP_FUNCTION(version_string)
 {
-	if (zend_parse_parameters_none() == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	RETURN_STRING(cairo_version_string());
 }
 /* }}} */
 
-/* {{{ proto array \Cairo\available_surfaces(void)
+/* {{{ proto array \Cairo::version(void)
+       Returns an integer version number of the cairo library being used */
+PHP_METHOD(Cairo, version)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	RETURN_LONG(cairo_version());
+}
+/* }}} */
+
+/* {{{ proto array \Cairo::versionString(void)
+       Returns a string version of the cairo library being used */
+PHP_METHOD(Cairo, versionString)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	RETURN_STRING(cairo_version_string());
+}
+/* }}} */
+        
+/* {{{ proto array \Cairo::availableSurfaces(void)
        Returns an array of available Cairo backend surfaces */
 PHP_METHOD(Cairo, availableSurfaces)
 {
-	if (zend_parse_parameters_none() == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	array_init(return_value);
 	add_next_index_string(return_value,"IMAGE");
@@ -105,13 +120,11 @@ PHP_METHOD(Cairo, availableSurfaces)
 }
 /* }}} */
 
-/* {{{ proto array Cairo::availableFonts(void)
+/* {{{ proto array \Cairo::availableFonts(void)
        Returns an array of available Cairo font backends */
 PHP_METHOD(Cairo, availableFonts)
 {
-	if (zend_parse_parameters_none() == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	array_init(return_value);
         
@@ -141,8 +154,8 @@ static const zend_function_entry cairo_functions[] = {
 
 /* {{{ cairo_class_functions[] */
 const zend_function_entry cairo_methods[] = {
-	//PHP_ME(Cairo, version, Cairo_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	//PHP_ME(Cairo, versionString, Cairo_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Cairo, version, Cairo_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Cairo, versionString, Cairo_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Cairo, availableSurfaces, Cairo_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Cairo, availableFonts, Cairo_method_no_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	{NULL, NULL, NULL}

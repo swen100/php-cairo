@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -30,7 +31,7 @@
 zend_class_entry *ce_cairo_pdfsurface;
 
 /* ----------------------------------------------------------------
-    Cairo\Surface\Pdf Class API
+    \Cairo\Surface\Pdf Class API
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO(CairoPdfSurface___construct_args, ZEND_SEND_BY_VAL)
@@ -50,9 +51,11 @@ PHP_METHOD(CairoPdfSurface, __construct)
 	zend_bool owned_stream = 0;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "zdd", &stream_zval, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_ZVAL(stream_zval)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -92,7 +95,7 @@ ZEND_BEGIN_ARG_INFO(CairoPdfSurface_setSize_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, height)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoPdfSurface->setSize(, double width, double height)
+/* {{{ proto void \Cairo\Surface\Pdf::setSize(double width, double height)
        Changes the size of a PDF surface for the current (and subsequent) pages.
        This should be called before any drawing takes place on the surface */
 PHP_METHOD(CairoPdfSurface, setSize)
@@ -100,9 +103,10 @@ PHP_METHOD(CairoPdfSurface, setSize)
 	double width = 0.0, height = 0.0;
 	cairo_surface_object *surface_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "dd", &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
         
         surface_object = Z_CAIRO_SURFACE_P(getThis());
 	if(!surface_object) {
@@ -116,7 +120,7 @@ PHP_METHOD(CairoPdfSurface, setSize)
 
 
 /* ----------------------------------------------------------------
-    Cairo\Surface\Pdf Definition and registration
+    \Cairo\Surface\Pdf Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_pdf_surface_methods[] */

@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -125,7 +126,7 @@ cairo_font_options_t *cairo_font_options_object_get_font_options(zval *zv)
     Cairo\FontOptions Class API
 ------------------------------------------------------------------*/
 /* {{{ proto void __contruct(void) 
-       Creates a new CairoFontOptions object with all options initialized to default values.*/
+       Creates a new \Cairo\FontOptions object with all options initialized to default values.*/
 PHP_METHOD(CairoFontOptions, __construct) 
 {
         cairo_font_options_object *font_options_object;
@@ -142,7 +143,7 @@ PHP_METHOD(CairoFontOptions, __construct)
 }
 /* }}} */
 
-/* {{{ proto void \Cairo\FontOptions->getStatus(void)
+/* {{{ proto void \Cairo\FontOptions::getStatus(void)
         Checks whether an error has previously occurred for this font options object.*/
 PHP_METHOD(CairoFontOptions, getStatus) 
 {
@@ -165,7 +166,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_fontoptions_args, ZEND_SEND_BY_VAL)
 	//ZEND_ARG_INFO(0, other)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\FontOptions->merge(\Cairo\FontOptions other)
+/* {{{ proto void \Cairo\FontOptions::merge(\Cairo\FontOptions other)
         Merges non-default options from other into options, replacing existing values.*/
 PHP_METHOD(CairoFontOptions, merge)
 {
@@ -192,7 +193,7 @@ PHP_METHOD(CairoFontOptions, merge)
 /* }}} */
 
 
-/* {{{ proto long \Cairo\FontOptions->hash(void)
+/* {{{ proto long \Cairo\FontOptions::hash(void)
         Compute a hash for the font options object.*/
 PHP_METHOD(CairoFontOptions, hash) 
 {
@@ -210,7 +211,7 @@ PHP_METHOD(CairoFontOptions, hash)
 /* }}} */
 
 
-/* {{{ proto boolean \Cairo\FontOptions->equal(\Cairo\FontOptions other)
+/* {{{ proto boolean \Cairo\FontOptions::equal(\Cairo\FontOptions other)
         Compares two font options objects for equality.*/
 PHP_METHOD(CairoFontOptions, equal)
 {
@@ -239,7 +240,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setAntialias_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, antialias)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\FontOptions->setAntialias(void)
+/* {{{ proto void \Cairo\FontOptions::setAntialias(void)
         Sets the antialiasing mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, setAntialias) 
 {
@@ -270,7 +271,7 @@ PHP_METHOD(CairoFontOptions, setAntialias)
 }
 /* }}} */
 
-/* {{{ proto int \Cairo\FontOptions->getAntialias(void)
+/* {{{ proto int \Cairo\FontOptions::getAntialias(void)
         Gets the antialiasing mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, getAntialias) 
 {
@@ -294,7 +295,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setSubpixelOrder_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, subpixel_order)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\FontOptions->setSubpixelOrder(void)
+/* {{{ proto void \Cairo\FontOptions::setSubpixelOrder(void)
         Sets the subpixel order for the font options object.*/
 PHP_METHOD(CairoFontOptions, setSubpixelOrder) 
 {
@@ -325,7 +326,7 @@ PHP_METHOD(CairoFontOptions, setSubpixelOrder)
 }
 /* }}} */
 
-/* {{{ proto int \Cairo\FontOptions->getSubpixelOrder(void)
+/* {{{ proto int \Cairo\FontOptions::getSubpixelOrder(void)
         Gets the subpixel order for the font options object.*/
 PHP_METHOD(CairoFontOptions, getSubpixelOrder) 
 {
@@ -347,7 +348,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setHintStyle_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, hint_style)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\FontOptions->setHintStyle(void)
+/* {{{ proto void \Cairo\FontOptions::setHintStyle(void)
         Sets the hint style for font outlines for the font options object.*/
 PHP_METHOD(CairoFontOptions, setHintStyle) 
 {
@@ -378,7 +379,7 @@ PHP_METHOD(CairoFontOptions, setHintStyle)
 }
 /* }}} */
 
-/* {{{ proto int \Cairo\FontOptions->getHintStyle(void)
+/* {{{ proto int \Cairo\FontOptions::getHintStyle(void)
         Gets the hint style for font outlines for the font options object.*/
 PHP_METHOD(CairoFontOptions, getHintStyle) 
 {
@@ -400,7 +401,7 @@ ZEND_BEGIN_ARG_INFO(CairoFontOptions_setHintMetrics_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, hint_metrics)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\FontOptions->setHintMetrics(void)
+/* {{{ proto void \Cairo\FontOptions::setHintMetrics(void)
         Sets the metrics hinting mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, setHintMetrics) 
 {
@@ -431,7 +432,7 @@ PHP_METHOD(CairoFontOptions, setHintMetrics)
 }
 /* }}} */
 
-/* {{{ proto int \Cairo\FontOptions->getHintMetrics(void)
+/* {{{ proto int \Cairo\FontOptions::getHintMetrics(void)
         Gets the metrics hinting mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, getHintMetrics) 
 {

@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -43,8 +44,8 @@ PHP_METHOD(CairoQuartzFontFace, createForAtsuFontId)
 {
         ATSUFontID fontID;
         //OSStatus error;
-        const char *font_name;
-	int font_name_length;
+        char *font_name;
+	size_t font_name_length;
 	FontNameCode code = kFontFullName;
 	FontPlatformCode platform = kFontNoPlatformCode;
 	FontScriptCode script = kFontRomanScript;
@@ -52,11 +53,16 @@ PHP_METHOD(CairoQuartzFontFace, createForAtsuFontId)
         
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s|llll", &font_name, &font_name_length, &code, &platform, &script, &language) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,5)
+                Z_PARAM_STRING(font_name, font_name_length)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_LONG(code)
+                Z_PARAM_LONG(platform)
+                Z_PARAM_LONG(script)
+                Z_PARAM_LONG(language)
+        ZEND_PARSE_PARAMETERS_END();
 
-	ATSUFindFontFromName(font_name, font_name_length, code, platform, script, language, &fontID);
+	ATSUFindFontFromName((const char *)font_name, (int)font_name_length, code, platform, script, language, &fontID);
 
 	if(fontID == kATSUInvalidFontID) {
 		php_cairo_throw_exception("Atsu Font could not be retrieved");
@@ -87,9 +93,9 @@ PHP_METHOD(CairoQuartzFontFace, createForCgfont)
         size_t c_font_name_len;
 	cairo_font_face_object *font_face_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "s", &c_font_name, &c_font_name_len) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(c_font_name, c_font_name_len)
+        ZEND_PARSE_PARAMETERS_END();
 
 	font_face_object = Z_CAIRO_FONT_FACE_P(getThis());
         

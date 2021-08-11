@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -19,7 +20,7 @@
 extern zend_module_entry cairo_module_entry;
 #define phpext_cairo_ptr &cairo_module_entry
 
-#define PHP_CAIRO_VERSION "1.0.0-dev"
+#define PHP_CAIRO_VERSION "1.0.1-dev"
 #define CAIRO_NAMESPACE "Cairo"
 
 #endif /* PHP_CAIRO_EXT_H */

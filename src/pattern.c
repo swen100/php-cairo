@@ -1,6 +1,6 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
@@ -185,7 +185,7 @@ ZEND_BEGIN_ARG_INFO(CairoPattern_setExtend_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, extend)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoPattern::setExtend(int extend)
+/* {{{ proto void \Cairo\Pattern::setExtend(int extend)
        Sets the mode to be used for drawing outside the area of a pattern */
 PHP_METHOD(CairoPattern, setExtend)
 {
@@ -241,7 +241,7 @@ ZEND_BEGIN_ARG_INFO(CairoPattern_setFilter_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, filter)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoPattern::setFilter(int filter)
+/* {{{ proto void \Cairo\Pattern::setFilter(int filter)
        Sets the filter to be used for resizing when using this pattern  */
 PHP_METHOD(CairoPattern, setFilter)
 {
@@ -340,7 +340,7 @@ PHP_METHOD(CairoPattern, setMatrix)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\Solid Class API
+    \Cairo\Pattern\Solid Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO_EX(CairoPatternSolid___construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 3)
@@ -526,7 +526,7 @@ PHP_METHOD(CairoPatternGradient, getColorStopCount)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\Gradient\Radial Class API
+    \Cairo\Pattern\Gradient\Radial Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO(CairoPatternGradientRadial___construct_args, ZEND_SEND_BY_VAL)
@@ -567,7 +567,7 @@ PHP_METHOD(CairoPatternGradientRadial, __construct)
 ZEND_BEGIN_ARG_INFO(CairoPatternGradientRadial_getCircles_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void Cairo\Pattern\Gradient\Radial->getCircles()
+/* {{{ proto void \Cairo\Pattern\Gradient\Radial->getCircles()
    Gets the gradient endpoint circles for a radial gradient
    each specified as a center coordinate and a radius.*/
 PHP_METHOD(CairoPatternGradientRadial, getCircles)
@@ -594,7 +594,7 @@ PHP_METHOD(CairoPatternGradientRadial, getCircles)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\Gradient\Linear Class API
+    \Cairo\Pattern\Gradient\Linear Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO(CairoPatternGradientLinear___construct_args, ZEND_SEND_BY_VAL)
@@ -632,7 +632,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternGradientLinear_getPoints_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void cairo_pattern_get_linear_points(CairoLinearGradient object)
-   proto void CairoLinearGradient->getPoints()
+   proto void \Cairo\Pattern\Gradient\Linear::getPoints()
    Gets the gradient endpoints for a linear gradient. */
 PHP_METHOD(CairoPatternGradientLinear, getPoints)
 {
@@ -664,7 +664,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternSurface___construct_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void contruct(float red, float green, float blue[, float alpha])
-	Returns new CairoSurfacePattern using supplied surface */
+	Returns new \Cairo\Pattern\Surface using supplied surface */
 PHP_METHOD(CairoPatternSurface, __construct)
 {
 	cairo_pattern_object *pattern_object;
@@ -701,7 +701,7 @@ PHP_METHOD(CairoPatternSurface, __construct)
 ZEND_BEGIN_ARG_INFO(CairoPatternSurface_getSurface_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoSurface object CairoSurfacePattern->getSurface()
+/* {{{ proto CairoSurface object \Cairo\Pattern\Surface::getSurface()
    This function returns the surface object */
 PHP_METHOD(CairoPatternSurface, getSurface)
 {
@@ -749,13 +749,13 @@ PHP_METHOD(CairoPatternSurface, getSurface)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\Mesh Class API
+    \Cairo\Pattern\Mesh Class API
 ------------------------------------------------------------------ */
 ZEND_BEGIN_ARG_INFO(CairoPatternMesh___construct_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void contruct()
-	Returns new Cairo\Pattern\Mesh  */
+	Returns new \Cairo\Pattern\Mesh  */
 PHP_METHOD(CairoPatternMesh, __construct)
 {
 	cairo_pattern_object *pattern_object;
@@ -775,7 +775,7 @@ PHP_METHOD(CairoPatternMesh, __construct)
 ZEND_BEGIN_ARG_INFO(CairoPatternMesh_beginPatch_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->beginPatch()
+/* {{{  proto void \Cairo\Pattern\Mesh::beginPatch()
   begin a patch in a mesh pattern */
 PHP_METHOD(CairoPatternMesh, beginPatch)
 {
@@ -796,7 +796,7 @@ PHP_METHOD(CairoPatternMesh, beginPatch)
 ZEND_BEGIN_ARG_INFO(CairoPatternMesh_endPatch_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->endPatch()
+/* {{{  proto void \Cairo\Pattern\Mesh::endPatch()
   end a patch in a mesh pattern*/
 PHP_METHOD(CairoPatternMesh, endPatch)
 {
@@ -819,7 +819,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_moveTo_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, y)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->moveTo(float x, float y)
+/* {{{  proto void \Cairo\Pattern\Mesh::moveTo(float x, float y)
   move to a new starting point position in the patch */
 PHP_METHOD(CairoPatternMesh, moveTo)
 {
@@ -846,7 +846,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_lineTo_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, y)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->lineTo(float x, float y)
+/* {{{  proto void \Cairo\Pattern\Mesh::lineTo(float x, float y)
    add a line from the current point to position in the patch */
 PHP_METHOD(CairoPatternMesh, lineTo)
 {
@@ -877,7 +877,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_curveTo_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, y3)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->curveTo(float x1, float y1, float x2,
+/* {{{  proto void \Cairo\Pattern\Mesh::curveTo(float x1, float y1, float x2,
  *           float y2, float x3, float y3)
    cubic bezier spline added to current path  */
 PHP_METHOD(CairoPatternMesh, curveTo)
@@ -910,7 +910,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_setControlPoint_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, y)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->setControlPoint(int corner_num,
+/* {{{  proto void \Cairo\Pattern\Mesh::setControlPoint(int corner_num,
  *            float x, float y)
    sets the internal control point of the current patch */
 PHP_METHOD(CairoPatternMesh, setControlPoint)
@@ -942,7 +942,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_setCornerColorRgb_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, blue)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->setCornerColorRgb(int corner_num,
+/* {{{  proto void \Cairo\Pattern\Mesh::setCornerColorRgb(int corner_num,
  *            float red, float blue, float green)
    Gets the control point of patch number for a mesh pattern */
 PHP_METHOD(CairoPatternMesh, setCornerColorRgb)
@@ -976,7 +976,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_setCornerColorRgba_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, alpha)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->setCornerColorRgba(int corner_num,
+/* {{{  proto void \Cairo\Pattern\Mesh::setCornerColorRgba(int corner_num,
  *            float red, float blue, float green, float alpha)
    Gets the control point of patch number for a mesh pattern */
 PHP_METHOD(CairoPatternMesh, setCornerColorRgba)
@@ -1006,7 +1006,7 @@ PHP_METHOD(CairoPatternMesh, setCornerColorRgba)
 ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getPatchCount_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->getPatchCount()
+/* {{{  proto void \Cairo\Pattern\Mesh::getPatchCount()
    Gets the path for a mesh pattern */
 PHP_METHOD(CairoPatternMesh, getPatchCount)
 {
@@ -1029,7 +1029,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getPath_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, patch_num)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->getPath()
+/* {{{  proto void \Cairo\Pattern\Mesh::getPath()
    Gets the path for a mesh pattern */
 PHP_METHOD(CairoPatternMesh, getPath)
 {
@@ -1066,7 +1066,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getControlPoint_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, point_num)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->getControlPoint()
+/* {{{  proto void \Cairo\Pattern\Mesh::getControlPoint()
    Gets the control point of patch number for a mesh pattern */
 PHP_METHOD(CairoPatternMesh, getControlPoint)
 {
@@ -1096,7 +1096,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getCornerColorRgba_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, corner_num)
 ZEND_END_ARG_INFO()
 
-/* {{{  proto void Mesh->getPoints()
+/* {{{  proto void \Cairo\Pattern\Mesh::getPoints()
    Gets the color information in corner of path for a mesh pattern */
 PHP_METHOD(CairoPatternMesh, getCornerColorRgba)
 {
@@ -1124,7 +1124,7 @@ PHP_METHOD(CairoPatternMesh, getCornerColorRgba)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern\RasterSource Class API
+    \Cairo\Pattern\RasterSource Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO(CairoPatternRasterSource___construct_args, ZEND_SEND_BY_VAL)
@@ -1133,8 +1133,8 @@ ZEND_BEGIN_ARG_INFO(CairoPatternRasterSource___construct_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, height)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void contruct(enum Cairo\Content, int width, int height)
-	Returns new Cairo\Pattern\RasterSource using supplied surface */
+/* {{{ proto void contruct(enum \Cairo\Content, int width, int height)
+	Returns new \Cairo\Pattern\RasterSource using supplied surface */
 PHP_METHOD(CairoPatternRasterSource, __construct)
 {
 	cairo_pattern_object *pattern_object;
@@ -1179,7 +1179,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternRasterSource_finish_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern Object management
+    \Cairo\Pattern Object management
 ------------------------------------------------------------------*/
 
 /* {{{ */
@@ -1234,7 +1234,7 @@ static zend_object* cairo_pattern_create_object(zend_class_entry *ce)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Pattern Definition and registration
+    \Cairo\Pattern Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_pattern_methods[] */

@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -58,9 +59,7 @@ PHP_METHOD(CairoStatus, getMessage)
 {
 	long status = 0;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	status = php_eos_datastructures_get_enum_value(getThis());
 
@@ -133,6 +132,7 @@ PHP_MINIT_FUNCTION(cairo_exception)
 	CAIRO_STATUS_DECLARE_ENUM(DEVICE_ERROR);
 	CAIRO_STATUS_DECLARE_ENUM(INVALID_MESH_CONSTRUCTION);
 	CAIRO_STATUS_DECLARE_ENUM(DEVICE_FINISHED);
+        CAIRO_STATUS_DECLARE_ENUM(LAST_STATUS);
 
 #if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 14, 0)
 	CAIRO_STATUS_DECLARE_ENUM(JBIG2_GLOBAL_MISSING);

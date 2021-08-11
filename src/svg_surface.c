@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -31,7 +32,7 @@ zend_class_entry *ce_cairo_svgsurface;
 zend_class_entry *ce_cairo_svgversion;
 
 /* ----------------------------------------------------------------
-    Cairo\Surface\Svg Class API
+    \Cairo\Surface\Svg Class API
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO(CairoSvgSurface___construct_args, ZEND_SEND_BY_VAL)
@@ -94,7 +95,7 @@ ZEND_BEGIN_ARG_INFO(CairoSvgSurface_restrictToVersion_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, version)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoSvgSurface->restrictToVersion(int version)
+/* {{{ proto void \Cairo\Surface\Svg::restrictToVersion(int version)
        Restricts the generated SVG file to version. This should be called before any drawing takes place on the surface */
 PHP_METHOD(CairoSvgSurface, restrictToVersion)
 {
@@ -119,7 +120,7 @@ ZEND_BEGIN_ARG_INFO(CairoSvgSurface_versionToString_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, version)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoSvgSurface::versionToString(int version)
+/* {{{ proto void \Cairo\Surface\Svg::versionToString(int version)
        Get the string representation of the given version id. This function will return NULL if version isn't valid. */
 PHP_METHOD(CairoSvgSurface, versionToString)
 {
@@ -137,7 +138,7 @@ PHP_METHOD(CairoSvgSurface, versionToString)
 ZEND_BEGIN_ARG_INFO(CairoSvgSurface_getVersions_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto array CairoSvgSurface::getVersions()
+/* {{{ proto array \Cairo\Surface\Svg::getVersions()
        Used to retrieve the list of supported versions */
 PHP_METHOD(CairoSvgSurface, getVersions)
 {
@@ -156,7 +157,7 @@ PHP_METHOD(CairoSvgSurface, getVersions)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Surface\Svg Definition and registration
+    \Cairo\Surface\Svg Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_svg_surface_methods[] */

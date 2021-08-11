@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -103,9 +104,10 @@ PHP_METHOD(CairoWin32FontFace, __construct)
     zval        *tmp;
     //char        *font_name = NULL;          
     
-    if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|a", &font_options) == FAILURE) {
-        return;
-    }
+    ZEND_PARSE_PARAMETERS_START(1,1)
+            Z_PARAM_OPTIONAL
+            Z_PARAM_ARRAY(font_options)
+    ZEND_PARSE_PARAMETERS_END();
 
     if (font_options) {
         /** Find values in font_options array and set them. Otherwise set defaults */

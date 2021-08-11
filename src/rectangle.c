@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -80,7 +81,7 @@ static inline long cairo_rectangle_get_property_value(zend_object *object, char 
 	zend_hash_str_update(props, m, sizeof(m)-1, &tmp);
 
 /* ----------------------------------------------------------------
-    Cairo\Rectangle C API
+    \Cairo\Rectangle C API
 ------------------------------------------------------------------*/
 
 /* {{{ */
@@ -94,7 +95,7 @@ cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Rectangle Class API
+    \Cairo\Rectangle Class API
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO_EX(CairoRectangle____construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
@@ -117,9 +118,13 @@ PHP_METHOD(CairoRectangle, __construct)
 	long height = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "height");
 
 	/* Now allow constructor to overwrite them if desired */
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "|llll", &x, &y, &width, &height) == FAILURE) {
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(0,4)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_LONG(x)
+                Z_PARAM_LONG(y)
+                Z_PARAM_LONG(width)
+                Z_PARAM_LONG(height)
+        ZEND_PARSE_PARAMETERS_END();
 
 	rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(getThis()));
 
@@ -131,7 +136,7 @@ PHP_METHOD(CairoRectangle, __construct)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Rectangle Object management
+    \Cairo\Rectangle Object management
 ------------------------------------------------------------------*/
 
 /* {{{ */
@@ -209,21 +214,12 @@ static zend_object* cairo_rectangle_clone_obj(zend_object *zobj)
 static zval *cairo_rectangle_object_read_property(zend_object *object, zend_string *member, int type, void **cache_slot, zval *rv)
 {
 	zval *retval;
-	//zval tmp_member;
 	double value;
 	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
 
 	if(!rectangle_object) {
 		return rv;
 	}
-
-	/*if(Z_TYPE_P(member) != IS_STRING) {
-		tmp_member = *member;
-		zval_copy_ctor(&tmp_member);
-		convert_to_string(&tmp_member);
-		member = &tmp_member;
-		cache_slot = NULL;
-	}*/
 
 	do {
 		CAIRO_VALUE_FROM_STRUCT(x,"x");
@@ -234,19 +230,11 @@ static zval *cairo_rectangle_object_read_property(zend_object *object, zend_stri
 		/* not a struct member */
 		retval = (zend_get_std_object_handlers())->read_property(object, member, type, cache_slot, rv);
 
-		/*if(member == &tmp_member) {
-			zval_dtor(member);
-		}*/
-
 		return retval;
 	} while(0);
 
 	retval = rv;
 	ZVAL_LONG(retval, value);
-
-	/*if(member == &tmp_member) {
-		zval_dtor(member);
-	}*/
 
 	return retval;
 }
@@ -255,22 +243,12 @@ static zval *cairo_rectangle_object_read_property(zend_object *object, zend_stri
 /* {{{ */
 static zval *cairo_rectangle_object_write_property(zend_object *object, zend_string *member, zval *value, void **cache_slot)
 {
-	//zval tmp_member;
 	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
         zval *retval = NULL;
         
 	if(!rectangle_object) {
 		return retval;
 	}
-
-
-	/*if(Z_TYPE_P(member) != IS_STRING) {
-		tmp_member = *member;
-		zval_copy_ctor(&tmp_member);
-		convert_to_string(&tmp_member);
-		member = &tmp_member;
-		cache_slot = NULL;
-	}*/
 
 	do {
 		CAIRO_VALUE_TO_STRUCT(x,"x");
@@ -283,9 +261,6 @@ static zval *cairo_rectangle_object_write_property(zend_object *object, zend_str
 	/* not a struct member */
 	retval = (zend_get_std_object_handlers())->write_property(object, member, value, cache_slot);
 
-	/*if(member == &tmp_member) {
-		zval_dtor(member);
-	}*/
         return retval;
 }
 /* }}} */
@@ -313,7 +288,7 @@ static HashTable *cairo_rectangle_object_get_properties(zend_object *object)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Rectangle Definition and registration
+    \Cairo\Rectangle Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_rectangle_methods[] */

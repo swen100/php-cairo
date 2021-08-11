@@ -1,6 +1,6 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
@@ -103,6 +103,7 @@ cairo_matrix_t *cairo_matrix_object_get_matrix(zval *zv)
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO_EX(CairoMatrix____construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+        ZEND_ARG_INFO(0, xx)
 	ZEND_ARG_INFO(0, yx)
 	ZEND_ARG_INFO(0, xy)
 	ZEND_ARG_INFO(0, yy)
@@ -133,7 +134,7 @@ PHP_METHOD(CairoMatrix, __construct)
                 Z_PARAM_DOUBLE(xy)
                 Z_PARAM_DOUBLE(yy)
                 Z_PARAM_DOUBLE(x0)
-                Z_PARAM_DOUBLE(x0)
+                Z_PARAM_DOUBLE(y0)
         ZEND_PARSE_PARAMETERS_END();
 
 	matrix_object = Z_CAIRO_MATRIX_P(getThis());

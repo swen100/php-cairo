@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -123,7 +124,7 @@ static zend_bool php_cairo_create_ft_font_face(pecl_ft_container *ft_container, 
 }
 
 /* ----------------------------------------------------------------
-    Cairo\FtFontFace Class API
+    \Cairo\FontFace\Ft Class API
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO_EX(CairoFtFontFace_construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
@@ -131,7 +132,7 @@ ZEND_BEGIN_ARG_INFO_EX(CairoFtFontFace_construct_args, ZEND_SEND_BY_VAL, ZEND_RE
 	ZEND_ARG_INFO(0, load_flags)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoFtFontFace::__construct(string fontFilename, long load_flags)
+/* {{{ proto \Cairo\FontFace\Ft::__construct(string fontFilename, long load_flags)
 	   Creates a new font face for the FreeType font backend from a pre-opened FreeType face. */
 PHP_METHOD(CairoFtFontFace, __construct)
 {
@@ -145,10 +146,11 @@ PHP_METHOD(CairoFtFontFace, __construct)
 	zend_bool owned_stream = 0;
 	php_stream_statbuf ssbuf;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "z|l", &stream_zval, &load_flags) == FAILURE)
-	{
-		return;
-	}
+        ZEND_PARSE_PARAMETERS_START(1,2)
+                Z_PARAM_ZVAL(stream_zval)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_LONG(load_flags)
+        ZEND_PARSE_PARAMETERS_END();
 
 	if(Z_TYPE_P(stream_zval) == IS_STRING) {
 		stream = php_stream_open_wrapper(Z_STRVAL_P(stream_zval), "rb", REPORT_ERRORS, NULL);
@@ -199,7 +201,7 @@ PHP_METHOD(CairoFtFontFace, __construct)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\FtFontFace Definition and registration
+    \Cairo\FontFace\Ft Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_ft_font_methods */

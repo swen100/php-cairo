@@ -1,13 +1,14 @@
 /*
   +----------------------------------------------------------------------+
-  | For PHP Version 7                                                    |
+  | For PHP Version 8                                                    |
   +----------------------------------------------------------------------+
   | Copyright (c) 2015 Elizabeth M Smith                                 |
   +----------------------------------------------------------------------+
   | http://www.opensource.org/licenses/mit-license.php  MIT License      |
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
-  | Author: Elizabeth M Smith <auroraeosrose@gmail.com>                  |
+  | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -42,7 +43,7 @@ static inline cairo_region_object *cairo_region_fetch_object(zend_object *object
 #define Z_CAIRO_REGION_P(zv) cairo_region_fetch_object(Z_OBJ_P(zv))
 
 /* ----------------------------------------------------------------
-    Cairo\Region Class API
+    \Cairo\Region Class API
 ------------------------------------------------------------------ */
 
 ZEND_BEGIN_ARG_INFO_EX(CairoRegion___construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
@@ -55,9 +56,7 @@ PHP_METHOD(CairoRegion, __construct)
 {
 	cairo_region_object *region_object;
 
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "") == FAILURE) {
-		return;
-	}
+	ZEND_PARSE_PARAMETERS_NONE();
 
 	region_object = Z_CAIRO_REGION_P(getThis());
 	if(!region_object) {
@@ -69,7 +68,7 @@ PHP_METHOD(CairoRegion, __construct)
 /* }}} */
 
 /* ----------------------------------------------------------------
-    Cairo\Region Definition and registration
+    \Cairo\Region Definition and registration
 ------------------------------------------------------------------*/
 
 /* {{{ cairo_region_methods[] */
@@ -82,7 +81,7 @@ const zend_function_entry cairo_region_methods[] = {
 /* {{{ PHP_MINIT_FUNCTION */
 PHP_MINIT_FUNCTION(cairo_region)
 {
-	zend_class_entry 	region_ce, overlap_ce;
+	zend_class_entry region_ce, overlap_ce;
 
 	memcpy(&cairo_region_object_handlers,
 		   zend_get_std_object_handlers(),
