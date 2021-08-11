@@ -18,18 +18,18 @@ object(Cairo\Pattern\Type)#%d (2) {
   ["__elements"]=>
   array(6) {
     ["SOLID"]=>
-    long(0)
+    int(0)
     ["SURFACE"]=>
-    long(1)
+    int(1)
     ["LINEAR"]=>
-    long(2)
+    int(2)
     ["RADIAL"]=>
-    long(3)
+    int(3)
     ["MESH"]=>
-    long(4)
+    int(4)
     ["RASTER_SOURCE"]=>
-    long(5)
+    int(5)
   }
   ["__value"]=>
-  long(0)
+  int(0)
 }

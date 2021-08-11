@@ -18,14 +18,14 @@ object(Cairo\Extend)#%d (2) {
   ["__elements"]=>
   array(4) {
     ["NONE"]=>
-    long(0)
+    int(0)
     ["REPEAT"]=>
-    long(1)
+    int(1)
     ["REFLECT"]=>
-    long(2)
+    int(2)
     ["PAD"]=>
-    long(3)
+    int(3)
   }
   ["__value"]=>
-  long(0)
+  int(0)
 }

@@ -24,7 +24,7 @@ try {
 --EXPECTF--
 object(Cairo\Status)#%d (2) {
   ["__elements"]=>
-  array(40) {
+  array(44) {
     ["SUCCESS"]=>
     int(0)
     ["NO_MEMORY"]=>
@@ -101,13 +101,21 @@ object(Cairo\Status)#%d (2) {
     int(36)
     ["DEVICE_FINISHED"]=>
     int(37)
-    ["JBIG2_GLOBAL_MISSING"]=>
-    int(38)
     ["LAST_STATUS"]=>
     int(43)
+    ["JBIG2_GLOBAL_MISSING"]=>
+    int(38)
+    ["WIN32_GDI_ERROR"]=>
+    int(41)
+    ["FREETYPE_ERROR"]=>
+    int(40)
+    ["PNG_ERROR"]=>
+    int(39)
+    ["TAG_ERROR"]=>
+    int(42)
   }
   ["__value"]=>
   int(0)
 }
 string(21) "no error has occurred"
-Cairo\Status::getMessage() expects exactly 0 parameters, 1 given
+Cairo\Status::getMessage() expects exactly 0 arguments, 1 given
