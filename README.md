@@ -16,7 +16,7 @@ Requirements
 =============
  * PHP 8.0.0+
  * Cairo 1.12.0+
- * [Eos\DataStructures](http://github.com/eos-org/datastructures) 0.1.1-dev
+ * [Eos\DataStructures](http://github.com/eos-org/datastructures) 1.0.1
 
 Additional features are supported up to Cairo version 1.16.2
 
