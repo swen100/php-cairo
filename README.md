@@ -1,11 +1,11 @@
-Cairo for PHP 7
+Cairo for PHP 8
 =============
 
 Cairo is a 2D graphics library with support for multiple output devices. Output
 targets include the X Window System (via both Xlib and XCB), Quartz, Win32,
 image buffers, PostScript, PDF, and SVG files.
 
-This extension provides access to Cairo functionality in PHP7 in the Cairo namespace
+This extension provides access to Cairo functionality in PHP8 in the Cairo namespace
 
 Status
 =============
@@ -14,11 +14,11 @@ There are plans to add appveyor and travis builds for testing
 
 Requirements
 =============
- * PHP 7.0.0-alpha1+
+ * PHP 8.0.0+
  * Cairo 1.12.0+
- * [Eos\DataStructures](http://github.com/eos-org/datastructures) 0.1.0-dev
+ * [Eos\DataStructures](http://github.com/eos-org/datastructures) 0.1.1-dev
 
-Additional features are supported up to Cairo version 1.14.2
+Additional features are supported up to Cairo version 1.16.2
 
 Features are enabled at compile time based on the library version they are compiled against.
 
@@ -67,7 +67,7 @@ make && make test && make install
 ```
 
 `make install` copies `cairo.so` to the right location, but you still need to enable the module
-in your php.ini file.  Although the extension can be used with a webserver, that is not recommended.
+in your php.ini file.
 
 Examples
 ====
