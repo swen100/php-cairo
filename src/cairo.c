@@ -246,6 +246,13 @@ PHP_MINFO_FUNCTION(cairo)
 		"disabled"
 #endif
 		);
+        php_info_print_table_row(2, "JPEG Support",
+#ifdef CAIRO_HAS_JPEG_FUNCTIONS
+		"enabled"
+#else
+		"disabled"
+#endif
+		);
 	php_info_print_table_row(2, "PDF Surface",
 #ifdef CAIRO_HAS_PDF_SURFACE
 		"enabled"
