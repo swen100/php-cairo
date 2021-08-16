@@ -219,6 +219,8 @@ typedef struct _cairo_context_object {
 extern cairo_context_object *cairo_context_fetch_object(zend_object *object);
 #define Z_CAIRO_CONTEXT_P(zv) cairo_context_fetch_object(Z_OBJ_P(zv))
 
+/* Rectangle */
+extern cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv);
 
 /* Classes to register */
 PHP_MINIT_FUNCTION(cairo_pattern);
