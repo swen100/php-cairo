@@ -310,6 +310,32 @@ PHP_METHOD(CairoRegion, equal)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO(CairoRegion_translate_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, dx)
+	ZEND_ARG_INFO(0, dy)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::translate(long dx, long dy)
+   Translates region by (dx , dy ). */
+PHP_METHOD(CairoRegion, translate)
+{
+        long dx, dy;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_LONG(dx)
+                Z_PARAM_LONG(dy)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        cairo_region_translate(region_object->region, dx, dy);
+        php_cairo_throw_exception(cairo_region_status(region_object->region));
+}
+/* }}} */
 
 
 /* ----------------------------------------------------------------
@@ -330,7 +356,7 @@ const zend_function_entry cairo_region_methods[] = {
         PHP_ME(CairoRegion, containsPoint, CairoRegion_containsPoint_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, containsRectangle, CairoRegion_containsRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, equal, CairoRegion_equal_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, translate, CairoRegion_translate_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, translate, CairoRegion_translate_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, intersect, CairoRegion_intersect_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, intersectRectangle, CairoRegion_intersectRectangle_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, subtract, CairoRegion_subtract_args, ZEND_ACC_PUBLIC)
