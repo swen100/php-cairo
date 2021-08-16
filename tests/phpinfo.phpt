@@ -21,6 +21,7 @@ Extension Version => %s
                         Surface Backends Available                        
 Image Surface => %s
 PNG Support => %s
+JPEG Support => %s
 PDF Surface => %s
 PS Surface => %s
 Xlib (X11, X.org) Surface => %s
