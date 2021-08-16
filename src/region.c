@@ -184,6 +184,62 @@ PHP_METHOD(CairoRegion, getStatus)
 }
 /* }}} */
 
+/* {{{ proto long \Cairo\Region::getNumRectangles()
+   Returns the number of rectangles contained in region. */
+PHP_METHOD(CairoRegion, getNumRectangles)
+{
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_NONE();
+
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        RETVAL_LONG( cairo_region_num_rectangles(region_object->region) );
+}
+/* }}} */
+
+/* {{{ proto long \Cairo\Region::isEmpty()
+   Checks whether region is empty. Returns TRUE if region is empty, FALSE if it isn't. */
+PHP_METHOD(CairoRegion, isEmpty)
+{
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_NONE();
+
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        RETVAL_BOOL( cairo_region_is_empty(region_object->region) );
+}
+/* }}} */
+
+/* {{{ proto long \Cairo\Region::containsPoint()
+   Checks whether (x , y ) is contained in region. Returns TRUE if (x , y ) is contained in region , FALSE if it is not. */
+PHP_METHOD(CairoRegion, containsPoint)
+{
+        long x, y;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_LONG(x)
+                Z_PARAM_LONG(y)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        RETVAL_BOOL( cairo_region_contains_point(region_object->region, x, y) );
+}
+/* }}} */
+
+
 /* ----------------------------------------------------------------
     \Cairo\Region Definition and registration
 ------------------------------------------------------------------*/
@@ -195,6 +251,9 @@ ZEND_END_ARG_INFO()
 const zend_function_entry cairo_region_methods[] = {
 	PHP_ME(CairoRegion, __construct, CairoRegion___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
         PHP_ME(CairoRegion, getStatus, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, getNumRectangles, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, isEmpty, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, containsPoint, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */
