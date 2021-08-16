@@ -18,6 +18,7 @@
 
 #include <cairo.h>
 #include <php.h>
+#include <zend_exceptions.h>
 
 #include <ext/eos_datastructures/php_eos_datastructures_api.h>
 
@@ -42,6 +43,66 @@ static inline cairo_region_object *cairo_region_fetch_object(zend_object *object
 
 #define Z_CAIRO_REGION_P(zv) cairo_region_fetch_object(Z_OBJ_P(zv))
 
+cairo_region_object *cairo_region_object_get(zval *zv)
+{
+	cairo_region_object *object = Z_CAIRO_REGION_P(zv);
+	if(object->region == NULL) {
+		zend_throw_exception_ex(ce_cairo_exception, 0,
+			"Internal region object missing in %s, you must call parent::__construct in extended classes",
+			ZSTR_VAL(Z_OBJCE_P(zv)->name));
+		return NULL;
+	}
+	return object;
+}
+
+/* ----------------------------------------------------------------
+    \Cairo\Region Object management
+------------------------------------------------------------------*/
+
+/* {{{ */
+static void cairo_region_free_obj(zend_object *object)
+{
+    cairo_region_object *intern = cairo_region_fetch_object(object);
+
+    if(!intern) {
+            return;
+    }
+
+    if (intern->region) {
+            cairo_region_destroy(intern->region);
+    }
+    intern->region = NULL;
+
+    zend_object_std_dtor(&intern->std);
+}
+
+/* {{{ */
+static zend_object* cairo_region_obj_ctor(zend_class_entry *ce, cairo_region_object **intern)
+{
+	cairo_region_object *object = ecalloc(1, sizeof(cairo_region_object) + zend_object_properties_size(ce));
+        
+        object->region = NULL;
+        
+	zend_object_std_init(&object->std, ce);
+	object->std.handlers = &cairo_region_object_handlers;
+	*intern = object;
+
+	return &object->std;
+}
+/* }}} */
+
+/* {{{ */
+static zend_object* cairo_region_create_object(zend_class_entry *ce)
+{
+	cairo_region_object *region_obj = NULL;
+	zend_object *return_value = cairo_region_obj_ctor(ce, &region_obj);
+
+	object_properties_init(&(region_obj->std), ce);
+	return return_value;
+}
+/* }}} */
+
+
 /* ----------------------------------------------------------------
     \Cairo\Region Class API
 ------------------------------------------------------------------ */
@@ -55,15 +116,71 @@ ZEND_END_ARG_INFO()
 PHP_METHOD(CairoRegion, __construct)
 {
 	cairo_region_object *region_object;
+        zval *rectangles_zval = NULL;
+        long num_rectangles = 0;
+        HashTable *rectangles_hash = NULL;
+        cairo_rectangle_int_t *rectangle, *rectangles_array;
+        int i = 0;
+        zval *pzval;
 
-	ZEND_PARSE_PARAMETERS_NONE();
+	ZEND_PARSE_PARAMETERS_START(0,1)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_ZVAL(rectangles_zval)
+        ZEND_PARSE_PARAMETERS_END();
 
 	region_object = Z_CAIRO_REGION_P(getThis());
 	if(!region_object) {
 		return;
 	}
-
+        
+        if( rectangles_zval == NULL ) {
+                region_object->region = cairo_region_create();
+        } else if( Z_TYPE_P(rectangles_zval) == IS_OBJECT ) {
+                rectangle = cairo_rectangle_object_get_rect(rectangles_zval);
+                region_object->region = cairo_region_create_rectangle(rectangle);
+        } else if( Z_TYPE_P(rectangles_zval) == IS_ARRAY ) {
+                
+                /* Grab the zend hash and see how big our array will be */
+                rectangles_hash = Z_ARRVAL_P(rectangles_zval);
+                num_rectangles = zend_hash_num_elements(rectangles_hash);
+                rectangles_array = emalloc(num_rectangles * sizeof(cairo_rectangle_int_t));
+                
+                /* iterate over the array*/
+                ZEND_HASH_FOREACH_VAL(rectangles_hash, pzval) {
+                    /* ToDo: check type of object. Has to be a \Cairo\Rectangle */
+                    if (Z_TYPE_P(pzval) != IS_OBJECT) {
+                            zend_throw_exception(ce_cairo_exception, "Cairo\\Region::__construct() expects parameter 1 to be empty or an object|array of Cairo\\Rectangle.", 0);
+                            return;
+                    }
+                    rectangles_array[i++] = *(cairo_rectangle_object_get_rect(pzval));
+                } ZEND_HASH_FOREACH_END();
+                
+                region_object->region = cairo_region_create_rectangles(rectangles_array, i);
+                
+        } else {
+            zend_throw_exception(ce_cairo_exception, "Cairo\\Region::__construct() expects parameter 1 to be empty or an object|array of Cairo\\Rectangle.", 0);
+            return;
+	}
+        
 	php_cairo_throw_exception(cairo_region_status(region_object->region));
+}
+/* }}} */
+
+/* {{{ proto long \Cairo\Region::getStatus()
+   Checks whether an error has previous occurred for this region object. Returns CAIRO_STATUS_SUCCESS or CAIRO_STATUS_NO_MEMORY */
+PHP_METHOD(CairoRegion, getStatus)
+{
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_NONE();
+
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_status(region_object->region));
 }
 /* }}} */
 
@@ -71,9 +188,13 @@ PHP_METHOD(CairoRegion, __construct)
     \Cairo\Region Definition and registration
 ------------------------------------------------------------------*/
 
+ZEND_BEGIN_ARG_INFO(CairoRegion_method_no_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+        
 /* {{{ cairo_region_methods[] */
 const zend_function_entry cairo_region_methods[] = {
 	PHP_ME(CairoRegion, __construct, CairoRegion___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+        PHP_ME(CairoRegion, getStatus, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */
@@ -88,11 +209,11 @@ PHP_MINIT_FUNCTION(cairo_region)
 		   sizeof(zend_object_handlers));
 
 	cairo_region_object_handlers.offset = XtOffsetOf(cairo_region_object, std);
-	//cairo_region_object_handlers.free_obj = cairo_region_free_obj;
+	cairo_region_object_handlers.free_obj = cairo_region_free_obj;
 
 	INIT_NS_CLASS_ENTRY(region_ce, CAIRO_NAMESPACE, "Region", cairo_region_methods);
-	ce_cairo_region = zend_register_internal_class(&region_ce);
-	//ce_cairo_region->create_object = cairo_region_create_object;
+	region_ce.create_object = cairo_region_create_object;
+        ce_cairo_region = zend_register_internal_class(&region_ce);
 
 	INIT_NS_CLASS_ENTRY(overlap_ce,  CAIRO_NAMESPACE, ZEND_NS_NAME("Region", "Overlap"), NULL);
 	ce_cairo_region_overlap = zend_register_internal_class_ex(&overlap_ce, php_eos_datastructures_get_enum_ce());
