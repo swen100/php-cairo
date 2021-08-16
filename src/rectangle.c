@@ -24,14 +24,10 @@
 #include "php_cairo_internal.h"
 
 zend_class_entry *ce_cairo_rectangle;
+
 static zend_object_handlers cairo_rectangle_object_handlers; 
 
-typedef struct _cairo_rectangle_object {
-	cairo_rectangle_int_t *rect;
-	zend_object std;
-} cairo_rectangle_object;
-
-static inline cairo_rectangle_object *cairo_rectangle_fetch_object(zend_object *object)
+cairo_rectangle_object *cairo_rectangle_fetch_object(zend_object *object)
 {
 	return (cairo_rectangle_object *) ((char*)(object) - XtOffsetOf(cairo_rectangle_object, std));
 }
@@ -58,8 +54,6 @@ static inline long cairo_rectangle_get_property_value(zend_object *object, char 
 	prop = zend_read_property(object->ce, object, name, strlen(name), 1, &rv);
 	return zval_get_long(prop);
 }
-
-#define Z_CAIRO_RECTANGLE_P(zv) cairo_rectangle_fetch_object(zv)
 
 #define CAIRO_ALLOC_RECT(rect_value) if (!rect_value) \
 	{ rect_value = ecalloc(sizeof(cairo_rectangle_int_t), 1); }
