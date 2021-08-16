@@ -102,6 +102,22 @@ static zend_object* cairo_region_create_object(zend_class_entry *ce)
 }
 /* }}} */
 
+/* {{{ */
+static zend_object* cairo_region_clone_obj(zend_object *old_object) 
+{
+	cairo_region_object *new_region;
+	cairo_region_object *old_region = cairo_region_fetch_object(old_object);
+	zend_object *return_value = cairo_region_obj_ctor(old_object->ce, &new_region);
+
+        new_region->region = old_region->region;
+        cairo_region_reference(old_region->region);
+
+	zend_objects_clone_members(&new_region->std, &old_region->std);
+
+	return return_value;
+}
+/* }}} */
+
 
 /* ----------------------------------------------------------------
     \Cairo\Region Class API
@@ -307,6 +323,7 @@ PHP_MINIT_FUNCTION(cairo_region)
 
 	cairo_region_object_handlers.offset = XtOffsetOf(cairo_region_object, std);
 	cairo_region_object_handlers.free_obj = cairo_region_free_obj;
+        cairo_region_object_handlers.clone_obj = cairo_region_clone_obj;
 
 	INIT_NS_CLASS_ENTRY(region_ce, CAIRO_NAMESPACE, "Region", cairo_region_methods);
 	region_ce.create_object = cairo_region_create_object;
