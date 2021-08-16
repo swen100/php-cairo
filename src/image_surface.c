@@ -372,7 +372,9 @@ static const zend_function_entry cairo_imagesurface_methods[] = {
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 	PHP_ME(CairoImageSurface, createFromPng, CairoImageSurface_createFromPng_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 #endif
+#ifdef CAIRO_HAS_JPEG_FUNCTIONS
         PHP_ME(CairoImageSurface, createFromJpeg, CairoImageSurface_createFromJpeg_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+#endif
 	ZEND_FE_END
 };
 /* }}} */
