@@ -281,6 +281,37 @@ PHP_METHOD(CairoRegion, containsPoint)
 /* }}} */
 
 
+ZEND_BEGIN_ARG_INFO(CairoRegion_equal_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
+ZEND_END_ARG_INFO()
+        
+/* {{{ proto long \Cairo\Region::equal()
+   Compares whether region_a is equivalent to region_b. NULL as an argument is equal to itself, but not to any non-NULL region. */
+PHP_METHOD(CairoRegion, equal)
+{
+        zval *other_region = NULL;
+	cairo_region_object *region_obj, *other_region_obj;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS_OR_NULL(other_region, ce_cairo_region)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_obj = cairo_region_object_get(getThis());
+	if (!region_obj) {
+            return;
+        }
+        
+        if (other_region == NULL) {
+            RETURN_TRUE;
+        }
+        
+        other_region_obj = Z_CAIRO_REGION_P(other_region);
+        RETVAL_BOOL( cairo_region_equal(region_obj->region, other_region_obj->region) );
+}
+/* }}} */
+
+
+
 /* ----------------------------------------------------------------
     \Cairo\Region Definition and registration
 ------------------------------------------------------------------*/
@@ -298,7 +329,7 @@ const zend_function_entry cairo_region_methods[] = {
         PHP_ME(CairoRegion, isEmpty, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, containsPoint, CairoRegion_containsPoint_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, containsRectangle, CairoRegion_containsRectangle_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, equal, CairoRegion_equal_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, equal, CairoRegion_equal_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, translate, CairoRegion_translate_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, intersect, CairoRegion_intersect_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, intersectRectangle, CairoRegion_intersectRectangle_args, ZEND_ACC_PUBLIC)
