@@ -2,20 +2,24 @@
 new Cairo\Surface\Pdf [__construct() method ]
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
-if(!in_array('PDF', Cairo::availableSurfaces())) die('skip - PDF surface not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
+if (!in_array('PDF', Cairo::availableSurfaces())) {
+    die('skip - PDF surface not available');
+}
 ?>
 --FILE--
 <?php
 $surface = new Cairo\Surface\Pdf(NULL, 50, 50);
 var_dump($surface);
 
-$surface = new Cairo\Surface\Pdf(dirname(__FILE__) . '/nametest.pdf', 50, 50);
-var_dump($surface);
+$surface2 = new Cairo\Surface\Pdf(dirname(__FILE__) . '/nametest.pdf', 50, 50);
+var_dump($surface2);
 
 $fp = fopen(dirname(__FILE__) . '/streamtest.pdf', 'wb');
-$surface = new Cairo\Surface\Pdf($fp, 50, 50);
-var_dump($surface);
+$surface3 = new Cairo\Surface\Pdf($fp, 50, 50);
+var_dump($surface3);
 
 /* Wrong number args - 1 */
 try {
