@@ -311,6 +311,39 @@ PHP_METHOD(CairoRegion, containsPoint)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO_EX(CairoRegion_containsRectangle_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+	ZEND_ARG_INFO(0, rectangle)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::containsRectangle(Cairo\Rectangle $rect)
+   Checks whether rectangle is inside, outside or partially contained in region.
+   Returns CAIRO_REGION_OVERLAP_IN if rectangle is entirely inside region,
+   CAIRO_REGION_OVERLAP_OUT if rectangle is entirely outside region, or
+   CAIRO_REGION_OVERLAP_PART if rectangle is partially inside and partially outside region. */
+PHP_METHOD(CairoRegion, containsRectangle)
+{
+        zval *rectangle_zval;
+        cairo_rectangle_object *rectangle_object;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(rectangle_zval, ce_cairo_rectangle)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        if (!rectangle_object) {
+            return;
+        }
+        
+        object_init_ex(return_value, ce_cairo_region_overlap);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_contains_rectangle(region_object->region, rectangle_object->rect));
+}
+/* }}} */
 
 ZEND_BEGIN_ARG_INFO(CairoRegion_equal_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
@@ -395,6 +428,37 @@ PHP_METHOD(CairoRegion, intersect)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO_EX(CairoRegion_intersectRectangle_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+	ZEND_ARG_INFO(0, rectangle)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::intersectRectangle(Cairo\Rectangle $rect)
+   Computes the intersection with rectangle and stores the result. */
+PHP_METHOD(CairoRegion, intersectRectangle)
+{
+        zval *rectangle_zval;
+        cairo_rectangle_object *rectangle_object;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(rectangle_zval, ce_cairo_rectangle)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        if (!rectangle_object) {
+            return;
+        }
+        
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_intersect_rectangle(region_object->region, rectangle_object->rect));
+}
+/* }}} */
+
 ZEND_BEGIN_ARG_INFO(CairoRegion_subtract_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
 ZEND_END_ARG_INFO()
@@ -422,6 +486,37 @@ PHP_METHOD(CairoRegion, subtract)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO_EX(CairoRegion_subtractRectangle_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+	ZEND_ARG_INFO(0, rectangle)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::subtractRectangle(Cairo\Rectangle $rect)
+   Subtracts rectangle from region and stores the result. */
+PHP_METHOD(CairoRegion, subtractRectangle)
+{
+        zval *rectangle_zval;
+        cairo_rectangle_object *rectangle_object;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(rectangle_zval, ce_cairo_rectangle)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        if (!rectangle_object) {
+            return;
+        }
+        
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_subtract_rectangle(region_object->region, rectangle_object->rect));
+}
+/* }}} */
+
 ZEND_BEGIN_ARG_INFO(CairoRegion_union_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
 ZEND_END_ARG_INFO()
@@ -446,6 +541,37 @@ PHP_METHOD(CairoRegion, union)
 
         object_init_ex(return_value, ce_cairo_status);
         php_eos_datastructures_set_enum_value(return_value, cairo_region_union(region_obj->region, other_region_obj->region));
+}
+/* }}} */
+
+ZEND_BEGIN_ARG_INFO_EX(CairoRegion_unionRectangle_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+	ZEND_ARG_INFO(0, rectangle)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::unionRectangle(Cairo\Rectangle $rect)
+   Computes the union of region with rectangle and stores the result. */
+PHP_METHOD(CairoRegion, unionRectangle)
+{
+        zval *rectangle_zval;
+        cairo_rectangle_object *rectangle_object;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(rectangle_zval, ce_cairo_rectangle)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        if (!rectangle_object) {
+            return;
+        }
+        
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_union_rectangle(region_object->region, rectangle_object->rect));
 }
 /* }}} */
 
@@ -477,6 +603,38 @@ PHP_METHOD(CairoRegion, xor)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO_EX(CairoRegion_xorRectangle_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+	ZEND_ARG_INFO(0, rectangle)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::xorRectangle(Cairo\Rectangle $rect)
+   Computes the exclusive difference of region with rectangle and stores the result.
+   That is, region will be set to contain all areas that are either in region or in rectangle, but not in both. */
+PHP_METHOD(CairoRegion, xorRectangle)
+{
+        zval *rectangle_zval;
+        cairo_rectangle_object *rectangle_object;
+	cairo_region_object *region_object;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(rectangle_zval, ce_cairo_rectangle)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        if (!rectangle_object) {
+            return;
+        }
+        
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_xor_rectangle(region_object->region, rectangle_object->rect));
+}
+/* }}} */
+
 
 
 
@@ -496,17 +654,17 @@ const zend_function_entry cairo_region_methods[] = {
         PHP_ME(CairoRegion, getRectangle, CairoRegion_getRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, isEmpty, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, containsPoint, CairoRegion_containsPoint_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, containsRectangle, CairoRegion_containsRectangle_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, containsRectangle, CairoRegion_containsRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, equal, CairoRegion_equal_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, translate, CairoRegion_translate_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, intersect, CairoRegion_intersect_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, intersectRectangle, CairoRegion_intersectRectangle_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, intersectRectangle, CairoRegion_intersectRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, subtract, CairoRegion_subtract_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, subtractRectangle, CairoRegion_subtractRectangle_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, subtractRectangle, CairoRegion_subtractRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, union, CairoRegion_union_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, unionRectangle, CairoRegion_unionRectangle_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, unionRectangle, CairoRegion_unionRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, xor, CairoRegion_xor_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, xorRectangle, CairoRegion_xorRectangle_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, xorRectangle, CairoRegion_xorRectangle_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */

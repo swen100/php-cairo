@@ -29,14 +29,14 @@ var_dump( $region2->getNumRectangles() );
 /* Wrong number args */
 try {
     $region->union(1);
-    trigger_error('equal intersect arg 1 of type Cairo\Region');
+    trigger_error('Cairo\Region::union(): Argument #1 ($region) must be of type Cairo\Region');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->union($region2, 'foo');
-    trigger_error('equal intersect arg 1 of type Cairo\Region');
+    trigger_error('Cairo\Region::union() expects exactly 1 argument, 2 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
