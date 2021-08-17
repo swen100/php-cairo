@@ -163,11 +163,11 @@ PHP_METHOD(CairoRegion, __construct)
                 
                 /* iterate over the array*/
                 ZEND_HASH_FOREACH_VAL(rectangles_hash, pzval) {
-                    /* ToDo: check type of object. Has to be a \Cairo\Rectangle */
-                    if (Z_TYPE_P(pzval) != IS_OBJECT) {
-                            zend_throw_exception(ce_cairo_exception, "Cairo\\Region::__construct() expects parameter 1 to be empty or an object|array of Cairo\\Rectangle.", 0);
-                            return;
-                    }
+                        /* ToDo: check type of object. Has to be a \Cairo\Rectangle */
+                        if (Z_TYPE_P(pzval) != IS_OBJECT) {
+                                zend_throw_exception(ce_cairo_exception, "Cairo\\Region::__construct() expects parameter 1 to be empty or an object|array of Cairo\\Rectangle.", 0);
+                                return;
+                        }
                     rectangles_array[i++] = *(cairo_rectangle_object_get_rect(pzval));
                 } ZEND_HASH_FOREACH_END();
                 
@@ -234,6 +234,37 @@ PHP_METHOD(CairoRegion, getNumRectangles)
         }
         
         RETVAL_LONG( cairo_region_num_rectangles(region_object->region) );
+}
+/* }}} */
+
+ZEND_BEGIN_ARG_INFO(CairoRegion_getRectangle_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, number)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::getRectangle(int number).
+   Returns the nth rectangle in region or false if rectangle does not exist. */
+PHP_METHOD(CairoRegion, getRectangle)
+{
+        long rectId;
+	cairo_region_object *region_object;
+        cairo_rectangle_object *rectangle_object;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_LONG(rectId)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_object = cairo_region_object_get(getThis());
+	if (!region_object) {
+            return;
+        }
+        
+        if (rectId > cairo_region_num_rectangles(region_object->region) ) {
+            RETURN_FALSE;
+        }
+        
+        object_init_ex(return_value, ce_cairo_rectangle);
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(return_value));
+        cairo_region_get_rectangle(region_object->region, --rectId, rectangle_object->rect);
 }
 /* }}} */
 
@@ -462,7 +493,7 @@ const zend_function_entry cairo_region_methods[] = {
         PHP_ME(CairoRegion, getStatus, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, getExtents, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, getNumRectangles, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, getRectangle, CairoRegion_getRectangle_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, getRectangle, CairoRegion_getRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, isEmpty, CairoRegion_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, containsPoint, CairoRegion_containsPoint_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, containsRectangle, CairoRegion_containsRectangle_args, ZEND_ACC_PUBLIC)
