@@ -364,6 +364,90 @@ PHP_METHOD(CairoRegion, intersect)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO(CairoRegion_subtract_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::subtract(\Cairo\Region other_region)
+   Subtracts other_region and stores the result. */
+PHP_METHOD(CairoRegion, subtract)
+{
+        zval *other_region;
+	cairo_region_object *region_obj, *other_region_obj;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(other_region, ce_cairo_region)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_obj = cairo_region_object_get(getThis());
+	if (!region_obj) {
+            return;
+        }
+        
+        other_region_obj = Z_CAIRO_REGION_P(other_region);
+
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_subtract(region_obj->region, other_region_obj->region));
+}
+/* }}} */
+
+ZEND_BEGIN_ARG_INFO(CairoRegion_union_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::union(\Cairo\Region other_region)
+   Computes the union with other_region and stores the result. */
+PHP_METHOD(CairoRegion, union)
+{
+        zval *other_region;
+	cairo_region_object *region_obj, *other_region_obj;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(other_region, ce_cairo_region)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_obj = cairo_region_object_get(getThis());
+	if (!region_obj) {
+            return;
+        }
+        
+        other_region_obj = Z_CAIRO_REGION_P(other_region);
+
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_union(region_obj->region, other_region_obj->region));
+}
+/* }}} */
+
+ZEND_BEGIN_ARG_INFO(CairoRegion_xor_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_OBJ_INFO(0, region, Cairo\\Region, 0)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto long \Cairo\Region::xor(\Cairo\Region other_region)
+   Computes the exclusive difference with other_region and stores the result.
+   That is, region will be set to contain all areas that are either in region or in other_region, but not in both. */
+PHP_METHOD(CairoRegion, xor)
+{
+        zval *other_region;
+	cairo_region_object *region_obj, *other_region_obj;
+
+	ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(other_region, ce_cairo_region)
+        ZEND_PARSE_PARAMETERS_END();
+
+        region_obj = cairo_region_object_get(getThis());
+	if (!region_obj) {
+            return;
+        }
+        
+        other_region_obj = Z_CAIRO_REGION_P(other_region);
+
+        object_init_ex(return_value, ce_cairo_status);
+        php_eos_datastructures_set_enum_value(return_value, cairo_region_xor(region_obj->region, other_region_obj->region));
+}
+/* }}} */
+
+
+
 
 /* ----------------------------------------------------------------
     \Cairo\Region Definition and registration
@@ -386,11 +470,11 @@ const zend_function_entry cairo_region_methods[] = {
         PHP_ME(CairoRegion, translate, CairoRegion_translate_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoRegion, intersect, CairoRegion_intersect_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, intersectRectangle, CairoRegion_intersectRectangle_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, subtract, CairoRegion_subtract_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, subtract, CairoRegion_subtract_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, subtractRectangle, CairoRegion_subtractRectangle_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, union, CairoRegion_union_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, union, CairoRegion_union_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, unionRectangle, CairoRegion_unionRectangle_args, ZEND_ACC_PUBLIC)
-//        PHP_ME(CairoRegion, xor, CairoRegion_xor_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoRegion, xor, CairoRegion_xor_args, ZEND_ACC_PUBLIC)
 //        PHP_ME(CairoRegion, xorRectangle, CairoRegion_xorRectangle_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
