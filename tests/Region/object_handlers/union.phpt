@@ -15,14 +15,14 @@ var_dump( $region->getExtents() );
 $rectangle = new Cairo\Rectangle(10,10,100,100);
 $region2 = new Cairo\Region($rectangle);
 var_dump( $region2->getNumRectangles() );
-$region->union($region2);
+var_dump( $region->union($region2) == \CAIRO\STATUS::SUCCESS );
 var_dump( $region->getExtents() );
 
 $rectangle2 = new Cairo\Rectangle(80,10,40,110);
 $region3 = new Cairo\Region($rectangle2);
 var_dump( $region3->getNumRectangles() );
 var_dump( $region2->getExtents() );
-$region2->union($region3);
+var_dump( $region2->union($region3) == \CAIRO\STATUS::SUCCESS );
 var_dump( $region2->getExtents() );
 var_dump( $region2->getNumRectangles() );
 
@@ -55,6 +55,7 @@ object(Cairo\Rectangle)#%d (4) {
   int(0)
 }
 int(1)
+bool(true)
 object(Cairo\Rectangle)#%d (4) {
   ["x"]=>
   int(10)
@@ -76,6 +77,7 @@ object(Cairo\Rectangle)#%d (4) {
   ["height"]=>
   int(100)
 }
+bool(true)
 object(Cairo\Rectangle)#%d (4) {
   ["x"]=>
   int(10)

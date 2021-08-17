@@ -1,5 +1,5 @@
 --TEST--
-Cairo\Region->getStatus() method
+Cairo\Region->getRectangle() method
 --EXTENSIONS--
 eos_datastructures
 --SKIPIF--
