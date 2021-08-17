@@ -11,12 +11,12 @@ if (!in_array('RECORDING', Cairo::availableSurfaces())) {
 ?>
 --FILE--
 <?php
-$surface = new Cairo\Surface\Recording(Cairo\Surface\Content::COLOR_ALPHA);
+$surface = new Cairo\Surface\Recording(\Cairo\Surface\Content::COLOR_ALPHA);
 var_dump($surface);
 
 $extents = ['x' => 0, 'y' => 0, 'width' => 400, 'height' => 400];
-$surface = new Cairo\Surface\Recording(Cairo\Surface\Content::COLOR_ALPHA, $extents);
-var_dump($surface);
+$surface2 = new Cairo\Surface\Recording(\Cairo\Surface\Content::COLOR_ALPHA, $extents);
+var_dump($surface2);
 
 /* Wrong number args - 1 */
 try {
@@ -57,5 +57,5 @@ object(Cairo\Surface\Recording)#%d (0) {
 }
 Cairo\Surface\Recording::__construct() expects at least 1 argument, 0 given
 Cairo\Surface\Recording::__construct() expects at most 2 arguments, 4 given
-Cairo\Surface\Recording::__construct() expects parameter 1 to be int, array given
-Cairo\Surface\Recording::__construct() expects parameter 2 to be array, int given
+Cairo\Surface\Recording::__construct(): Argument #1 ($content) must be of type int, array given
+Cairo\Surface\Recording::__construct(): Argument #2 ($extents) must be of type array, int given

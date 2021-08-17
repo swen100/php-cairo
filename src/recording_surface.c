@@ -31,9 +31,10 @@ static double php_cairo_get_double_from_array(zval *val, const char *name)
 {
 	zval *tmp;
         
-        //zend_string *key = zend_string_init(name, sizeof(name)-1, 0);
-	//if ((tmp = zend_hash_(Z_ARR_P(val), key)) != NULL) {
-        if ((tmp = zend_hash_str_find(Z_ARR_P(val), name, sizeof(name)-1)) != NULL) {
+        //zend_string *key = zend_string_init_fast(name, strlen(name));
+        //tmp = zend_hash_find(Z_ARR_P(val), key);
+        tmp = zend_hash_str_find(Z_ARRVAL_P(val), name, strlen(name));
+	if (tmp != NULL) {
 		if (Z_TYPE_P(tmp) != IS_DOUBLE) {
 			convert_to_double(tmp);
 		}
@@ -65,7 +66,7 @@ ZEND_BEGIN_ARG_INFO(CairoRecordingSurface___construct_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, extents)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoRecordingSurface __construct(int content, array extents)
+/* {{{ proto \Cairo\RecordingSurface::__construct(int content, array extents)
        Returns new CairoRecordingSurface */
 PHP_METHOD(CairoRecordingSurface, __construct)
 {
@@ -76,6 +77,7 @@ PHP_METHOD(CairoRecordingSurface, __construct)
 
         ZEND_PARSE_PARAMETERS_START(1,2)
                 Z_PARAM_LONG(content)
+                Z_PARAM_OPTIONAL
                 Z_PARAM_ARRAY(extents)
         ZEND_PARSE_PARAMETERS_END();
 
@@ -99,11 +101,14 @@ PHP_METHOD(CairoRecordingSurface, __construct)
 /* }}} */
 
 
-ZEND_BEGIN_ARG_INFO(CairoRecordingSurface_inkExtents_args, ZEND_SEND_BY_VAL)
+ZEND_BEGIN_ARG_INFO(CairoRecordingSurface_method_no_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto CairoRecordingSurface create(int content, array extents)
-       Returns new CairoRecordingSurface object */
+/* {{{ proto \Cairo\RecordingSurface::inkExtents()
+       Measures the extents of the operations stored within the recording-surface.
+       This is useful to compute the required size of an image surface (or equivalent)
+       into which to replay the full sequence of drawing operations.
+       Returns array(x, y, width, height) */
 PHP_METHOD(CairoRecordingSurface, inkExtents)
 {
 	cairo_surface_object *surface_object;
@@ -125,13 +130,48 @@ PHP_METHOD(CairoRecordingSurface, inkExtents)
 }
 /* }}} */
 
+
+/* {{{ proto \Cairo\RecordingSurface::getExtents()
+       Get the extents of the recording-surface.
+       Returns \Cairo\Rectangle if the surface is bounded and not in an error state, otherwise FALSE */
+PHP_METHOD(CairoRecordingSurface, getExtents)
+{
+	cairo_surface_object *surface_object;
+        cairo_rectangle_object *rectangle_object;
+        cairo_rectangle_t *rectangle = ecalloc(1, sizeof(cairo_rectangle_t));
+        
+        ZEND_PARSE_PARAMETERS_NONE();
+
+        surface_object = Z_CAIRO_SURFACE_P(getThis());
+	if(!surface_object) {
+            return;
+        }
+        
+        if (cairo_recording_surface_get_extents(surface_object->surface, rectangle) == IS_FALSE) {
+            efree(rectangle);
+            //php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+            RETURN_FALSE;
+        }
+        
+        object_init_ex(return_value, ce_cairo_rectangle);
+        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(return_value));
+        rectangle_object->rect->x = rectangle->x;
+        rectangle_object->rect->y = rectangle->y;
+        rectangle_object->rect->width = rectangle->width;
+        rectangle_object->rect->height = rectangle->height;
+        efree(rectangle);
+}
+/* }}} */
+
+
 /* ----------------------------------------------------------------
-    Cairo\Surface\Recording Definition and registration
+    \Cairo\RecordingSurface Definition and registration
 ------------------------------------------------------------------*/
 
 const zend_function_entry cairo_recording_surface_methods[] = {
     PHP_ME(CairoRecordingSurface, __construct, CairoRecordingSurface___construct_args, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
-    PHP_ME(CairoRecordingSurface, inkExtents, CairoRecordingSurface_inkExtents_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoRecordingSurface, inkExtents, CairoRecordingSurface_method_no_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoRecordingSurface, getExtents, CairoRecordingSurface_method_no_args, ZEND_ACC_PUBLIC)
     ZEND_FE_END
 };
 
