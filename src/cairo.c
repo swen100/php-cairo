@@ -114,6 +114,9 @@ PHP_METHOD(Cairo, availableSurfaces)
 #ifdef CAIRO_HAS_XLIB_SURFACE
 	add_next_index_string(return_value,"XLIB");
 #endif
+#ifdef CAIRO_HAS_RECORDING_SURFACE
+	add_next_index_string(return_value,"RECORDING");
+#endif
 #ifdef CAIRO_HAS_QUARTZ_SURFACE
 	add_next_index_string(return_value,"QUARTZ");
 #endif
