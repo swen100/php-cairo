@@ -553,6 +553,82 @@ PHP_METHOD(CairoSurface, hasShowTextGlyphs)
 /* }}} */
 
 
+ZEND_BEGIN_ARG_INFO(CairoSurface_mapToImage_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, rectangle)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto CairoSurface object \Cairo\Surface::mapToImage([\Cairo\Rectangle rectangle])
+       .... */
+PHP_METHOD(CairoSurface, mapToImage)
+{
+	cairo_surface_object *surface_object, *new_surface_object;
+	cairo_surface_t *new_surface;
+	zval *rectangle_zval = NULL;
+        cairo_rectangle_object *rectangle_object;
+
+        ZEND_PARSE_PARAMETERS_START(0,1)
+                Z_PARAM_OPTIONAL
+                Z_PARAM_OBJECT_OF_CLASS(rectangle_zval, ce_cairo_rectangle)
+        ZEND_PARSE_PARAMETERS_END();
+        
+	surface_object = cairo_surface_object_get(getThis());
+	if(!surface_object) {
+            return;
+        }
+        
+        if (rectangle_zval != NULL && Z_TYPE_P(rectangle_zval) == IS_OBJECT ) {
+                rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+                new_surface = cairo_surface_map_to_image(surface_object->surface, rectangle_object->rect);
+                cairo_surface_reference(new_surface);
+        } else {
+                new_surface = cairo_surface_map_to_image(surface_object->surface, NULL);
+        }
+
+        object_init_ex(return_value, ce_cairo_imagesurface);
+	new_surface_object = Z_CAIRO_SURFACE_P(return_value);
+        
+	if(!new_surface_object) {
+		return;
+        }
+        
+	new_surface_object->surface = new_surface;
+        php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+}
+/* }}} */
+
+
+ZEND_BEGIN_ARG_INFO(CairoSurface_unmapImage_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, image_surface)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto CairoSurface object \Cairo\Surface::unmapImage([\Cairo\Sourface\Image image_surface])
+       .... */
+PHP_METHOD(CairoSurface, unmapImage)
+{
+	cairo_surface_object *surface_object, *image_surface_object;
+	zval *image_surface_zval;
+
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_OBJECT_OF_CLASS(image_surface_zval, ce_cairo_surface)
+        ZEND_PARSE_PARAMETERS_END();
+        
+	surface_object = cairo_surface_object_get(getThis());
+	if(!surface_object) {
+            return;
+        }
+        
+        image_surface_object = cairo_surface_object_get(image_surface_zval);
+        if(!image_surface_object) {
+            return;
+        }
+        
+        cairo_surface_unmap_image(surface_object->surface, image_surface_object->surface);
+        
+        php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+}
+/* }}} */
+
+
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 
 ZEND_BEGIN_ARG_INFO(CairoSurface_writeToPng_args, ZEND_SEND_BY_VAL)
@@ -607,6 +683,8 @@ PHP_METHOD(CairoSurface, writeToPng)
 #endif
 
 
+#ifdef CAIRO_HAS_JPEG_FUNCTIONS
+
 ZEND_BEGIN_ARG_INFO(CairoSurface_writeToJpeg_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, file)
         ZEND_ARG_INFO(0, quality)
@@ -660,6 +738,7 @@ PHP_METHOD(CairoSurface, writeToJpeg)
         php_cairo_throw_exception(status);
 }
 /* }}} */
+#endif
 
 
 /* ----------------------------------------------------------------
@@ -864,6 +943,8 @@ static const zend_function_entry cairo_surface_methods[] = {
         PHP_ME(CairoSurface, showPage, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, copyPage, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, hasShowTextGlyphs, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, mapToImage, CairoSurface_mapToImage_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, unmapImage, CairoSurface_unmapImage_args, ZEND_ACC_PUBLIC)
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
         PHP_ME(CairoSurface, writeToPng, CairoSurface_writeToPng_args, ZEND_ACC_PUBLIC)
 #endif
