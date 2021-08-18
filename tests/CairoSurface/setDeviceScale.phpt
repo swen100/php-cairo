@@ -5,6 +5,9 @@ Cairo\Surface->setDeviceScale() method
 if (!extension_loaded('cairo')) {
     die('skip - Cairo extension not available');
 }
+if (!method_exists('Cairo\Surface', 'setDeviceScale')) {
+    die('skip - Cairo\Surface->setDeviceScale not available');
+}
 ?>
 --FILE--
 <?php

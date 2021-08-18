@@ -2,8 +2,12 @@
 Cairo\Surface->hasShowTextGlyphs() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
-if(!method_exists('Cairo\Surface', 'hasShowTextGlyphs')) die('skip - Cairo\Surface->hasShowTextGlyphs not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
+if (!method_exists('Cairo\Surface', 'hasShowTextGlyphs')) {
+    die('skip - Cairo\Surface->hasShowTextGlyphs not available');
+}
 ?>
 --FILE--
 <?php
