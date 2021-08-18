@@ -102,6 +102,48 @@ PHP_METHOD(CairoSurface, createSimilar)
 }
 /* }}} */
 
+
+ZEND_BEGIN_ARG_INFO(CairoSurface_createSimilarImage_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, format)
+	ZEND_ARG_INFO(0, width)
+	ZEND_ARG_INFO(0, height)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto CairoSurface object \Cairo\Surface::createSimilarImage(int format, double width, double height)
+       Create a new image surface that is as compatible as possible for uploading to and the use in conjunction with an existing surface.
+       Unlike cairo_surface_create_similar() the new image surface won't inherit the device scale from other. */
+PHP_METHOD(CairoSurface, createSimilarImage)
+{
+	cairo_surface_object *surface_object, *new_surface_object;
+	cairo_surface_t *new_surface;
+	zend_long format;
+	double width, height;
+
+        ZEND_PARSE_PARAMETERS_START(3,3)
+                Z_PARAM_LONG(format)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
+        
+	surface_object = cairo_surface_object_get(getThis());
+	if(!surface_object) {
+            return;
+        }
+	new_surface = cairo_surface_create_similar_image(surface_object->surface, format, width, height);
+
+        /* --> because of used method php_cairo_get_surface_ce() should always give 'ce_cairo_imagesurface' */
+        object_init_ex(return_value, php_cairo_get_surface_ce(new_surface));
+	new_surface_object = Z_CAIRO_SURFACE_P(return_value);
+        
+	if(!new_surface_object) {
+		return;
+        }
+        
+	new_surface_object->surface = new_surface;
+}
+/* }}} */
+
+
 ZEND_BEGIN_ARG_INFO(CairoSurface_createForRectangle_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, x)
 	ZEND_ARG_INFO(0, y)
@@ -332,6 +374,60 @@ PHP_METHOD(CairoSurface, getDeviceOffset)
 	add_next_index_double(return_value, y);
 }
 /* }}} */
+
+
+ZEND_BEGIN_ARG_INFO(CairoSurface_setDeviceScale_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, x)
+	ZEND_ARG_INFO(0, y)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto void \Cairo\Surface::setDeviceScale(float x, float y)
+       Sets a scale that is multiplied to the device coordinates determined by the CTM when drawing to surface.
+       One common use for this is to render to very high resolution display devices at a scale factor,
+       so that code that assumes 1 pixel will be a certain size will still work.
+       Setting a transformation via cairo_translate() isn't sufficient to do this,
+       since functions like cairo_device_to_user() will expose the hidden scale. */
+PHP_METHOD(CairoSurface, setDeviceScale)
+{
+	cairo_surface_object *surface_object;
+	double x = 0.0, y = 0.0;
+
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(x)
+                Z_PARAM_DOUBLE(y)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        surface_object = cairo_surface_object_get(getThis());
+	if(!surface_object) {
+            return;
+        }
+        
+	cairo_surface_set_device_scale(surface_object->surface, x, y);
+}
+/* }}} */
+
+/* {{{ proto array \Cairo\Surface::getDeviceScale()
+       This function returns the previous set device scale. */
+PHP_METHOD(CairoSurface, getDeviceScale)
+{
+	cairo_surface_object *surface_object;
+	double x, y;
+
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	surface_object = cairo_surface_object_get(getThis());
+	if(!surface_object) {
+            return;
+        }
+        
+	cairo_surface_get_device_scale(surface_object->surface, &x, &y);
+
+	array_init(return_value);
+	add_next_index_double(return_value, x);
+	add_next_index_double(return_value, y);
+}
+/* }}} */
+
 
 ZEND_BEGIN_ARG_INFO(CairoSurface_setFallbackResolution_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, x)
@@ -747,6 +843,7 @@ ZEND_END_ARG_INFO()
 static const zend_function_entry cairo_surface_methods[] = {
 	PHP_ME(CairoSurface, __construct, CairoSurface___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
         PHP_ME(CairoSurface, createSimilar, CairoSurface_createSimilar_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, createSimilarImage, CairoSurface_createSimilarImage_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, createForRectangle, CairoSurface_createForRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, getStatus, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, finish, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
@@ -757,6 +854,10 @@ static const zend_function_entry cairo_surface_methods[] = {
         PHP_ME(CairoSurface, markDirtyRectangle, CairoSurface_markDirtyRectangle_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, setDeviceOffset, CairoSurface_setDeviceOffset_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, getDeviceOffset, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 14, 0)
+        PHP_ME(CairoSurface, setDeviceScale, CairoSurface_setDeviceScale_args, ZEND_ACC_PUBLIC)
+        PHP_ME(CairoSurface, getDeviceScale, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
+#endif
         PHP_ME(CairoSurface, setFallbackResolution, CairoSurface_setFallbackResolution_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, getFallbackResolution, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
         PHP_ME(CairoSurface, getType, CairoSurface_method_no_args, ZEND_ACC_PUBLIC)
@@ -766,7 +867,9 @@ static const zend_function_entry cairo_surface_methods[] = {
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
         PHP_ME(CairoSurface, writeToPng, CairoSurface_writeToPng_args, ZEND_ACC_PUBLIC)
 #endif
+#ifdef CAIRO_HAS_JPEG_FUNCTIONS
         PHP_ME(CairoSurface, writeToJpeg, CairoSurface_writeToJpeg_args, ZEND_ACC_PUBLIC)
+#endif
 	ZEND_FE_END
 };
 /* }}} */
