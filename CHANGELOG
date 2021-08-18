@@ -4,7 +4,8 @@
     * added support for direct raster-output in format JPEG
     * added 17 methods and class-constants to Cairo\Region (cairo 1.10)
     * added 7 methods and class-constants to Cairo\Surface\Pdf (cairo 1.12, 1.16)
-    * added method Cairo\Surface\Recording::getExtent() (cairo 1.12)
+    * added 2 methods and class-constants to Cairo\Surface\Svg (cairo 1.16)
+    * added 1 method to Cairo\Surface\Recording (cairo 1.12)
     * added 5 methods to Cairo\Surface (cairo 1.12 and 1.14)
 
 2015-06-25  Elizabeth M Smith  <auroraeosrose@php.net>
