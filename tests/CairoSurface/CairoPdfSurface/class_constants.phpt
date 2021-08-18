@@ -11,22 +11,22 @@ if (!extension_loaded('cairo')) {
 
 if (\Cairo\VERSION >= 11600) {
     $constants = [
-        '\Cairo\Pdf\Outline::ROOT',
+        '\Cairo\Surface\Pdf\Outline::ROOT',
         
-        '\Cairo\Pdf\OutlineFlags::OPEN',
-        '\Cairo\Pdf\OutlineFlags::BOLD',
-        '\Cairo\Pdf\OutlineFlags::ITALIC',
+        '\Cairo\Surface\Pdf\OutlineFlags::OPEN',
+        '\Cairo\Surface\Pdf\OutlineFlags::BOLD',
+        '\Cairo\Surface\Pdf\OutlineFlags::ITALIC',
         
-        '\Cairo\Pdf\Metadata::TITLE',
-        '\Cairo\Pdf\Metadata::AUTHOR',
-        '\Cairo\Pdf\Metadata::SUBJECT',
-        '\Cairo\Pdf\Metadata::KEYWORDS',
-        '\Cairo\Pdf\Metadata::CREATOR',
-        '\Cairo\Pdf\Metadata::CREATE_DATE',
-        '\Cairo\Pdf\Metadata::MOD_DATE',
+        '\Cairo\Surface\Pdf\Metadata::TITLE',
+        '\Cairo\Surface\Pdf\Metadata::AUTHOR',
+        '\Cairo\Surface\Pdf\Metadata::SUBJECT',
+        '\Cairo\Surface\Pdf\Metadata::KEYWORDS',
+        '\Cairo\Surface\Pdf\Metadata::CREATOR',
+        '\Cairo\Surface\Pdf\Metadata::CREATE_DATE',
+        '\Cairo\Surface\Pdf\Metadata::MOD_DATE',
         
-        '\Cairo\Pdf\Version::1_4',
-        '\Cairo\Pdf\Version::1_5'
+        '\Cairo\Surface\Pdf\Version::VERSION_1_5',
+        '\Cairo\Surface\Pdf\Version::VERSION_1_5'
     ];
 } else {
     $constants = [];

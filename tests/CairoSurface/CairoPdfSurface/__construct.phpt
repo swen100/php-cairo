@@ -55,15 +55,15 @@ try {
 
 /* Wrong arg type 1 */
 try {
-    new Cairo\Surface\Pdf(array(), 1, 1);
+    new Cairo\Surface\Pdf([], 1, 1);
     trigger_error('We should bomb here');
-} catch (Cairo\Exception $e) {
+} catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 /* Wrong arg type 2 */
 try {
-    new Cairo\Surface\Pdf(NULL, array(), 1);
+    new Cairo\Surface\Pdf(NULL, [], 1);
     trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -71,7 +71,7 @@ try {
 
 /* Wrong arg type 3 */
 try {
-    new Cairo\Surface\Pdf(NULL, 1, array());
+    new Cairo\Surface\Pdf(NULL, 1, []);
     trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
