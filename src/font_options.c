@@ -450,6 +450,59 @@ PHP_METHOD(CairoFontOptions, getHintMetrics)
 }
 /* }}} */
 
+
+#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 16, 0)
+
+ZEND_BEGIN_ARG_INFO(CairoFontOptions_setVariations_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, variations)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto void \Cairo\FontOptions::setVariations(string variations)
+       Sets the OpenType font variations for the font options object.
+       Font variations are specified as a string with a format that is similar to the CSS font-variation-settings.
+       The string contains a comma-separated list of axis assignments, which each assignment consists of a
+       4-character axis name and a value, separated by whitespace and optional equals sign. */
+PHP_METHOD(CairoFontOptions, setVariations)
+{
+	cairo_font_options_object *font_options_object;
+        char *variations;
+        size_t variations_len;
+        
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(variations, variations_len)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        font_options_object = cairo_font_options_object_get(getThis());
+	if(!font_options_object) {
+            return;
+        }
+
+	cairo_font_options_set_variations(font_options_object->font_options, (const char *)variations);
+	php_cairo_throw_exception(cairo_font_options_status(font_options_object->font_options));
+}
+/* }}} */
+
+/* {{{ proto string \Cairo\FontOptions::getVariations()
+       Returns the font variations for the font options object.
+       Gets the OpenType font variations for the font options object.
+       The returned string belongs to the options and must not be modified. */
+PHP_METHOD(CairoFontOptions, getVariations)
+{
+	cairo_font_options_object *font_options_object;
+        
+        ZEND_PARSE_PARAMETERS_NONE();
+        
+        font_options_object = cairo_font_options_object_get(getThis());
+	if(!font_options_object) {
+            return;
+        }
+
+	RETURN_STRING(cairo_font_options_get_variations(font_options_object->font_options));
+}
+/* }}} */
+#endif
+
+
 /* ----------------------------------------------------------------
     Cairo\FontOptions Definition and registration
 ------------------------------------------------------------------*/
@@ -472,6 +525,10 @@ static const zend_function_entry cairo_font_options_methods[] = {
 	PHP_ME(CairoFontOptions, getHintStyle, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, setHintMetrics, CairoFontOptions_setHintMetrics_args, ZEND_ACC_PUBLIC)
 	PHP_ME(CairoFontOptions, getHintMetrics, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
+#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 16, 0)
+	PHP_ME(CairoFontOptions, setVariations, CairoFontOptions_setVariations_args, ZEND_ACC_PUBLIC)
+	PHP_ME(CairoFontOptions, getVariations, CairoFontOptions_method_no_args, ZEND_ACC_PUBLIC)
+#endif
 	ZEND_FE_END
 };
 /* }}} */
