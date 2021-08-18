@@ -185,19 +185,19 @@ ZEND_BEGIN_ARG_INFO(CairoPattern_setExtend_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, extend)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\Pattern::setExtend(int extend)
+/* {{{ proto void \Cairo\Pattern::setExtend(object|int extend)
        Sets the mode to be used for drawing outside the area of a pattern */
 PHP_METHOD(CairoPattern, setExtend)
 {
 	cairo_pattern_object *pattern_object;
 	zend_long extend = 0;
 	zval *extend_enum;
-
-	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
+        
+        if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &extend_enum, ce_cairo_extend) == FAILURE) {
 		if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &extend) == FAILURE) {
-			return;
-		} else {
+                    return;
+                } else {
 			if(!php_eos_datastructures_check_value(ce_cairo_extend, extend)) {
 				return;
 			}
@@ -241,14 +241,14 @@ ZEND_BEGIN_ARG_INFO(CairoPattern_setFilter_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, filter)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\Pattern::setFilter(int filter)
+/* {{{ proto void \Cairo\Pattern::setFilter(object|int filter)
        Sets the filter to be used for resizing when using this pattern  */
 PHP_METHOD(CairoPattern, setFilter)
 {
 	cairo_pattern_object *pattern_object;
 	zend_long filter = 0;
 	zval *filter_enum;
-
+        
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &filter_enum, ce_cairo_filter) == FAILURE) {
 		if (zend_parse_parameters_throw(ZEND_NUM_ARGS(), "l", &filter) == FAILURE) {
@@ -567,7 +567,7 @@ PHP_METHOD(CairoPatternGradientRadial, __construct)
 ZEND_BEGIN_ARG_INFO(CairoPatternGradientRadial_getCircles_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\Pattern\Gradient\Radial->getCircles()
+/* {{{ proto void \Cairo\Pattern\Gradient\Radial::getCircles()
    Gets the gradient endpoint circles for a radial gradient
    each specified as a center coordinate and a radius.*/
 PHP_METHOD(CairoPatternGradientRadial, getCircles)
@@ -663,7 +663,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternSurface___construct_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_OBJ_INFO(0, surface, Cairo\\Surface, 0)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void contruct(float red, float green, float blue[, float alpha])
+/* {{{ proto void contruct([object surface])
 	Returns new \Cairo\Pattern\Surface using supplied surface */
 PHP_METHOD(CairoPatternSurface, __construct)
 {

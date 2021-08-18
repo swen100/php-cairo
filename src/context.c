@@ -1071,7 +1071,8 @@ ZEND_BEGIN_ARG_INFO(CairoContext_setTolerance_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void \Cairo\Context::setTolerance(float tolerance)
-   Sets the tolerance used when converting paths into trapezoids. */
+   Sets the tolerance used when converting paths into trapezoids.
+   The default value is 0.1. A larger value will give better performance, a smaller value, better appearance. */
 PHP_METHOD(CairoContext, setTolerance)
 {
 	cairo_context_object *context_object;

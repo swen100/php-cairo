@@ -110,7 +110,7 @@ PHP_METHOD(CairoPdfSurface, versionToString)
         ZEND_PARSE_PARAMETERS_END();
 
         if(!php_eos_datastructures_check_value(ce_cairo_pdfversion, version)) {
-            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::versionToString(): Argument #1 ($version) is not a valid \\Cairo\\Surface\\Pdf\\Version constant.", 0);
+            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::versionToString(): Argument #1 ($version) is not a valid Cairo\\Surface\\Pdf\\Version constant.", 0);
             return;
         }
         
@@ -186,7 +186,7 @@ PHP_METHOD(CairoPdfSurface, restrictToVersion)
         ZEND_PARSE_PARAMETERS_END();
         
         if(!php_eos_datastructures_check_value(ce_cairo_pdfversion, version)) {
-            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::restrictToVersion(): Argument #1 ($version) is not a valid \\Cairo\\Surface\\Pdf\\Version constant.", 0);
+            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::restrictToVersion(): Argument #1 ($version) is not a valid Cairo\\Surface\\Pdf\\Version constant.", 0);
             return;
         }
         
@@ -234,7 +234,7 @@ PHP_METHOD(CairoPdfSurface, addOutline)
         }
         
         if(!php_eos_datastructures_check_value(ce_cairo_pdf_outlineflag, outline_flag)) {
-            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::addOutline(): Argument #4 ($outline_flag) is not a valid \\Cairo\\Surface\\Pdf\\OutlineFlags constant.", 0);
+            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::addOutline(): Argument #4 ($outline_flag) is not a valid Cairo\\Surface\\Pdf\\OutlineFlags constant.", 0);
             return;
         }
 
@@ -268,7 +268,7 @@ PHP_METHOD(CairoPdfSurface, setMetadata)
         ZEND_PARSE_PARAMETERS_END();
         
         if(!php_eos_datastructures_check_value(ce_cairo_pdf_metadata, metadata_const)) {
-            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::setMetadata(): Argument #1 ($metadata_constant) is not a valid \\Cairo\\Surface\\Pdf\\Metadata constant.", 0);
+            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::setMetadata(): Argument #1 ($metadata_constant) is not a valid Cairo\\Surface\\Pdf\\Metadata constant.", 0);
             return;
         }
         

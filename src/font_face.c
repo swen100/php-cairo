@@ -73,7 +73,7 @@ cairo_font_face_t *cairo_font_face_object_get_font_face(zval *zv)
     \Cairo\FontOptions Class API
 ------------------------------------------------------------------*/
 /* {{{ proto void \Cairo\FontFace::__contruct()
-   Cairo\FontFace CANNOT be extended in userspace, this will throw an exception on use */
+   \Cairo\FontFace CANNOT be extended in userspace, this will throw an exception on use */
 PHP_METHOD(CairoFontFace, __construct)
 {
 	zend_throw_exception(ce_cairo_exception, "Cairo\\FontFace cannot be constructed", 0);

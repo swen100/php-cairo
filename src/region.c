@@ -165,7 +165,7 @@ PHP_METHOD(CairoRegion, __construct)
                 ZEND_HASH_FOREACH_VAL(rectangles_hash, pzval) {
                         /* ToDo: check type of object. Has to be a \Cairo\Rectangle */
                         if (Z_TYPE_P(pzval) != IS_OBJECT) {
-                                zend_throw_exception(zend_ce_type_error, "Cairo\\Region::__construct(): Argument #1 ($rectangle) must be empty, type or array of \\Cairo\\Rectangle.", 0);
+                                zend_throw_exception(zend_ce_type_error, "Cairo\\Region::__construct(): Argument #1 ($rectangle) must be empty, type or array of Cairo\\Rectangle.", 0);
                                 return;
                         }
                     rectangles_array[i++] = *(cairo_rectangle_object_get_rect(pzval));
@@ -174,7 +174,7 @@ PHP_METHOD(CairoRegion, __construct)
                 region_object->region = cairo_region_create_rectangles(rectangles_array, i);
                 
         } else {
-            zend_throw_exception(zend_ce_type_error, "Cairo\\Region::__construct(): Argument #1 ($rectangle) must be empty, type or array of \\Cairo\\Rectangle.", 0);
+            zend_throw_exception(zend_ce_type_error, "Cairo\\Region::__construct(): Argument #1 ($rectangle) must be empty, type or array of Cairo\\Rectangle.", 0);
             return;
 	}
         

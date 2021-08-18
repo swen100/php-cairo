@@ -174,7 +174,7 @@ PHP_METHOD(CairoScaledFont, __construct)
 }
 /* }}} */
 
-/* {{{ proto long \Cairo\ScaledFont->getStatus()
+/* {{{ proto long \Cairo\ScaledFont::getStatus()
        Returns the current integer status of the CairoScaledFont */
 PHP_METHOD(CairoScaledFont, getStatus)
 {
@@ -192,7 +192,7 @@ PHP_METHOD(CairoScaledFont, getStatus)
 }
 /* }}} */
 
-/* {{{ proto array \Cairo\ScaledFont->getExtents()
+/* {{{ proto array \Cairo\ScaledFont::getExtents()
        Gets the metrics for a scaled font in an assoc array
 */
 PHP_METHOD(CairoScaledFont, getExtents)
@@ -222,7 +222,7 @@ ZEND_BEGIN_ARG_INFO(CairoScaledFont_getTextExtents_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, text)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto array \Cairo\ScaledFont->getTextExtents(string text)
+/* {{{ proto array \Cairo\ScaledFont::getTextExtents(string text)
        previous method-name was textExtents()
        Gets the extents for a string of UTF8 text.
 */
@@ -260,7 +260,7 @@ ZEND_BEGIN_ARG_INFO(CairoScaledFont_getGlyphExtents_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, glyphs)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto array \Cairo\ScaledFont->getGlyphExtents(array glyphs)
+/* {{{ proto array \Cairo\ScaledFont::getGlyphExtents(array glyphs)
        previous method-name was glyphExtents
        Gets the extents for an array of glyphs. The extents describe a user-space rectangle that encloses the "inked" portion of the glyphs. */
 PHP_METHOD(CairoScaledFont, getGlyphExtents)
@@ -307,7 +307,7 @@ PHP_METHOD(CairoScaledFont, getGlyphExtents)
 }
 /* }}} */
 
-/* {{{ proto \Cairo\FontFace object \Cairo\ScaledFont->getFontFace()
+/* {{{ proto \Cairo\FontFace object \Cairo\ScaledFont::getFontFace()
        Retrieves the font face used to create the scaled font.  */
 PHP_METHOD(CairoScaledFont, getFontFace)
 {
@@ -341,7 +341,7 @@ PHP_METHOD(CairoScaledFont, getFontFace)
 }
 /* }}} */
 
-/* {{{ proto \Cairo\FontOptions object \Cairo\ScaledFont->getFontOptions()
+/* {{{ proto \Cairo\FontOptions object \Cairo\ScaledFont::getFontOptions()
        Retrieves the font options used to create the scaled font.  */
 PHP_METHOD(CairoScaledFont, getFontOptions)
 {
@@ -375,7 +375,7 @@ PHP_METHOD(CairoScaledFont, getFontOptions)
 }
 /* }}} */
 
-/* {{{ proto \Cairo\Matrix object \Cairo\ScaledFont->getFontMatrix()
+/* {{{ proto \Cairo\Matrix object \Cairo\ScaledFont::getFontMatrix()
        Returns the font matrix used when creating the scaled font */
 PHP_METHOD(CairoScaledFont, getFontMatrix)
 {
@@ -404,7 +404,7 @@ PHP_METHOD(CairoScaledFont, getFontMatrix)
 }
 /* }}} */
 
-/* {{{ proto \Cairo\Matrix object \Cairo\ScaledFont->getCtm()
+/* {{{ proto \Cairo\Matrix object \Cairo\ScaledFont::getCtm()
         Returns the ctm matrix used when creating the scaled font */
 PHP_METHOD(CairoScaledFont, getCtm)
 {
@@ -433,7 +433,7 @@ PHP_METHOD(CairoScaledFont, getCtm)
 }
 /* }}} */
 
-/* {{{ proto \Cairo\Matrix object \Cairo\ScaledFont->getScaleMatrix()
+/* {{{ proto \Cairo\Matrix object \Cairo\ScaledFont::getScaleMatrix()
        The scale matrix is product of the font matrix and the ctm associated with the scaled font, 
        and hence is the matrix mapping from font space to device space */
 PHP_METHOD(CairoScaledFont, getScaleMatrix)
@@ -456,7 +456,7 @@ PHP_METHOD(CairoScaledFont, getScaleMatrix)
 }
 /* }}} */
 
-/* {{{ proto long \Cairo\ScaledFont->getType()
+/* {{{ proto long \Cairo\ScaledFont::getType()
        Returns the current integer type of the CairoScaledFont backend */
 PHP_METHOD(CairoScaledFont, getType)
 {
