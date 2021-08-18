@@ -12,13 +12,27 @@ if (!in_array('SVG', Cairo::availableSurfaces())) {
 --FILE--
 <?php
 $constants = [
-    'VERSION_1_1',
-    'VERSION_1_2',
+    'Cairo\Surface\Svg\Version::VERSION_1_1',
+    'Cairo\Surface\Svg\Version::VERSION_1_2',
 ];
 
+if (\Cairo\VERSION >= 11600) {
+    $constants = array_merge($constants, [
+        'Cairo\Surface\Svg\Unit::USER',
+        'Cairo\Surface\Svg\Unit::EM',
+        'Cairo\Surface\Svg\Unit::EX',
+        'Cairo\Surface\Svg\Unit::PX',
+        'Cairo\Surface\Svg\Unit::IN',
+        'Cairo\Surface\Svg\Unit::CM',
+        'Cairo\Surface\Svg\Unit::MM',
+        'Cairo\Surface\Svg\Unit::PT',
+        'Cairo\Surface\Svg\Unit::PC',
+        'Cairo\Surface\Svg\Unit::PERCENT'
+    ]);
+}
+
 $error = false;
-foreach ($constants as $name) {
-    $constant = 'Cairo\Surface\Svg\Version::' . $name;
+foreach ($constants as $constant) {
     if (!defined($constant)) {
         $error = true;
         echo 'Missing Constant: ' . $constant . "\n";
