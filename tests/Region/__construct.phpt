@@ -11,7 +11,7 @@ include __DIR__ . '/../skipif.inc';
 $region = new Cairo\Region();
 var_dump($region);
 
-$rectangle = new Cairo\Rectangle(0,0,100,100);
+$rectangle = new Cairo\Rectangle(0, 0, 100, 100);
 $region2 = new Cairo\Region($rectangle);
 var_dump($region2);
 

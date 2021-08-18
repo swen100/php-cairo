@@ -75,7 +75,7 @@ PHP_METHOD(CairoPsSurface, __construct)
 		} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE) {
 			php_stream_from_zval(stream, stream_zval);
 		} else {
-			zend_throw_exception(ce_cairo_exception, "Cairo\\Surface\\Ps::__construct() expects parameter 1 to be null, a string, or a stream resource", 0);
+			zend_throw_exception(zend_ce_type_error, "Cairo\\Surface\\Ps::__construct() expects parameter 1 to be null, a string, or a stream resource", 0);
 			return;
 		}
 
@@ -281,7 +281,7 @@ PHP_METHOD(CairoPsSurface, levelToString)
         ZEND_PARSE_PARAMETERS_END();
 
         if( level > CAIRO_PS_LEVEL_3 ) {
-            zend_throw_exception(ce_cairo_exception, "Cairo\\Surface\\Ps::levelToString(): level-parameter is invalid. Maximum level is 1.", CAIRO_PS_LEVEL_3);
+            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Ps::levelToString(): level-parameter is invalid. Maximum level is 1.", CAIRO_PS_LEVEL_3);
             return;
         }
 	RETURN_STRING(cairo_ps_level_to_string(level));
