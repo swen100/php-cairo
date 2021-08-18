@@ -46,6 +46,7 @@ extern zend_class_entry *ce_cairo_imagesurface;
 extern zend_class_entry *ce_cairo_format;
 extern zend_class_entry *ce_cairo_svgsurface;
 extern zend_class_entry *ce_cairo_svgversion;
+extern zend_class_entry *ce_cairo_svgunit;
 extern zend_class_entry *ce_cairo_pdfsurface;
 extern zend_class_entry *ce_cairo_pdf_metadata;
 extern zend_class_entry *ce_cairo_pdf_outline;
