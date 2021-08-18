@@ -158,6 +158,60 @@ PHP_METHOD(CairoPdfSurface, restrictToVersion)
 }
 /* }}} */
 
+ZEND_BEGIN_ARG_INFO(CairoPdfSurface_setPageLabel_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, label)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto void \Cairo\Surface\Pdf::setThumbnailSize(string label)
+       Set page label for the current page. */
+PHP_METHOD(CairoPdfSurface, setPageLabel)
+{
+	char *label;
+        size_t label_len;
+	cairo_surface_object *surface_object;
+
+        ZEND_PARSE_PARAMETERS_START(1,1)
+                Z_PARAM_STRING(label, label_len)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        surface_object = Z_CAIRO_SURFACE_P(getThis());
+	if(!surface_object) {
+            return;
+        }
+
+	cairo_pdf_surface_set_page_label(surface_object->surface, (const char *)label);
+	php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+}
+/* }}} */
+
+ZEND_BEGIN_ARG_INFO(CairoPdfSurface_setThumbnailSize_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, width)
+	ZEND_ARG_INFO(0, height)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto void \Cairo\Surface\Pdf::setThumbnailSize(double width, double height)
+       Set the thumbnail image size for the current and all subsequent pages.
+       Setting a width or height of 0 disables thumbnails for the current and subsequent pages. */
+PHP_METHOD(CairoPdfSurface, setThumbnailSize)
+{
+	double width = 0.0, height = 0.0;
+	cairo_surface_object *surface_object;
+
+        ZEND_PARSE_PARAMETERS_START(2,2)
+                Z_PARAM_DOUBLE(width)
+                Z_PARAM_DOUBLE(height)
+        ZEND_PARSE_PARAMETERS_END();
+        
+        surface_object = Z_CAIRO_SURFACE_P(getThis());
+	if(!surface_object) {
+            return;
+        }
+
+	cairo_pdf_surface_set_thumbnail_size(surface_object->surface, width, height);
+	php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+}
+/* }}} */
+
 /* ----------------------------------------------------------------
     \Cairo\Surface\Pdf Definition and registration
 ------------------------------------------------------------------*/
@@ -172,8 +226,8 @@ const zend_function_entry cairo_pdf_surface_methods[] = {
         #if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 16, 0)
 //            PHP_ME(CairoPdfSurface, addOutline, CairoPdfSurface_addOutline_args, ZEND_ACC_PUBLIC)
 //            PHP_ME(CairoPdfSurface, setMetadata, CairoPdfSurface_setMetadata_args, ZEND_ACC_PUBLIC)
-//            PHP_ME(CairoPdfSurface, setPageLabel, CairoPdfSurface_setPageLabel_args, ZEND_ACC_PUBLIC)
-//            PHP_ME(CairoPdfSurface, setThumbnailSize, CairoPdfSurface_setThumbnailSize_args, ZEND_ACC_PUBLIC)
+            PHP_ME(CairoPdfSurface, setPageLabel, CairoPdfSurface_setPageLabel_args, ZEND_ACC_PUBLIC)
+            PHP_ME(CairoPdfSurface, setThumbnailSize, CairoPdfSurface_setThumbnailSize_args, ZEND_ACC_PUBLIC)
         #endif
 	ZEND_FE_END
 };
