@@ -99,7 +99,7 @@ ZEND_BEGIN_ARG_INFO(CairoPdfSurface_versionToString_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, version)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void \Cairo\Surface\Pdf::versionToString(int version)
+/* {{{ proto string \Cairo\Surface\Pdf::versionToString(int version)
        Get the string representation of the given version id. This function will return NULL if version isn't valid. */
 PHP_METHOD(CairoPdfSurface, versionToString)
 {
@@ -196,6 +196,49 @@ PHP_METHOD(CairoPdfSurface, restrictToVersion)
         }
 
 	cairo_pdf_surface_restrict_to_version(surface_object->surface, version);
+	php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
+}
+/* }}} */
+
+
+ZEND_BEGIN_ARG_INFO(CairoPdfSurface_addOutline_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, parent_id)
+        ZEND_ARG_INFO(0, name)
+        ZEND_ARG_INFO(0, link_attribs)
+        ZEND_ARG_INFO(0, outline_flag)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto int \Cairo\Surface\Pdf::addOutline(int parent_id, string name, string link_attr, int outline_flag])
+       Add an item to the document outline hierarchy with a name that links to the location specified by link_attribs.
+       Link attributes have the same keys and values as the Link Tag, excluding the "rect" attribute.
+       The item will be a child of the item with id parent_id.
+       Use CAIRO_PDF_OUTLINE_ROOT as the parent id of top level items.
+       Returns the id for the added item. */
+PHP_METHOD(CairoPdfSurface, addOutline)
+{
+	cairo_surface_object *surface_object;
+        zend_long parent_id, outline_flag;
+        char *name, *linkAttribs;
+        size_t name_len, linkAttribs_len;
+        
+        ZEND_PARSE_PARAMETERS_START(4,4)
+                Z_PARAM_LONG(parent_id);
+                Z_PARAM_STRING(name, name_len)
+                Z_PARAM_STRING(linkAttribs, linkAttribs_len)
+                Z_PARAM_LONG(outline_flag);
+        ZEND_PARSE_PARAMETERS_END();
+        
+        surface_object = Z_CAIRO_SURFACE_P(getThis());
+	if(!surface_object) {
+            return;
+        }
+        
+        if(!php_eos_datastructures_check_value(ce_cairo_pdf_outlineflag, outline_flag)) {
+            zend_throw_exception(zend_ce_value_error, "Cairo\\Surface\\Pdf::addOutline(): Argument #4 ($outline_flag) is not a valid \\Cairo\\Surface\\Pdf\\OutlineFlags constant.", 0);
+            return;
+        }
+
+	RETVAL_LONG( cairo_pdf_surface_add_outline(surface_object->surface, parent_id, (const char *)name, (const char *)linkAttribs, outline_flag) );
 	php_cairo_throw_exception(cairo_surface_status(surface_object->surface));
 }
 /* }}} */
@@ -308,7 +351,7 @@ const zend_function_entry cairo_pdf_surface_methods[] = {
         PHP_ME(CairoPdfSurface, versionToString, CairoPdfSurface_versionToString_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
         PHP_ME(CairoPdfSurface, setSize, CairoPdfSurface_setSize_args, ZEND_ACC_PUBLIC)
         #if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 16, 0)
-//            PHP_ME(CairoPdfSurface, addOutline, CairoPdfSurface_addOutline_args, ZEND_ACC_PUBLIC)
+            PHP_ME(CairoPdfSurface, addOutline, CairoPdfSurface_addOutline_args, ZEND_ACC_PUBLIC)
             PHP_ME(CairoPdfSurface, setMetadata, CairoPdfSurface_setMetadata_args, ZEND_ACC_PUBLIC)
             PHP_ME(CairoPdfSurface, setPageLabel, CairoPdfSurface_setPageLabel_args, ZEND_ACC_PUBLIC)
             PHP_ME(CairoPdfSurface, setThumbnailSize, CairoPdfSurface_setThumbnailSize_args, ZEND_ACC_PUBLIC)
