@@ -67,7 +67,7 @@ cairo_matrix_object *cairo_matrix_object_get(zval *zv)
 }
 
 #define CAIRO_ALLOC_MATRIX(matrix_value) if (!matrix_value) \
-	{ matrix_value = ecalloc(sizeof(cairo_matrix_t), 1); }
+	{ matrix_value = ecalloc(1, sizeof(cairo_matrix_t)); }
 
 #define CAIRO_VALUE_FROM_STRUCT(n,m)         \
 	if (strcmp(member->val, m) == 0) { \

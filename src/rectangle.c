@@ -56,7 +56,7 @@ static inline long cairo_rectangle_get_property_value(zend_object *object, char 
 }
 
 #define CAIRO_ALLOC_RECT(rect_value) if (!rect_value) \
-	{ rect_value = ecalloc(sizeof(cairo_rectangle_int_t), 1); }
+	{ rect_value = ecalloc(1,sizeof(cairo_rectangle_int_t)); }
 
 #define CAIRO_VALUE_FROM_STRUCT(n, m)         \
 	if(strcmp(member->val, m) == 0) { \
@@ -79,7 +79,6 @@ static inline long cairo_rectangle_get_property_value(zend_object *object, char 
 ------------------------------------------------------------------*/
 
 /* {{{ */
-// function is never be used!?! Compare it with "cairo_matrix_object_get_matrix".
 cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv)
 {
 	cairo_rectangle_object *rect_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(zv));
