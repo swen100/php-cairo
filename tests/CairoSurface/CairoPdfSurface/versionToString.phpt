@@ -47,7 +47,7 @@ try {
 ?>
 --EXPECTF--
 PDF 1.5
-Cairo\Surface\Pdf::versionToString(): Argument #1 ($version) is not a valid \Cairo\Surface\Pdf\Version constant.
+Cairo\Surface\Pdf::versionToString(): Argument #1 ($version) is not a valid Cairo\Surface\Pdf\Version constant.
 Cairo\Surface\Pdf::versionToString() expects exactly 1 argument, 0 given
 Cairo\Surface\Pdf::versionToString() expects exactly 1 argument, 2 given
 Cairo\Surface\Pdf::versionToString(): Argument #1 ($version) must be of type int, array given

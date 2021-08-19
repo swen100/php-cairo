@@ -65,7 +65,7 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Pdf)#%d (0) {
 }
-Cairo\Surface\Pdf::setMetadata(): Argument #1 ($metadata_constant) is not a valid \Cairo\Surface\Pdf\Metadata constant.
+Cairo\Surface\Pdf::setMetadata(): Argument #1 ($metadata_constant) is not a valid Cairo\Surface\Pdf\Metadata constant.
 Cairo\Surface\Pdf::setMetadata() expects at least 1 argument, 0 given
 Cairo\Surface\Pdf::setMetadata() expects at most 2 arguments, 3 given
 Cairo\Surface\Pdf::setMetadata(): Argument #1 ($metadata_constant) must be of type int, array given

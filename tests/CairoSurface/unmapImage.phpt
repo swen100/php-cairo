@@ -5,6 +5,9 @@ Cairo\Surface->unmapImage() method
 if (!extension_loaded('cairo')) {
     die('skip - Cairo extension not available');
 }
+if (!method_exists('Cairo\Surface', 'unmapImage')) {
+    die('skip - Cairo\Surface->unmapImage not available');
+}
 ?>
 --FILE--
 <?php

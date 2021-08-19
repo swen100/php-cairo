@@ -109,7 +109,7 @@ object(Cairo\Surface\Pdf)#%d (0) {
 }
 int(1)
 int(2)
-Cairo\Surface\Pdf::addOutline(): Argument #4 ($outline_flag) is not a valid \Cairo\Surface\Pdf\OutlineFlags constant.
+Cairo\Surface\Pdf::addOutline(): Argument #4 ($outline_flag) is not a valid Cairo\Surface\Pdf\OutlineFlags constant.
 invalid tag name, attributes, or nesting
 Cairo\Surface\Pdf::addOutline() expects exactly 4 arguments, 0 given
 Cairo\Surface\Pdf::addOutline() expects exactly 4 arguments, 1 given

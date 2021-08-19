@@ -51,7 +51,7 @@ try {
 --EXPECTF--
 object(Cairo\Surface\Pdf)#%d (0) {
 }
-Cairo\Surface\Pdf::restrictToVersion(): Argument #1 ($version) is not a valid \Cairo\Surface\Pdf\Version constant.
+Cairo\Surface\Pdf::restrictToVersion(): Argument #1 ($version) is not a valid Cairo\Surface\Pdf\Version constant.
 Cairo\Surface\Pdf::restrictToVersion() expects exactly 1 argument, 0 given
 Cairo\Surface\Pdf::restrictToVersion() expects exactly 1 argument, 2 given
 Cairo\Surface\Pdf::restrictToVersion(): Argument #1 ($version) must be of type int, array given

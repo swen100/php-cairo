@@ -5,6 +5,9 @@ Cairo\Surface->mapToImage() method
 if (!extension_loaded('cairo')) {
     die('skip - Cairo extension not available');
 }
+if (!method_exists('Cairo\Surface', 'mapToImage')) {
+    die('skip - Cairo\Surface->mapToImage not available');
+}
 ?>
 --FILE--
 <?php
