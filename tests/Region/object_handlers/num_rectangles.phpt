@@ -12,15 +12,15 @@ $region1 = new Cairo\Region();
 var_dump($region1);
 var_dump( $region1->getNumRectangles() );
 
-$rectangle1 = new Cairo\Rectangle(1,1,100,100);
+$rectangle1 = new Cairo\Rectangle(0,0,100,100);
 $region2 = new Cairo\Region($rectangle1);
 var_dump( $region2->getNumRectangles() );
 
-$rectangle2 = new Cairo\Rectangle(2,2,200,200);
+$rectangle2 = new Cairo\Rectangle(100,100,100,100);
 $region3 = new Cairo\Region([$rectangle1, $rectangle2]);
 var_dump( $region3->getNumRectangles() );
 
-$rectangle3 = new Cairo\Rectangle(3,3,300,300);
+$rectangle3 = new Cairo\Rectangle(200,200,100,100);
 $region4 = new Cairo\Region([$rectangle1, $rectangle2, $rectangle3]);
 var_dump( $region4->getNumRectangles() );
 
