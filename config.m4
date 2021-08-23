@@ -36,7 +36,7 @@ if test "$PHP_CAIRO" != "no"; then
     src/context.c \
   , $ext_shared)
 
-  EXT_CAIRO_HEADERS="php_cairo_api.h"
+  EXT_CAIRO_HEADERS="php_cairo_internal.h"
 
   ifdef([PHP_INSTALL_HEADERS], [
     PHP_INSTALL_HEADERS(ext/cairo, $EXT_CAIRO_HEADERS)

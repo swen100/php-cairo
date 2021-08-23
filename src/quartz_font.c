@@ -8,7 +8,6 @@
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
   | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
-  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 

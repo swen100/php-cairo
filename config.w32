@@ -36,7 +36,7 @@ if (PHP_CAIRO != "no") {
             ADD_FLAG("CFLAGS_CAIRO", "/D CAIRO_WIN32_STATIC_BUILD=1");
 
             AC_DEFINE("HAVE_CAIRO", 1);
-            PHP_INSTALL_HEADERS("ext/cairo", "src/php_cairo_api.h");
+            PHP_INSTALL_HEADERS("ext/cairo", "src/php_cairo_internal.h");
         } else if (CHECK_LIB("cairo.lib", "cairo", PHP_CAIRO + "\\lib")) {
             if (CHECK_LIB("libpng_a.lib", "cairo", PHP_CAIRO + "\\lib")) {
                 CHECK_HEADER_ADD_INCLUDE("png.h", "CFLAGS_CAIRO", PHP_CAIRO + ";" + PHP_PHP_BUILD + "\\include" + ";" + PHP_PHP_BUILD + "\\include\\png");
@@ -59,7 +59,7 @@ if (PHP_CAIRO != "no") {
             ADD_EXTENSION_DEP("cairo", "eos_datastructures");
 
             AC_DEFINE("HAVE_CAIRO", 1);
-            PHP_INSTALL_HEADERS("ext/cairo", "src/php_cairo_api.h");
+            PHP_INSTALL_HEADERS("ext/cairo", "src/php_cairo_internal.h");
         } else {
             WARNING('Could not find cairo.lib or cairo_a.lib; skipping');
         }
