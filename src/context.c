@@ -2383,21 +2383,30 @@ ZEND_END_ARG_INFO()
         Selects a family and style of font from a simplified description as a family name, slant and weight. */
 PHP_METHOD(CairoContext, selectFontFace)
 {
-	long slant = CAIRO_FONT_SLANT_NORMAL, weight = CAIRO_FONT_WEIGHT_NORMAL;
+	long slant, weight;
         size_t family_len;
 	char *family, *cairo_family;
 	cairo_context_object *context_object;
+        bool slant_is_null = 1, weight_is_null = 1;
 
         ZEND_PARSE_PARAMETERS_START(1,3)
                 Z_PARAM_STRING(family, family_len)
                 Z_PARAM_OPTIONAL
-                Z_PARAM_LONG(slant)
-                Z_PARAM_LONG(weight)
+                Z_PARAM_LONG_OR_NULL(slant, slant_is_null)
+                Z_PARAM_LONG_OR_NULL(weight, weight_is_null)
         ZEND_PARSE_PARAMETERS_END();
         
         context_object = cairo_context_object_get(getThis());
 	if (!context_object) {
             return;
+        }
+        
+        if (slant_is_null) {
+            slant = CAIRO_FONT_SLANT_NORMAL;
+        }
+        
+        if (weight_is_null) {
+            weight = CAIRO_FONT_WEIGHT_NORMAL;
         }
 
 	cairo_family = estrdup(family);		

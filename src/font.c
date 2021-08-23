@@ -47,19 +47,28 @@ PHP_METHOD(CairoToyFontFace, __construct)
 {
 	char *family;
         size_t family_len;
-	zend_long slant = CAIRO_FONT_SLANT_NORMAL, weight = CAIRO_FONT_WEIGHT_NORMAL;
+	zend_long slant, weight;
 	cairo_font_face_object *fontface_object;
+        bool slant_is_null = 1, weight_is_null = 1;
 
         ZEND_PARSE_PARAMETERS_START(1,3)
                 Z_PARAM_STRING(family, family_len)
                 Z_PARAM_OPTIONAL
-                Z_PARAM_LONG(slant)
-                Z_PARAM_LONG(weight)
+                Z_PARAM_LONG_OR_NULL(slant, slant_is_null)
+                Z_PARAM_LONG_OR_NULL(weight, weight_is_null)
         ZEND_PARSE_PARAMETERS_END();
         
         fontface_object = Z_CAIRO_FONT_FACE_P(getThis());
 	if(!fontface_object) {
             return;
+        }
+        
+        if (slant_is_null) {
+            slant = CAIRO_FONT_SLANT_NORMAL;
+        }
+        
+        if (weight_is_null) {
+            weight = CAIRO_FONT_WEIGHT_NORMAL;
         }
         
 	fontface_object->font_face = cairo_toy_font_face_create((const char *)family, slant, weight);
