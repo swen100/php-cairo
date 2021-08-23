@@ -384,12 +384,12 @@ ZEND_END_ARG_INFO()
    Translates region by (dx , dy ). */
 PHP_METHOD(CairoRegion, translate)
 {
-        long dx, dy;
+        double dx, dy;
 	cairo_region_object *region_object;
 
 	ZEND_PARSE_PARAMETERS_START(2,2)
-                Z_PARAM_LONG(dx)
-                Z_PARAM_LONG(dy)
+                Z_PARAM_DOUBLE(dx)
+                Z_PARAM_DOUBLE(dy)
         ZEND_PARSE_PARAMETERS_END();
 
         region_object = cairo_region_object_get(getThis());
@@ -397,7 +397,7 @@ PHP_METHOD(CairoRegion, translate)
             return;
         }
         
-        cairo_region_translate(region_object->region, dx, dy);
+        cairo_region_translate(region_object->region, (int)dx, (int)dy);
         php_cairo_throw_exception(cairo_region_status(region_object->region));
 }
 /* }}} */
