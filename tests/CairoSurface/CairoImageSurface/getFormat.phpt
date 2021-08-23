@@ -2,7 +2,9 @@
 Cairo\Surface\Image->getFormat() method
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
@@ -24,7 +26,7 @@ object(Cairo\Surface\Image)#%d (0) {
 }
 object(Cairo\Surface\ImageFormat)#%d (2) {
   ["__elements"]=>
-  array(6) {
+  array(%d) {
     ["ARGB32"]=>
     int(0)
     ["RGB24"]=>
@@ -36,7 +38,7 @@ object(Cairo\Surface\ImageFormat)#%d (2) {
     ["RGB16_565"]=>
     int(4)
     ["RGB30"]=>
-    int(5)
+    int(5)%A
   }
   ["__value"]=>
   int(0)
