@@ -16,6 +16,7 @@
 
 #include <php.h>
 #include <cairo.h>
+#include <zend_exceptions.h>
 
 extern zend_class_entry *ce_cairo_exception;
 extern zend_class_entry *ce_cairo_status;
@@ -172,7 +173,9 @@ typedef struct _php_cairo_ft_error {
 	const char *err_msg;
 } php_cairo_ft_error;
 
-extern const php_cairo_ft_error php_cairo_ft_errors[];
+extern php_cairo_ft_error php_cairo_ft_errors[];
+
+extern void php_cairo_throw_exception(cairo_status_t status);
 
 /* Helper for getting FreeType error strings */
 const char* php_cairo_get_ft_error(int error);

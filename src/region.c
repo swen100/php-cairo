@@ -21,9 +21,9 @@
 #include <ext/eos_datastructures/php_eos_datastructures_api.h>
 
 #include "php_cairo.h"
+#include "php_cairo_internal.h"
 
 zend_class_entry *ce_cairo_region;
-zend_class_entry *ce_cairo_rectangle;
 zend_class_entry *ce_cairo_region_overlap;
 
 static zend_object_handlers cairo_region_object_handlers;
