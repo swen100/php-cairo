@@ -22,7 +22,7 @@ env:
 
 before_install:
   - git clone https://github.com/swen100/structures.git
-  - pushd datastructures
+  - pushd structures
   - phpize
   - ./configure
   - make
