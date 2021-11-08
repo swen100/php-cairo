@@ -16,6 +16,7 @@
 #endif
 
 #include <php.h>
+#include <ext/standard/info.h>
 #include <cairo.h>
 
 #include "php_cairo.h"

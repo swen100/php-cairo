@@ -26,7 +26,7 @@
 
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 
-const php_cairo_ft_error php_cairo_ft_errors[] =
+php_cairo_ft_error php_cairo_ft_errors[] =
 #include FT_ERRORS_H
 
 #include <fontconfig/fontconfig.h>
