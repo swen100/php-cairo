@@ -33,7 +33,7 @@ if (PHP_CAIRO != "no") {
 
             EXTENSION("cairo", PHP_CAIRO_SOURCES);
             ADD_EXTENSION_DEP("cairo", "eos_datastructures");
-            ADD_FLAG("CFLAGS_CAIRO", "/D CAIRO_WIN32_STATIC_BUILD=1");
+            ADD_FLAG("CFLAGS_CAIRO", "/D CAIRO_WIN32_STATIC_BUILD=1 /I" + configure_module_dirname);
 
             AC_DEFINE("HAVE_CAIRO", 1);
             PHP_INSTALL_HEADERS("ext/cairo", "src/php_cairo_api.h");
@@ -57,6 +57,7 @@ if (PHP_CAIRO != "no") {
 
             EXTENSION("cairo", PHP_CAIRO_SOURCES);
             ADD_EXTENSION_DEP("cairo", "eos_datastructures");
+            ADD_FLAG("CFLAGS_CAIRO", "/I" + configure_module_dirname);
 
             AC_DEFINE("HAVE_CAIRO", 1);
             PHP_INSTALL_HEADERS("ext/cairo", "src/php_cairo_api.h");
