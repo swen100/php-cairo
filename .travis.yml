@@ -20,23 +20,23 @@ env:
   - REPORT_EXIT_STATUS=1 NO_INTERACTION=1 TEST_PHP_ARGS="--show-diff -q -d extension=eos_datastructures.so" 
 
 before_install:
-  - echo "extension=eos_datastructures.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - echo "extension=cairo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  
-install:
-  - phpize
-  - ./configure
-  - make
-  - make install
   - git clone https://github.com/swen100/structures.git
   - pushd structures
   - phpize
   - ./configure
   - make
   - make install
-  - cp ./modules/eos_datastructures.so ../modules/eos_datastructures.so
-  - cp ./modules/eos_datastructures.lai ../modules/eos_datastructures.la
+  - echo "extension=eos_datastructures.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - popd
+  
+install:
+  - phpize
+  - ./configure
+  - make
+  - make install
+  - echo "extension=cairo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - cp ./structures/modules/eos_datastructures.so ./modules/eos_datastructures.so
+  - cp ./structures/modules/eos_datastructures.lai ./modules/eos_datastructures.la
 
 script: 
   make test
