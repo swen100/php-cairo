@@ -35,10 +35,9 @@ install:
   - make
   - make install
   - echo "extension=cairo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - cp ./structures/modules/eos_datastructures.so ./modules/eos_datastructures.so
-  - cp ./structures/modules/eos_datastructures.lai ./modules/eos_datastructures.la
+  - cp ../structures/modules/eos_datastructures.so ./modules/
 
-script: 
+script:
   make test
 
 notifications:
