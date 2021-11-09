@@ -36,7 +36,6 @@ install:
   - make
   - make install
   - echo "extension=cairo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - cp ../structures/modules/eos_datastructures.so modules/eos_datastructures.so
 
 script:
   make test
