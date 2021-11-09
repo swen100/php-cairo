@@ -5,12 +5,9 @@ Cairo is a 2D graphics library with support for multiple output devices. Output
 targets include the X Window System (via both Xlib and XCB), Quartz, Win32,
 image buffers, PostScript, PDF, and SVG files.
 
-This extension provides access to Cairo functionality in PHP8 in the Cairo namespace
+This extension provides access to Cairo functionality in PHP8 in the Cairo namespace.
 
-Status
-=============
-This is a work in progress rewrite of the original cairo extension
-There are plans to add appveyor and travis builds for testing
+[![Build Status](https://app.travis-ci.com/swen100/cairo.svg?branch=php8)](https://app.travis-ci.com/swen100/cairo)
 
 Requirements
 =============
@@ -47,7 +44,7 @@ The cairo extension also requires cairo development files.  You can build the pa
 manually or use your system's package manager.  For example on ubuntu use
 
 ```
-apt-get install libcairo-dev
+apt-get install libcairo2-dev libfreetype6-dev fontconfig libjpeg-dev
 ```
 
 Then you can use phpize to install the extension against your current PHP install
@@ -87,7 +84,7 @@ See Contributing.md for information on how to get involved
 
 Authors
 ====
-Elizabeth M Smith
+Elizabeth M Smith | Swen Zanon | Bernhard R. Fischer (JPEG-integration)
 
 License
 =====
