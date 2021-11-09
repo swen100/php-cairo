@@ -23,10 +23,11 @@ before_install:
   - git clone https://github.com/swen100/structures.git
   - pushd structures
   - phpize
-  - ./configure
+  - ./configure --with-php-config=$(which php-config)
   - make
   - make install
-  - echo "extension=eos_datastructures.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - echo "extension=eos_datastructures.so" > "$(phpenv prefix)/etc/conf.d/eos_datastructures.ini"
+  - echo "extension=eos_datastructures.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - popd
   
 install:
@@ -34,12 +35,16 @@ install:
   - ./configure
   - make
   - make install
-  - echo "extension=cairo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - cp ../structures/modules/eos_datastructures.so ./modules/
+  - echo "extension=cairo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - cp ../structures/modules/eos_datastructures.so modules/eos_datastructures.so
 
 script:
   make test
 
+after_failure:
+  - echo "$($(phpenv which php) -v)"
+  - echo "$($(phpenv which php) -m)"
+
 notifications:
   email:
-    auroraeosrose@gmail.com
+    swen.zanon@geoglis.de
