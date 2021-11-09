@@ -27,8 +27,8 @@ before_install:
   - make
   - make install
   - echo "extension=eos_datastructures.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - cp ./.libs/eos_datastructures.so /home/travis/build/swen100/cairo/modules/eos_datastructures.so
-  - cp ./.libs/eos_datastructures.lai /home/travis/build/swen100/cairo/modules/eos_datastructures.la
+  - cp ./modules/eos_datastructures.so /home/travis/build/swen100/cairo/modules/eos_datastructures.so
+  - cp ./modules/eos_datastructures.lai /home/travis/build/swen100/cairo/modules/eos_datastructures.la
   - popd
   
 install:
