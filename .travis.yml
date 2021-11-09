@@ -14,7 +14,6 @@ addons:
 
 php:
   - 8.0
-  - 8.1
   - nightly
  
 env: 
@@ -27,7 +26,7 @@ before_install:
   - ./configure
   - make
   - make install
-  - echo "extension=eos_datastructures.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension=eos_datastructures.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - popd
   
 install:
@@ -35,7 +34,7 @@ install:
   - ./configure
   - make
   - make install
-  - echo "extension=cairo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension=cairo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 script: 
   make test
