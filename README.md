@@ -8,14 +8,15 @@ image buffers, PostScript, PDF, and SVG files.
 This extension provides access to Cairo functionality in PHP8 in the Cairo namespace.
 
 [![Build Status](https://app.travis-ci.com/swen100/cairo.svg?branch=php8)](https://app.travis-ci.com/swen100/cairo)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/swen100/cairo/badges/quality-score.png?b=php8)](https://scrutinizer-ci.com/g/swen100/cairo/?branch=php8)
 
 Requirements
 =============
  * PHP 8.0.0+
  * Cairo 1.12.0+
- * [Eos\DataStructures](http://github.com/eos-org/datastructures) 1.0.1
+ * [Eos\DataStructures](http://github.com/swen100/structures) 1.0.1
 
-Additional features are supported up to Cairo version 1.16.2
+Additional features are supported up to Cairo version 1.17.0
 
 Features are enabled at compile time based on the library version they are compiled against.
 
@@ -36,9 +37,9 @@ extension=cairo.so
 Compile
 =============
 
-This extension can be compiled and tested using phpize
+This extension can be compiled and tested using phpize.
 
-First you need to make and install the Eos\DataStructures extension, which provides Enum support
+First you need to make and install the Eos\DataStructures extension, which provides Enum support.
 
 The cairo extension also requires cairo development files.  You can build the package
 manually or use your system's package manager.  For example on ubuntu use
@@ -47,7 +48,7 @@ manually or use your system's package manager.  For example on ubuntu use
 apt-get install libcairo2-dev libfreetype6-dev fontconfig libjpeg-dev
 ```
 
-Then you can use phpize to install the extension against your current PHP install
+Then you can use phpize to install the extension against your current PHP install:
 
 ```
 phpize
@@ -55,7 +56,7 @@ phpize
 make && make test && make install
 ```
 
-If you want to use a non-standard location for your PHP use
+If you want to use a non-standard location for your PHP use:
 
 ```
 /path/to/phpize
@@ -68,7 +69,7 @@ in your php.ini file.
 
 Examples
 ====
-The examples directory holds samples of all currently working utilities for the extension
+The examples directory holds samples of all currently working utilities for the extension.
 
 Community
 =====
@@ -78,9 +79,8 @@ The main website is [Gtk For PHP](http://gtkforphp.net)
 
 You can view commits and released on [twitter](http://twitter.com/gtkforphp)
 
-You can send comments, patches, questions [here on github](https://github.com/gtkforphp/glib/issues)
+You can send comments, patches, questions [here on github](https://github.com/gtkforphp/cairo/issues)
 
-See Contributing.md for information on how to get involved
 
 Authors
 ====
@@ -95,6 +95,6 @@ The Cairo Graphics library is is released under the [LGPL](https://www.gnu.org/l
 
 Documentation
 =====
-What little documentation we currently have is in code comments and the docs directory
+What little documentation we currently have is in code comments and the docs directory.
 
-We'd like to use some kind of markdown or rst format for docs, a decision isn't final yet
+We'd like to use some kind of markdown or rst format for docs, a decision isn't final yet.
