@@ -31,22 +31,6 @@ cairo_glyph_object *cairo_glyph_fetch_object(zend_object *object)
 	return (cairo_glyph_object *) ((char*)(object) - XtOffsetOf(cairo_glyph_object, std));
 }
 
-static inline double cairo_glyph_get_property_default(zend_class_entry *ce, char * name) {
-	zend_property_info *property_info;
-	double value = 0.0;
-	zend_string *key = zend_string_init(name, strlen(name), 0);
-
-	property_info = zend_get_property_info(ce, key, 1);
-	if (property_info) {
-		zval *val = (zval*)((char*)ce->default_properties_table + property_info->offset - OBJ_PROP_TO_OFFSET(0));
-		if(val) {
-			value = zval_get_double(val);
-		}
-	}
-	zend_string_release(key);
-	return value;
-}
-
 /*static inline double cairo_glyph_get_property_value(zend_object *object, char *name) {
 	zval *prop, rv;
 
@@ -65,8 +49,12 @@ static inline double cairo_glyph_get_property_default(zend_class_entry *ce, char
 
 #define CAIRO_VALUE_TO_STRUCT(n,m)                  \
 	if(strcmp(member->val, m) == 0) {        \
-		glyph_object->glyph->n = zval_get_double(value); \
-		break;                                      \
+            if(Z_TYPE_P(value) == IS_LONG) {   \
+		glyph_object->glyph->n = zval_get_long(value); \
+            } else {                                        \
+                glyph_object->glyph->n = zval_get_double(value); \
+            }                                                 \
+            break;                                      \
 	}
 
 #define CAIRO_ADD_STRUCT_VALUE(n,m)                  \
@@ -117,9 +105,9 @@ PHP_METHOD(CairoGlyph, __construct)
 
 	glyph_object = Z_CAIRO_GLYPH_P(Z_OBJ_P(getThis()));
 
+        glyph_object->glyph->index = index;
 	glyph_object->glyph->x = x;
-	glyph_object->glyph->y = y;
-	glyph_object->glyph->index = index;
+	glyph_object->glyph->y = y;	
 }
 /* }}} */
 
@@ -156,13 +144,6 @@ static zend_object* cairo_glyph_obj_ctor(zend_class_entry *ce, cairo_glyph_objec
 	object->std.handlers = &cairo_glyph_object_handlers;
 	*intern = object;
 
-	/* We need to read in any default values and set them if applicable */
-	if(ce->default_properties_count) {
-		object->glyph->x = cairo_glyph_get_property_default(ce, "x");
-		object->glyph->y = cairo_glyph_get_property_default(ce, "y");
-		object->glyph->index = cairo_glyph_get_property_default(ce, "index");
-	}
-
 	return &object->std;
 }
 /* }}} */
@@ -197,7 +178,7 @@ static zend_object* cairo_glyph_clone_obj(zend_object *zobj)
 /* }}} */
 
 /* {{{ */
-/*static zval *cairo_glyph_object_read_property(zend_object *zobj, zend_string *member, int type, void **cache_slot, zval *rv)
+static zval *cairo_glyph_object_read_property(zend_object *zobj, zend_string *member, int type, void **cache_slot, zval *rv)
 {
 	zval *retval;
 	double value;
@@ -219,14 +200,14 @@ static zend_object* cairo_glyph_clone_obj(zend_object *zobj)
 	} while(0);
 
 	retval = rv;
-	ZVAL_DOUBLE(retval, value);
+        ZVAL_DOUBLE(retval, value);
 
 	return retval;
-}*/
+}
 /* }}} */
 
 /* {{{ */
-/*static zval *cairo_glyph_object_write_property(zend_object *zobj, zend_string *member, zval *value, void **cache_slot)
+static zval *cairo_glyph_object_write_property(zend_object *zobj, zend_string *member, zval *value, void **cache_slot)
 {
 	cairo_glyph_object *glyph_object = Z_CAIRO_GLYPH_P(zobj);
         zval *retval = NULL;
@@ -245,7 +226,7 @@ static zend_object* cairo_glyph_clone_obj(zend_object *zobj)
 	retval = (zend_get_std_object_handlers())->write_property(zobj, member, value, cache_slot);
 
         return retval;
-}*/
+}
 /* }}} */
 
 /* {{{ */
@@ -292,8 +273,8 @@ PHP_MINIT_FUNCTION(cairo_glyph)
 	cairo_glyph_object_handlers.offset = XtOffsetOf(cairo_glyph_object, std);
 	cairo_glyph_object_handlers.free_obj = cairo_glyph_free_obj;
 	cairo_glyph_object_handlers.clone_obj = cairo_glyph_clone_obj;
-	//cairo_glyph_object_handlers.read_property = cairo_glyph_object_read_property;
-	//cairo_glyph_object_handlers.write_property = cairo_glyph_object_write_property;
+	cairo_glyph_object_handlers.read_property = cairo_glyph_object_read_property;
+	cairo_glyph_object_handlers.write_property = cairo_glyph_object_write_property;
 	cairo_glyph_object_handlers.get_property_ptr_ptr = NULL;
 	cairo_glyph_object_handlers.get_properties = cairo_glyph_object_get_properties;
 
