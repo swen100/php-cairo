@@ -261,16 +261,19 @@ ZEND_BEGIN_ARG_INFO(CairoScaledFont_getGlyphExtents_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto array \Cairo\ScaledFont::getGlyphExtents(array glyphs)
-       previous method-name was glyphExtents
-       Gets the extents for an array of glyphs. The extents describe a user-space rectangle that encloses the "inked" portion of the glyphs. */
+    previous method-name was "glyphExtents".
+    Gets the extents for an array of glyphs. The extents describe a user-space
+    rectangle that encloses the "inked" portion of the glyphs. */
 PHP_METHOD(CairoScaledFont, getGlyphExtents)
 {
 	cairo_scaled_font_object *scaled_font_object;
-	const cairo_glyph_t *glyphs = NULL;
+	cairo_glyph_t *glyphs_array;
 	int num_glyphs = 0;
 	cairo_text_extents_t extents;
+        int i = 0;
 
-	zval * php_glyphs = NULL, *hash_zval;
+	zval *php_glyphs = NULL;
+        zval *pzval;
 	HashTable *glyphs_hash = NULL;
         
         ZEND_PARSE_PARAMETERS_START(1,1)
@@ -282,20 +285,23 @@ PHP_METHOD(CairoScaledFont, getGlyphExtents)
             return;
         }
         
-	/* Grab the zend hash */
+	/* Grab the zend hash and see how big our array will be */
 	glyphs_hash = Z_ARRVAL_P(php_glyphs);
+        num_glyphs = zend_hash_num_elements(glyphs_hash);
+        glyphs_array = ecalloc(num_glyphs, sizeof(cairo_glyph_t));
 
-	/* iterate the array, each value inside MUST be an instance of CairoGlyph */
-        ZEND_HASH_FOREACH_VAL(glyphs_hash, hash_zval) {
-                /* TODO: check here for is object and instanceof CairoGlyph, then rip the internal glyph out and stick it in the array
-		then increment the glyph count
-		if (Z_TYPE_P(val) != IS_DOUBLE) {
-			convert_to_double(hash_zval);
-		}
-		dashes_array[i++] = Z_DVAL_P(hash_zval);*/
+        /* iterate over the array, each value inside MUST be an instance of CairoGlyph */
+        ZEND_HASH_FOREACH_VAL(glyphs_hash, pzval) {
+            if (Z_TYPE_P(pzval) != IS_OBJECT || Z_OBJCE_P(pzval) != ce_cairo_glyph) {
+                    zend_throw_exception(zend_ce_type_error, "Cairo\\ScaledFont::getGlyphExtents(): Argument #1 ($glyphs) must be array of type Cairo\\Glyph.", 0);
+                    efree(glyphs_array);
+                    return;
+            }
+            glyphs_array[i++] = *(cairo_glyph_object_get_glyph(pzval));
         } ZEND_HASH_FOREACH_END();
 
-	cairo_scaled_font_glyph_extents(scaled_font_object->scaled_font, glyphs, num_glyphs, &extents);
+	cairo_scaled_font_glyph_extents(scaled_font_object->scaled_font, glyphs_array, num_glyphs, &extents);
+        efree(glyphs_array);
 
 	array_init(return_value);
 	add_assoc_double(return_value, "x_bearing", extents.x_bearing);

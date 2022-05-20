@@ -80,6 +80,8 @@ extern zend_class_entry *ce_cairo_path;
 
 extern zend_class_entry *ce_cairo_pattern;
 
+extern zend_class_entry *ce_cairo_glyph;
+
 extern zend_class_entry* php_cairo_get_pattern_ce(cairo_pattern_t *pattern);
 extern zend_class_entry* php_cairo_get_surface_ce(cairo_surface_t *surface);
 extern zend_class_entry* php_cairo_get_fontoptions_ce();
@@ -237,12 +239,24 @@ extern cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv);
 extern cairo_rectangle_object *cairo_rectangle_fetch_object(zend_object *object);
 #define Z_CAIRO_RECTANGLE_P(zv) cairo_rectangle_fetch_object(zv)
 
+/* Glyph */
+typedef struct _cairo_glyph_object {
+	cairo_glyph_t *glyph;
+	zend_object std;
+} cairo_glyph_object;
+
+extern cairo_glyph_t *cairo_glyph_object_get_glyph(zval *zv);
+extern cairo_glyph_object *cairo_glyph_fetch_object(zend_object *object);
+#define Z_CAIRO_GLYPH_P(zv) cairo_glyph_fetch_object(zv)
+
+
 /* Classes to register */
 PHP_MINIT_FUNCTION(cairo_pattern);
 PHP_MINIT_FUNCTION(cairo_region);
 PHP_MINIT_FUNCTION(cairo_matrix);
 PHP_MINIT_FUNCTION(cairo_exception);
 PHP_MINIT_FUNCTION(cairo_rectangle);
+PHP_MINIT_FUNCTION(cairo_glyph);
 PHP_MINIT_FUNCTION(cairo_font_face);
 PHP_MINIT_FUNCTION(cairo_font);
 PHP_MINIT_FUNCTION(cairo_font_options);
