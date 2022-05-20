@@ -8,6 +8,7 @@
   | Also available in LICENSE                                            |
   +----------------------------------------------------------------------+
   | Authors: Elizabeth M Smith <auroraeosrose@gmail.com>                 |
+  |          Swen Zanon <swen.zanon@geoglis.de>                          |
   +----------------------------------------------------------------------+
 */
 
@@ -19,7 +20,7 @@
 extern zend_module_entry cairo_module_entry;
 #define phpext_cairo_ptr &cairo_module_entry
 
-#define PHP_CAIRO_VERSION "1.0.1-dev"
+#define PHP_CAIRO_VERSION "1.1.0-dev"
 #define CAIRO_NAMESPACE "Cairo"
 
 #endif /* PHP_CAIRO_EXT_H */
