@@ -57,12 +57,14 @@ static inline double cairo_matrix_get_property_value(zend_object *object, char *
 cairo_matrix_object *cairo_matrix_object_get(zval *zv)
 {
 	cairo_matrix_object *object = Z_CAIRO_MATRIX_P(zv);
+        
 	if (object->matrix == NULL) {
 		zend_throw_exception_ex(ce_cairo_exception, 0,
 			"Internal matrix object missing in %s, you must call parent::__construct in extended classes",
 			ZSTR_VAL(Z_OBJCE_P(zv)->name));
 		return NULL;
 	}
+        
 	return object;
 }
 
@@ -118,14 +120,15 @@ ZEND_END_ARG_INFO()
 PHP_METHOD(CairoMatrix, __construct)
 {
 	cairo_matrix_object *matrix_object;
+        zend_object *object = Z_OBJ_P(getThis());
 
 	/* read defaults from object */
-	double xx = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "xx");
-	double yx = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "yx");
-	double xy = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "xy");
-	double yy = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "yy");
-	double x0 = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "x0");
-	double y0 = cairo_matrix_get_property_value(Z_OBJ_P(getThis()), "y0");
+	double xx = cairo_matrix_get_property_value(object, "xx");
+	double yx = cairo_matrix_get_property_value(object, "yx");
+	double xy = cairo_matrix_get_property_value(object, "xy");
+	double yy = cairo_matrix_get_property_value(object, "yy");
+	double x0 = cairo_matrix_get_property_value(object, "x0");
+	double y0 = cairo_matrix_get_property_value(object, "y0");
 
         ZEND_PARSE_PARAMETERS_START(0,6)
                 Z_PARAM_OPTIONAL
@@ -137,8 +140,8 @@ PHP_METHOD(CairoMatrix, __construct)
                 Z_PARAM_DOUBLE(y0)
         ZEND_PARSE_PARAMETERS_END();
 
-	matrix_object = Z_CAIRO_MATRIX_P(getThis());
-
+	matrix_object = cairo_matrix_fetch_object(object);
+        
 	cairo_matrix_init(matrix_object->matrix, xx, yx, xy, yy, x0, y0);
 }
 /* }}} */
@@ -663,10 +666,10 @@ PHP_MINIT_FUNCTION(cairo_matrix)
 	ce_cairo_matrix = zend_register_internal_class(&ce);
 
 	zend_declare_property_long(ce_cairo_matrix, "xx", sizeof("xx")-1, 1, ZEND_ACC_PUBLIC);
-	zend_declare_property_long(ce_cairo_matrix, "xy", sizeof("xy")-1, 0, ZEND_ACC_PUBLIC);
-	zend_declare_property_long(ce_cairo_matrix, "x0", sizeof("x0")-1, 0, ZEND_ACC_PUBLIC);
 	zend_declare_property_long(ce_cairo_matrix, "yx", sizeof("yx")-1, 0, ZEND_ACC_PUBLIC);
+        zend_declare_property_long(ce_cairo_matrix, "xy", sizeof("xy")-1, 0, ZEND_ACC_PUBLIC);
 	zend_declare_property_long(ce_cairo_matrix, "yy", sizeof("yy")-1, 1, ZEND_ACC_PUBLIC);
+        zend_declare_property_long(ce_cairo_matrix, "x0", sizeof("x0")-1, 0, ZEND_ACC_PUBLIC);
 	zend_declare_property_long(ce_cairo_matrix, "y0", sizeof("y0")-1, 0, ZEND_ACC_PUBLIC);
 
 	return SUCCESS;
