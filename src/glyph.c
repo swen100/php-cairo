@@ -68,7 +68,7 @@ cairo_glyph_object *cairo_glyph_fetch_object(zend_object *object)
 /* {{{ */
 cairo_glyph_t *cairo_glyph_object_get_glyph(zval *zv)
 {
-	cairo_glyph_object *glyph_object = Z_CAIRO_GLYPH_P(Z_OBJ_P(zv));
+	cairo_glyph_object *glyph_object = Z_CAIRO_GLYPH_P(zv);
 
 	return glyph_object->glyph;
 }
@@ -103,7 +103,7 @@ PHP_METHOD(CairoGlyph, __construct)
             Z_PARAM_DOUBLE(y)
         ZEND_PARSE_PARAMETERS_END();
 
-	glyph_object = Z_CAIRO_GLYPH_P(Z_OBJ_P(getThis()));
+	glyph_object = Z_CAIRO_GLYPH_P(getThis());
 
         glyph_object->glyph->index = index;
 	glyph_object->glyph->x = x;
@@ -163,7 +163,7 @@ static zend_object* cairo_glyph_create_object(zend_class_entry *ce)
 static zend_object* cairo_glyph_clone_obj(zend_object *zobj) 
 {
 	cairo_glyph_object *new_glyph;
-	cairo_glyph_object *old_glyph = Z_CAIRO_GLYPH_P(zobj);
+	cairo_glyph_object *old_glyph = cairo_glyph_fetch_object(zobj);
 	zend_object *return_value = cairo_glyph_obj_ctor(zobj->ce, &new_glyph);
 	CAIRO_ALLOC_GLYPH(new_glyph->glyph);
 
@@ -182,7 +182,7 @@ static zval *cairo_glyph_object_read_property(zend_object *zobj, zend_string *me
 {
 	zval *retval;
 	double value;
-	cairo_glyph_object *glyph_object = Z_CAIRO_GLYPH_P(zobj);
+	cairo_glyph_object *glyph_object = cairo_glyph_fetch_object(zobj);
 
 	if(!glyph_object) {
             return rv;
@@ -209,7 +209,7 @@ static zval *cairo_glyph_object_read_property(zend_object *zobj, zend_string *me
 /* {{{ */
 static zval *cairo_glyph_object_write_property(zend_object *zobj, zend_string *member, zval *value, void **cache_slot)
 {
-	cairo_glyph_object *glyph_object = Z_CAIRO_GLYPH_P(zobj);
+	cairo_glyph_object *glyph_object = cairo_glyph_fetch_object(zobj);
         zval *retval = NULL;
         
 	if(!glyph_object) {
@@ -234,7 +234,7 @@ static HashTable *cairo_glyph_object_get_properties(zend_object *zobj)
 {
 	HashTable *props;
 	zval tmp;
-	cairo_glyph_object *glyph_object = Z_CAIRO_GLYPH_P(zobj);
+	cairo_glyph_object *glyph_object = cairo_glyph_fetch_object(zobj);
 
 	props = zend_std_get_properties(zobj);
 
