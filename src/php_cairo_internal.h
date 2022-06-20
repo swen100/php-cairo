@@ -82,6 +82,8 @@ extern zend_class_entry *ce_cairo_pattern;
 
 extern zend_class_entry *ce_cairo_glyph;
 
+extern zend_class_entry *ce_cairo_text_cluster;
+
 extern zend_class_entry* php_cairo_get_pattern_ce(cairo_pattern_t *pattern);
 extern zend_class_entry* php_cairo_get_surface_ce(cairo_surface_t *surface);
 extern zend_class_entry* php_cairo_get_fontoptions_ce();
@@ -102,9 +104,8 @@ typedef struct _cairo_matrix_object {
 	cairo_matrix_t *matrix;
 	zend_object std;
 } cairo_matrix_object;
-
-#define Z_CAIRO_MATRIX_P(zv) cairo_matrix_fetch_object(Z_OBJ_P(zv))
 extern cairo_matrix_object *cairo_matrix_fetch_object(zend_object *object);
+#define Z_CAIRO_MATRIX_P(zv) cairo_matrix_fetch_object(Z_OBJ_P(zv))
 extern cairo_matrix_object *cairo_matrix_object_get(zval *zv);
 cairo_matrix_t *cairo_matrix_object_get_matrix(zval *zv);
 
@@ -113,8 +114,8 @@ typedef struct _cairo_font_options_object {
 	cairo_font_options_t *font_options;
         zend_object std;
 } cairo_font_options_object;
-
 extern cairo_font_options_object *cairo_font_options_fetch_object(zend_object *object);
+#define Z_CAIRO_FONT_OPTIONS_P(zv) cairo_font_options_fetch_object(Z_OBJ_P(zv))
 cairo_font_options_t *cairo_font_options_object_get_font_options(zval *zv);
 
 /* Surface */
@@ -130,9 +131,8 @@ typedef struct _cairo_surface_object {
 	zval *parent_zval;
 	zend_object std;
 } cairo_surface_object;
-
-#define Z_CAIRO_SURFACE_P(zv) cairo_surface_fetch_object(Z_OBJ_P(zv))
 extern cairo_surface_object *cairo_surface_fetch_object(zend_object *object);
+#define Z_CAIRO_SURFACE_P(zv) cairo_surface_fetch_object(Z_OBJ_P(zv))
 extern zend_object* cairo_surface_create_object(zend_class_entry *ce);
 extern cairo_surface_object *cairo_surface_object_get(zval *zv);
 extern cairo_status_t php_cairo_write_func(void *closure, const unsigned char *data, unsigned int length);
@@ -148,11 +148,10 @@ typedef struct _cairo_font_face_object {
 	cairo_user_data_key_t key;
 	zend_object std;
 } cairo_font_face_object;
-
-extern zend_object* cairo_font_face_create_object(zend_class_entry *ce);
 extern cairo_font_face_object *cairo_font_face_fetch_object(zend_object *object);
-extern cairo_font_face_object *cairo_font_face_object_get(zval *zv);
 #define Z_CAIRO_FONT_FACE_P(zv) cairo_font_face_fetch_object(Z_OBJ_P(zv))
+extern cairo_font_face_object *cairo_font_face_object_get(zval *zv);
+extern zend_object* cairo_font_face_create_object(zend_class_entry *ce);
 cairo_font_face_t *cairo_font_face_object_get_font_face(zval *zv);
 
 /* ScaledFont */
@@ -164,20 +163,14 @@ typedef struct _cairo_scaled_font_object {
 	cairo_scaled_font_t *scaled_font;
         zend_object std;
 } cairo_scaled_font_object;
-
 extern cairo_scaled_font_object *cairo_scaled_font_fetch_object(zend_object *object);
 #define Z_CAIRO_SCALED_FONT_P(zv) cairo_scaled_font_fetch_object(Z_OBJ_P(zv))
-
-/* Fon-Options */
-#define Z_CAIRO_FONT_OPTIONS_P(zv) cairo_font_options_fetch_object(Z_OBJ_P(zv))
-extern cairo_font_options_object *cairo_font_options_fetch_object(zend_object *object);
 
 /* Path */
 typedef struct _cairo_path_object {
 	cairo_path_t *path;
         zend_object std;
 } cairo_path_object;
-
 extern cairo_path_object *cairo_path_fetch_object(zend_object *object);
 #define Z_CAIRO_PATH_P(zv) cairo_path_fetch_object(Z_OBJ_P(zv));
 
@@ -225,7 +218,6 @@ typedef struct _cairo_context_object {
 	cairo_t *context;
         zend_object std;
 } cairo_context_object;
-
 extern cairo_context_object *cairo_context_fetch_object(zend_object *object);
 #define Z_CAIRO_CONTEXT_P(zv) cairo_context_fetch_object(Z_OBJ_P(zv))
 
@@ -234,20 +226,27 @@ typedef struct _cairo_rectangle_object {
 	cairo_rectangle_int_t *rect;
 	zend_object std;
 } cairo_rectangle_object;
-
-extern cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv);
 extern cairo_rectangle_object *cairo_rectangle_fetch_object(zend_object *object);
-#define Z_CAIRO_RECTANGLE_P(zv) cairo_rectangle_fetch_object(zv)
+#define Z_CAIRO_RECTANGLE_P(zv) cairo_rectangle_fetch_object(Z_OBJ_P(zv))
+extern cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv);
 
 /* Glyph */
 typedef struct _cairo_glyph_object {
 	cairo_glyph_t *glyph;
 	zend_object std;
 } cairo_glyph_object;
-
-extern cairo_glyph_t *cairo_glyph_object_get_glyph(zval *zv);
 extern cairo_glyph_object *cairo_glyph_fetch_object(zend_object *object);
-#define Z_CAIRO_GLYPH_P(zv) cairo_glyph_fetch_object(zv)
+#define Z_CAIRO_GLYPH_P(zv) cairo_glyph_fetch_object(Z_OBJ_P(zv))
+extern cairo_glyph_t *cairo_glyph_object_get_glyph(zval *zv);
+
+/* TextCluster */
+typedef struct _cairo_text_cluster_object {
+	cairo_text_cluster_t *text_cluster;
+	zend_object std;
+} cairo_text_cluster_object;
+extern cairo_text_cluster_object *cairo_text_cluster_fetch_object(zend_object *object);
+#define Z_CAIRO_TEXT_CLUSTER_P(zv) cairo_text_cluster_fetch_object(Z_OBJ_P(zv))
+extern cairo_text_cluster_t *cairo_text_cluster_object_get_text_cluster(zval *zv);
 
 
 /* Classes to register */
@@ -279,6 +278,7 @@ PHP_MINIT_FUNCTION(cairo_svg_surface);
 PHP_MINIT_FUNCTION(cairo_ps_surface);
 PHP_MINIT_FUNCTION(cairo_path);
 PHP_MINIT_FUNCTION(cairo_context);
+PHP_MINIT_FUNCTION(cairo_text_cluster);
 
 #endif /* PHP_CAIRO_INTERNAL_H */
 

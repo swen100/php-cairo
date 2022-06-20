@@ -212,6 +212,7 @@ PHP_MINIT_FUNCTION(cairo)
         PHP_MINIT(cairo_path)(INIT_FUNC_ARGS_PASSTHRU);
         PHP_MINIT(cairo_context)(INIT_FUNC_ARGS_PASSTHRU);
         PHP_MINIT(cairo_glyph)(INIT_FUNC_ARGS_PASSTHRU);
+        PHP_MINIT(cairo_text_cluster)(INIT_FUNC_ARGS_PASSTHRU);
 	return SUCCESS;
 }
 /* }}} */
