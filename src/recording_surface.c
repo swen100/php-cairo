@@ -154,7 +154,7 @@ PHP_METHOD(CairoRecordingSurface, getExtents)
         }
         
         object_init_ex(return_value, ce_cairo_rectangle);
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(return_value));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(return_value);
         rectangle_object->rect->x = rectangle->x;
         rectangle_object->rect->y = rectangle->y;
         rectangle_object->rect->width = rectangle->width;

@@ -81,8 +81,15 @@ static inline long cairo_rectangle_get_property_value(zend_object *object, char 
 /* {{{ */
 cairo_rectangle_int_t *cairo_rectangle_object_get_rect(zval *zv)
 {
-	cairo_rectangle_object *rect_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(zv));
+	cairo_rectangle_object *rect_object = Z_CAIRO_RECTANGLE_P(zv);
 
+        if (rect_object->rect == NULL) {
+		zend_throw_exception_ex(ce_cairo_exception, 0,
+			"Internal rectangle object missing in %s, you must call parent::__construct in extended classes",
+			ZSTR_VAL(Z_OBJCE_P(zv)->name));
+		return NULL;
+	}
+        
 	return rect_object->rect;
 }
 /* }}} */
@@ -103,12 +110,13 @@ ZEND_END_ARG_INFO()
 PHP_METHOD(CairoRectangle, __construct)
 {
 	cairo_rectangle_object *rectangle_object;
+        zend_object *object = Z_OBJ_P(getThis());
 
 	/* read defaults from object */
-	long x = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "x");
-	long y = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "y");
-	long width = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "width");
-	long height = cairo_rectangle_get_property_value(Z_OBJ_P(getThis()), "height");
+	long x = cairo_rectangle_get_property_value(object, "x");
+	long y = cairo_rectangle_get_property_value(object, "y");
+	long width = cairo_rectangle_get_property_value(object, "width");
+	long height = cairo_rectangle_get_property_value(object, "height");
 
 	/* Now allow constructor to overwrite them if desired */
         ZEND_PARSE_PARAMETERS_START(0,4)
@@ -119,7 +127,7 @@ PHP_METHOD(CairoRectangle, __construct)
                 Z_PARAM_LONG(height)
         ZEND_PARSE_PARAMETERS_END();
 
-	rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(getThis()));
+	rectangle_object = cairo_rectangle_fetch_object(object);
 
 	rectangle_object->rect->x = x;
 	rectangle_object->rect->y = y;
@@ -188,7 +196,7 @@ static zend_object* cairo_rectangle_create_object(zend_class_entry *ce)
 static zend_object* cairo_rectangle_clone_obj(zend_object *zobj) 
 {
 	cairo_rectangle_object *new_rectangle;
-	cairo_rectangle_object *old_rectangle = Z_CAIRO_RECTANGLE_P(zobj);
+	cairo_rectangle_object *old_rectangle = cairo_rectangle_fetch_object(zobj);
 	zend_object *return_value = cairo_rectangle_obj_ctor(zobj->ce, &new_rectangle);
 	CAIRO_ALLOC_RECT(new_rectangle->rect);
 
@@ -208,7 +216,7 @@ static zval *cairo_rectangle_object_read_property(zend_object *object, zend_stri
 {
 	zval *retval;
 	double value;
-	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
+	cairo_rectangle_object *rectangle_object = cairo_rectangle_fetch_object(object);
 
 	if(!rectangle_object) {
 		return rv;
@@ -236,7 +244,7 @@ static zval *cairo_rectangle_object_read_property(zend_object *object, zend_stri
 /* {{{ */
 static zval *cairo_rectangle_object_write_property(zend_object *object, zend_string *member, zval *value, void **cache_slot)
 {
-	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
+	cairo_rectangle_object *rectangle_object = cairo_rectangle_fetch_object(object);
         zval *retval = NULL;
         
 	if(!rectangle_object) {
@@ -263,7 +271,7 @@ static HashTable *cairo_rectangle_object_get_properties(zend_object *object)
 {
 	HashTable *props;
 	zval tmp;
-	cairo_rectangle_object *rectangle_object = Z_CAIRO_RECTANGLE_P(object);
+	cairo_rectangle_object *rectangle_object = cairo_rectangle_fetch_object(object);
 
 	props = zend_std_get_properties(object);
 

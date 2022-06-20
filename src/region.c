@@ -216,7 +216,7 @@ PHP_METHOD(CairoRegion, getExtents)
         }
 
         object_init_ex(return_value, ce_cairo_rectangle);
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(return_value));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(return_value);
         cairo_region_get_extents(region_object->region, rectangle_object->rect);
 }
 /* }}} */
@@ -264,7 +264,7 @@ PHP_METHOD(CairoRegion, getRectangle)
         }
         
         object_init_ex(return_value, ce_cairo_rectangle);
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(return_value));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(return_value);
         cairo_region_get_rectangle(region_object->region, --rectId, rectangle_object->rect);
 }
 /* }}} */
@@ -336,7 +336,7 @@ PHP_METHOD(CairoRegion, containsRectangle)
             return;
         }
         
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(rectangle_zval);
         if (!rectangle_object) {
             return;
         }
@@ -450,7 +450,7 @@ PHP_METHOD(CairoRegion, intersectRectangle)
             return;
         }
         
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(rectangle_zval);
         if (!rectangle_object) {
             return;
         }
@@ -508,7 +508,7 @@ PHP_METHOD(CairoRegion, subtractRectangle)
             return;
         }
         
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(rectangle_zval);
         if (!rectangle_object) {
             return;
         }
@@ -566,7 +566,7 @@ PHP_METHOD(CairoRegion, unionRectangle)
             return;
         }
         
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(rectangle_zval);
         if (!rectangle_object) {
             return;
         }
@@ -626,7 +626,7 @@ PHP_METHOD(CairoRegion, xorRectangle)
             return;
         }
         
-        rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+        rectangle_object = Z_CAIRO_RECTANGLE_P(rectangle_zval);
         if (!rectangle_object) {
             return;
         }
