@@ -2737,6 +2737,7 @@ PHP_METHOD(CairoContext, setFontFace)
     /* If there's already a font face, then we deref and remove it */
     if (!Z_ISNULL(context_object->font_face) &&
         !Z_ISUNDEF(context_object->font_face)) {
+            Z_TRY_DELREF(context_object->font_face);
             ZVAL_UNDEF(&context_object->font_face);
     }
 
