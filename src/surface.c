@@ -34,18 +34,20 @@ static zend_object_handlers cairo_surface_object_handlers;
 
 cairo_surface_object *cairo_surface_fetch_object(zend_object *object)
 {
-    return (cairo_surface_object *) ((char*)(object) - XtOffsetOf(cairo_surface_object, std));
+        return (cairo_surface_object *) ((char*)(object) - XtOffsetOf(cairo_surface_object, std));
 }
 
 cairo_surface_object *cairo_surface_object_get(zval *zv)
 {
 	cairo_surface_object *object = Z_CAIRO_SURFACE_P(zv);
+        
 	if(object->surface == NULL) {
 		zend_throw_exception_ex(ce_cairo_exception, 0,
 			"Internal surface object missing in %s, you must call parent::__construct in extended classes",
 			ZSTR_VAL(Z_OBJCE_P(zv)->name));
 		return NULL;
 	}
+        
 	return object;
 }
 
@@ -577,7 +579,7 @@ PHP_METHOD(CairoSurface, mapToImage)
         }
         
         if (rectangle_zval != NULL && Z_TYPE_P(rectangle_zval) == IS_OBJECT ) {
-                rectangle_object = Z_CAIRO_RECTANGLE_P(Z_OBJ_P(rectangle_zval));
+                rectangle_object = Z_CAIRO_RECTANGLE_P(rectangle_zval);
                 new_surface = cairo_surface_map_to_image(surface_object->surface, rectangle_object->rect);
                 cairo_surface_reference(new_surface);
         } else {
