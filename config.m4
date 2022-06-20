@@ -18,6 +18,7 @@ if test "$PHP_CAIRO" != "no"; then
     src/matrix.c \
     src/rectangle.c \
     src/glyph.c \
+    src/text_cluster.c \
     src/font.c \
     src/font_face.c \
     src/font_options.c \
