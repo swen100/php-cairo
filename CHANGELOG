@@ -1,3 +1,8 @@
+2022-06-20  Swen Zanon  <swen.zanon@geoglis.de>
+    * added new class Cairo\Glyph
+    * added new class Cairo\TextCluster
+    * finalized Cairo\ScaledFont::getGlyphExtents; Cairo\Context::glyphPath()
+    * added Cairo\Context::showGlyphs(), Cairo\Context::showTextGlyphs()
 2021-08-11  Swen Zanon  <swen.zanon@geoglis.de>
     * Ported to PHP8
     * full rewrite of all tests and added tests for new methods
