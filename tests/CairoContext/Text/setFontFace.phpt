@@ -49,7 +49,7 @@ try {
     echo $e->getMessage(), PHP_EOL;
 }
 
-die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
+
 ?>
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {

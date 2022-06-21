@@ -19,23 +19,23 @@ print_r($matrix);
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(6)
-  ["xy"]=>
-  float(4)
-  ["x0"]=>
-  float(2)
   ["yx"]=>
   float(5)
+  ["xy"]=>
+  float(4)
   ["yy"]=>
   float(3)
+  ["x0"]=>
+  float(2)
   ["y0"]=>
   float(1)
 }
 Cairo\Matrix Object
 (
     [xx] => 6
-    [xy] => 4
-    [x0] => 2
     [yx] => 5
+    [xy] => 4
     [yy] => 3
+    [x0] => 2
     [y0] => 1
 )

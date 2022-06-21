@@ -14,7 +14,7 @@ var_dump($context);
 
 var_dump($orig_matrix = $context->getFontMatrix());
 
-$matrix = new Cairo\Matrix(5, 5);
+$matrix = new Cairo\Matrix(5, 0, 0, 5);
 var_dump($matrix);
 var_dump($orig_matrix === $matrix);
 
@@ -40,27 +40,27 @@ object(Cairo\Context)#%d (0) {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(10)
-  ["xy"]=>
-  float(0)
-  ["x0"]=>
-  float(0)
   ["yx"]=>
+  float(0)
+  ["xy"]=>
   float(0)
   ["yy"]=>
   float(10)
+  ["x0"]=>
+  float(0)
   ["y0"]=>
   float(0)
 }
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(5)
+  ["yx"]=>
+  float(0)
   ["xy"]=>
   float(0)
-  ["x0"]=>
-  float(0)
-  ["yx"]=>
-  float(5)
   ["yy"]=>
+  float(5)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)
@@ -69,13 +69,13 @@ bool(false)
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(5)
+  ["yx"]=>
+  float(0)
   ["xy"]=>
   float(0)
-  ["x0"]=>
-  float(0)
-  ["yx"]=>
-  float(5)
   ["yy"]=>
+  float(5)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)

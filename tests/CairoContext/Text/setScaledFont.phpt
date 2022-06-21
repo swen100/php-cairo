@@ -23,8 +23,8 @@ $context->setFontFace($orig_fontface);
 
 /* create scaled font with new font face, font options, matrix */
 include(dirname(__FILE__) . '/create_toyfont.inc');
-$matrix1 = new Cairo\Matrix(1,1,1);
-$matrix2 = new Cairo\Matrix(2,2,2);
+$matrix1 = new Cairo\Matrix(1,1,0,1);
+$matrix2 = new Cairo\Matrix(2,2,0,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);
@@ -45,8 +45,8 @@ var_dump($scaled === $context->getScaledFont());
 
 /* create scaled font with new font face, font options, matrix */
 include(dirname(__FILE__) . '/create_toyfont.inc');
-$matrix1 = new Cairo\Matrix(1,1,1);
-$matrix2 = new Cairo\Matrix(2,2,2);
+$matrix1 = new Cairo\Matrix(1,1,0,1);
+$matrix2 = new Cairo\Matrix(2,2,0,2);
 $fontoptions = new Cairo\FontOptions();
 
 $scaled = new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions);

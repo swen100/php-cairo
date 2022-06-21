@@ -11,7 +11,7 @@ include __DIR__ . '/../skipif.inc';
 use Cairo\Matrix;
 use TypeError as Exception;
 
-$matrix1 = new Matrix(0.1, 0.1);
+$matrix1 = new Matrix(0.1, 0, 0, 0.1);
 $matrix2 = new Matrix(0.1);
 
 var_dump(Matrix::multiply($matrix1, $matrix2));
@@ -60,13 +60,13 @@ try {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(%f)
-  ["xy"]=>
-  float(0)
-  ["x0"]=>
-  float(0)
   ["yx"]=>
   float(0)
+  ["xy"]=>
+  float(0)
   ["yy"]=>
+  float(0.1)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)

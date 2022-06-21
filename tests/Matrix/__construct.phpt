@@ -73,14 +73,14 @@ try {
 --EXPECTF--
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
+  float(1)
+  ["yx"]=>
   float(0)
   ["xy"]=>
   float(0)
-  ["x0"]=>
-  float(0)
-  ["yx"]=>
-  float(0)
   ["yy"]=>
+  float(1)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)

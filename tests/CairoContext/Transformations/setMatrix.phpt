@@ -12,7 +12,7 @@ var_dump($surface);
 $context = new Cairo\Context($surface);
 var_dump($context);
 
-$matrix = new Cairo\Matrix(1, 1, 1);
+$matrix = new Cairo\Matrix(1, 0, 0, 1, 1);
 var_dump($matrix);
 
 $context->setMatrix($matrix);
@@ -20,7 +20,7 @@ $matrix1 = $context->getMatrix();
 
 var_dump($matrix === $matrix1);
 
-$matrix2 = new Cairo\Matrix(5, 5, 1);
+$matrix2 = new Cairo\Matrix(5, 0, 1, 5);
 $context->setMatrix($matrix2);
 $matrix1 = $context->getMatrix();
 
@@ -57,14 +57,14 @@ object(Cairo\Context)#%d (0) {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(1)
+  ["yx"]=>
+  float(0)
   ["xy"]=>
+  float(0)
+  ["yy"]=>
   float(1)
   ["x0"]=>
-  float(0)
-  ["yx"]=>
   float(1)
-  ["yy"]=>
-  float(0)
   ["y0"]=>
   float(0)
 }

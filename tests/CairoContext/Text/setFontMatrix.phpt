@@ -20,7 +20,7 @@ $matrix1 = $context->getFontMatrix();
 
 var_dump($matrix === $matrix1);
 
-$matrix2 = new Cairo\Matrix(5, 5);
+$matrix2 = new Cairo\Matrix(5,0,0,5);
 $context->setFontMatrix($matrix2);
 $matrix1 = $context->getFontMatrix();
 
@@ -47,7 +47,6 @@ try {
     echo $e->getMessage(), PHP_EOL;
 }
 
-die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
 object(Cairo\Surface\Image)#%d (0) {
@@ -56,14 +55,14 @@ object(Cairo\Context)#%d (0) {
 }
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
+  float(1)
+  ["yx"]=>
   float(0)
   ["xy"]=>
   float(0)
-  ["x0"]=>
-  float(0)
-  ["yx"]=>
-  float(0)
   ["yy"]=>
+  float(1)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)

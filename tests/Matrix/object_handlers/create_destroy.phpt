@@ -27,11 +27,11 @@ object(neo)#%d (6) {
   float(8)
   ["xy"]=>
   float(5)
-  ["x0"]=>
-  float(0)
   ["yx"]=>
   float(0)
   ["yy"]=>
+  float(1)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)

@@ -11,7 +11,7 @@ include __DIR__ . '/../skipif.inc';
 use Cairo\Matrix;
 use TypeError as Exception;
 
-$matrix = new Matrix(1, 1);
+$matrix = new Matrix(1, 0, 0, 1);
 var_dump($matrix);
 
 var_dump($matrix->transformPoint(1.0, 1.0));
@@ -42,7 +42,7 @@ try {
 
 /* Wrong arg type 1 */
 try {
-    $matrix->transformPoint(array(), 1);
+    $matrix->transformPoint([], 1);
     trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -50,7 +50,7 @@ try {
 
 /* Wrong arg type 2 */
 try {
-    $matrix->transformPoint(1, array());
+    $matrix->transformPoint(1, []);
     trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
@@ -60,13 +60,13 @@ try {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(1)
+  ["yx"]=>
+  float(0)
   ["xy"]=>
   float(0)
-  ["x0"]=>
-  float(0)
-  ["yx"]=>
-  float(1)
   ["yy"]=>
+  float(1)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)

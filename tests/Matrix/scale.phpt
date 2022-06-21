@@ -60,14 +60,14 @@ try {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(2)
+  ["yx"]=>
+  float(2)
   ["xy"]=>
+  float(5)
+  ["yy"]=>
   float(5)
   ["x0"]=>
   float(1)
-  ["yx"]=>
-  float(2)
-  ["yy"]=>
-  float(5)
   ["y0"]=>
   float(1)
 }

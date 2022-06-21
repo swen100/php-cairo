@@ -61,13 +61,13 @@ try {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(5)
-  ["xy"]=>
-  float(0)
-  ["x0"]=>
-  float(0)
   ["yx"]=>
   float(5)
+  ["xy"]=>
+  float(0)
   ["yy"]=>
+  float(1)
+  ["x0"]=>
   float(0)
   ["y0"]=>
   float(0)
@@ -75,16 +75,16 @@ object(Cairo\Matrix)#%d (6) {
 object(Cairo\Matrix)#%d (6) {
   ["xx"]=>
   float(5)
-  ["xy"]=>
-  float(0)
-  ["x0"]=>
-  float(10)
   ["yx"]=>
   float(5)
-  ["yy"]=>
+  ["xy"]=>
   float(0)
-  ["y0"]=>
+  ["yy"]=>
+  float(1)
+  ["x0"]=>
   float(10)
+  ["y0"]=>
+  float(12)
 }
 Cairo\Matrix::translate() expects exactly 2 arguments, 0 given
 Cairo\Matrix::translate() expects exactly 2 arguments, 1 given
