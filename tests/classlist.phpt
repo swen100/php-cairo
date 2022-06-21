@@ -12,7 +12,7 @@ $ext = new ReflectionExtension('cairo');
 var_dump($ext->getClassNames());
 ?>
 --EXPECT--
-array(53) {
+array(55) {
   [0]=>
   string(5) "Cairo"
   [1]=>
@@ -119,4 +119,8 @@ array(53) {
   string(14) "Cairo\LineJoin"
   [52]=>
   string(14) "Cairo\Operator"
+  [53]=>
+  string(11) "Cairo\Glyph"
+  [54]=>
+  string(17) "Cairo\TextCluster"
 }
