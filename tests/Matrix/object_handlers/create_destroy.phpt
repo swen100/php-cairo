@@ -25,10 +25,10 @@ var_dump($mr_andersen);
 object(neo)#%d (6) {
   ["xx"]=>
   float(8)
-  ["xy"]=>
-  float(5)
   ["yx"]=>
   float(0)
+  ["xy"]=>
+  float(5)
   ["yy"]=>
   float(1)
   ["x0"]=>
