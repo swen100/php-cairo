@@ -20,7 +20,6 @@ var_dump($filter == Cairo\Filter::GOOD);
 /* Total number of args needed = 0 */
 try {
     $pattern->getFilter(1);
-    trigger_error('getFilter with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

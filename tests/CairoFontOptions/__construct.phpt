@@ -12,7 +12,6 @@ var_dump($options);
 /* Wrong number args */
 try {
     new Cairo\FontOptions('foo');
-    trigger_error('__construct requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

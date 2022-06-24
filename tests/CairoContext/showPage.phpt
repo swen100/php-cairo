@@ -17,7 +17,6 @@ $context->showPage();
 /* Wrong number args */
 try {
     $context->showPage('foobar');
-    trigger_error('showPage requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

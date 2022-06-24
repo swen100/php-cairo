@@ -14,7 +14,6 @@ var_dump($surface->getStride());
 /* Wrong number args */
 try {
     $surface->getStride('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

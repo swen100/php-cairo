@@ -17,7 +17,6 @@ var_dump($options->equal($options2));
 /* Wrong number args 1 */
 try {
     $options->equal();
-    trigger_error('equal requires 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args 2 */
 try {
     $options->equal($options2, 1);
-    trigger_error('equal requires only 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type - needs \Cairo\FontOptions */
 try {
     $options->equal(1);
-    trigger_error('equal requires cairofontoptions instance');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

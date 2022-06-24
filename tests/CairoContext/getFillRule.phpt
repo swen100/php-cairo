@@ -17,7 +17,6 @@ var_dump($context->getFillRule());
 /* Wrong number args */
 try {
     $context->getFillRule('foobar');
-    trigger_error('getAntialias requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

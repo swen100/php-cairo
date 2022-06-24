@@ -19,7 +19,6 @@ var_dump($matrix->transformPoint(1.0, 1.0));
 /* Wrong number args */
 try {
     $matrix->transformPoint();
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -27,7 +26,6 @@ try {
 /* Wrong number args 2 */
 try {
     $matrix->transformPoint(1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -35,7 +33,6 @@ try {
 /* Wrong number args 3 */
 try {
     $matrix->transformPoint(1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -43,7 +40,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $matrix->transformPoint([], 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -51,7 +47,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $matrix->transformPoint(1, []);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

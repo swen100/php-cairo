@@ -17,7 +17,6 @@ $context->pushGroup();
 /* Wrong number args */
 try {
     $context->pushGroup('foo');
-    trigger_error('save requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

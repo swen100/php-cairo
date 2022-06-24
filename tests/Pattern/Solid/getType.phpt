@@ -17,7 +17,6 @@ var_dump($type == Cairo\Pattern\Type::SOLID);
 
 try {
     $pattern->getType('foo');
-    trigger_error('gettype requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage();
 }

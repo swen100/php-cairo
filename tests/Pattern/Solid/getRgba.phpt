@@ -28,7 +28,6 @@ var_dump($alpha === $values['alpha']);
 /* Total number of args needed = 0 */
 try {
     $pattern->getRgba(1);
-    trigger_error('getRgba with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

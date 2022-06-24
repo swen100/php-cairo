@@ -18,14 +18,12 @@ $context->mask($pattern);
 /* wrong params */
 try {
     $context->mask();
-    trigger_error('Wrong params');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
 try {
     $context->mask($pattern, 1);
-    trigger_error('Wrong params');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -34,7 +32,6 @@ catch (ArgumentCountError $ex) {
 /* wrong type */
 try {
     $context->mask(array());
-    trigger_error('Wrong type');
 }
 catch (TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;

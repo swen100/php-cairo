@@ -21,7 +21,6 @@ $context->setFontSize(10);
 /* Wrong number args */
 try {
     $context->setFontSize();
-    trigger_error('setFontSize requires at least one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -29,7 +28,6 @@ try {
 /* Wrong number args - too many */
 try {
     $context->setFontSize(15, 1);
-    trigger_error('setFontSize requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -37,7 +35,6 @@ try {
 /* Wrong arg type - double */
 try {
     $context->setFontSize(array());
-    trigger_error('setFontSize requires a double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

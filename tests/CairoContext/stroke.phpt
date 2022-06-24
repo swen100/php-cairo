@@ -17,7 +17,6 @@ $context->stroke();
 /* Wrong number args */
 try {
     $context->stroke('foobar');
-    trigger_error('stroke requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

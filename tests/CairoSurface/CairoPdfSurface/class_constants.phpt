@@ -25,7 +25,7 @@ if (\Cairo\VERSION >= 11600) {
         '\Cairo\Surface\Pdf\Metadata::CREATE_DATE',
         '\Cairo\Surface\Pdf\Metadata::MOD_DATE',
         
-        '\Cairo\Surface\Pdf\Version::VERSION_1_5',
+        '\Cairo\Surface\Pdf\Version::VERSION_1_4',
         '\Cairo\Surface\Pdf\Version::VERSION_1_5'
     ];
 } else {

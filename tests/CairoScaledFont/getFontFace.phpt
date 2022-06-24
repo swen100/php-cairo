@@ -23,7 +23,6 @@ var_dump($face2 == $fontface);
 /* Wrong number args */
 try {
     $scaled->getFontFace('foo');
-    trigger_error('status requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

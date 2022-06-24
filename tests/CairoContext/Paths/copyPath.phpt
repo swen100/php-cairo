@@ -17,7 +17,6 @@ var_dump($context->copyPath());
 /* Wrong number args - expects 0 */
 try {
     $context->copyPath('foo');
-    trigger_error('identityMatrix requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

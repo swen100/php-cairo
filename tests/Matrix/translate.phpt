@@ -20,7 +20,6 @@ var_dump($matrix);
 /* Wrong number args */
 try {
     $matrix->translate();
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +27,6 @@ try {
 /* Wrong number args 2 */
 try {
     $matrix->translate(1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -36,7 +34,6 @@ try {
 /* Too many args */
 try {
     $matrix->translate(1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -44,7 +41,6 @@ try {
 /* Bad arg type */
 try {
     $matrix->translate(array(), 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -52,7 +48,6 @@ try {
 /* Bad arg type 2*/
 try {
     $matrix->translate(1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

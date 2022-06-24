@@ -18,7 +18,6 @@ var_dump($context->getPathExtents());
 /* Wrong number args 10*/
 try {
     $context->getPathExtents('foobar');
-    trigger_error('textExtents requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

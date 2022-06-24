@@ -18,7 +18,6 @@ var_dump($context->getAntialias());
 /* Wrong number args - 1 */
 try {
     $context->setAntialias(1, 1);
-    trigger_error('setAntialias requires 0 or 1 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -26,7 +25,6 @@ try {
 /* Wrong args */
 try {
     $context->setAntialias(array());
-    trigger_error('setAntialias requires int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

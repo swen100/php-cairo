@@ -14,7 +14,6 @@ $surface->setFallbackResolution(10, 10);
 /* Wrong number args - 1 */
 try {
     $surface->setFallbackResolution();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -22,7 +21,6 @@ try {
 /* Wrong number args - 2 */
 try {
     $surface->setFallbackResolution(10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -30,7 +28,6 @@ try {
 /* Wrong number args - 3 */
 try {
     $surface->setFallbackResolution(10, 10, 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -38,7 +35,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $surface->setFallbackResolution(array(), 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -46,7 +42,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $surface->setFallbackResolution(10, array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

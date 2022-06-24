@@ -22,7 +22,6 @@ var_dump($extents);
 /* Wrong number args */
 try {
     $region->getExtents('foo');
-    trigger_error('getExtents requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

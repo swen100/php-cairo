@@ -16,7 +16,6 @@ var_dump($pattern);
 /* Wrong number args - requires 6 */
 try {
     new Radial();
-    trigger_error('CairoRadialGradient::__construct with no args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -24,7 +23,6 @@ try {
 /* Wrong number args - 6 */
 try {
     new Radial(1);
-    trigger_error('CairoRadialGradient::__construct with 1 arg should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -32,7 +30,6 @@ try {
 /* Wrong number args - 6 */
 try {
     new Radial(1, 1);
-    trigger_error('CairoRadialGradient::__construct with 2 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -40,7 +37,6 @@ try {
 /* Wrong number args - 6 */
 try {
     new Radial(1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct with 3 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -48,7 +44,6 @@ try {
 /* Wrong number args - 6 */
 try {
     new Radial(1, 1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct with 4 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -56,7 +51,6 @@ try {
 /* Wrong number args - 6 */
 try {
     new Radial(1, 1, 1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct with 5 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -64,7 +58,6 @@ try {
 /* Wrong number args - 6 */
 try {
     new Radial(1, 1, 1, 1, 1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct with 7 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -72,7 +65,6 @@ try {
 /* Wrong arg type 1 */
 try {
     new Radial(array(), 1, 1, 1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -80,7 +72,6 @@ try {
 /* Wrong arg type 2 */
 try {
     new Radial(1, array(), 1, 1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -88,7 +79,6 @@ try {
 /* Wrong arg type 3 */
 try {
     new Radial(1, 1, array(), 1, 1, 1);
-    trigger_error('CairoRadialGradient::__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -96,7 +86,6 @@ try {
 /* Wrong arg type 4 */
 try {
     new Radial(1, 1, 1, array(), 1, 1);
-    trigger_error('CairoRadialGradient::__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -104,7 +93,6 @@ try {
 /* Wrong arg type 5 */
 try {
     new Radial(1, 1, 1, 1, array(), 1);
-    trigger_error('CairoRadialGradient::__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -112,7 +100,6 @@ try {
 /* Wrong arg type 6 */
 try {
     new Radial(1, 1, 1, 1, 1, array());
-    trigger_error('CairoRadialGradient::__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -17,7 +17,6 @@ var_dump($context->getDashCount());
 /* Wrong number args - expects 0*/
 try {
     $context->getDashCount('foo');
-    trigger_error('getDashCount requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -19,7 +19,6 @@ var_dump($matrix->transformDistance(1.0, 1.0));
 /* Wrong number args */
 try {
     $matrix->transformDistance();
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -27,7 +26,6 @@ try {
 /* Wrong number args 2 */
 try {
     $matrix->transformDistance(1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -35,7 +33,6 @@ try {
 /* Wrong number args 3 */
 try {
     $matrix->transformDistance(1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -43,7 +40,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $matrix->transformDistance(array(), 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -51,7 +47,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $matrix->transformDistance(1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

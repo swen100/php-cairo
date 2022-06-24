@@ -17,7 +17,6 @@ $context->pushGroupWithContent(Cairo\Surface\Content::COLOR);
 /* Wrong number args - needs 1 */
 try {
     $context->pushGroupWithContent();
-    trigger_error('pushGroupWithContent requires one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args - needs 1 */
 try {
     $context->pushGroupWithContent(1, 1);
-    trigger_error('pushGroupWithContent requires only one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type, needs int */
 try {
     $context->pushGroupWithContent(array());
-    trigger_error('pushGroupWithContent arg one must be int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

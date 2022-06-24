@@ -26,7 +26,6 @@ var_dump($newTarget);
 /* invalid arg */
 try {
     $surface->addOutline($target, $name, $linkAttr, 999);
-    trigger_error('We should bomb here 1');
 } catch (ValueError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -34,7 +33,6 @@ try {
 /* invalid arg */
 try {
     var_dump( $surface->addOutline($target, "filename", "file='document.pdf' page=16 pos=[25 40]", $flag) );
-    trigger_error('We should bomb here 1');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -42,7 +40,6 @@ try {
 /* Wrong number args 0 */
 try {
     $surface->addOutline();
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -50,7 +47,6 @@ try {
 /* Wrong number args 1 */
 try {
     $surface->addOutline($target);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -58,7 +54,6 @@ try {
 /* Wrong number args 2 */
 try {
     $surface->addOutline($target, $name);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -66,7 +61,6 @@ try {
 /* Wrong number args 3 */
 try {
     $surface->addOutline($target, $name, $linkAttr);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -74,7 +68,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $surface->addOutline([], $name, $linkAttr, $flag);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -82,7 +75,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $surface->addOutline($target, [], $linkAttr, $flag);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -90,7 +82,6 @@ try {
 /* Wrong arg type 3 */
 try {
     $surface->addOutline($target, $name, [], $flag);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -98,7 +89,6 @@ try {
 /* Wrong arg type 4 */
 try {
     $surface->addOutline($target, $name, $linkAttr, []);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

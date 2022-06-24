@@ -14,7 +14,6 @@ var_dump(Cairo\Surface\Ps::getLevels());
 /* Wrong number args */
 try {
     Cairo\Surface\Ps::getLevels('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

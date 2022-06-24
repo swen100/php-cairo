@@ -17,7 +17,6 @@ var_dump($context->userToDeviceDistance(5, 5));
 /* Wrong number args - 1 */
 try {
     $context->userToDeviceDistance();
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args - 2 */
 try {
     $context->userToDeviceDistance(10);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong number args - 3 */
 try {
     $context->userToDeviceDistance(10, 10, 10);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -41,7 +38,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $context->userToDeviceDistance(array(), 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -49,7 +45,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $context->userToDeviceDistance(10, array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -17,7 +17,6 @@ var_dump($matrix);
 /* Wrong number args - can only have too many, any number between 0 and 6 is fine */
 try {
     new Matrix(1, 1, 1, 1, 1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong arg type 1 */
 try {
     new Matrix(array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type 2 */
 try {
     new Matrix(1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -41,7 +38,6 @@ try {
 /* Wrong arg type 3 */
 try {
     new Matrix(1, 1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -49,7 +45,6 @@ try {
 /* Wrong arg type 4 */
 try {
     new Matrix(1, 1, 1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -57,7 +52,6 @@ try {
 /* Wrong arg type 5 */
 try {
     new Matrix(1, 1, 1, 1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -65,7 +59,6 @@ try {
 /* Wrong arg type 6 */
 try {
     new Matrix(1, 1, 1, 1, 1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

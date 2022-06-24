@@ -28,13 +28,11 @@ var_dump($extend == Cairo\Extend::REPEAT);
 /* Total number of args needed = 1 */
 try {
     $pattern->setExtend();
-    trigger_error('setExtend with no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->setExtend(1, 1);
-    trigger_error('setExtend with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -42,7 +40,6 @@ try {
 /* arg must be int or castable to int */
 try {
     $pattern->setExtend([]);
-    trigger_error('Arg 1 must be int or enum');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

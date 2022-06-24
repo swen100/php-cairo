@@ -16,7 +16,6 @@ var_dump($surface->getFormat());
 /* Wrong number args */
 try {
     $surface->getFormat('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

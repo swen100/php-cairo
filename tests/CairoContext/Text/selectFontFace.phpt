@@ -23,7 +23,6 @@ $context->selectFontFace('sans-serif', null, Cairo\FontWeight::NORMAL);
 /* Wrong number args */
 try {
     $context->selectFontFace();
-    trigger_error('selectFontFace requires at least one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -31,7 +30,6 @@ try {
 /* Wrong number args - too many */
 try {
     $context->selectFontFace('sans-serif', Cairo\FontSlant::NORMAL, Cairo\FontWeight::NORMAL, 1);
-    trigger_error('selectFontFace requires at least one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -39,7 +37,6 @@ try {
 /* Wrong arg type - string */
 try {
     $context->selectFontFace([]);
-    trigger_error('selectFontFace requires a string font name');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -47,7 +44,6 @@ try {
 /* Wrong arg type - int */
 try {
     $context->selectFontFace('sans-serif', []);
-    trigger_error('selectFontFace requires an int font slant');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -55,7 +51,6 @@ try {
 /* Wrong arg type - int */
 try {
     $context->selectFontFace('sans-serif', Cairo\FontSlant::NORMAL, []);
-    trigger_error('selectFontFace requires an int font weight');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

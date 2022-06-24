@@ -24,21 +24,18 @@ var_dump( $region2->containsPoint(50, 50) );
 /* Wrong number args */
 try {
     $region->translate();
-    trigger_error('translate requires two args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->translate('foo');
-    trigger_error('translate requires two args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->translate(1,2,3);
-    trigger_error('translate requires two args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -10,6 +10,7 @@ $options = new Cairo\FontOptions();
 var_dump($options);
 
 $options->setAntialias(\Cairo\Antialias::SUBPIXEL);
+$options->setAntialias();
 
 /* invalid args (out of range)*/
 try {

@@ -17,7 +17,6 @@ var_dump($status == Cairo\Status::SUCCESS);
 /* Wrong number args */
 try {
     $fontface->getStatus('foo');
-    trigger_error('status requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

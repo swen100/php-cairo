@@ -18,7 +18,6 @@ fclose($resource);
 /* Wrong number args - 1 */
 try {
     Cairo\Surface\Image::createFromPng();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -26,7 +25,6 @@ try {
 /* Wrong number args - 2 */
 try {
     Cairo\Surface\Image::createFromPng('', 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -34,7 +32,6 @@ try {
 /* Wrong arg */
 try {
     Cairo\Surface\Image::createFromPng(array());
-    trigger_error('We should bomb here');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

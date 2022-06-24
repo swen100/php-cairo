@@ -24,7 +24,6 @@ var_dump($matrix1 === $matrix3);
 
 try {
     $pattern->getMatrix('foo');
-    trigger_error('get matrix requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

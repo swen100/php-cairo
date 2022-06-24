@@ -20,14 +20,12 @@ var_dump( $region->getExtents() );
 /* Wrong number args */
 try {
     $region->intersectRectangle(1);
-    trigger_error('Cairo\Region::unionRectangle(): Argument #1 ($region) must be of type Cairo\Region');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->intersectRectangle($rectangle1, 'foo');
-    trigger_error('Cairo\Region::unionRectangle() expects exactly 1 argument, 2 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

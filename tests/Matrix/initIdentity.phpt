@@ -17,7 +17,6 @@ var_dump($matrix);
 /* Wrong number args */
 try {
     Matrix::initIdentity('foo');
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

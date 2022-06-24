@@ -20,7 +20,6 @@ var_dump($scaled->getCtm());
 /* Wrong number args */
 try {
     $scaled->getCtm('foo');
-    trigger_error('status requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -20,7 +20,6 @@ var_dump($scaled->getScaleMatrix());
 /* Wrong number args */
 try {
     $scaled->getScaleMatrix('foo');
-    trigger_error('status requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

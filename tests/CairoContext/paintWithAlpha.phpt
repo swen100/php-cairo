@@ -17,7 +17,6 @@ $context->paintWithAlpha(0);
 /* Wrong number args */
 try {
     $context->paintWithAlpha();
-    trigger_error('paintWithAlpha requires 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args */
 try {
     $context->paintWithAlpha(1, 1);
-    trigger_error('paintWithAlpha requires only 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type */
 try {
     $context->paintWithAlpha(array());
-    trigger_error('paintWithAlpha requires double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

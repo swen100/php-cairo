@@ -18,7 +18,6 @@ var_dump($pattern->getCircles());
 /* Total number of args needed = 0 */
 try {
     $pattern->getCircles(1);
-    trigger_error('getCircles with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

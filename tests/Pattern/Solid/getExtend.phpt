@@ -18,7 +18,6 @@ var_dump($extend == Cairo\Extend::PAD);
 /* Total number of args needed = 0 */
 try {
     $pattern->getExtend(1);
-    trigger_error('getExtend with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

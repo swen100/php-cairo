@@ -19,8 +19,7 @@ var_dump($context->getPattern());
 
 /* wrong params */
 try {
-    $context->popGroupToSource(1);
-    trigger_error('popGroupToSource() expects 0 params');	
+    $context->popGroupToSource(1);	
 }
 catch (TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;

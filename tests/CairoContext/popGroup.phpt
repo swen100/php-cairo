@@ -19,7 +19,6 @@ var_dump($pattern);
 /* Wrong number args */
 try {
     $context->popGroup('foo');
-    trigger_error('popGroup requires only one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -17,7 +17,6 @@ var_dump($matrix);
 /* Wrong number args */
 try {
     Matrix::initScale();
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args 2 */
 try {
     Matrix::initScale(1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong number args 3 */
 try {
     Matrix::initScale(1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -41,7 +38,6 @@ try {
 /* Wrong arg type 1 */
 try {
     Matrix::initScale(array(), 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -49,7 +45,6 @@ try {
 /* Wrong arg type 2 */
 try {
     Matrix::initScale(1, array());
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

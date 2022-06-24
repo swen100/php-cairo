@@ -18,7 +18,6 @@ var_dump($context->getFillRule());
 /* Wrong number args - 1 */
 try {
     $context->setFillRule();
-    trigger_error('setFillRule requires 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -26,7 +25,6 @@ try {
 /* Wrong number args - 2 */
 try {
     $context->setFillRule(1, 1);
-    trigger_error('setFillRule requires only 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -34,7 +32,6 @@ try {
 /* Wrong args */
 try {
     $context->setFillRule(array());
-    trigger_error('setFillRule requires int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

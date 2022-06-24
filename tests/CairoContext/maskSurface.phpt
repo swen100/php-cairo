@@ -20,7 +20,6 @@ $context->maskSurface($surface2, 5, 1);
 /* wrong params */
 try {
     $context->maskSurface();
-    trigger_error('maskSurface expects at least 1 param');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -29,7 +28,6 @@ catch (ArgumentCountError $ex) {
 /* wrong type */
 try {
     $context->maskSurface(new stdClass());
-    trigger_error('maskSurface arg 1 expects double');
 }
 catch (TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -37,7 +35,6 @@ catch (TypeError $ex) {
 
 try {
     $context->maskSurface($surface2, 1, 1, 1);
-    trigger_error('maskSurface expects at most 3 params');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -46,7 +43,6 @@ catch (ArgumentCountError $ex) {
 /* wrong type */
 try {
     $context->maskSurface(array());
-    trigger_error('maskSurface arg 1 expects Cairo\Surface');
 }
 catch (TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -55,7 +51,6 @@ catch (TypeError $ex) {
 /* wrong type */
 try {
     $context->maskSurface($surface2, array());
-    trigger_error('maskSurface arg 2 expects double');
 }
 catch (TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -64,7 +59,6 @@ catch (TypeError $ex) {
 /* wrong type */
 try {
     $context->maskSurface($surface2, 1, array());
-    trigger_error('maskSurface arg 1 expects double');
 }
 catch (TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;

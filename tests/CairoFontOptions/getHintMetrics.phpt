@@ -14,7 +14,6 @@ var_dump($options->getHintMetrics());
 /* Wrong number args */
 try {
     $options->getHintMetrics('foo');
-    trigger_error('getHintMetrics requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

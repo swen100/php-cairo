@@ -19,7 +19,6 @@ var_dump($context->getTextExtents('foobar'));
 /* Wrong number args 1 */
 try {
     $context->getTextExtents();
-    trigger_error('textExtents requires one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -27,7 +26,6 @@ try {
 /* Wrong number args 1 */
 try {
     $context->getTextExtents('foo', 1);
-    trigger_error('textExtents requires only one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -35,7 +33,6 @@ try {
 /* Wrong arg type */
 try {
     $context->getTextExtents([]);
-    trigger_error('textExtents requires one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }

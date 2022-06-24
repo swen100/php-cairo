@@ -17,7 +17,6 @@ var_dump($context->getFontExtents());
 /* Wrong number args */
 try {
     $context->getFontExtents('foo');
-    trigger_error('fontExtents requires only one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

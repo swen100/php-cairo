@@ -25,7 +25,6 @@ var_dump($image2);
 /* Wrong arg type */
 try {
     $surface->mapToImage('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +32,6 @@ try {
 /* Wrong number args */
 try {
     $surface->mapToImage($rectangle, []);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

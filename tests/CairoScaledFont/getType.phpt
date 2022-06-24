@@ -19,7 +19,6 @@ var_dump($scaled->getType());
 
 try {
     $scaled->getType('foo');
-    trigger_error('Cairo\ScaledFont->getType requires no arguments');
 } catch (TypeError $e) {
     echo $e->getMessage();
 }

@@ -17,7 +17,6 @@ var_dump($context->getLineCap());
 /* Wrong number args */
 try {
     $context->getLineCap('foobar');
-    trigger_error('getLineCap requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

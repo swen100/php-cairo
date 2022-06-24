@@ -18,7 +18,6 @@ var_dump($context->getMiterLimit());
 /* wrong params */
 try {
     $context->getMiterLimit('foobar');
-    trigger_error('Cairo->getMiterLimit() expects no params');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;

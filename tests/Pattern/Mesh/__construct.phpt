@@ -16,7 +16,6 @@ var_dump($pattern);
 /* Wrong number args - none needed */
 try {
     new Mesh(1);
-    trigger_error('__construct args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

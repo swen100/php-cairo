@@ -21,7 +21,6 @@ var_dump($surface->getDocumentUnit());
 /* Wrong number args */
 try {
     $surface->getDocumentUnit('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

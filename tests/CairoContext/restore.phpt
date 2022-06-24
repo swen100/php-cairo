@@ -18,7 +18,6 @@ $context->restore();
 /* restore without save */
 try {
     $context->restore();
-    trigger_error('cairo_save not called previously');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -26,7 +25,6 @@ try {
 /* Wrong number args */
 try {
     $context->restore('foo');
-    trigger_error('save requires only one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

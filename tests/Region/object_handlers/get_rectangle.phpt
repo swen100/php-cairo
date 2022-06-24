@@ -28,7 +28,6 @@ var_dump( $region1->getRectangle(99) );
 /* Wrong number args */
 try {
     $region1->getRectangle('foo');
-    trigger_error('getRectangle requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

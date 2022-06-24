@@ -13,7 +13,6 @@ echo Cairo\Surface\Ps::levelToString(Cairo\Surface\Ps\Level::LEVEL_2), PHP_EOL;
 /* Wrong number args */
 try {
     Cairo\Surface\Ps::levelToString();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -21,7 +20,6 @@ try {
 /* Wrong number args 2 */
 try {
     Cairo\Surface\Ps::levelToString(1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -29,7 +27,6 @@ try {
 /* Wrong arg type */
 try {
     Cairo\Surface\Ps::levelToString(array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

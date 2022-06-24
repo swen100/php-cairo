@@ -23,7 +23,6 @@ var_dump($options2 == $fontoptions);
 /* Wrong number args */
 try {
     $scaled->getFontOptions('foo');
-    trigger_error('status requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

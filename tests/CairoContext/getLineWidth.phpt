@@ -19,7 +19,6 @@ var_dump($context->getLineWidth());
 /* wrong params */
 try {
     $context->getLineWidth(1);
-    trigger_error('Cairo\Context->getLineWidth() expects 1 param');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;

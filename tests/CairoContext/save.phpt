@@ -17,7 +17,6 @@ $context->save();
 /* Wrong number args */
 try {
     $context->save('foo');
-    trigger_error('save requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

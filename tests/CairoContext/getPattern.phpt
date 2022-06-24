@@ -18,7 +18,6 @@ var_dump($pattern);
 /* Wrong number args */
 try {
     $context->getPattern('foobar');
-    trigger_error('getPattern requires no arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

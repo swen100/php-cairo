@@ -21,7 +21,6 @@ var_dump($context->getCurrentPoint());
 /* Wrong number args - expects 0 */
 try {
     $context->newPath('foo');
-    trigger_error('newPath requires 0 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

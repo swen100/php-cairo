@@ -22,7 +22,6 @@ $surface->writeToPng($fp);
 /* Wrong number args - 1 */
 try {
     $surface->writeToPng();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -30,7 +29,6 @@ try {
 /* Empty arg */
 try {
     $surface->writeToPng('');
-    trigger_error('We should bomb here');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -38,7 +36,6 @@ try {
 /* Wrong number args - 2 */
 try {
     $surface->writeToPng('', 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -46,7 +43,6 @@ try {
 /* Wrong arg */
 try {
     $surface->writeToPng([]);
-    trigger_error('We should bomb here');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

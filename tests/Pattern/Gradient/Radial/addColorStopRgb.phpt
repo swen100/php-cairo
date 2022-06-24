@@ -18,31 +18,26 @@ var_dump($pattern->getColorStopRgba(0));
 /* Total number of args needed = 4 */
 try {
     $pattern->addColorStopRgb();
-    trigger_error('addColorStopRgb with no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1);
-    trigger_error('addColorStopRgb with 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1, 1);
-    trigger_error('addColorStopRgb with 2 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1, 1, 1);
-    trigger_error('addColorStopRgb with 3 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1, 1, 1, 1, 1);
-    trigger_error('addColorStopRgb with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -50,25 +45,21 @@ try {
 /* All 4 args must be double/float or castable to double/float */
 try {
     $pattern->addColorStopRgb(array(), 1, 1, 1);
-    trigger_error('Arg 1 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1, array(), 1, 1);
-    trigger_error('Arg 2 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1, 1, array(), 1);
-    trigger_error('Arg 3 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgb(1, 1, 1, array());
-    trigger_error('Arg 4 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

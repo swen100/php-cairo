@@ -12,7 +12,6 @@ var_dump($surface);
 /* Wrong number args - 1 */
 try {
     new Cairo\Surface\Image();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -20,7 +19,6 @@ try {
 /* Wrong number args - 2 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +26,6 @@ try {
 /* Wrong number args - 3 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -36,7 +33,6 @@ try {
 /* Wrong number args - 4 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32, 1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -44,7 +40,6 @@ try {
 /* Wrong arg type 1 */
 try {
     new Cairo\Surface\Image(array(), 1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -52,7 +47,6 @@ try {
 /* Wrong arg type 2 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32, array(), 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -60,7 +54,6 @@ try {
 /* Wrong arg type 3 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32, 1, array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

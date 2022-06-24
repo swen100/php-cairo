@@ -29,14 +29,12 @@ var_dump( $region2->getNumRectangles() );
 /* Wrong number args */
 try {
     $region->xor(1);
-    trigger_error('equal intersect arg 1 of type Cairo\Region');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->xor($region2, 'foo');
-    trigger_error('equal intersect arg 1 of type Cairo\Region');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

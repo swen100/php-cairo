@@ -22,7 +22,6 @@ $surface->writeToJpeg($fp);
 /* Wrong number args - 1 */
 try {
     $surface->writeToJpeg();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -30,7 +29,6 @@ try {
 /* Empty arg */
 try {
     $surface->writeToJpeg('');
-    trigger_error('We should bomb here');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -38,7 +36,6 @@ try {
 /* Wrong number args - 3 */
 try {
     $surface->writeToJpeg('dummy', 1, 'dummy');
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -46,7 +43,6 @@ try {
 /* Wrong arg */
 try {
     $surface->writeToJpeg([]);
-    trigger_error('We should bomb here');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

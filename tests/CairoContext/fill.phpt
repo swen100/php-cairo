@@ -17,7 +17,6 @@ $context->fill();
 /* Wrong number args */
 try {
     $context->fill('foobar');
-    trigger_error('fill requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

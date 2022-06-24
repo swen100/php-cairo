@@ -26,7 +26,6 @@ var_dump($orig_face === $face1);
 
 try {
     $context->getFontFace('foo');
-    trigger_error('getFontFace requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

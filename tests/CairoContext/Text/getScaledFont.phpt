@@ -29,7 +29,6 @@ var_dump($scaled === $scaled1);
 
 try {
     $context->getScaledFont('foo');
-    trigger_error('getScaledFont requires one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }

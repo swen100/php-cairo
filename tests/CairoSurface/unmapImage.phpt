@@ -23,7 +23,6 @@ $surface->unmapImage($image);
 /* Wrong arg type */
 try {
     $surface->unmapImage('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -31,7 +30,6 @@ try {
 /* Wrong number args 0 */
 try {
     $surface->unmapImage();
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -40,7 +38,6 @@ try {
 try {
     $image = $surface->mapToImage($rectangle);
     $surface->unmapImage($image, []);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

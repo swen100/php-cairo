@@ -20,7 +20,6 @@ $context->appendPath($path);
 /* Wrong number args - expects 1 */
 try {
     $context->appendPath();
-    trigger_error('appendPath requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +27,6 @@ try {
 /* Wrong number args - expects 1 */
 try {
     $context->appendPath($path, 1);
-    trigger_error('appendPath requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -36,7 +34,6 @@ try {
 /* incorrect args, expects cairopath*/
 try {
     $context->appendPath(1);
-    trigger_error('appendPath requires 0 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

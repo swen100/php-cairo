@@ -18,7 +18,6 @@ var_dump($context->getDash());
 /* Wrong number args - expects 1 or 2 */
 try {
     $context->setDash();
-    trigger_error('setDash requires 1-2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -26,7 +25,6 @@ try {
 /* Wrong number args - expects 1 or 2 */
 try {
     $context->setDash(array(), 1, 1);
-    trigger_error('setDash requires 1-2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -35,21 +33,18 @@ try {
 /* Wrong arg type, expects array of double, double offset */
 try {
     $context->setDash(3);
-    trigger_error('setDash requires 1-2 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setDash(array('foo'));
-    trigger_error('setDash requires 1-2 args');
 } catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setDash(array(1), 'foo');
-    trigger_error('setDash requires 1-2 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

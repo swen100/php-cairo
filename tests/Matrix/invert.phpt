@@ -19,7 +19,6 @@ $matrix->invert();
 /* Wrong number args */
 try {
     $matrix->invert('foo');
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

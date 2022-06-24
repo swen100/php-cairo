@@ -20,7 +20,6 @@ var_dump($scaled);
 /* Wrong number args - 1 */
 try {
     new Cairo\ScaledFont();
-    trigger_error('CairoScaled font requires 4 args, none given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +27,6 @@ try {
 /* Wrong number args - 2 */
 try {
     new Cairo\ScaledFont($fontface);
-    trigger_error('CairoScaled font requires 4 args, 1 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -36,7 +34,6 @@ try {
 /* Wrong number args - 3 */
 try {
     new Cairo\ScaledFont($fontface, $matrix1);
-    trigger_error('CairoScaled font requires 4 args, 2 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -44,7 +41,6 @@ try {
 /* Wrong number args - 4 */
 try {
     new Cairo\ScaledFont($fontface, $matrix1, $matrix2);
-    trigger_error('CairoScaled font requires 4 args, 3 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -52,7 +48,6 @@ try {
 /* Wrong number args - 5 */
 try {
     new Cairo\ScaledFont($fontface, $matrix1, $matrix2, $fontoptions, 1);
-    trigger_error('CairoScaled font requires 4 args, 5 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -60,7 +55,6 @@ try {
 /* Wrong Arg type 1 */
 try {
     new Cairo\ScaledFont(array(), $matrix1, $matrix2, $fontoptions);
-    trigger_error('CairoScaled font requires Cairo\FontFace as first parameter');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -68,7 +62,6 @@ try {
 /* Wrong Arg type 2 */
 try {
     new Cairo\ScaledFont($fontface, [], $matrix2, $fontoptions);
-    trigger_error('CairoScaled font requires Cairo\FontFace as second parameter');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -76,7 +69,6 @@ try {
 /* Wrong Arg type 3 */
 try {
     new Cairo\ScaledFont($fontface, $matrix1, [], $fontoptions);
-    trigger_error('CairoScaled font requires Cairo\FontFace as third parameter');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -84,7 +76,6 @@ try {
 /* Wrong Arg type 4 */
 try {
     new Cairo\ScaledFont($fontface, $matrix1, $matrix2, []);
-    trigger_error('CairoScaled font requires Cairo\FontFace as fourth parameter');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

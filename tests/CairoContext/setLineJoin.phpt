@@ -18,7 +18,6 @@ var_dump($context->getLineJoin());
 /* Wrong number args - 1 */
 try {
     $context->setLineJoin();
-    trigger_error('setLineJoin requires 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -26,7 +25,6 @@ try {
 /* Wrong number args - 2 */
 try {
     $context->setLineJoin(1, 1);
-    trigger_error('setLineJoin requires only 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -34,7 +32,6 @@ try {
 /* Wrong args */
 try {
     $context->setLineJoin(array());
-    trigger_error('setLineJoin requires int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

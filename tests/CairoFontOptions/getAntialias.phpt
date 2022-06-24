@@ -16,7 +16,6 @@ var_dump($options->getAntialias());
 /* Wrong number args */
 try {
     $options->getAntialias('foo');
-    trigger_error('getAntialias requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

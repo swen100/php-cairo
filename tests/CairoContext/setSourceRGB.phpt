@@ -17,7 +17,6 @@ $context->setSourceRGB(0.1, 0.1, 0.1);
 /* Wrong number of args: 0 */
 try {
     $context->setSourceRGB();
-    trigger_error('setSourceRGB needs 3!');
 } 
 catch(TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -25,7 +24,6 @@ catch(TypeError $ex) {
 
 try {
     $context->setSourceRGB(1);
-    trigger_error('setSourceRGB needs 3!');
 }
 catch(TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -33,7 +31,6 @@ catch(TypeError $ex) {
 
 try {
     $context->setSourceRGB(1, 1);
-    trigger_error('setSourceRGB needs 3!');
 } 
 catch(TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;
@@ -41,7 +38,6 @@ catch(TypeError $ex) {
 
 try {
     $context->setSourceRGB(1, 1, 1, 1);
-    trigger_error('setSourceRGB needs 3!');
 } 
 catch(TypeError $ex) {
     echo $ex->getMessage(), PHP_EOL;

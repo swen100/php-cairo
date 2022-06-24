@@ -16,7 +16,6 @@ var_dump($surface->getEps());
 /* Wrong number args */
 try {
     $surface->getEps('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

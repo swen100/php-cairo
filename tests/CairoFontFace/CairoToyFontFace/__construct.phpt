@@ -46,7 +46,6 @@ var_dump($c);
 /* Wrong arg type 2 */
 try {
     $c = new Cairo\FontFace\Toy("sans-serif", []);
-    trigger_error('selectFontFace requires an int font slant');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -54,7 +53,6 @@ try {
 /* Wrong arg type 3 */
 try {
     $c = new Cairo\FontFace\Toy("sans-serif", Cairo\FontSlant::NORMAL, []);
-    trigger_error('selectFontFace requires an int font weight');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

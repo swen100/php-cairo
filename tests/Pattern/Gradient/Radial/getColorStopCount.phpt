@@ -26,7 +26,6 @@ var_dump($pattern->getColorStopCount());
 /* Total number of args needed = 0 */
 try {
     $pattern->getColorStopCount(1);
-    trigger_error('getColorStopCount with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

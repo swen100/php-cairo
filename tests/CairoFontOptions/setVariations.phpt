@@ -23,7 +23,6 @@ var_dump($options);
 /* Wrong arg types */
 try {
     $options->setVariations([]);
-    trigger_error('setVariations: wrong arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -31,7 +30,6 @@ try {
 /* Wrong number args  */
 try {
     $options->setVariations();
-    trigger_error('setVariations: no arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -39,7 +37,6 @@ try {
 /* Wrong number args 2 */
 try {
     $options->setVariations('', []);
-    trigger_error('setVariations: wrong number of args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

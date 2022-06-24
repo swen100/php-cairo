@@ -25,7 +25,6 @@ var_dump($options->getVariations());
 /* Wrong number args 1 */
 try {
     $options->getVariations([]);
-    trigger_error('setVariations: wrong number of args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

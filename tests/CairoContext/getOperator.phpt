@@ -17,7 +17,6 @@ var_dump($context->getOperator());
 
 try {
     $context->getOperator(1);
-    trigger_error('Cairo\Context->getOperator expects 0 parameters.');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;

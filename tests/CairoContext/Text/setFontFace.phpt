@@ -30,21 +30,18 @@ var_dump($fontface1 === $fontface);
 
 try {
     $context->setFontFace();
-    trigger_error('setFontFace requires one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontFace(1, 1);
-    trigger_error('setFontFace requires only one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontFace(1);
-    trigger_error('setFontFace requires instanceof Cairo\FontFace');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -12,7 +12,6 @@ var_dump(Cairo\Surface\Svg::getVersions());
 /* Wrong number args */
 try {
     Cairo\Surface\Svg::getVersions('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

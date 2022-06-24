@@ -17,7 +17,6 @@ $context->fillPreserve();
 /* Wrong number args */
 try {
     $context->fillPreserve('foobar');
-    trigger_error('fillPreserve requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

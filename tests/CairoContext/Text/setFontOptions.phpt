@@ -28,21 +28,18 @@ var_dump($options2 === $options1);
 
 try {
     $context->setFontOptions();
-    trigger_error('setFontOptions requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontOptions(1, 1);
-    trigger_error('setFontOptions requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontOptions(1);
-    trigger_error('setFontOptions requires instanceof Cairo\FontOptions');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

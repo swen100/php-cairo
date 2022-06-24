@@ -16,7 +16,6 @@ var_dump($options->hash());
 /* Wrong number args */
 try {
     $options->hash('foo');
-    trigger_error('hash requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

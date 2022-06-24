@@ -18,37 +18,31 @@ var_dump($pattern->getColorStopRgba(0));
 /* Total number of args needed = 5 */
 try {
     $pattern->addColorStopRgba();
-    trigger_error('addColorStopRgba with no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1);
-    trigger_error('addColorStopRgba with 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1);
-    trigger_error('addColorStopRgba with 2 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1, 1);
-    trigger_error('addColorStopRgba with 3 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1, 1, 1);
-    trigger_error('addColorStopRgba with 4 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1, 1, 1, 1, 1);
-    trigger_error('addColorStopRgba with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -56,31 +50,26 @@ try {
 /* All 5 args must be double/float or castable to double/float */
 try {
     $pattern->addColorStopRgba(array(), 1, 1, 1, 1);
-    trigger_error('Arg 1 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, array(), 1, 1, 1);
-    trigger_error('Arg 2 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1, array(), 1, 1);
-    trigger_error('Arg 3 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1, 1, array(), 1);
-    trigger_error('Arg 4 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->addColorStopRgba(1, 1, 1, 1, array());
-    trigger_error('Arg 5 must be double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

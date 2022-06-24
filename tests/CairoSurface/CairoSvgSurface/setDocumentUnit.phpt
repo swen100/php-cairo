@@ -23,7 +23,6 @@ var_dump($surface->getDocumentUnit());
 /* Wrong arg value */
 try {
     $surface->setDocumentUnit(99);
-    trigger_error('We should bomb here');
 } catch (ValueError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -31,7 +30,6 @@ try {
 /* Wrong arg type */
 try {
     $surface->setDocumentUnit('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -39,7 +37,6 @@ try {
 /* Wrong number args */
 try {
     $surface->setDocumentUnit('foo', 'bar');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

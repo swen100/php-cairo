@@ -19,7 +19,6 @@ var_dump($status == TRUE);
 /* Wrong number args */
 try {
     $region->isEmpty('foo');
-    trigger_error('isEmpty requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

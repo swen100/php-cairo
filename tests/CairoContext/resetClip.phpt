@@ -17,7 +17,6 @@ $context->resetClip();
 /* Wrong number args */
 try {
     $context->resetClip('foobar');
-    trigger_error('resetClip requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

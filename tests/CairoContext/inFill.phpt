@@ -17,7 +17,6 @@ var_dump($context->inFill(1, 1));
 /* Wrong number args */
 try {
     $context->inFill();
-    trigger_error('inFill requires 2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args */
 try {
     $context->inFill(1);
-    trigger_error('inFill requires 2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong number args */
 try {
     $context->inFill(1, 1, 1);
-    trigger_error('inFill requires only 2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -41,7 +38,6 @@ try {
 /* Wrong arg type*/
 try {
     $context->inFill(array(), 1);
-    trigger_error('inFill requires double for arg 1');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -49,7 +45,6 @@ try {
 /* Wrong arg type*/
 try {
     $context->inFill(1, array());
-    trigger_error('inFill requires double for arg 2');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

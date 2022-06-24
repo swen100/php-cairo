@@ -17,7 +17,6 @@ $context->closePath();
 /* Wrong number args - expects 0 */
 try {
     $context->closePath('foo');
-    trigger_error('newPath requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

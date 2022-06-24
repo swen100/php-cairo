@@ -37,7 +37,6 @@ var_dump($alpha === $values['alpha']);
 /* Wrong number args - at least 3, no more than 4 */
 try {
     new Solid();
-    trigger_error('__construct with no args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -45,7 +44,6 @@ try {
 /* Wrong number args - at least 3, no more than 4 */
 try {
     new Solid(1);
-    trigger_error('__construct with 1 arg should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -53,7 +51,6 @@ try {
 /* Wrong number args - at least 3, no more than 4 */
 try {
     new Solid(1, 1);
-    trigger_error('__construct with 2 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -61,7 +58,6 @@ try {
 /* Wrong number args - at least 3, no more than 4 */
 try {
     new Solid(1, 1, 1, 1, 1);
-    trigger_error('__construct with 5 args should fail');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -69,7 +65,6 @@ try {
 /* Wrong arg type 1 */
 try {
     new Solid(array(), 1, 1, 1);
-    trigger_error('__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -77,7 +72,6 @@ try {
 /* Wrong arg type 2 */
 try {
     new Solid(1, array(), 1, 1);
-    trigger_error('__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -85,7 +79,6 @@ try {
 /* Wrong arg type 3 */
 try {
     new Solid(1, 1, array(), 1);
-    trigger_error('__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -93,7 +86,6 @@ try {
 /* Wrong arg type 4 */
 try {
     new Solid(1, 1, 1, array());
-    trigger_error('__construct requires all doubles');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

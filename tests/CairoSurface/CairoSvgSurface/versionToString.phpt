@@ -12,7 +12,6 @@ echo Cairo\Surface\Svg::versionToString(Cairo\Surface\Svg\Version::VERSION_1_1),
 /* Wrong number args */
 try {
     Cairo\Surface\Svg::versionToString();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -20,7 +19,6 @@ try {
 /* Wrong number args 2 */
 try {
     Cairo\Surface\Svg::versionToString(1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +26,6 @@ try {
 /* Wrong arg type */
 try {
     Cairo\Surface\Svg::versionToString(array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

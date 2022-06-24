@@ -14,7 +14,6 @@ var_dump($options->getHintStyle());
 /* Wrong number args */
 try {
     $options->getHintStyle('foo');
-    trigger_error('getHintStyle requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

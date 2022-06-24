@@ -29,14 +29,12 @@ var_dump( $region4->equal($region5) );
 /* Wrong number args */
 try {
     $region->equal(1);
-    trigger_error('equal requires arg 1 of type Cairo\Region');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->equal($region2, 'foo');
-    trigger_error('equal requires arg 1 of type Cairo\Region');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

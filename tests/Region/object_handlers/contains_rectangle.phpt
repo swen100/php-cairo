@@ -37,21 +37,18 @@ var_dump( $contains == \CAIRO\REGION\OVERLAP::OUT );
 /* Wrong number args */
 try {
     $region1->containsRectangle();
-    trigger_error('Cairo\Region::containsRectangle expects exactly 1 argument, 0 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region1->containsRectangle(1);
-    trigger_error('Cairo\Region::containsRectangle: Argument #1 must be of type Cairo\Rectangle');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region1->containsRectangle($rectangle1, 'foo');
-    trigger_error('Cairo\Region::containsRectangle expects exactly 1 argument, 2 given');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

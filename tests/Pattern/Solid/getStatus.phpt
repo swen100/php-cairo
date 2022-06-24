@@ -17,7 +17,6 @@ var_dump($status->getMessage());
 
 try {
     $pattern->getStatus('foo');
-    trigger_error('status requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage();
 }

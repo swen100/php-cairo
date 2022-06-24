@@ -13,7 +13,6 @@ var_dump($fontface->getType());
 
 try {
     $fontface->getType('foo');
-    trigger_error('Cairo\FontFace->getType requires no arguments');
 } catch (TypeError $e) {
     echo $e->getMessage();
 }

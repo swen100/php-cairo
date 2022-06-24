@@ -24,7 +24,6 @@ $surface->setMetadata(5, date("Y-m-d\TH:i:s"));
 /* invalid arg */
 try {
     $surface->setMetadata(999, "bla");
-    trigger_error('We should bomb here');
 } catch (ValueError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -32,7 +31,6 @@ try {
 /* Wrong number args 0 */
 try {
     $surface->setMetadata();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -40,7 +38,6 @@ try {
 /* Wrong number args 3 */
 try {
     $surface->setMetadata(\Cairo\Surface\Pdf\Metadata::TITLE, "bla", "bla");
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -48,7 +45,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $surface->setMetadata([], "bla");
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -56,7 +52,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $surface->setMetadata(\Cairo\Surface\Pdf\Metadata::TITLE, []);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

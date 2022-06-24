@@ -21,7 +21,6 @@ var_dump($surface2);
 /* Wrong number args - 1 */
 try {
     new Cairo\Surface\Recording();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -29,7 +28,6 @@ try {
 /* Wrong number args - 4 */
 try {
     new Cairo\Surface\Recording(NULL, 1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -37,7 +35,6 @@ try {
 /* Wrong arg type 1 */
 try {
     new Cairo\Surface\Recording([], 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -45,7 +42,6 @@ try {
 /* Wrong arg type 2 */
 try {
     new Cairo\Surface\Recording(0, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

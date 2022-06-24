@@ -17,7 +17,6 @@ $context->paint();
 /* Wrong number args */
 try {
     $context->paint('foobar');
-    trigger_error('paint requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

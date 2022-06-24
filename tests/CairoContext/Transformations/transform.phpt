@@ -20,7 +20,6 @@ $context->transform($matrix);
 /* Wrong number args - expects 1 */
 try {
     $context->transform();
-    trigger_error('transform requires 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +27,6 @@ try {
 /* Wrong number args - expects 1 */
 try {
     $context->transform($matrix, 1);
-    trigger_error('transform requires 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -36,7 +34,6 @@ try {
 /* Wrong arg type, wants matrix object */
 try {
     $context->transform(1);
-    trigger_error('transform requires cairomatrix object');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

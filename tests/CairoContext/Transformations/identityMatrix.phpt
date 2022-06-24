@@ -17,7 +17,6 @@ $context->identityMatrix();
 /* Wrong number args - expects 0 */
 try {
     $context->identityMatrix('foo');
-    trigger_error('identityMatrix requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

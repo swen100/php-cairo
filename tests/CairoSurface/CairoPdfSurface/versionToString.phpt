@@ -16,7 +16,6 @@ echo Cairo\Surface\Pdf::versionToString(Cairo\Surface\Pdf\Version::VERSION_1_5),
 /* invalid arg */
 try {
     Cairo\Surface\Pdf::versionToString(999);
-    trigger_error('We should bomb here');
 } catch (ValueError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -24,7 +23,6 @@ try {
 /* Wrong number args */
 try {
     Cairo\Surface\Pdf::versionToString();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -32,7 +30,6 @@ try {
 /* Wrong number args 2 */
 try {
     Cairo\Surface\Pdf::versionToString(1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -40,7 +37,6 @@ try {
 /* Wrong arg type */
 try {
     Cairo\Surface\Pdf::versionToString([]);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

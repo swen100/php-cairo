@@ -26,7 +26,6 @@ var_dump($context);
 /* Wrong number args */
 try {
     $context->setSurface();
-    trigger_error('setSurface requires at leastone arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -34,7 +33,6 @@ try {
 /* Wrong number args */
 try {
     $context->setSurface($surface2, 1, 1, 1);
-    trigger_error('setSurface requires no more than 3 args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -42,7 +40,6 @@ try {
 /* Wrong arg type */
 try {
     $context->setSurface(array());
-    trigger_error('setSurface expects instanceof CairoPattern');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -50,7 +47,6 @@ try {
 /* Wrong arg type */
 try {
     $context->setSurface($surface2, array());
-    trigger_error('setSurface expects instanceof CairoPattern');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -58,7 +54,6 @@ try {
 /* Wrong arg type */
 try {
     $context->setSurface($surface2, 1, array());
-    trigger_error('setSurface expects double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

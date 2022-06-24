@@ -23,7 +23,6 @@ try {
 /* Wrong number args - 2 */
 try {
     new Cairo\Context($surface, 10);
-    trigger_error('We should bomb here');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -31,7 +30,6 @@ try {
 /* Wrong arg type 1 */
 try {
     new Cairo\Context(1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

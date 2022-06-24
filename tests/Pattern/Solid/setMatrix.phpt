@@ -28,21 +28,18 @@ var_dump($matrix2 === $matrix1);
 
 try {
     $pattern->setMatrix();
-    trigger_error('Set matrix requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $pattern->setMatrix(1, 1);
-    trigger_error('Set matrix requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $pattern->setMatrix(1);
-    trigger_error('Set matrix requires instanceof Matrix');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

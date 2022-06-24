@@ -17,7 +17,6 @@ var_dump($context->strokeExtents());
 /* Wrong number args */
 try {
     $context->strokeExtents('foobar');
-    trigger_error('strokeExtents requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -19,7 +19,6 @@ $context->textPath('foobar');
 /* Wrong number args 1 */
 try {
     $context->textPath();
-    trigger_error('textPath requires one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -27,7 +26,6 @@ try {
 /* Wrong number args 1 */
 try {
     $context->textPath('foo', 1);
-    trigger_error('textPath requires only one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -35,7 +33,6 @@ try {
 /* Wrong arg type */
 try {
     $context->textPath([]);
-    trigger_error('textPath requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

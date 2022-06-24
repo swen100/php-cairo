@@ -17,7 +17,6 @@ $context->rotate(5);
 /* Wrong number args - expects 1 */
 try {
     $context->rotate();
-    trigger_error('rotate requires 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args - expects 1 */
 try {
     $context->rotate(1,1);
-    trigger_error('rotate requires 1 arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type, wants double */
 try {
     $context->rotate(array());
-    trigger_error('rotate requires double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

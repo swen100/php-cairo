@@ -31,7 +31,6 @@ try {
 /* Total number of args needed = 9 */
 try {
     $pattern->beginPatch(1);
-    trigger_error('beginPatch with no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

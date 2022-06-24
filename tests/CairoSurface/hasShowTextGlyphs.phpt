@@ -19,7 +19,6 @@ var_dump($surface->hasShowTextGlyphs());
 /* Wrong number args */
 try {
     $surface->hasShowTextGlyphs('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

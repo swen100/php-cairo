@@ -17,7 +17,6 @@ var_dump($context->getAntialias());
 /* Wrong number args */
 try {
     $context->getAntialias('foobar');
-    trigger_error('getAntialias requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -25,7 +25,6 @@ var_dump($orig_matrix === $matrix);
 
 try {
     $context->getFontMatrix('foo');
-    trigger_error('get matrix requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

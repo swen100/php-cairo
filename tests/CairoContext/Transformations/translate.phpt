@@ -17,7 +17,6 @@ $context->translate(5, 5);
 /* Wrong number args - expects 2 */
 try {
     $context->translate();
-    trigger_error('translate requires 2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args - expects 2 */
 try {
     $context->translate(1);
-    trigger_error('translate requires 2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong number args - expects 2 */
 try {
     $context->translate(1,1,1);
-    trigger_error('translate requires 2 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -41,7 +38,6 @@ try {
 /* Wrong arg type, wants double, double */
 try {
     $context->translate(array(), 1);
-    trigger_error('translate requires double, double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -49,7 +45,6 @@ try {
 /* Wrong arg type, wants double, double */
 try {
     $context->translate(1, array());
-    trigger_error('translate requires double, double');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

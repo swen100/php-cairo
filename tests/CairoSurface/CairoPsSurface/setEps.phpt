@@ -16,7 +16,6 @@ $surface->setEps(true);
 /* Wrong number args */
 try {
     $surface->setEps();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -24,7 +23,6 @@ try {
 /* Wrong number args 2 */
 try {
     $surface->setEps(1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -32,7 +30,6 @@ try {
 /* Wrong arg type */
 try {
     $surface->setEps(array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

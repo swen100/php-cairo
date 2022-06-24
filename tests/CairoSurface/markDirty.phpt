@@ -14,7 +14,6 @@ $surface->markDirty();
 /* Wrong number args */
 try {
     $surface->markDirty('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

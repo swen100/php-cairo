@@ -27,7 +27,6 @@ var_dump($pattern->getPatchCount());
 /* Total number of args needed = 9 */
 try {
     $pattern->endPatch(1);
-    trigger_error('endPatch with no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

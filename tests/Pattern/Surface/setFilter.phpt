@@ -29,13 +29,11 @@ var_dump($filter == Cairo\Filter::GOOD);
 /* Total number of args needed = 1 */
 try {
     $pattern->setFilter();
-    trigger_error('setFilter with no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 try {
     $pattern->setFilter(1, 1);
-    trigger_error('setFilter with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -43,7 +41,6 @@ try {
 /* arg must be int or castable to int */
 try {
     $pattern->setFilter([]);
-    trigger_error('Arg 1 must be int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -56,7 +53,6 @@ try {
 /* int must be in enum */
 try {
     $pattern->setFilter(999);
-    trigger_error('Arg 1 must be int');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

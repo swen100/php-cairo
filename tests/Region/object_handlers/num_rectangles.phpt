@@ -27,7 +27,6 @@ var_dump( $region4->getNumRectangles() );
 /* Wrong number args */
 try {
     $region1->getNumRectangles('foo');
-    trigger_error('getNumRectangles requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

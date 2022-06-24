@@ -16,7 +16,6 @@ var_dump(Cairo\Surface\Pdf::getVersions());
 /* Wrong number args */
 try {
     Cairo\Surface\Pdf::getVersions('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

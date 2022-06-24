@@ -17,7 +17,6 @@ $context->showText('foobar');
 /* Wrong number args 1 */
 try {
     $context->showText();
-    trigger_error('showText requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args 1 */
 try {
     $context->showText('foo', 1);
-    trigger_error('showText requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type */
 try {
     $context->showText(array());
-    trigger_error('showText requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

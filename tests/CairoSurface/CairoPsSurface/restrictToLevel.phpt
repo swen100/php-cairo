@@ -16,7 +16,6 @@ $surface->restrictToLevel(Cairo\Surface\Ps\Level::LEVEL_2);
 /* Wrong number args */
 try {
     $surface->restrictToLevel();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -24,7 +23,6 @@ try {
 /* Wrong number args 2 */
 try {
     $surface->restrictToLevel(1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -32,7 +30,6 @@ try {
 /* Wrong arg type */
 try {
     $surface->restrictToLevel(array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

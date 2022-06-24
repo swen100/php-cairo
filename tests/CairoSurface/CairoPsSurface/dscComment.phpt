@@ -15,7 +15,6 @@ $surface->dscComment('%%Title: My excellent document');
 /* Wrong number args */
 try {
     $surface->dscComment();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -23,7 +22,6 @@ try {
 /* Wrong number args 2 */
 try {
     $surface->dscComment(1, 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -31,7 +29,6 @@ try {
 /* Wrong arg type */
 try {
     $surface->dscComment(array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

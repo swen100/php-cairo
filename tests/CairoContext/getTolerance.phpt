@@ -17,7 +17,6 @@ var_dump($context->getTolerance());
 
 try {
     $context->getTolerance(1);
-    trigger_error('Cairo\Context->getTolerance expects 0 parameters.');
 } 
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;

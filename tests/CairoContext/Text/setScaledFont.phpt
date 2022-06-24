@@ -55,21 +55,18 @@ $context->setScaledFont($scaled);
 
 try {
     $context->setScaledFont();
-    trigger_error('setScaledFont requires one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setScaledFont(1, 1);
-    trigger_error('setScaledFont requires only one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setScaledFont(1);
-    trigger_error('setScaledFont requires instanceof Cairo\ScaledFont');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }

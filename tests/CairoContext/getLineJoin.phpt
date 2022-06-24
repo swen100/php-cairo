@@ -17,7 +17,6 @@ var_dump($context->getLineJoin());
 /* Wrong number args */
 try {
     $context->getLineJoin('foobar');
-    trigger_error('getLineJoin requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -16,7 +16,6 @@ var_dump($options->getSubpixelOrder());
 /* Wrong number args */
 try {
     $options->getSubpixelOrder('foo');
-    trigger_error('getSubpixelOrder requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -24,7 +24,6 @@ var_dump($orig_options === $options1);
 
 try {
     $context->getFontOptions('foo');
-    trigger_error('getFontOptions requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

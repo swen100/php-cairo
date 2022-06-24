@@ -14,7 +14,6 @@ var_dump($surface->getDeviceOffset());
 /* Wrong number args */
 try {
     $surface->getDeviceOffset('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

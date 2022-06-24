@@ -29,7 +29,6 @@ var_dump($context->getPattern()->getRGBA());
 /* Wrong number args */
 try {
     $context->setPattern();
-    trigger_error('setPattern requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -37,7 +36,6 @@ try {
 /* Wrong number args */
 try {
     $context->setPattern($pattern, 1);
-    trigger_error('setPattern requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -45,7 +43,6 @@ try {
 /* Wrong arg type */
 try {
     $context->setPattern(new stdClass());
-    trigger_error('setPattern expects instanceof \Cairo\Pattern');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -53,7 +50,6 @@ try {
 /* Wrong arg type */
 try {
     $context->setPattern(array());
-    trigger_error('setPattern expects instanceof \Cairo\Pattern');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

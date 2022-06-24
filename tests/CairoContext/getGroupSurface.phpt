@@ -18,8 +18,7 @@ var_dump($surface2 == $surface);
 
 /* wrong params */
 try {
-    $context->getGroupSurface(1);
-    trigger_error('getGroupTarget() expects 0 params');	
+    $context->getGroupSurface(1);	
 }
 catch (ArgumentCountError $ex) {
     echo $ex->getMessage(), PHP_EOL;

@@ -14,7 +14,6 @@ $surface->finish();
 /* Wrong number args */
 try {
     $surface->finish('foo');
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

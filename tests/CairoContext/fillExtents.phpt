@@ -17,7 +17,6 @@ var_dump($context->getFillExtents());
 /* Wrong number args */
 try {
     $context->getFillExtents('foobar');
-    trigger_error('fillExtents requires no args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

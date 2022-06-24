@@ -20,7 +20,6 @@ var_dump($status == Cairo\Status::SUCCESS);
 /* Wrong number args */
 try {
     $context->getStatus('foo');
-    trigger_error('status requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

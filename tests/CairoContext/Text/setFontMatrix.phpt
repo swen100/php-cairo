@@ -28,21 +28,18 @@ var_dump($matrix2 === $matrix1);
 
 try {
     $context->setFontMatrix();
-    trigger_error('Set matrix requires one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontMatrix(1, 1);
-    trigger_error('Set matrix requires only one arg');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setFontMatrix(1);
-    trigger_error('Set matrix requires instanceof Cairomatrix');
 } catch (Error $e) {
     echo $e->getMessage(), PHP_EOL;
 }

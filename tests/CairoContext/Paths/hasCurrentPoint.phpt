@@ -18,7 +18,6 @@ var_dump($context->hasCurrentPoint());
 /* Wrong number args - expects 0 */
 try {
     $context->hasCurrentPoint('foo');
-    trigger_error('hasCurrentPoint requires 0 args');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

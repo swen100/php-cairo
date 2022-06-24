@@ -22,7 +22,6 @@ var_dump($surface2->inkExtents());
 /* Wrong number args - 1 */
 try {
     $surface2->inkExtents(1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

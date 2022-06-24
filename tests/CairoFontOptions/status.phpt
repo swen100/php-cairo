@@ -18,7 +18,6 @@ var_dump($status == Cairo\Status::SUCCESS);
 /* Wrong number args */
 try {
     $options->getStatus('foo');
-    trigger_error('status requires no args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

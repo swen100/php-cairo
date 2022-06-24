@@ -17,7 +17,6 @@ var_dump($newsurface);
 /* Wrong number args - 1 */
 try {
     $surface->createSimilarImage();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args - 2 */
 try {
     $surface->createSimilarImage(Cairo\Surface\Content::COLOR);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong number args - 3 */
 try {
     $surface->createSimilarImage(Cairo\Surface\Content::COLOR, 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -41,7 +38,6 @@ try {
 /* Wrong number args - 4 */
 try {
     $surface->createSimilarImage(Cairo\Surface\Content::COLOR, 10, 10, 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -49,7 +45,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $surface->createSimilarImage(array(), 10, 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -57,7 +52,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $surface->createSimilarImage(Cairo\Surface\Content::COLOR, array(), 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -65,7 +59,6 @@ try {
 /* Wrong arg type 3 */
 try {
     $surface->createSimilarImage(Cairo\Surface\Content::COLOR, 10, array());
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

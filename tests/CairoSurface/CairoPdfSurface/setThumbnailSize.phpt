@@ -20,7 +20,6 @@ $surface->setThumbnailSize(5, 5);
 /* Wrong number args 1*/
 try {
     $surface->setThumbnailSize();
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -28,7 +27,6 @@ try {
 /* Wrong number args 2 */
 try {
     $surface->setThumbnailSize(10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -36,7 +34,6 @@ try {
 /* Wrong number args 3 */
 try {
     $surface->setThumbnailSize(10, 10, 10);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -44,7 +41,6 @@ try {
 /* Wrong arg type 1 */
 try {
     $surface->setThumbnailSize([], 1);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -52,7 +48,6 @@ try {
 /* Wrong arg type 2 */
 try {
     $surface->setThumbnailSize(1, []);
-    trigger_error('We should bomb here');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

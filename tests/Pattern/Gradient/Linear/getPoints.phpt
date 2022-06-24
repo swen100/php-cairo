@@ -18,7 +18,6 @@ var_dump($pattern->getPoints());
 /* Total number of args needed = 0 */
 try {
     $pattern->getPoints(1);
-    trigger_error('getPoints with too many args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

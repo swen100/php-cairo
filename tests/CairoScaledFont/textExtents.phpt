@@ -22,7 +22,6 @@ var_dump($scaled->getTextExtents('foobar'));
 /* Wrong number args 1 */
 try {
     $scaled->getTextExtents();
-    trigger_error('getTextExtents requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -30,7 +29,6 @@ try {
 /* Wrong number args 1 */
 try {
     $scaled->getTextExtents('foo', 1);
-    trigger_error('getTextExtents requires only one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -38,7 +36,6 @@ try {
 /* Wrong arg type */
 try {
     $scaled->getTextExtents([]);
-    trigger_error('getTextExtents requires one arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

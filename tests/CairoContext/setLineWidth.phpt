@@ -18,7 +18,6 @@ var_dump($context->getLineWidth());
 /* wrong params */
 try {
     $context->setLineWidth();
-    trigger_error('Cairo\Context->setLineWidth() expects 1 param');
 } 
 catch (TypeError $ex) {
 	echo $ex->getMessage(), PHP_EOL;
@@ -34,7 +33,6 @@ catch (TypeError $ex) {
 /* wrong types */
 try {
     $context->setLineWidth(array());
-    trigger_error('Cairo\Context->setLineWidth() expects a double');
 } 
 catch (TypeError $ex) {
 	echo $ex->getMessage(), PHP_EOL;

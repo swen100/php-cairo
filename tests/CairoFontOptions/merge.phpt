@@ -17,7 +17,6 @@ $options->merge($options2);
 /* Wrong number args 1 */
 try {
     $options->merge();
-    trigger_error('merge requires 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -25,7 +24,6 @@ try {
 /* Wrong number args 2 */
 try {
     $options->merge($options2, 1);
-    trigger_error('merge requires only 1 arg');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -33,7 +31,6 @@ try {
 /* Wrong arg type - needs \Cairo\FontOptions */
 try {
     $options->merge(1);
-    trigger_error('merge requires cairofontoptions instance');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

@@ -19,7 +19,6 @@ var_dump(Matrix::multiply($matrix1, $matrix2));
 /* Wrong number args */
 try {
     Matrix::multiply();
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -27,7 +26,6 @@ try {
 /* Wrong number args 2*/
 try {
     Matrix::multiply(1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -35,7 +33,6 @@ try {
 /* Wrong number args 3*/
 try {
     Matrix::multiply(1, 1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -43,7 +40,6 @@ try {
 /* Wrong arg type 1*/
 try {
     Matrix::multiply(1, $matrix2);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
@@ -51,7 +47,6 @@ try {
 /* Wrong arg type 2*/
 try {
     Matrix::multiply($matrix1, 1);
-    trigger_error('We should bomb here');
 } catch (Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }

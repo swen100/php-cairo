@@ -20,14 +20,12 @@ var_dump( $region2->containsPoint(10, 10) );
 /* Wrong number args */
 try {
     $region->containsPoint();
-    trigger_error('containsPoint requires two args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $region->containsPoint('foo');
-    trigger_error('containsPoint requires two args');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }

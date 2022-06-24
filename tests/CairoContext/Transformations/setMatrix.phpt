@@ -28,21 +28,18 @@ var_dump($matrix2 === $matrix1);
 
 try {
     $context->setMatrix();
-    trigger_error('Set matrix requires one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setMatrix(1, 1, 1);
-    trigger_error('Set matrix requires only one arg');
 } catch (ArgumentCountError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 try {
     $context->setMatrix(1);
-    trigger_error('Set matrix requires instanceof Cairomatrix');
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
