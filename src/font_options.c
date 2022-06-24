@@ -251,7 +251,7 @@ PHP_METHOD(CairoFontOptions, setAntialias)
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &antialias_enum, ce_cairo_antialias) == FAILURE) {
 		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &antialias) == FAILURE) {
-			return;
+                        //no value given -> set to default
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_antialias, antialias)) {
 				return;
@@ -260,7 +260,7 @@ PHP_METHOD(CairoFontOptions, setAntialias)
 	} else {
 		antialias = php_eos_datastructures_get_enum_value(antialias_enum);
 	}
-	
+        
         font_options_object = cairo_font_options_object_get(getThis());
 	if(!font_options_object) {
                 return;
@@ -299,14 +299,14 @@ ZEND_END_ARG_INFO()
         Sets the subpixel order for the font options object.*/
 PHP_METHOD(CairoFontOptions, setSubpixelOrder) 
 {
-	zend_long subpixel_order = 0;
+	zend_long subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
 	cairo_font_options_object *font_options_object;
 	zval *subpixel_order_enum;
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &subpixel_order_enum, ce_cairo_subpixelorder) == FAILURE) {
 		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &subpixel_order) == FAILURE) {
-			return;
+			//no value given -> set to default
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_subpixelorder, subpixel_order)) {
 				return;
@@ -352,14 +352,14 @@ ZEND_END_ARG_INFO()
         Sets the hint style for font outlines for the font options object.*/
 PHP_METHOD(CairoFontOptions, setHintStyle) 
 {
-	zend_long hint_style = 0;
+	zend_long hint_style = CAIRO_HINT_STYLE_DEFAULT;
 	cairo_font_options_object *font_options_object;
 	zval *hint_style_enum;
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &hint_style_enum, ce_cairo_hintstyle) == FAILURE) {
 		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &hint_style) == FAILURE) {
-			return;
+			//no value given -> set to default
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_hintstyle, hint_style)) {
 				return;
@@ -405,14 +405,14 @@ ZEND_END_ARG_INFO()
         Sets the metrics hinting mode for the font options object.*/
 PHP_METHOD(CairoFontOptions, setHintMetrics) 
 {
-	zend_long hint_metrics = 0;
+        zend_long hint_metrics = CAIRO_HINT_METRICS_DEFAULT;
 	cairo_font_options_object *font_options_object;
         zval *hint_metrics_enum;
 
 	if (zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET|ZEND_PARSE_PARAMS_THROW,
 		ZEND_NUM_ARGS(), "O", &hint_metrics_enum, ce_cairo_hintmetrics) == FAILURE) {
 		if (zend_parse_parameters(ZEND_NUM_ARGS(), "|l", &hint_metrics) == FAILURE) {
-			return;
+			//no value given -> set to default
 		} else {
 			if(!php_eos_datastructures_check_value(ce_cairo_hintmetrics, hint_metrics)) {
 				return;
