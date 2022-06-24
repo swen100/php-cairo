@@ -11,4 +11,4 @@ include __DIR__ . '/skipif.inc';
 var_dump(phpversion('cairo'));
 ?>
 --EXPECTF--
-string(%d) "%d.%d.%d%s"
+string(%d) "%d.%d.%d"
