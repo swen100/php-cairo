@@ -32,7 +32,7 @@ zend_class_entry *ce_cairo_pssurface;
 zend_class_entry *ce_cairo_pslevel;
 
 /* ----------------------------------------------------------------
-    Cairo\Surface\Svg Class API
+    Cairo\Surface\Ps Class API
 ------------------------------------------------------------------*/
 
 ZEND_BEGIN_ARG_INFO(CairoPsSurface___construct_args, ZEND_SEND_BY_VAL)
@@ -41,7 +41,7 @@ ZEND_BEGIN_ARG_INFO(CairoPsSurface___construct_args, ZEND_SEND_BY_VAL)
 	ZEND_ARG_INFO(0, height)
 ZEND_END_ARG_INFO()
 
-/* {{{ proto void CairoPsSurface->__construct(string|resource file, float width, float height) 
+/* {{{ proto void CairoPsSurface->__construct(string|resource file, int|float width, int|float height) 
        Creates a PS surface of the specified size in points to be written to filename. */
 PHP_METHOD(CairoPsSurface, __construct)
 {

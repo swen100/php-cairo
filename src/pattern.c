@@ -212,6 +212,7 @@ PHP_METHOD(CairoPattern, setExtend)
 	}
 
 	cairo_pattern_set_extend(pattern_object->pattern, extend);
+        php_cairo_throw_exception(cairo_pattern_status(pattern_object->pattern) );
 }
 
 /* }}} */
@@ -268,6 +269,7 @@ PHP_METHOD(CairoPattern, setFilter)
 	}
 
 	cairo_pattern_set_filter(pattern_object->pattern, filter);
+        php_cairo_throw_exception(cairo_pattern_status(pattern_object->pattern) );
 }
 
 /* }}} */
@@ -300,6 +302,8 @@ PHP_METHOD(CairoPattern, getMatrix)
 		ZVAL_COPY(matrix_store, return_value);
 		status = cairo_pattern_set_user_data(pattern_object->pattern, &matrix_key,
 			(void *)matrix_store, cairo_pattern_destroy_func);
+                
+                php_cairo_throw_exception(status);
 	} else {
 		ZVAL_COPY(return_value, matrix);
 	}
@@ -336,6 +340,8 @@ PHP_METHOD(CairoPattern, setMatrix)
 
 	status = cairo_pattern_set_user_data(pattern_object->pattern, &matrix_key,
 			(void *)matrix_store, cairo_pattern_destroy_func);
+        
+        php_cairo_throw_exception(status);
 }
 /* }}} */
 
@@ -389,6 +395,7 @@ PHP_METHOD(CairoPatternSolid, getRgba)
 {
 	cairo_pattern_object *pattern_object;
 	double red, green, blue, alpha;
+        cairo_status_t status;
 
 	ZEND_PARSE_PARAMETERS_NONE();
 
@@ -397,8 +404,9 @@ PHP_METHOD(CairoPatternSolid, getRgba)
 		return;
 	}
 
-	cairo_pattern_get_rgba(pattern_object->pattern, &red, &green, &blue, &alpha);
-
+	status = cairo_pattern_get_rgba(pattern_object->pattern, &red, &green, &blue, &alpha);
+        php_cairo_throw_exception(status);
+        
 	array_init(return_value);
 	add_assoc_double(return_value, "red", red);
 	add_assoc_double(return_value, "green", green);
@@ -438,6 +446,7 @@ PHP_METHOD(CairoPatternGradient, addColorStopRgb)
 		return;
 	}
 	cairo_pattern_add_color_stop_rgb(pattern_object->pattern, offset, red, green, blue);
+        php_cairo_throw_exception(cairo_pattern_status(pattern_object->pattern) );
 }
 /* }}} */
 
@@ -470,6 +479,7 @@ PHP_METHOD(CairoPatternGradient, addColorStopRgba)
 		return;
 	}
 	cairo_pattern_add_color_stop_rgba(pattern_object->pattern, offset, red, green, blue, alpha);
+        php_cairo_throw_exception(cairo_pattern_status(pattern_object->pattern) );
 }
 /* }}} */
 
@@ -484,6 +494,7 @@ PHP_METHOD(CairoPatternGradient, getColorStopRgba)
 	zend_long index;
 	double offset, red, green, blue, alpha;
 	cairo_pattern_object *pattern_object;
+        cairo_status_t status;
 
         ZEND_PARSE_PARAMETERS_START(1,1)
                 Z_PARAM_LONG(index)
@@ -493,8 +504,9 @@ PHP_METHOD(CairoPatternGradient, getColorStopRgba)
 	if(!pattern_object) {
 		return;
 	}
-	cairo_pattern_get_color_stop_rgba(pattern_object->pattern, index, &offset, &red, &green, &blue, &alpha);
-
+	status = cairo_pattern_get_color_stop_rgba(pattern_object->pattern, index, &offset, &red, &green, &blue, &alpha);
+        php_cairo_throw_exception(status);
+        
 	array_init(return_value);
 	add_assoc_double(return_value, "red", red);
 	add_assoc_double(return_value, "green", green);
@@ -512,15 +524,17 @@ PHP_METHOD(CairoPatternGradient, getColorStopCount)
 {
 	int count;
 	cairo_pattern_object *pattern_object;
-
+        cairo_status_t status;
+        
 	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
 		return;
 	}
-	cairo_pattern_get_color_stop_count(pattern_object->pattern, &count);
-
+	status = cairo_pattern_get_color_stop_count(pattern_object->pattern, &count);
+        php_cairo_throw_exception(status);
+        
 	RETURN_LONG(count);
 }
 /* }}} */
@@ -574,15 +588,17 @@ PHP_METHOD(CairoPatternGradientRadial, getCircles)
 {
 	cairo_pattern_object *pattern_object;
 	double x0 = 0.0, y0 = 0.0, r0 = 0.0, x1 = 0.0, y1 = 0.0, r1 = 0.0;
-
+        cairo_status_t status;
+        
 	ZEND_PARSE_PARAMETERS_NONE();
 
 	pattern_object = cairo_pattern_object_get(getThis());
 	if(!pattern_object) {
 		return;
 	}
-	cairo_pattern_get_radial_circles(pattern_object->pattern, &x0, &y0, &r0, &x1, &y1, &r1);
-
+	status = cairo_pattern_get_radial_circles(pattern_object->pattern, &x0, &y0, &r0, &x1, &y1, &r1);
+        php_cairo_throw_exception(status);
+        
 	array_init(return_value);
 	add_assoc_double(return_value, "x0", x0);
 	add_assoc_double(return_value, "y0", y0);
@@ -638,6 +654,7 @@ PHP_METHOD(CairoPatternGradientLinear, getPoints)
 {
 	cairo_pattern_object *pattern_object;
 	double x0, y0, x1, y1;
+        cairo_status_t status;
 
 	ZEND_PARSE_PARAMETERS_NONE();
 
@@ -645,8 +662,9 @@ PHP_METHOD(CairoPatternGradientLinear, getPoints)
 	if(!pattern_object) {
 		return;
 	}
-	cairo_pattern_get_linear_points(pattern_object->pattern, &x0, &y0, &x1, &y1);
-
+	status = cairo_pattern_get_linear_points(pattern_object->pattern, &x0, &y0, &x1, &y1);
+        php_cairo_throw_exception(status);
+        
 	array_init(return_value);
 	add_assoc_double(return_value, "x0", x0);
 	add_assoc_double(return_value, "y0", y0);
@@ -708,6 +726,7 @@ PHP_METHOD(CairoPatternSurface, getSurface)
 	cairo_pattern_object *pattern_object;
         cairo_surface_object *surface_object;
 	cairo_surface_t *surface;
+        cairo_status_t status;
 
 	ZEND_PARSE_PARAMETERS_NONE();
 
@@ -717,7 +736,8 @@ PHP_METHOD(CairoPatternSurface, getSurface)
 	}
         
 	// get our surface out
-	cairo_pattern_get_surface(pattern_object->pattern, &surface);
+	status = cairo_pattern_get_surface(pattern_object->pattern, &surface);
+        php_cairo_throw_exception(status);
         
         /* If we have a surface, grab that zval to use */
 //	if(pattern_object->surface) {
@@ -912,7 +932,7 @@ ZEND_END_ARG_INFO()
 
 /* {{{  proto void \Cairo\Pattern\Mesh::setControlPoint(int corner_num,
  *            float x, float y)
-   sets the internal control point of the current patch */
+   Set an internal control point of the current patch. */
 PHP_METHOD(CairoPatternMesh, setControlPoint)
 {
 	cairo_pattern_object *pattern_object;
@@ -944,7 +964,7 @@ ZEND_END_ARG_INFO()
 
 /* {{{  proto void \Cairo\Pattern\Mesh::setCornerColorRgb(int corner_num,
  *            float red, float blue, float green)
-   Gets the control point of patch number for a mesh pattern */
+   Sets the color of a corner of the current patch in a mesh pattern. */
 PHP_METHOD(CairoPatternMesh, setCornerColorRgb)
 {
 	cairo_pattern_object *pattern_object;
@@ -978,7 +998,7 @@ ZEND_END_ARG_INFO()
 
 /* {{{  proto void \Cairo\Pattern\Mesh::setCornerColorRgba(int corner_num,
  *            float red, float blue, float green, float alpha)
-   Gets the control point of patch number for a mesh pattern */
+   Sets the color of a corner of the current patch in a mesh pattern. */
 PHP_METHOD(CairoPatternMesh, setCornerColorRgba)
 {
 	cairo_pattern_object *pattern_object;
@@ -1007,7 +1027,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getPatchCount_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{  proto void \Cairo\Pattern\Mesh::getPatchCount()
-   Gets the path for a mesh pattern */
+   Gets the number of patches specified in the given mesh pattern. */
 PHP_METHOD(CairoPatternMesh, getPatchCount)
 {
 	cairo_pattern_object *pattern_object;
@@ -1021,6 +1041,8 @@ PHP_METHOD(CairoPatternMesh, getPatchCount)
 		return;
 	}
 	status = cairo_mesh_pattern_get_patch_count(pattern_object->pattern, &count);
+        php_cairo_throw_exception(status);
+        
 	RETURN_LONG(count);
 }
 /* }}} */
@@ -1030,7 +1052,7 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getPath_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{  proto void \Cairo\Pattern\Mesh::getPath()
-   Gets the path for a mesh pattern */
+   Gets path defining the patch patch_num for a mesh pattern. */
 PHP_METHOD(CairoPatternMesh, getPath)
 {
 	cairo_pattern_object *pattern_object;
@@ -1067,12 +1089,13 @@ ZEND_BEGIN_ARG_INFO(CairoPatternMesh_getControlPoint_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{  proto void \Cairo\Pattern\Mesh::getControlPoint()
-   Gets the control point of patch number for a mesh pattern */
+   Gets the control point point_num of patch patch_num for a mesh pattern. */
 PHP_METHOD(CairoPatternMesh, getControlPoint)
 {
 	cairo_pattern_object *pattern_object;
 	zend_long patch_num, point_num;
 	double x, y;
+        cairo_status_t status;
 
         ZEND_PARSE_PARAMETERS_START(2,2)
                 Z_PARAM_LONG(patch_num)
@@ -1083,8 +1106,9 @@ PHP_METHOD(CairoPatternMesh, getControlPoint)
 	if(!pattern_object) {
 		return;
 	}
-	cairo_mesh_pattern_get_control_point(pattern_object->pattern, patch_num, point_num, &x, &y);
-
+	status = cairo_mesh_pattern_get_control_point(pattern_object->pattern, patch_num, point_num, &x, &y);
+        php_cairo_throw_exception(status);
+        
 	array_init(return_value);
 	add_assoc_double(return_value, "x", x);
 	add_assoc_double(return_value, "y", y);
@@ -1103,6 +1127,7 @@ PHP_METHOD(CairoPatternMesh, getCornerColorRgba)
 	cairo_pattern_object *pattern_object;
 	zend_long patch_num, corner_num;
 	double red, green, blue, alpha;
+        cairo_status_t status;
 
         ZEND_PARSE_PARAMETERS_START(2,2)
                 Z_PARAM_LONG(patch_num)
@@ -1113,8 +1138,9 @@ PHP_METHOD(CairoPatternMesh, getCornerColorRgba)
 	if(!pattern_object) {
 		return;
 	}
-	cairo_mesh_pattern_get_corner_color_rgba(pattern_object->pattern, patch_num, corner_num, &red, &green, &blue, &alpha);
-
+	status = cairo_mesh_pattern_get_corner_color_rgba(pattern_object->pattern, patch_num, corner_num, &red, &green, &blue, &alpha);
+        php_cairo_throw_exception(status);
+        
 	array_init(return_value);
 	add_assoc_double(return_value, "red", red);
 	add_assoc_double(return_value, "green", green);

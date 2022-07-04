@@ -12,7 +12,7 @@ $ext = new ReflectionExtension('cairo');
 var_dump($ext->getClassNames());
 ?>
 --EXPECT--
-array(55) {
+array(56) {
   [0]=>
   string(5) "Cairo"
   [1]=>

@@ -347,7 +347,7 @@ PHP_METHOD(CairoContext, popGroupToSource)
 
 /* {{{ proto CairoSurface object \Cairo\Context::getGroupSurface()
    previous method-name was getGroupTarget()
-   Gets the current destination surface for the context */
+   Gets the current destination surface for the context. */
 PHP_METHOD(CairoContext, getGroupSurface)
 {
     cairo_surface_t *surface;
@@ -379,7 +379,9 @@ ZEND_BEGIN_ARG_INFO(CairoContext_setSourceRGB_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void \Cairo\Context::setSourceRGB(float red, float green, float blue)
-   Sets the source pattern within context to an opaque color. This opaque color will then be used for any subsequent drawing operation until a new source pattern is set.  */
+   Sets the source pattern within context to an opaque color.
+   This opaque color will then be used for any subsequent drawing operation
+   until a new source pattern is set. */
 PHP_METHOD(CairoContext, setSourceRGB)
 {
     double red = 0.0, green = 0.0, blue = 0.0;
@@ -1014,7 +1016,7 @@ PHP_METHOD(CairoContext, getMiterLimit)
 }
 /* }}} */
 
-ZEND_BEGIN_ARG_INFO(CairoPattern_setOperator_args, ZEND_SEND_BY_VAL)
+ZEND_BEGIN_ARG_INFO(CairoContext_setOperator_args, ZEND_SEND_BY_VAL)
     ZEND_ARG_INFO(0, operator)
 ZEND_END_ARG_INFO()
 
@@ -1570,7 +1572,7 @@ PHP_METHOD(CairoContext, showPage)
 /* }}} */
 
 /* Transformations */
-ZEND_BEGIN_ARG_INFO(CairoContext_translate_args, ZEND_SEND_BY_VAL)
+ZEND_BEGIN_ARG_INFO(CairoContext_method_args_x_y, ZEND_SEND_BY_VAL)
     ZEND_ARG_INFO(0, x)
     ZEND_ARG_INFO(0, y)
 ZEND_END_ARG_INFO()
@@ -3011,12 +3013,12 @@ static const zend_function_entry cairo_context_methods[] =
     PHP_ME(CairoContext, getLineWidth, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, setMiterLimit, CairoContext_setMiterLimit_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getMiterLimit, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, setOperator, CairoPattern_setOperator_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, setOperator, CairoContext_setOperator_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getOperator, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, setTolerance, CairoContext_setTolerance_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getTolerance, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, clip, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, inClip, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, inClip, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, clipPreserve, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, resetClip, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getClipExtents, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
@@ -3024,7 +3026,7 @@ static const zend_function_entry cairo_context_methods[] =
     PHP_ME(CairoContext, fill, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, fillPreserve, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getFillExtents, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, inFill, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, inFill, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, mask, CairoContext_mask_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, maskSurface, CairoContext_maskSurface_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, paint, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
@@ -3032,21 +3034,21 @@ static const zend_function_entry cairo_context_methods[] =
     PHP_ME(CairoContext, stroke, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, strokePreserve, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, strokeExtents, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, inStroke, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, inStroke, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, copyPage, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, showPage, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     /* Transformations */
-    PHP_ME(CairoContext, translate, CairoContext_translate_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, scale, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, translate, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, scale, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, rotate, CairoContext_rotate_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, transform, CairoContext_transform_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, setMatrix, CairoContext_setMatrix_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getMatrix, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, identityMatrix, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, userToDevice, CairoContext_translate_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, userToDeviceDistance, CairoContext_translate_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, deviceToUser, CairoContext_translate_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, deviceToUserDistance, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, userToDevice, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, userToDeviceDistance, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, deviceToUser, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, deviceToUserDistance, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     /* Paths */
     PHP_ME(CairoContext, copyPath, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, copyPathFlat, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
@@ -3059,16 +3061,16 @@ static const zend_function_entry cairo_context_methods[] =
     PHP_ME(CairoContext, arc, CairoContext_arc_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, arcNegative, CairoContext_arc_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, curveTo, CairoContext_curveTo_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, lineTo, CairoContext_translate_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, moveTo, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, lineTo, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, moveTo, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, rectangle, CairoContext_rectangle_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, glyphPath, CairoContext_glyphPath_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, showGlyphs, CairoContext_showGlyphs_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, showTextGlyphs, CairoContext_showTextGlyphs_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, textPath, CairoContext_textPath_args, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, relCurveTo, CairoContext_curveTo_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, relLineTo, CairoContext_translate_args, ZEND_ACC_PUBLIC)
-    PHP_ME(CairoContext, relMoveTo, CairoContext_translate_args, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, relLineTo, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
+    PHP_ME(CairoContext, relMoveTo, CairoContext_method_args_x_y, ZEND_ACC_PUBLIC)
     PHP_ME(CairoContext, getPathExtents, CairoContext_method_no_args, ZEND_ACC_PUBLIC)
     /* Text */
     PHP_ME(CairoContext, selectFontFace, CairoContext_selectFontFace_args, ZEND_ACC_PUBLIC)

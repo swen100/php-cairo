@@ -39,7 +39,8 @@ ZEND_BEGIN_ARG_INFO(CairoImageSurface___construct_args, ZEND_SEND_BY_VAL)
 ZEND_END_ARG_INFO()
 
 /* {{{ proto void __construct(int format, int width, int height)
-       Returns new CairoSurfaceImage object created on an image surface */
+       Creates an image surface of the specified format and dimensions.
+       Initially the surface contents are set to 0. */
 PHP_METHOD(CairoImageSurface, __construct)
 {
 	zend_long format, width, height;
@@ -380,7 +381,7 @@ static const zend_function_entry cairo_imagesurface_methods[] = {
 /* }}} */
 
 /* {{{ cairo_format_methods[] */
-const zend_function_entry cairo_format_methods[] = {
+static const zend_function_entry cairo_format_methods[] = {
 	PHP_ME(CairoFormat, strideForWidth, CairoFormat_strideForWidth_args, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	ZEND_FE_END
 };

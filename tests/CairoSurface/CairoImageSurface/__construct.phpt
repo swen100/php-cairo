@@ -2,28 +2,30 @@
 new Cairo\Surface\Image [__construct() method ]
 --SKIPIF--
 <?php
-if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
+if (!extension_loaded('cairo')) {
+    die('skip - Cairo extension not available');
+}
 ?>
 --FILE--
 <?php
 $surface = new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32, 50, 50);
 var_dump($surface);
 
-/* Wrong number args - 1 */
+/* Wrong number args - 0 */
 try {
     new Cairo\Surface\Image();
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
-/* Wrong number args - 2 */
+/* Wrong number args - 1 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32);
 } catch (TypeError $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
-/* Wrong number args - 3 */
+/* Wrong number args - 2 */
 try {
     new Cairo\Surface\Image(Cairo\Surface\ImageFormat::ARGB32, 1);
 } catch (TypeError $e) {
