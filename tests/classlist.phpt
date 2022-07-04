@@ -110,17 +110,19 @@ array(55) {
   [47]=>
   string(10) "Cairo\Path"
   [48]=>
-  string(13) "Cairo\Context"
+  string(19) "Cairo\Path\DataType"
   [49]=>
-  string(14) "Cairo\FillRule"
+  string(13) "Cairo\Context"
   [50]=>
-  string(13) "Cairo\LineCap"
+  string(14) "Cairo\FillRule"
   [51]=>
-  string(14) "Cairo\LineJoin"
+  string(13) "Cairo\LineCap"
   [52]=>
-  string(14) "Cairo\Operator"
+  string(14) "Cairo\LineJoin"
   [53]=>
-  string(11) "Cairo\Glyph"
+  string(14) "Cairo\Operator"
   [54]=>
+  string(11) "Cairo\Glyph"
+  [55]=>
   string(17) "Cairo\TextCluster"
 }
